@@ -48,7 +48,8 @@
                 <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos</h2>
+                            <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos
+                            </h2>
                             <ul id="buttons04" class="style1 buttons">
                                 <li>
                                     <a href="https://abdalazard.online/veddit" class="button n01">
@@ -64,6 +65,15 @@
                                             <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
                                         </svg>
                                         <span class="label">Sagaz Multimarcas</span>
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a href="https://abdalazard.online/loginscreen" class="button n03">
+                                        <svg>
+                                            <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
+                                        </svg>
+                                        <span class="label">Tela de Login(para cursos)</span>
                                     </a>
                                 </li>
                             </ul>
