@@ -38,7 +38,7 @@
                             <h2 id="text05" class="style1">Olá, eu
                                 me chamo Vinícius</h2>
                             <p id="text13" class="style2">Desenvolvedor
-                                PHP | React | SASS</p>
+                                PHP | Laravel | PHPUnit | React.Js</p>
                         </div>
                     </div>
                 </div>
