@@ -17,7 +17,9 @@
     <meta property="og:url" content="https://abdalazard.online" />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://abdalazard.online" />
-    <link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet" type="text/css" />
+    <link
+        href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
+        rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="./styles.css" />
     <script type="text/javascript" src="./index.js">
     </script>
@@ -31,7 +33,8 @@
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame"><img src="./pic.jpg" alt="" /></span></div>
+                            <div id="image04" class="style1 image"><span class="frame"><img src="./pic.jpg"
+                                        alt="" /></span></div>
                             <h2 id="text05" class="style1">Olá, eu
                                 me chamo Vinícius</h2>
                             <p id="text13" class="style2">Desenvolvedor
@@ -45,10 +48,12 @@
                             </svg><span class="label">Arrow Down</span></a></li>
                 </ul>
                 <hr id="divider02" class="style1 full" />
-                <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
+                <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0"
+                    data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos
+                            <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center"
+                                data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos
                             </h2>
                             <ul id="buttons04" class="style1 buttons">
                                 <li>
@@ -60,7 +65,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="https://sagazmultimarcas.com" class="button n02">
+                                    <a href="https://sagazmultimarcas.com.br" class="button n02">
                                         <svg>
                                             <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
                                         </svg>
@@ -120,7 +125,8 @@
                             <h2 id="text07" class="style3">Minhas
                                 redes</h2>
                             <ul id="icons01" class="style1 icons">
-                                <li><a class="n01" href="https://linkedin.com/in/viniciusabdala10" aria-label="LinkedIn"><svg>
+                                <li><a class="n01" href="https://linkedin.com/in/viniciusabdala10"
+                                        aria-label="LinkedIn"><svg>
                                             <use xlink:href="#icon-bf393d6ea48a4e69e1ed58a3563b94a5"></use>
                                         </svg><span class="label">LinkedIn</span></a></li>
                                 <li><a class="n02" href="https://github.com/ABDALAZARD" aria-label="GitHub"><svg>
