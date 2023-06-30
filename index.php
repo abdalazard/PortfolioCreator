@@ -37,7 +37,7 @@
                                         alt="" /></span></div>
                             <h2 id="text05" class="style1">Olá, eu
                                 me chamo Vinícius</h2>
-                            <p id="text13" class="style2">Desenvolvedor
+                            <p id="text13" class="style2" style="font-size: 20px">Desenvolvedor
                                 PHP | Laravel | PHPUnit | React.Js</p>
                         </div>
                     </div>
