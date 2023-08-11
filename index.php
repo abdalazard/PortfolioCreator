@@ -72,7 +72,14 @@
                                         <span class="label">Sagaz Multimarcas</span>
                                     </a>
                                 </li>
-
+                                <li>
+                                    <a href="https://petloveshop.lojavirtualnuvem.com.br" class="button n02">
+                                        <svg>
+                                            <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
+                                        </svg>
+                                        <span class="label">PetLove</span>
+                                    </a>
+                                </li>
                                 <li>
                                     <a href="https://abdalazard.online/loginscreen" class="button n03">
                                         <svg>
