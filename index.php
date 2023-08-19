@@ -33,7 +33,7 @@
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame"><img src="./pic.jpg"
+                            <div id="image04" class="style1 image"><span class="frame"><img src="./pic.jpeg"
                                         alt="" /></span></div>
                             <h2 id="text05" class="style1">Olá, eu
                                 me chamo Vinícius</h2>
