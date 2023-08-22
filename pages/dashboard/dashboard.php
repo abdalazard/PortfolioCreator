@@ -9,7 +9,6 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
-    <link rel="stylesheet" href="../../styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
 </head>
@@ -35,7 +34,7 @@
 
         <h1>Dashboard</h1>
         <div>
-            <h6>Olá, <?php echo $_SESSION['email']; ?></h6>
+            <h6>Olá, <?php echo $_SESSION['user']; ?></h6>
         </div>
 
 

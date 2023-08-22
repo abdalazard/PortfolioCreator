@@ -1,3 +1,8 @@
+<?php
+session_start();
+if (isset($_SESSION["id"])) {
+    header("location: pages/dashboard/dashboard.php");
+} ?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
 
