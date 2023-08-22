@@ -30,18 +30,21 @@
     <div id="wrapper">
         <div id="main">
             <div class="inner">
+                <a href="index.php">
+                    <h2 id="text02" class="style1">Voltar</h2>
+                </a>
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
 
                             <h2 id="text05" class="style1">Acesso</h2>
-                            <form action="src/auth/Authentication.php" METHOD="POST">
+                            <form action="src/Login/Login.php" METHOD="POST">
                                 <div>
-                                    <input type="text" placeholder="Usuário" required>
+                                    <input type="text" name="user" placeholder="Usuário" required>
                                 </div>
                                 <hr />
                                 <div>
-                                    <input type="password" placeholder="Senha" required>
+                                    <input type="password" name="pass" placeholder="Senha" required>
                                 </div>
                                 <hr />
                                 <div> <input type="submit" value="Acessar" class="button">
