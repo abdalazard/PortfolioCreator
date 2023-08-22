@@ -20,6 +20,12 @@
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#">Atualizar pagina</a></li>
+            </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#">Mudar Layout(Em Breve)</a></li>
+            </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger "
                         href="../../src/Logout/Logout.php">Deslogar</a>
