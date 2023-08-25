@@ -8,7 +8,7 @@ $password = MD5($_POST['pass']);
 
 $database = new Connection;
 
-$findUsers = "SELECT * FROM usuarios WHERE user LIKE '" . $user . "' AND pass LIKE '" . $password . "'";
+$findUsers = "SELECT * FROM users WHERE user LIKE '" . $user . "' AND pass LIKE '" . $password . "'";
 $userExists = $database->toDatabase($findUsers);
 if (!$userExists) {
     $msg = "Erro na tentativa de login!";

@@ -57,7 +57,7 @@
                     <form action="src/Portfolio/Edit.php" METHOD="POST">
                         <div class="row">
                             <div class="col s12">
-                                <label for="titulo">Foto</label>
+                                <label for="foto">Foto</label>
                                 <input type="file" name="foto" placeholder="Upload de foto" required>
                             </div>
                         </div>

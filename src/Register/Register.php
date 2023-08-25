@@ -6,7 +6,7 @@ $password = MD5($_POST['passwordRegister']);
 
 $database = new Connection;
 
-$findUsers = "SELECT * FROM usuarios WHERE user LIKE '" . $user . "'";
+$findUsers = "SELECT * FROM users WHERE user LIKE '" . $user . "'";
 $userExists = $database->toDatabase($findUsers);
 if ($userExists) {
     $linhas = mysqli_num_rows($userExists);
@@ -17,7 +17,7 @@ if ($userExists) {
     } else {
         $msg =
             "<div class='bloco' style='background-color: green;'><h5 class='msg'> Usuário cadastrado com sucesso!</h5></div>";
-        $insertUser = "INSERT INTO usuarios VALUES(null, '" . $user . "', '" . $password . "')";
+        $insertUser = "INSERT INTO users VALUES(null, '" . $user . "', '" . $password . "')";
         $data = $database->toDatabase($insertUser);
 
         header('location: ../../admin.php?msg=' . $msg);
