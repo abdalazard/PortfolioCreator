@@ -21,7 +21,7 @@
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#">Atualizar pagina</a></li>
+                <li><a href="#modalLogin" class="modal-trigger">Atualizar pagina</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
@@ -44,7 +44,109 @@
             <h6>Olá, <?php echo $_SESSION['user']; ?></h6>
         </div>
 
+        <div id="modalLogin" class="modal modalLogin">
+            <div class="row">
+                <div class="col s2 offset-s10">
+                    <a href="#!" class="modal-close btn-white black-text closeButton">Fechar</a>
+                </div>
+            </div>
+            <div class="modal-content">
+                <h2>Meu portfólio</h2>
+                <h5>Profile</h5>
+                <div>
+                    <form action="src/Portfolio/Edit.php" METHOD="POST">
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="titulo">Foto</label>
+                                <input type="file" name="foto" placeholder="Upload de foto" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="titulo">Titulo</label>
+                                <input type="text" name="titulo" placeholder="Título" required>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="subtitulo">Subtitulo</label>
+                                <input type="text" name="subtitulo" placeholder="Subtitulo(tecnologias)" required>
+                            </div>
+                        </div>
 
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <input type='submit' value="Atualizar" class="btn white black-text">
+                    </div>
+                </div>
+                </form>
+            </div>
+            <h5>Projetos</h5>
+            <hr />
+            <div>
+                <form action="src/Portfolio/Edit.php" METHOD="POST">
+                    <div class="row">
+                        <div class="col s12">
+                            <label for="projetos">Projetos</label>
+                            <input type="text" name="projetos" placeholder="Nome do projeto" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <label for="URL">URL</label>
+                            <input type="text" name="URL" placeholder="URL do projeto">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type='submit' value="Atualizar" class="btn white black-text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <h5>Palestras, workshops, cursos e certificações</h5>
+            <hr />
+            <div>
+                <form action="src/Portfolio/Edit.php" METHOD="POST">
+                    <div class="row">
+                        <div class="col s12">
+                            <label for="banner">Flyer/banner</label>
+                            <input type="file" name="banner" placeholder="Banner de apresentação">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type='submit' value="Atualizar" class="btn white black-text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <h5>Redes Sociais</h5>
+            <hr />
+            <div>
+                <form action="src/Portfolio/Edit.php" METHOD="POST">
+                    <div class="row">
+                        <div class="col s12">
+                            <label for="github"></label>
+                            <input type="text" name="github" placeholder="URL do Github">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <label for="linkedin"></label>
+                            <input type="text" name="linkedin" placeholder="URL do Linkedin">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type='submit' value="Atualizar" class="btn white black-text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     </div>
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -55,7 +157,7 @@
     $(document).ready(function() {
         setTimeout(function() {
             $('#msg').fadeOut();
-        }, 3000);
+        }, 1000);
     });
     </script>
 </body>

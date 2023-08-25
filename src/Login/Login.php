@@ -11,7 +11,7 @@ $database = new Connection;
 $findUsers = "SELECT * FROM usuarios WHERE user LIKE '" . $user . "' AND pass LIKE '" . $password . "'";
 $userExists = $database->toDatabase($findUsers);
 if (!$userExists) {
-    $msg = "<h5>Erro na tentativa de login!</h5>";
+    $msg = "Erro na tentativa de login!";
 
     header('location: ../../admin.php?msg=' . $msg);
 } else {
@@ -25,7 +25,7 @@ if (!$userExists) {
             header('location: ../../pages/dashboard/dashboard.php?');
         }
     } else {
-        $msg = "<h5>Dados incorretos!</h5>";
+        $msg = "Dados incorretos!";
         header('location: ../../admin.php?msg=' . $msg);
     }
 }
