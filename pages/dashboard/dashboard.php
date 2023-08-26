@@ -113,7 +113,7 @@
                         <div class="row">
                             <div class="col s12">
                                 <label for="projetos">Projetos</label>
-                                <input type="text" name="project_name" placeholder="Nome do projeto" required>
+                                <input type="text" name="nome_projeto" placeholder="Nome do projeto" required>
                             </div>
                         </div>
                         <div class="row">
