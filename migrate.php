@@ -9,6 +9,6 @@ foreach ($migrations as $migration) {
     }
 
     require_once 'db/migrations/' . $migration;
-    echo "Executada a migração: $migration\n";
+    echo "\nExecutada a migração: $migration\n";
 }
 ?>

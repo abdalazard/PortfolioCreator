@@ -56,6 +56,7 @@
                 <div>
                     <form action="src/Portfolio/Edit.php" METHOD="POST">
                         <div class="row">
+                            <!-- table> pages_data -->
                             <div class="col s12">
                                 <label for="foto">Foto</label>
                                 <input type="file" name="foto" placeholder="Upload de foto" required>
@@ -84,18 +85,19 @@
             </div>
             <h5>Projetos</h5>
             <hr />
+            <!-- table: projects -->
             <div>
                 <form action="src/Portfolio/Edit.php" METHOD="POST">
                     <div class="row">
                         <div class="col s12">
                             <label for="projetos">Projetos</label>
-                            <input type="text" name="projetos" placeholder="Nome do projeto" required>
+                            <input type="text" name="project_name" placeholder="Nome do projeto" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
                             <label for="URL">URL</label>
-                            <input type="text" name="URL" placeholder="URL do projeto">
+                            <input type="text" name="url" placeholder="URL do projeto">
                         </div>
                     </div>
                     <div class="row">
@@ -106,6 +108,7 @@
                 </form>
             </div>
             <h5>Palestras, workshops, cursos e certificações</h5>
+            <!-- others -->
             <hr />
             <div>
                 <form action="src/Portfolio/Edit.php" METHOD="POST">

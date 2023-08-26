@@ -1,7 +1,7 @@
 <?php
 
-include '../Connection.php';
 $db = new Connection;
+
 $table = "users";
 
 try{

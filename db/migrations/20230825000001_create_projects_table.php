@@ -2,13 +2,12 @@
 
 $db = new Connection;
 
-$table = "page_data";
+$table = "projects";
 try{
     $query = "CREATE TABLE ".$table." (
              id INT(11) AUTO_INCREMENT PRIMARY KEY,
-             foto VARCHAR(255) NOT NULL,
-             titulo VARCHAR(255) NOT NULL,
-             subtitulo VARCHAR(255) NOT NULL,
+             project_name VARCHAR(255) NOT NULL,
+             url VARCHAR(255) NOT NULL,
              id_user INT,
             FOREIGN KEY (id_user) REFERENCES users(id)
      )";
