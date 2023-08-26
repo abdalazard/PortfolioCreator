@@ -1,7 +1,4 @@
 <?php
-
-$db = new Connection;
-
 $table = "users";
 
 try{

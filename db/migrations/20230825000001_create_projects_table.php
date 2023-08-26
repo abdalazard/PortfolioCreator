@@ -1,7 +1,5 @@
 <?php
 
-$db = new Connection;
-
 $table = "projects";
 try{
     $query = "CREATE TABLE ".$table." (

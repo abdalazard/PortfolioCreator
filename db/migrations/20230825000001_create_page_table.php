@@ -1,7 +1,5 @@
 <?php
 
-$db = new Connection;
-
 $table = "page_data";
 try{
     $query = "CREATE TABLE ".$table." (

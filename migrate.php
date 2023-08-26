@@ -1,5 +1,6 @@
 <?php
 require_once 'db/Connection.php';
+$db = new Connection;
 
 $migrations = scandir(__DIR__ . '/db/migrations');
 
