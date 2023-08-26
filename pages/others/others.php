@@ -1,10 +1,10 @@
     <h5>Palestras, workshops, cursos e certificações</h5>
     <!-- others -->
-    <form action="src/Portfolio/Edit.php" METHOD="POST">
+    <form action="src/Portfolio/Edit.php" METHOD="POST" enctype="multipart/form-data">
         <div class="row">
             <div class="col s12">
                 <label for="banner">Flyer/banner</label>
-                <input type="file" name="banner" placeholder="Banner de apresentação">
+                <input type="file" id="banner" name="banner" accept=".png, .jpeg, .jpg, .pdf" required>
             </div>
         </div>
         <div class="row">

@@ -1,10 +1,11 @@
     <h5>Profile</h5>
-    <form action="src/Portfolio/Edit.php" METHOD="POST">
+    <form action="/src/Portfolio/processa_edit.php" METHOD="POST" enctype="multipart/form-data">
+        <input type="text" class="type" value="profile" hidden />
         <div class="row">
             <!-- table: info -->
             <div class="col s12">
                 <label for="foto">Foto</label>
-                <input type="file" name="foto" placeholder="Upload de foto" required>
+                <input type="file" name="foto" accept=".png, .jpeg, .jpg, .pdf"><br>
             </div>
         </div>
         <div class="row">
