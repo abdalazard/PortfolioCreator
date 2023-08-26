@@ -1,6 +1,7 @@
     <h5>Palestras, workshops, cursos e certificações</h5>
     <!-- others -->
-    <form action="src/Portfolio/Edit.php" METHOD="POST" enctype="multipart/form-data">
+    <form action="/src/Portfolio/Update/Updating.php" METHOD="POST" enctype="multipart/form-data">
+
         <div class="row">
             <div class="col s12">
                 <label for="banner">Flyer/banner</label>

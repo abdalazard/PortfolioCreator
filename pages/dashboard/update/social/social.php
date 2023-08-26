@@ -1,5 +1,6 @@
     <h5>Redes Sociais</h5>
-    <form action="src/Portfolio/Edit.php" METHOD="POST">
+    <form action="/src/Portfolio/Update/Updating.php" METHOD="POST" enctype="multipart/form-data">
+
         <div class="row">
             <div class="col s12">
                 <label for="github"></label>

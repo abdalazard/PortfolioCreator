@@ -1,6 +1,7 @@
     <h5>Projetos</h5>
     <!-- table: projects -->
-    <form action="src/Portfolio/Edit.php" METHOD="POST">
+    <form action="/src/Portfolio/Update/Updating.php" METHOD="POST" enctype="multipart/form-data">
+
         <div class="row">
             <div class="col s12">
                 <label for="projetos">Projetos</label>

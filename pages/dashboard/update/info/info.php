@@ -1,5 +1,6 @@
     <h5>Profile</h5>
-    <form action="/src/Portfolio/processa_edit.php" METHOD="POST" enctype="multipart/form-data">
+    <form action="/src/Portfolio/Update/Updating.php" METHOD="POST" enctype="multipart/form-data">
+
         <input type="text" class="type" value="profile" hidden />
         <div class="row">
             <!-- table: info -->
@@ -22,6 +23,7 @@
         </div>
 
         </div>
+
         <div class="row">
             <div class="col s12">
                 <input type='submit' value="Atualizar" class="btn white black-text">

@@ -21,7 +21,10 @@
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#modalPage" class="modal-trigger">Atualizar pagina</a></li>
+                <li><a href="#modalCreate" class="modal-trigger">Criar pagina</a></li>
+            </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#modalUpdate" class="modal-trigger">Atualizar pagina</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
@@ -44,7 +47,7 @@
             <h6>Olá, <?php echo $_SESSION['user']; ?></h6>
         </div>
 
-        <div id="modalPage" class="modal modalPage">
+        <div id="modalCreate" class="modal modalCreate">
             <div class="row">
                 <div class="col s2 offset-s10">
                     <a href="#!" class="modal-close btn-white black-text closeButton">Fechar</a>
@@ -53,15 +56,36 @@
             <div class="modal-content">
                 <h2>Meu portfólio</h2>
                 <hr />
-                <?php include '../info/info.php'; ?>
+                <form action="/src/Portfolio/Create/Creating.php" METHOD="POST" enctype="multipart/form-data">
+                    <?php include 'create/form.php'; ?>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type='submit' value="Atualizar" class="btn white black-text">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="modalUpdate" class="modal modalUpdate">
+            <div class="row">
+                <div class="col s2 offset-s10">
+                    <a href="#!" class="modal-close btn-white black-text closeButton">Fechar</a>
+                </div>
+            </div>
+            <div class="modal-content">
+                <h2>Meu portfólio</h2>
                 <hr />
-                <?php include '../skills/skills.php'; ?>
+                <?php include 'update/info/info.php'; ?>
                 <hr />
-                <?php include '../projects/projects.php'; ?>
+                <?php include 'update/skills/skills.php'; ?>
                 <hr />
-                <?php include '../others/others.php'; ?>
+                <?php include 'update/projects/projects.php'; ?>
                 <hr />
-                <?php include '../social/social.php'; ?>
+                <?php include 'update/others/others.php'; ?>
+                <hr />
+                <?php include 'update/social/social.php'; ?>
+
             </div>
         </div>
     </div>
