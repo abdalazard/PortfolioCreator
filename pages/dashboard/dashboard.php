@@ -53,6 +53,7 @@
             <div class="modal-content">
                 <h2>Meu portfólio</h2>
                 <h5>Profile</h5>
+                <hr />
                 <div>
                     <form action="src/Portfolio/Edit.php" METHOD="POST">
                         <div class="row">
@@ -83,70 +84,98 @@
                 </div>
                 </form>
             </div>
-            <h5>Projetos</h5>
-            <hr />
-            <!-- table: projects -->
-            <div>
-                <form action="src/Portfolio/Edit.php" METHOD="POST">
-                    <div class="row">
-                        <div class="col s12">
-                            <label for="projetos">Projetos</label>
-                            <input type="text" name="project_name" placeholder="Nome do projeto" required>
+            <div class="modal-content">
+                <h5>Skills</h5>
+                <hr />
+                <!-- table: projects -->
+                <div>
+                    <form action="src/Portfolio/Edit.php" METHOD="POST">
+                        <div class="row">
+                            <div class="col s12">
+                                <input type="file" name="logo">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <label for="URL">URL</label>
-                            <input type="text" name="url" placeholder="URL do projeto">
+                        <div class="row">
+                            <div class="col s12">
+                                <input type='submit' value="Atualizar" class="btn white black-text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <input type='submit' value="Atualizar" class="btn white black-text">
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-            <h5>Palestras, workshops, cursos e certificações</h5>
-            <!-- others -->
-            <hr />
-            <div>
-                <form action="src/Portfolio/Edit.php" METHOD="POST">
-                    <div class="row">
-                        <div class="col s12">
-                            <label for="banner">Flyer/banner</label>
-                            <input type="file" name="banner" placeholder="Banner de apresentação">
+            <div class="modal-content">
+
+                <h5>Projetos</h5>
+                <hr />
+                <!-- table: projects -->
+                <div>
+                    <form action="src/Portfolio/Edit.php" METHOD="POST">
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="projetos">Projetos</label>
+                                <input type="text" name="project_name" placeholder="Nome do projeto" required>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <input type='submit' value="Atualizar" class="btn white black-text">
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="URL">URL</label>
+                                <input type="text" name="url" placeholder="URL do projeto">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="row">
+                            <div class="col s12">
+                                <input type='submit' value="Atualizar" class="btn white black-text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <h5>Redes Sociais</h5>
-            <hr />
-            <div>
-                <form action="src/Portfolio/Edit.php" METHOD="POST">
-                    <div class="row">
-                        <div class="col s12">
-                            <label for="github"></label>
-                            <input type="text" name="github" placeholder="URL do Github">
+            <div class="modal-content">
+
+                <h5>Palestras, workshops, cursos e certificações</h5>
+                <!-- others -->
+                <hr />
+                <div>
+                    <form action="src/Portfolio/Edit.php" METHOD="POST">
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="banner">Flyer/banner</label>
+                                <input type="file" name="banner" placeholder="Banner de apresentação">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <label for="linkedin"></label>
-                            <input type="text" name="linkedin" placeholder="URL do Linkedin">
+                        <div class="row">
+                            <div class="col s12">
+                                <input type='submit' value="Atualizar" class="btn white black-text">
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s12">
-                            <input type='submit' value="Atualizar" class="btn white black-text">
+                    </form>
+                </div>
+            </div>
+            <div class="modal-content">
+
+                <h5>Redes Sociais</h5>
+                <hr />
+                <div>
+                    <form action="src/Portfolio/Edit.php" METHOD="POST">
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="github"></label>
+                                <input type="text" name="github" placeholder="URL do Github">
+                            </div>
                         </div>
-                    </div>
-                </form>
+                        <div class="row">
+                            <div class="col s12">
+                                <label for="linkedin"></label>
+                                <input type="text" name="linkedin" placeholder="URL do Linkedin">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col s12">
+                                <input type='submit' value="Atualizar" class="btn white black-text">
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

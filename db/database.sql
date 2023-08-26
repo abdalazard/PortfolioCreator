@@ -7,4 +7,4 @@ use portfolio1;
 --     `user` VARCHAR(250) NOT NULL,
 --     'pass' VARCHAR(250) NOT NULL,
 -- );
-INSERT INTO Usuarios VALUES(NULL, 'admin', MD5(123));
+INSERT INTO users VALUES(NULL, 'admin', MD5(123));
