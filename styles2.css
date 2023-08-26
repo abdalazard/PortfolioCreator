@@ -1,0 +1,35 @@
+.closeButton {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: 'center';
+}
+
+.bloco {
+    height: 30px;
+    text-align: center;
+    background-color: red;
+    color: white;
+
+}
+
+.msg {
+    color: white;
+}
+
+.modalLogin {
+    height: 390px;
+    width: 500px;
+}
+
+.modalRegister {
+    height: 540px;
+    width: 500px;
+}
+
+.logged {
+    color: #fff;
+    background-color: green;
+    text-align: center;
+    height: 20px;
+
+}

@@ -132,6 +132,23 @@
 
                     </div>
                 </div>
+                <hr id="divider01" class="style1 full">
+                <div id="container03" class="style1 container default">
+                    <div class="wrapper">
+                        <div class="inner" data-onvisible-trigger="1">
+                            <h2 id="text07" class="style3">Palestras e workshops</h2>
+                            <ul id="icons01" class="style1 icons">
+                                <li>
+                                    <div id="image02" class="style2 image">
+                                        <img src="palestra-teste_php.jpeg"
+                                            alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="300px"
+                                            height="500px" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
 
                 <hr id="divider01" class="style1 full">
                 <div id="container03" class="style1 container default">
