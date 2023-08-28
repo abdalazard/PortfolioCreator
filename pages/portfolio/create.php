@@ -11,7 +11,7 @@
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Criação de portfolio</title>
 </head>
 
 <body>
@@ -21,10 +21,7 @@
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../portfolio/create.php" class="modal-trigger">Criar novo</a></li>
-            </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../portfolio/update.php" class="modal-trigger">Atualizar</a></li>
+                <li><a href="update.php" class="modal-trigger">Atualizar</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
@@ -36,33 +33,33 @@
         </div>
     </nav>
     <div class="container">
-        <?php if (isset($_GET['msg'])) {
-        ?>
-            <h3 id="msg" style="font-size: 15px; background-color: red; color: white; text-align:center;">
-                <?php echo $_GET['msg']; ?>
-            </h3>
-        <?php } ?>
-        <h1>Dashboard</h1>
-        <div>
-            <h6>Olá, <?php echo $_SESSION['user']; ?></h6>
-        </div>
+        <h3>Criar novo Portfolio</h3>
+        <form action="../../src/Portfolio/Create.php" METHOD="POST" enctype="multipart/form-data">
 
-        <h2>Meu portfólio atual</h2>
-        <hr />
-        <p>Baixe o portfolio do banco aqui</p>
+            <?php include '../info/info.php'; ?>
 
+            <?php include '../skills/skills.php'; ?>
+
+            <!-- Adicionar lista de projetos -->
+
+            <?php include '../projects/projects.php'; ?>
+
+            <?php include '../others/others.php'; ?>
+
+            <?php include '../social/social.php'; ?>
+            <div class="row">
+                <div class="col s6 center">
+                    <input type='submit' value="Visualizar novo portfolio" class="btn white black-text">
+                </div>
+            </div>
+
+        </form>
     </div>
+
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <script>
         M.AutoInit();
-        $("#msg").addClass("logged");
-        $(document).ready(function() {
-            setTimeout(function() {
-                $('#msg').fadeOut();
-            }, 1000);
-        });
     </script>
 </body>
 

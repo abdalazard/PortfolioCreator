@@ -1,14 +1,23 @@
     <h5>Skills</h5>
     <!-- table: projects -->
-    <form action="src/Portfolio/Edit.php" METHOD="POST" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col s6 center">
+            <a href="#modalSkills" class="modal-trigger">Adicionar skill</a>
+        </div>
+    </div>
+    <div id="modalSkills" class="modal modalSkills">
         <div class="row">
-            <div class="col s12">
-                <input type="file" id="skill" name="skill" accept=".png, .jpeg, .jpg, .pdf">
+            <div class="col s2 offset-s10">
+                <a href="#!" class="modal-close btn-white black-text closeButton">Fechar</a>
             </div>
         </div>
-        <div class="row">
-            <div class="col s12">
-                <input type='submit' value="Atualizar" class="btn white black-text">
+        <div class="modal-content">
+            <div class="row">
+                <div class="col s12 ">
+                    <label for="skill">Habilidade(Adicione várias imagens renderizada das stacks)</label>
+                    <input type="file" name="skill">
+                </div>
             </div>
+
         </div>
-    </form>
+    </div>

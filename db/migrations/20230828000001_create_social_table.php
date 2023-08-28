@@ -1,11 +1,13 @@
 <?php
-$table = "users";
+$table = "social";
 
 try {
     $query = "CREATE TABLE " . $table . " (
         id INT(11) AUTO_INCREMENT PRIMARY KEY,
-        user VARCHAR(255) NOT NULL UNIQUE,
-        pass VARCHAR(255) NOT NULL
+        github VARCHAR(255) NULL,
+        linkedin VARCHAR(255) NULL,
+        id_user INT,
+        FOREIGN KEY (id_user) REFERENCES users(id)
     )";
     $db->toDatabase($query);
 
