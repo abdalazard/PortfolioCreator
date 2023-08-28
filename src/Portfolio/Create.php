@@ -40,5 +40,5 @@ if ($portfolio->moreThanOne($userId) == true) {
     }
     $msg = "Dados de portfolio gravados com sucesso!";
 
-    header("location: ../../pages/dashboard/dashboard.php?msg=" . $msg);
+    header("location: ../../pages/dashboard/visualization.php?msg=" . $msg);
 }
