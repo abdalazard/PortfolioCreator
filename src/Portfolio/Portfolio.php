@@ -24,20 +24,20 @@ class Portfolio
 
     public function moreThanOne($userId)
     {
+        $query = "SELECT * FROM info WHERE id_user LIKE '" . $userId . "'";
+        $db = new Connection;
 
-        $spy = "SELECT * FROM info WHERE id_user LIKE '" . $userId . "'";
-
-
-        if ($this->dataBase($spy) == 0) {
-            return false;
+        $linhas = mysqli_num_rows($db->toDatabase($query));
+        if ($linhas >= 1) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     public function dataBase($query)
     {
         $db = new Connection;
 
-        $db->toDatabase($query);
+        return $db->toDatabase($query);
     }
 }
