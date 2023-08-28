@@ -7,7 +7,8 @@ class Portfolio
     public function store($foto, $titulo, $subtitulo, $skill, $project_name, $url, $banner, $url_banner, $github, $linkedin, $userId)
     {
         try {
-            $newInfo = "INSERT INTO info VALUES(null, '" . $foto . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
+            $path = $this->setImage($foto);
+            $newInfo = "INSERT INTO info VALUES(null, '" . $path . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
             $this->dataBase($newInfo);
             $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
             $this->dataBase($newSkill);
@@ -21,6 +22,39 @@ class Portfolio
             echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
         }
     }
+
+
+    public function setImage($foto)
+    {
+        //Necessário validar todos os dados
+        $hoje = date("d-m-y");
+
+        $ext = explode(".", $foto["name"]); //[foto][ferias][jpg]
+        $ext = array_reverse($ext); //[jpg][ferias][foto]
+        $ext = $ext[0]; //jpg
+        if (!isset($foto)) {
+            $path = null;
+        } else {
+            if ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != " ") {
+                $path = "Arquivo de imagem inválido!";
+                $foto = null;
+                return $path;
+            } else {
+                $folder = "pasta_de_" . $_SESSION['user'];
+
+                if (!is_dir("../../images/users/" . $folder)) {
+                    mkdir("../../images/users/" . $folder, 0755);
+
+                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $_SESSION['user'] . $hoje);
+                } else {
+                    move_uploaded_file($foto["tmp_name"], "./../images/users/" . $folder . "/" . $_SESSION['user'] . $hoje);
+                }
+                $path = "users/" . $folder . "/" . $_SESSION['user'] . $hoje;
+                return $path;
+            }
+        }
+    }
+
 
     public function moreThanOne($userId)
     {

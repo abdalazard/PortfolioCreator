@@ -27,15 +27,14 @@
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
             </ul>
             <ul class="right">
-                <li><a class="waves-effect waves-light btn black modal-trigger "
-                        href="../../src/Logout/Logout.php">Deslogar</a>
+                <li><a class="waves-effect waves-light btn black modal-trigger " href="../../src/Logout/Logout.php">Deslogar</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container">
         <h3>Criar novo Portfolio</h3>
-        <form action="../../src/Portfolio/Create.php" METHOD="POST">
+        <form action="../../src/Portfolio/Create.php" METHOD="POST" enctype="multipart/form-data">
 
             <?php include '../info/info.php'; ?>
 
@@ -60,7 +59,7 @@
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-    M.AutoInit();
+        M.AutoInit();
     </script>
 </body>
 

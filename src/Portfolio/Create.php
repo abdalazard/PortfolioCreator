@@ -2,7 +2,8 @@
 session_start();
 
 //Profile
-// $foto = $_FILES['foto'];
+$foto = $_FILES['foto'];
+
 $titulo = $_POST['titulo'];
 $subtitulo = $_POST['subtitulo'];
 
@@ -26,7 +27,6 @@ $userId = $_SESSION['id'];
 include 'Portfolio.php';
 $portfolio = new Portfolio;
 
-//Necessário validar todos os dados.
 //Necessário tratar dados de imagens(criar uma pasta para cada categoria de imagem e gravar no banco somente o caminho dessas imagens)
 
 if ($portfolio->moreThanOne($userId) == true) {
@@ -36,7 +36,7 @@ if ($portfolio->moreThanOne($userId) == true) {
     header("location: ../../pages/dashboard/dashboard.php?msg=" . $msg);
 } else {
     //à substituir
-    if (!$portfolio->store('foto', $titulo, $subtitulo, 'skill', $project_name, $url_project, 'banner evento', 'url banner', $github, $linkedin, $userId)) {
+    if (!$portfolio->store($foto, $titulo, $subtitulo, 'skill', $project_name, $url_project, 'banner evento', 'url banner', $github, $linkedin, $userId)) {
         $msg = "Erro ao gravar os dados!";
     }
     $msg = "Dados de portfolio gravados com sucesso!";
