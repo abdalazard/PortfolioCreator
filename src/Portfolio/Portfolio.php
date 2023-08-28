@@ -34,6 +34,24 @@ class Portfolio
         }
     }
 
+    public function getInfo($id)
+    {
+        $infoQuery = "SELECT * FROM info WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($infoQuery);
+        if ($data = mysqli_fetch_array($db)) {
+            $foto = $data['foto'];
+            $titulo = $data['titulo'];
+            $subtitulo = $data['subtitulo'];
+        }
+
+        $data = [
+            'path' => $foto,
+            'titulo' => $titulo,
+            'subtitulo' => $subtitulo
+        ];
+        return $data;
+    }
+
     public function setImage($foto, $typePicture)
     {
         //Necessário validar todos os dados
@@ -52,14 +70,14 @@ class Portfolio
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];
 
-                if (!is_dir("../../images/users/" . $folder)) {
-                    mkdir("../../images/users/" . $folder, 0755);
+                if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
+                    mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0755);
 
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . $typePicture . '.' . $ext);
+                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
                 } else {
                     move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
                 }
-                $path = "users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
+                $path = "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
                 return $path;
             }
         }
