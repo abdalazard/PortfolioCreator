@@ -4,11 +4,11 @@
     text-align: 'center';
 }
 
-.bloco {
+.bloco-titulo {
     height: 30px;
     text-align: center;
-    background-color: red;
-    color: white;
+    background-color: grey;
+    color: black;
 
 }
 
