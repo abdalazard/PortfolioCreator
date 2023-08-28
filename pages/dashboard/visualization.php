@@ -1,12 +1,20 @@
 <?php
 include '../../src/Portfolio/Portfolio.php';
-session_start();
-$portfolio = new Portfolio;
-$info = $portfolio->getInfo($_SESSION['id']);
-$projects = $portfolio->getProjects($_SESSION['id']);
-$skill = $portfolio->getSkill($_SESSION['id']);
-$others = $portfolio->getOthers($_SESSION['id']);
-$social = $portfolio->getSocial($_SESSION['id']);
+include '../../auth/Authentication.php';
+$newInfo = new Portfolio;
+$info = $newInfo->getInfo($_SESSION['id']);
+
+$newProject = new Portfolio;
+$projects = $newProject->getProjects($_SESSION['id']);
+
+$newSkill = new Portfolio;
+$skills = $newSkill->getSkills($_SESSION['id']);
+
+$newOthers = new Portfolio;
+$others = $newOthers->getOthers($_SESSION['id']);
+
+$newSocial = new Portfolio;
+$social = $newSocial->getSocial($_SESSION['id']);
 
 
 include_once '../../icon/network.php';
@@ -33,11 +41,35 @@ include_once '../../icon/network.php';
     <link rel="canonical" href="https://abdalazard.online" />
     <link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../../styles.css" />
+    <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <script type="text/javascript" src="../../index.js">
     </script>
 </head>
 
-<body class="is-loading">
+<body>
+    <nav>
+        <div class="nav-wrapper black">
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="../../admin.php">Inicio</a></li>
+            </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#" class="modal-trigger">Publicar</a></li>
+            </ul>
+
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="#">Mudar Layout(Em Breve)</a></li>
+            </ul>
+            <ul class="right">
+                <li><a class="waves-effect waves-light btn green modal-trigger " href="../create.php">Publicar</a>
+                </li>
+            </ul>
+            <ul class="right">
+                <li><a class="waves-effect waves-light btn black modal-trigger " href="../create.php">Voltar</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
     <div id="wrapper">
         <div id="main">
             <div class="inner">
@@ -62,48 +94,18 @@ include_once '../../icon/network.php';
                             <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos
                             </h2>
                             <ul id="buttons04" class="style1 buttons">
-                                <?php //foreach(){} 
+                                <?php
+                                foreach ($projects as $project) {
                                 ?>
-                                <li>
-                                    <a href="https://abdalazard.online/veddit" class="button n01">
-                                        <svg>
-                                            <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
-                                        </svg>
-                                        <span class="label">Veddit</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.sagazmultimarcas.com.br" class="button n02">
-                                        <svg>
-                                            <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
-                                        </svg>
-                                        <span class="label">Sagaz Multimarcas</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://devculture.shop" class="button n02">
-                                        <svg>
-                                            <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
-                                        </svg>
-                                        <span class="label">DevCulture Shop</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://lojapetlove.shop/" class="button n02">
-                                        <svg>
-                                            <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
-                                        </svg>
-                                        <span class="label">PetLove</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://abdalazard.online/loginscreen" class="button n03">
-                                        <svg>
-                                            <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
-                                        </svg>
-                                        <span class="label">Tela de Login(para cursos)</span>
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="<?php echo $project['url_project'] ?>" class="button n01">
+                                            <svg>
+                                                <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
+                                            </svg>
+                                            <span class="label"><?php echo $project['project_name'] ?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                             <p id="text01" class="style2">Tecnologias usadas em alguns projetos:</p>
                         </div>
@@ -113,29 +115,13 @@ include_once '../../icon/network.php';
                 <div class="wrapper">
                     <div class="inner" data-onvisible-trigger="1">
                         <ul id="icons01" class="style1 icons">
-                            <li>
-                                <div id="image01" class="image">
-                                    <img src="../../icon/php-icon.png" widht="100px" height="100px" alt="PHP" />
-                                </div>
-                            </li>
-                            <li>
-                                <div id="image02" class="style2 image">
-                                    <img src="../../icon/laravel-icon.png" alt="Laravel" widht="100px" height="100px" />
-                                </div>
-                            </li>
-                        </ul>
-                        <ul id="icons01" class="style1 icons">
-
-                            <li>
-                                <div id="image02" class="style2 image">
-                                    <img src="../../icon/mysql-icon.png" alt="MySQL" widht="100px" height="100px" />
-                                </div>
-                            </li>
-                            <li>
-                                <div id="image02" class="style2 image">
-                                    <img src="../../icon/react-icon.png" alt="ReactJS" widht="100px" height="100px" />
-                                </div>
-                            </li>
+                            <?php foreach ($skills as $skill) { ?>
+                                <li>
+                                    <div id="image02" class="style2 image">
+                                        <img src="<?php echo $skill['skill']; ?>" alt="ReactJS" widht="100px" height="100px" />
+                                    </div>
+                                </li>
+                            <?php } ?>
                         </ul>
 
                     </div>
@@ -145,14 +131,19 @@ include_once '../../icon/network.php';
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <h2 id="text07" class="style3">Palestras e workshops</h2>
-                            <ul id="icons01" class="style1 icons">
-                                <li>
-                                    <div id="image02" class="style2 image">
-                                        <img src="<?php echo $others['banner']; ?>" alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="300px" height="500px" />
-                                        <label><?php echo $others['url_banner']; ?></label>
-                                    </div>
-                                </li>
+                            <br><br>
+                            <ul id="icons01" class="style1 icons" style="padding: 25%;">
+                                <?php foreach ($others as $other) { ?>
+
+                                    <li>
+                                        <a href="<?php echo $other['banner_url'] ?>">
+                                            <img name="banner" id="banner" src="<?php echo $other['banner']; ?>" alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="200px" height="300px" />
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -179,6 +170,7 @@ include_once '../../icon/network.php';
         </div>
     </div>
     <script type="text/javascript" src="../../index.js"></script>
+
 </body>
 
 </html>
