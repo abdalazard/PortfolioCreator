@@ -36,11 +36,17 @@
         <h3>Atualizar Portfolio</h3>
 
         <form action="/src/Portfolio/Update.php" METHOD="POST" enctype="multipart/form-data">
-
             <?php include '../info/info.php'; ?>
-            <?php include '../skills/skills.php'; ?>
-            <?php include '../projects/projects.php'; ?>
-            <?php include '../others/others.php'; ?>
+            <div class="row">
+                <div class="col s6 center">
+                    <input type='submit' value="Atualizar" class="btn white black-text">
+                </div>
+            </div>
+        </form>
+        <?php include '../skills/skills.php'; ?>
+        <?php include '../projects/projects.php'; ?>
+        <?php include '../others/others.php'; ?>
+        <form action="/src/Portfolio/Update.php" METHOD="POST" enctype="multipart/form-data">
             <?php include '../social/social.php'; ?>
             <div class="row">
                 <div class="col s6 center">
@@ -49,6 +55,7 @@
             </div>
 
         </form>
+
     </div>
 </body>
 
