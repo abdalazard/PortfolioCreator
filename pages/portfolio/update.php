@@ -27,7 +27,8 @@
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
             </ul>
             <ul class="right">
-                <li><a class="waves-effect waves-light btn black modal-trigger " href="../../src/Logout/Logout.php">Deslogar</a>
+                <li><a class="waves-effect waves-light btn black modal-trigger "
+                        href="../../src/Logout/Logout.php">Deslogar</a>
                 </li>
             </ul>
         </div>
@@ -35,7 +36,7 @@
     <div class="container">
         <h3>Atualizar Portfolio</h3>
 
-        <form action="/src/Portfolio/Update.php" METHOD="POST" enctype="multipart/form-data">
+        <form action="../../src/Portfolio/Update.php" METHOD="POST" enctype="multipart/form-data">
             <?php include '../info/info.php'; ?>
             <div class="row">
                 <div class="col s6 center">

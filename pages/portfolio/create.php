@@ -35,11 +35,13 @@
     </nav>
     <div class="container">
         <h3>Criar novo Portfolio</h3>
-        <form action="/src/Portfolio/Create.php" METHOD="POST" enctype="multipart/form-data">
+        <form action="../../src/Portfolio/Create.php" METHOD="POST">
 
             <?php include '../info/info.php'; ?>
 
             <?php include '../skills/skills.php'; ?>
+
+            <!-- Adicionar lista de projetos -->
 
             <?php include '../projects/projects.php'; ?>
 
@@ -54,6 +56,12 @@
 
         </form>
     </div>
+
+    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    M.AutoInit();
+    </script>
 </body>
 
 </html>

@@ -1,8 +1,8 @@
 <?php
 
 $table = "projects";
-try{
-    $query = "CREATE TABLE ".$table." (
+try {
+    $query = "CREATE TABLE " . $table . " (
              id INT(11) AUTO_INCREMENT PRIMARY KEY,
              nome_projeto VARCHAR(255) NOT NULL,
              url VARCHAR(255) NOT NULL,
@@ -11,7 +11,7 @@ try{
      )";
     $db->toDatabase($query);
 
-    echo "Tabela ".$table." criada com sucesso!";
+    echo "Tabela " . $table . " criada com sucesso!";
 } catch (PDOException $e) {
     echo "Erro: " . $e->getMessage();
 }

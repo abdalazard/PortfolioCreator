@@ -36,10 +36,12 @@
         </div>
     </nav>
     <div class="container">
-        <div id="msg">
-            <h6>Logado com sucesso!</h6>
-        </div>
-
+        <?php if (isset($_GET['msg'])) {
+        ?>
+            <h3 id="msg" style="font-size: 15px; background-color: red; color: white; text-align:center;">
+                <?php echo $_GET['msg']; ?>
+            </h3>
+        <?php } ?>
         <h1>Dashboard</h1>
         <div>
             <h6>Olá, <?php echo $_SESSION['user']; ?></h6>

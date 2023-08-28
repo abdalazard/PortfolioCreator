@@ -1,30 +1,45 @@
 <?php
+session_start();
 
-class Create
-{
+//Profile
+// $foto = $_FILES['foto'];
+$titulo = $_POST['titulo'];
+$subtitulo = $_POST['subtitulo'];
 
-    //Profile
-    public $imagem;
-    public $titulo;
-    public $subtitulo;
+//Skills
+// $skill = $_FILES['skill'];
 
-    //Projects
-    public array $nome_projeto = [];
-    public $link;
+//Projects
+$project_name = $_POST['nome_projeto'];
+$url_project = $_POST['url_projeto'];
 
-    //Skills
-    public array $skills = [];
+//Others
+// $banner = $_FILES['others'];
+$url_banner = $_POST['url_banner'];
 
-    //Others
-    public array $others = [];
+//Social
+$github = $_POST['github'];
+$linkedin = $_POST['linkedin'];
 
-    //Social
-    public $github;
-    public $linkedin;
+$userId = $_SESSION['id'];
 
-    public function setProfile($imagem, $titulo, $subtitulo)
-    {
-        //Profile   
+include 'Portfolio.php';
+$portfolio = new Portfolio;
 
+//Necessário validar todos os dados.
+//Necessário tratar dados de imagens(criar uma pasta para cada categoria de imagem e gravar no banco somente o caminho dessas imagens)
+
+if ($portfolio->moreThanOne($userId) == true) {
+
+    $msg = 'Erro, já existe este portfolio';
+
+    header("location: ../../pages/dashboard/dashboard.php?msg=" . $msg);
+} else {
+    //à substituir
+    if (!$portfolio->store('foto', $titulo, $subtitulo, 'skill', $project_name, $url_project, 'banner evento', 'url banner', $github, $linkedin, $userId)) {
+        $msg = "Erro ao gravar os dados!";
     }
+    $msg = "Dados de portfolio gravados com sucesso!";
+
+    header("location: ../../pages/dashboard/dashboard.php?msg=" . $msg);
 }
