@@ -1,3 +1,26 @@
+<?php
+include __DIR__ . "/db/Connection.php";
+
+include 'src/Portfolio/Portfolio.php';
+$newInfo = new Portfolio;
+$info = $newInfo->getInfo(1);
+
+$newProject = new Portfolio;
+$projects = $newProject->getProjects(1);
+
+$newSkill = new Portfolio;
+$skills = $newSkill->getSkills(1);
+
+$newOthers = new Portfolio;
+$others = $newOthers->getOthers(1);
+
+$newSocial = new Portfolio;
+$social = $newSocial->getSocial(1);
+
+
+include_once 'icon/network.php';
+
+?>
 <!DOCTYPE HTML>
 <html lang="pt-br">
 
@@ -17,28 +40,26 @@
     <meta property="og:url" content="https://abdalazard.online" />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://abdalazard.online" />
-    <link
-        href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
-        rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="./styles.css" />
-    <script type="text/javascript" src="./index.js">
+    <link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="text/javascript" src="index.js">
     </script>
 </head>
-<?php include_once 'icon/network.php'; ?>
 
-<body class="is-loading">
+<body>
     <div id="wrapper">
         <div id="main">
             <div class="inner">
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame"><img src="./pic.jpeg"
-                                        alt="" /></span></div>
-                            <h2 id="text05" class="style1">Olá, eu
-                                me chamo Vinícius</h2>
-                            <p id="text13" class="style2" style="font-size: 20px">Desenvolvedor
-                                PHP | Laravel | PHPUnit | React.Js</p>
+                            <div id="image04" class="style1 image">
+                                <span class="frame">
+                                    <img src="<?php echo $info['path']; ?>" alt="Foto" />
+                                </span>
+                            </div>
+                            <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
+                            <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -48,54 +69,24 @@
                             </svg><span class="label">Arrow Down</span></a></li>
                 </ul>
                 <hr id="divider02" class="style1 full" />
-                <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0"
-                    data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
+                <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center"
-                                data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos
+                            <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center" data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos
                             </h2>
                             <ul id="buttons04" class="style1 buttons">
-                                <li>
-                                    <a href="https://abdalazard.online/veddit" class="button n01">
-                                        <svg>
-                                            <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
-                                        </svg>
-                                        <span class="label">Veddit</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.sagazmultimarcas.com.br" class="button n02">
-                                        <svg>
-                                            <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
-                                        </svg>
-                                        <span class="label">Sagaz Multimarcas</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://devculture.shop" class="button n02">
-                                        <svg>
-                                            <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
-                                        </svg>
-                                        <span class="label">DevCulture Shop</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://lojapetlove.shop/" class="button n02">
-                                        <svg>
-                                            <use xlink:href="#icon-7a66fac84dc5d9fb5fafce395a384d40"></use>
-                                        </svg>
-                                        <span class="label">PetLove</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://abdalazard.online/loginscreen" class="button n03">
-                                        <svg>
-                                            <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
-                                        </svg>
-                                        <span class="label">Tela de Login(para cursos)</span>
-                                    </a>
-                                </li>
+                                <?php
+                                foreach ($projects as $project) {
+                                ?>
+                                    <li>
+                                        <a href="<?php echo $project['url_project'] ?>" class="button n01">
+                                            <svg>
+                                                <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
+                                            </svg>
+                                            <span class="label"><?php echo $project['project_name'] ?></span>
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
                             <p id="text01" class="style2">Tecnologias usadas em alguns projetos:</p>
                         </div>
@@ -105,29 +96,13 @@
                 <div class="wrapper">
                     <div class="inner" data-onvisible-trigger="1">
                         <ul id="icons01" class="style1 icons">
-                            <li>
-                                <div id="image01" class="image">
-                                    <img src="icon/php-icon.png" widht="100px" height="100px" alt="PHP" />
-                                </div>
-                            </li>
-                            <li>
-                                <div id="image02" class="style2 image">
-                                    <img src="icon/laravel-icon.png" alt="Laravel" widht="100px" height="100px" />
-                                </div>
-                            </li>
-                        </ul>
-                        <ul id="icons01" class="style1 icons">
-
-                            <li>
-                                <div id="image02" class="style2 image">
-                                    <img src="icon/mysql-icon.png" alt="MySQL" widht="100px" height="100px" />
-                                </div>
-                            </li>
-                            <li>
-                                <div id="image02" class="style2 image">
-                                    <img src="icon/react-icon.png" alt="ReactJS" widht="100px" height="100px" />
-                                </div>
-                            </li>
+                            <?php foreach ($skills as $skill) { ?>
+                                <li>
+                                    <div id="image02" class="style2 image">
+                                        <img src="<?php echo $skill['skill']; ?>" alt="ReactJS" widht="100px" height="100px" />
+                                    </div>
+                                </li>
+                            <?php } ?>
                         </ul>
 
                     </div>
@@ -137,15 +112,19 @@
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <h2 id="text07" class="style3">Palestras e workshops</h2>
-                            <ul id="icons01" class="style1 icons">
-                                <li>
-                                    <div id="image02" class="style2 image">
-                                        <img src="palestra-teste_php.jpeg"
-                                            alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="300px"
-                                            height="500px" />
-                                    </div>
-                                </li>
+                            <br><br>
+                            <ul id="icons01" class="style1 icons" style="padding: 25%;">
+                                <?php foreach ($others as $other) { ?>
+
+                                    <li>
+                                        <a href="<?php echo $other['banner_url'] ?>">
+                                            <img name="banner" id="banner" src="<?php echo $other['banner']; ?>" alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="300px" height="600px" />
+                                        </a>
+                                    </li>
+                                <?php } ?>
                             </ul>
+                            <br>
+                            <br>
                         </div>
                     </div>
                 </div>
@@ -157,11 +136,10 @@
                             <h2 id="text07" class="style3">Minhas
                                 redes</h2>
                             <ul id="icons01" class="style1 icons">
-                                <li><a class="n01" href="https://linkedin.com/in/viniciusabdala10"
-                                        aria-label="LinkedIn"><svg>
+                                <li><a class="n01" href="linkedin.com/in/<?php echo $social['linkedin']; ?>" aria-label="LinkedIn"><svg>
                                             <use xlink:href="#icon-bf393d6ea48a4e69e1ed58a3563b94a5"></use>
                                         </svg><span class="label">LinkedIn</span></a></li>
-                                <li><a class="n02" href="https://github.com/ABDALAZARD" aria-label="GitHub"><svg>
+                                <li><a class="n02" href="https://github.com/<?php echo $social['github']; ?>" aria-label="GitHub"><svg>
                                             <use xlink:href="#icon-8c4b37645de3c276d895d87df51ba614"></use>
                                         </svg><span class="label">GitHub</span></a></li>
                             </ul>
@@ -173,6 +151,7 @@
         </div>
     </div>
     <script type="text/javascript" src="index.js"></script>
+
 </body>
 
 </html>

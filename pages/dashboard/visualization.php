@@ -1,6 +1,9 @@
 <?php
+include __DIR__ . '/../../db/Connection.php';
+
 include '../../src/Portfolio/Portfolio.php';
 include '../../auth/Authentication.php';
+
 $newInfo = new Portfolio;
 $info = $newInfo->getInfo($_SESSION['id']);
 
@@ -15,7 +18,6 @@ $others = $newOthers->getOthers($_SESSION['id']);
 
 $newSocial = new Portfolio;
 $social = $newSocial->getSocial($_SESSION['id']);
-
 
 include_once '../../icon/network.php';
 
@@ -60,11 +62,11 @@ include_once '../../icon/network.php';
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
             </ul>
             <ul class="right">
-                <li><a class="waves-effect waves-light btn green modal-trigger " href="../create.php">Publicar</a>
+                <li><a class="waves-effect waves-light btn green modal-trigger " href="#">Publicar</a>
                 </li>
             </ul>
             <ul class="right">
-                <li><a class="waves-effect waves-light btn black modal-trigger " href="../create.php">Voltar</a>
+                <li><a class="waves-effect waves-light btn black modal-trigger " href="#">>Voltar</a>
                 </li>
             </ul>
 
@@ -76,7 +78,7 @@ include_once '../../icon/network.php';
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame"><img src="<?php echo $info['path']; ?>" alt="" /></span></div>
+                            <div id="image04" class="style1 image"><span class="frame"><img src="<?php echo '../../' . $info['path']; ?>" alt="foto" /></span></div>
                             <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
                             <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>
                         </div>
@@ -118,7 +120,7 @@ include_once '../../icon/network.php';
                             <?php foreach ($skills as $skill) { ?>
                                 <li>
                                     <div id="image02" class="style2 image">
-                                        <img src="<?php echo $skill['skill']; ?>" alt="ReactJS" widht="100px" height="100px" />
+                                        <img src="<?php echo '../../' . $skill['skill']; ?>" alt="ReactJS" widht="100px" height="100px" />
                                     </div>
                                 </li>
                             <?php } ?>
@@ -137,7 +139,7 @@ include_once '../../icon/network.php';
 
                                     <li>
                                         <a href="<?php echo $other['banner_url'] ?>">
-                                            <img name="banner" id="banner" src="<?php echo $other['banner']; ?>" alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="200px" height="300px" />
+                                            <img name="banner" id="banner" src="<?php echo '../../' . $other['banner']; ?>" alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="200px" height="300px" />
                                         </a>
                                     </li>
                                 <?php } ?>

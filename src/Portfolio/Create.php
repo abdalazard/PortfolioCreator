@@ -1,4 +1,6 @@
 <?php
+include '../../db/Connection.php';
+
 session_start();
 
 //Profile

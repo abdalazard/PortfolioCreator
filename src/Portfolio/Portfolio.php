@@ -1,5 +1,5 @@
 <?php
-include '../../db/Connection.php';
+
 
 class Portfolio
 {
@@ -136,14 +136,14 @@ class Portfolio
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];
 
-                if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
-                    mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0755);
+                if (!is_dir("images/users/" . $folder . "/" . $typePicture . "/")) {
+                    mkdir("images/users/" . $folder . "/" . $typePicture . "/", 0755);
 
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
+                    move_uploaded_file($foto["tmp_name"], "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
                 } else {
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
+                    move_uploaded_file($foto["tmp_name"], "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
                 }
-                $path = "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
+                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
                 return $path;
             }
         }
