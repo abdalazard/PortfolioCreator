@@ -1,5 +1,5 @@
 <?php
-include '../../db/Connection.php';
+
 
 class Portfolio
 {
@@ -52,6 +52,72 @@ class Portfolio
         return $data;
     }
 
+    public function getProjects($id)
+    {
+        $infoQuery = "SELECT * FROM projects WHERE id_user = '" . $id . "'";
+        $db = $this->dataBase($infoQuery);
+        $projects = array();
+
+        while ($data = mysqli_fetch_array($db)) {
+            $project = array(
+                'project_name' => $data['nome_projeto'],
+                'url_project' => $data['url']
+            );
+            $projects[] = $project;
+        }
+
+        return $projects;
+    }
+
+    public function getSkills($id)
+    {
+        $infoQuery = "SELECT * FROM skills WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($infoQuery);
+
+        $skills = array();
+        while ($data = mysqli_fetch_array($db)) {
+            $skill = array(
+                'skill' => $data['logo'],
+            );
+            $skills[] = $skill;
+        }
+        return $skills;
+    }
+    public function getOthers($id)
+    {
+        $infoQuery = "SELECT * FROM others WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($infoQuery);
+        $others = array();
+        while ($data = mysqli_fetch_array($db)) {
+            $other = array(
+                'banner' => $data['banner'],
+                'banner_url' => $data['url'],
+            );
+            $others[] = $other;
+        }
+
+        return $others;
+    }
+
+    public function getSocial($id)
+    {
+        $infoQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($infoQuery);
+        if ($data = mysqli_fetch_array($db)) {
+            $github = $data['github'];
+            $linkedin = $data['linkedin'];
+            // $email = $data['email'];
+        }
+
+        $data = [
+            'github' => $github,
+            // 'email' => $email,
+            'linkedin' => $linkedin
+        ];
+        return $data;
+    }
+
+
     public function setImage($foto, $typePicture)
     {
         //Necessário validar todos os dados
@@ -70,14 +136,14 @@ class Portfolio
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];
 
-                if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
-                    mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0755);
+                if (!is_dir("images/users/" . $folder . "/" . $typePicture . "/")) {
+                    mkdir("images/users/" . $folder . "/" . $typePicture . "/", 0755);
 
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
+                    move_uploaded_file($foto["tmp_name"], "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
                 } else {
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
+                    move_uploaded_file($foto["tmp_name"], "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
                 }
-                $path = "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
+                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
                 return $path;
             }
         }
