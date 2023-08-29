@@ -129,7 +129,7 @@ class Portfolio
         if (!isset($foto)) {
             $path = null;
         } else {
-            if ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != " ") {
+            if ($ext != "png" && $ext != " ") {
                 $path = "Arquivo de imagem inválido!";
                 $foto = null;
                 return $path;

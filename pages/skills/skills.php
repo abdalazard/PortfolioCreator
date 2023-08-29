@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col s12 ">
                     <label for="skill">Habilidade(Adicione várias imagens renderizada das stacks)</label>
-                    <input type="file" name="skill">
+                    <input type="file" name="skill" accept=".png">
                 </div>
             </div>
 
