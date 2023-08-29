@@ -28,8 +28,6 @@ $userId = $_SESSION['id'];
 include 'Portfolio.php';
 $portfolio = new Portfolio;
 
-//Necessário tratar dados de imagens(criar uma pasta para cada categoria de imagem e gravar no banco somente o caminho dessas imagens)
-
 if ($portfolio->moreThanOne($userId) == true) {
 
     $msg = 'Erro, já existe este portfolio';

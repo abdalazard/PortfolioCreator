@@ -82,8 +82,8 @@ include_once '../../icon/network.php';
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame"><img
-                                        src="<?php echo '../../' . $info['path']; ?>" alt="Foto" /> </span>
+                            <div id="image04" class="style1 image"><span class="frame">
+                                    <img src="<?php echo '../../' . $info['path']; ?>" alt="Foto" /> </span>
                             </div>
                             <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
                             <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>

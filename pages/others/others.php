@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col s12 ">
                     <label for="banner">Flyer/banner(Adicione os banners, fotos e anúncios)</label>
-                    <input type="file" name="others" accept=".png">
+                    <input type="file" name="others" accept=".png, .jpg">
                 </div>
             </div>
             <div class="row">
