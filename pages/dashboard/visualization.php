@@ -7,6 +7,7 @@ include '../../auth/Authentication.php';
 $newInfo = new Portfolio;
 $info = $newInfo->getInfo($_SESSION['id']);
 
+var_dump($info['path']);
 $newProject = new Portfolio;
 $projects = $newProject->getProjects($_SESSION['id']);
 
@@ -45,6 +46,7 @@ include_once '../../icon/network.php';
         href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../../styles2.css" />
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <script type="text/javascript" src="../../index.js">
     </script>
@@ -81,7 +83,8 @@ include_once '../../icon/network.php';
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <div id="image04" class="style1 image"><span class="frame"><img
-                                        src="<?php echo '../../' . $info['path']; ?>" alt="foto" /></span></div>
+                                        src="<?php echo '../../' . $info['path']; ?>" alt="Foto" /> </span>
+                            </div>
                             <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
                             <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>
                         </div>
