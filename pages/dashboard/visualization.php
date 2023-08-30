@@ -45,6 +45,7 @@ include_once '../../icon/network.php';
         href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../../styles2.css" />
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <script type="text/javascript" src="../../index.js">
     </script>
@@ -74,14 +75,18 @@ include_once '../../icon/network.php';
 
         </div>
     </nav>
+    <div class="center green" id="msg" name="msg">
+        <p style="color:black;"><?php if(isset($_GET['msg'])){echo $_GET['msg'];} ?></p>
+    </div>
     <div id="wrapper">
         <div id="main">
             <div class="inner">
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame"><img
-                                        src="<?php echo '../../' . $info['path']; ?>" alt="foto" /></span></div>
+                            <div id="image04" class="style1 image"><span class="frame">
+                                    <img src="<?php echo '../../' . $info['path']; ?>" alt="Foto" /> </span>
+                            </div>
                             <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
                             <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>
                         </div>
@@ -182,7 +187,18 @@ include_once '../../icon/network.php';
         </div>
     </div>
     <script type="text/javascript" src="../../index.js"></script>
+    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script>
+    M.AutoInit();
+    $("#msg").addClass("logged");
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#msg').fadeOut();
+        }, 1000);
+    });
+    </script>
 </body>
 
 </html>
