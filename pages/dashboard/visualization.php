@@ -75,6 +75,9 @@ include_once '../../icon/network.php';
 
         </div>
     </nav>
+    <div class="center green" id="msg" name="msg">
+        <p style="color:black;"><?php if(isset($_GET['msg'])){echo $_GET['msg'];} ?></p>
+    </div>
     <div id="wrapper">
         <div id="main">
             <div class="inner">
@@ -184,7 +187,18 @@ include_once '../../icon/network.php';
         </div>
     </div>
     <script type="text/javascript" src="../../index.js"></script>
+    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+    <script>
+    M.AutoInit();
+    $("#msg").addClass("logged");
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#msg').fadeOut();
+        }, 1000);
+    });
+    </script>
 </body>
 
 </html>
