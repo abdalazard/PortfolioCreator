@@ -4,7 +4,7 @@
 class Portfolio
 {
 
-    public function store($foto, $titulo, $subtitulo, $skill, $project_name, $url, $banner, $url_banner, $github, $linkedin, $userId)
+    public function store($foto, $titulo, $subtitulo, $skills, $project_name, $url, $banner, $url_banner, $github, $linkedin, $userId)
     {
         try {
             //Profile
@@ -13,9 +13,9 @@ class Portfolio
             $this->dataBase($newInfo);
 
             //Skills
-            $pathSkills = $this->setImage($skill, 'skill');
+            $pathSkills = $this->setImage($skills, 'info');
             $newSkill = "INSERT INTO skills VALUES(null, '" . $pathSkills . "', '" . $userId . "')";
-            $this->dataBase($newSkill);
+            $this->dataBase($newSkill);        
 
             //Project
             $newProject = "INSERT INTO projects VALUES(null, '" . $project_name . "', '" . $url . "', '" . $userId . "')";
@@ -147,7 +147,7 @@ class Portfolio
         }
     }
 
-
+    
     public function moreThanOne($userId)
     {
         $query = "SELECT * FROM info WHERE id_user LIKE '" . $userId . "'";
