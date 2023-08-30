@@ -122,21 +122,20 @@ class Portfolio
     {
         //Necessário validar todos os dados
         $hoje = date("d-m-y");
-        $ext = explode(".", $foto["foto"]); //[foto][ferias][jpg]
+        $ext = explode(".", $foto["name"]); //[foto][ferias][jpg]
         $ext = array_reverse($ext); //[jpg][ferias][foto]
         $ext = $ext[0]; //jpg
-        if (!is_array($foto)) {
+        if ((!isset($foto) || !is_uploaded_file($foto['tmp_name']))) {
             $path = null;
         } else {
-            if ($ext != "jpg" && $ext != "png" && $ext != "jpeg" && $ext != " ") {
+            if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
                 $path = "Arquivo de imagem inválido!";
                 $foto = null;
                 return $path;
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];
-
                 if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
-                    mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0755);
+                    mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0777, true);
 
                     move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
                 } else {

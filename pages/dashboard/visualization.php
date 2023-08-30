@@ -7,7 +7,6 @@ include '../../auth/Authentication.php';
 $newInfo = new Portfolio;
 $info = $newInfo->getInfo($_SESSION['id']);
 
-var_dump($info['path']);
 $newProject = new Portfolio;
 $projects = $newProject->getProjects($_SESSION['id']);
 

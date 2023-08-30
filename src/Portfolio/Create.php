@@ -27,7 +27,7 @@ $userId = $_SESSION['id'];
 
 include 'Portfolio.php';
 $portfolio = new Portfolio;
-
+    
 if ($portfolio->moreThanOne($userId) == true) {
 
     $msg = 'Erro, já existe este portfolio';
