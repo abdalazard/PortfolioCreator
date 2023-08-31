@@ -135,14 +135,17 @@ class Portfolio
                 } else {
                     $folder = "pasta_de_" . $_SESSION['user'];
                     $num = rand(0, 9);
-                    if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
-                        mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0777, true);
+                    $directory = "../../images/users/" . $folder . "/" . $typePicture . "/";
 
-                        move_uploaded_file($file['tmp_name'], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user']."[".$num."]" . $hoje . '.' . $ext);
+                    if (!is_dir($directory)) {
+                        mkdir($directory, 0777, true);
+
+                        move_uploaded_file($file['tmp_name'], $directory. $_SESSION['user'] . "[".$num."]" . $hoje . '.' . $ext);
                     } else {
-                        rmdir("../../images/users/" . $folder . "/" . $typePicture . "/");
-                        mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0777, true);
-                        move_uploaded_file($file['tmp_name'], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[".$num."]" . $hoje . '.' . $ext);
+
+                        removeAllFilesAndSubdirectories($directory);    
+                        mkdir($directory, 0777, true);
+                        move_uploaded_file($file['tmp_name'], $directory. $_SESSION['user'] . "[".$num."]" . $hoje . '.' . $ext);
                     }
                     $path[] = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[".$num."]" . $hoje . '.' . $ext;
                     return $path;
@@ -169,4 +172,25 @@ class Portfolio
 
         return $db->toDatabase($query);
     }
+
+    //remove arquivos
+    function removeAllFilesAndSubdirectories($directory) {
+        if (is_dir($directory)) {
+            $files = scandir($directory);
+            
+            foreach ($files as $file) {
+                if ($file !== '.' && $file !== '..') {
+                    $path = $directory . '/' . $file;
+                    
+                    if (is_dir($path)) {
+                        removeAllFilesAndSubdirectories($path); // Recursively remove subdirectories
+                        rmdir($path);
+                    } else {
+                        unlink($path); // Remove individual file
+                    }
+                }
+            }
+        }
+    }
+
 }

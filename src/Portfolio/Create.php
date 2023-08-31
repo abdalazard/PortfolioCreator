@@ -31,7 +31,6 @@ $portfolio = new Portfolio;
 if ($portfolio->moreThanOne($userId) == true) {
 
     $msg = 'Erro, já existe este portfolio';
-
     header("location: ../../pages/portfolio/create.php?msg=" . $msg);
 } else {
     //à substituir
