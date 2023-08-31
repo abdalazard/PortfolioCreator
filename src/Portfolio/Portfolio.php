@@ -9,13 +9,13 @@ class Portfolio
         try {
             //Profile
             $pathInfo = $this->setImage($foto, 'info');
-            $newInfo = "INSERT INTO info VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
+            $newInfo = "INSERT INTO info VALUES(null, '" . $pathInfo[0] . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
             $this->dataBase($newInfo);
-
+            
             //Skills
-            $pathSkills = $this->setImage($skills, 'info');
+            $pathSkills = $this->setImage($skills, 'skills');
             $newSkill = "INSERT INTO skills VALUES(null, '" . $pathSkills . "', '" . $userId . "')";
-            $this->dataBase($newSkill);        
+            $this->dataBase($newSkill);  
 
             //Project
             $newProject = "INSERT INTO projects VALUES(null, '" . $project_name . "', '" . $url . "', '" . $userId . "')";
@@ -118,35 +118,38 @@ class Portfolio
     }
 
 
-    public function setImage($foto, $typePicture)
+    public function setImage($file, $typePicture)
     {
-        //Necessário validar todos os dados
-        $hoje = date("d-m-y");
-        $ext = explode(".", $foto["name"]); //[foto][ferias][jpg]
-        $ext = array_reverse($ext); //[jpg][ferias][foto]
-        $ext = $ext[0]; //jpg
-        if ((!isset($foto) || !is_uploaded_file($foto['tmp_name']))) {
-            $path = null;
-        } else {
-            if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
-                $path = "Arquivo de imagem inválido!";
-                $foto = null;
-                return $path;
-            } else {
-                $folder = "pasta_de_" . $_SESSION['user'];
-                if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
-                    mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0777, true);
+            $hoje = date("d-m-y");
+            $ext = explode(".", $file['name']); //[foto][ferias][jpg]
+            $ext = array_reverse($ext); //[jpg][ferias][foto]
+            $ext = $ext[0]; //jpg
 
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
+            if ((!isset($file))) {
+                $path = "Arquivo inexistente!";
+            } else {
+                if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
+                    $path = "Arquivo de imagem inválido!";
+                    $file = null;
+                    return $path;
                 } else {
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
+                    $folder = "pasta_de_" . $_SESSION['user'];
+                    $num = rand(0, 9);
+                    if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
+                        mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0777, true);
+
+                        move_uploaded_file($file['tmp_name'], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user']."[".$num."]" . $hoje . '.' . $ext);
+                    } else {
+                        rmdir("../../images/users/" . $folder . "/" . $typePicture . "/");
+                        mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0777, true);
+                        move_uploaded_file($file['tmp_name'], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[".$num."]" . $hoje . '.' . $ext);
+                    }
+                    $path[] = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[".$num."]" . $hoje . '.' . $ext;
+                    return $path;
                 }
-                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
-                return $path;
             }
         }
-    }
-
+    
     
     public function moreThanOne($userId)
     {

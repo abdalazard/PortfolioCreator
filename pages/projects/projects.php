@@ -26,10 +26,10 @@
         </div>
 
         <!-- Usar ajax para -->
-        <div class="row">
+        <!-- <div class="row">
             <div class="col s12">
                 <input type="submit" value="Adicionar">
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
