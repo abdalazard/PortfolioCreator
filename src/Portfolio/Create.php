@@ -9,7 +9,7 @@ $titulo = $_POST['titulo'];
 $subtitulo = $_POST['subtitulo'];
 
 //Skills
-$skills[] = $_FILES['skill'];
+$skills = $_FILES['skill'];
 
 //Projects
 $project_name = $_POST['nome_projeto'];
