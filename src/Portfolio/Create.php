@@ -16,7 +16,7 @@ $project_name = $_POST['nome_projeto'];
 $url_project = $_POST['url_projeto'];
 
 //Others
-$banner[] = $_FILES['others'];
+$banner = $_FILES['others'];
 $url_banner = $_POST['url_others'];
 
 //Social
