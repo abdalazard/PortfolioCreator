@@ -4,7 +4,7 @@ $table = "info";
 try {
     $query = "CREATE TABLE " . $table . " (
              id INT(11) AUTO_INCREMENT PRIMARY KEY,
-             foto VARCHAR(255) NULL,
+             profile VARCHAR(255) NULL,
              titulo VARCHAR(255) NOT NULL,
              subtitulo VARCHAR(255) NOT NULL,
              id_user INT,

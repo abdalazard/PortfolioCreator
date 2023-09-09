@@ -1,5 +1,6 @@
 <?php
-include __DIR__ . '/../../db/Connection.php';
+
+include "../../db/Connection.php";
 
 include '../../src/Portfolio/Portfolio.php';
 include '../../auth/Authentication.php';
@@ -18,7 +19,6 @@ $others = $newOthers->getOthers($_SESSION['id']);
 
 $newSocial = new Portfolio;
 $social = $newSocial->getSocial($_SESSION['id']);
-
 include_once '../../icon/network.php';
 
 ?>
@@ -45,47 +45,47 @@ include_once '../../icon/network.php';
         href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="../../styles.css" />
-    <link rel="stylesheet" href="../../styles2.css" />
-    <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <script type="text/javascript" src="../../index.js">
     </script>
+    <link rel="stylesheet" href="../../styles2.css" />
+    <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
+
 </head>
+<nav>
+    <div class="nav-wrapper black">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="../../admin.php">Inicio</a></li>
+        </ul>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="#" class="modal-trigger">Publicar</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="#">Mudar Layout(Em Breve)</a></li>
+        </ul>
+        <ul class="right">
+            <li><a class="waves-effect waves-light btn green modal-trigger " href="#">Publicar</a>
+            </li>
+        </ul>
+        <ul class="right">
+            <li><a class="waves-effect waves-light btn black modal-trigger " href="#">Voltar</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
 
 <body>
-    <nav>
-        <div class="nav-wrapper black">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../../admin.php">Inicio</a></li>
-            </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#" class="modal-trigger">Publicar</a></li>
-            </ul>
-
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#">Mudar Layout(Em Breve)</a></li>
-            </ul>
-            <ul class="right">
-                <li><a class="waves-effect waves-light btn green modal-trigger " href="#">Publicar</a>
-                </li>
-            </ul>
-            <ul class="right">
-                <li><a class="waves-effect waves-light btn black modal-trigger " href="#">Voltar</a>
-                </li>
-            </ul>
-
-        </div>
-    </nav>
-    <div class="center green" id="msg" name="msg">
-        <p style="color:black;"><?php if(isset($_GET['msg'])){echo $_GET['msg'];} ?></p>
-    </div>
     <div id="wrapper">
         <div id="main">
             <div class="inner">
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame">
-                                    <img src="<?php echo '../../' . $info['path']; ?>" alt="Foto" /> </span>
+                            <div id="image04" class="style1 image">
+                                <span class="frame">
+                                    <img src="<?php echo '../../' . $info['profile']; ?>" alt="Foto" />
+                                </span>
                             </div>
                             <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
                             <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>
@@ -152,7 +152,7 @@ include_once '../../icon/network.php';
                                     <a href="<?php echo $other['banner_url'] ?>">
                                         <img name="banner" id="banner" src="<?php echo '../../' . $other['banner']; ?>"
                                             alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="200px"
-                                            height="300px" />
+                                            height="400px" />
                                     </a>
                                 </li>
                                 <?php } ?>
@@ -186,19 +186,8 @@ include_once '../../icon/network.php';
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../../index.js"></script>
-    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="index.js"></script>
 
-    <script>
-    M.AutoInit();
-    $("#msg").addClass("logged");
-    $(document).ready(function() {
-        setTimeout(function() {
-            $('#msg').fadeOut();
-        }, 1000);
-    });
-    </script>
 </body>
 
 </html>
