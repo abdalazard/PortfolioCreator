@@ -47,7 +47,6 @@ include_once '../../icon/network.php';
     <link rel="stylesheet" href="../../styles.css" />
     <link rel="stylesheet" href="../../styles2.css" />
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
-
 </head>
 <nav>
     <div class="nav-wrapper black">
@@ -121,8 +120,6 @@ include_once '../../icon/network.php';
                         </div>
                     </div>
                 </div>
-
-
                 <div class="wrapper">
                     <div class="inner" data-onvisible-trigger="1">
                         <ul id="icons01" class="style1 icons">
@@ -138,7 +135,6 @@ include_once '../../icon/network.php';
 
                     </div>
                 </div>
-
                 <hr id="divider01" class="style1 full">
                 <div id="container03" class="style1 container default">
                     <div class="wrapper">
@@ -146,18 +142,30 @@ include_once '../../icon/network.php';
                             <h2 id="text07" class="style3">Palestras e workshops</h2>
                             <br><br>
                             <ul id="buttons04" class="style1 buttons">
-
                                 <?php foreach ($others as $other) { ?>
                                 <li>
-                                    <a href="<?php echo $other['banner']; ?>" class="button n01">
+                                    <a href="#modal<?php echo $other['id']; ?>"
+                                        class="button n01 waves-effect waves-light btn modal-trigger">
                                         <svg>
                                             <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
                                         </svg>
-                                        <span class="label"><?php echo $other['banner_url']; ?></span>
                                     </a>
                                 </li>
+
+                                <div id="modal<?php echo $other['id']; ?>" name="modal<?php echo $other['id']; ?>"
+                                    class="modal modal-fixed-footer">
+                                    <div class="modal-content">
+                                        <h4><?php echo "Tema da palestra"; ?></h4>
+                                        <img src=<?php echo '../../' . $other['banner']; ?> widht="250px"
+                                            height="450px" />
+                                    </div>
+                                    <div class="modal-footer center">
+                                        <a href="<?php echo $other['banner_url']; ?>">Link</a>
+                                    </div>
+                                </div>
                                 <?php } ?>
                             </ul>
+
                             <br>
                             <br>
                         </div>
@@ -187,6 +195,14 @@ include_once '../../icon/network.php';
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('.modal').modal();
+    });
+    </script>
 </body>
+
 
 </html>

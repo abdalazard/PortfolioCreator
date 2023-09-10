@@ -94,6 +94,7 @@ class Portfolio
         $others = array();
         while ($data = mysqli_fetch_array($db)) {
             $other = array(
+                'id' => $data['id'],
                 'banner' => $data['banner'],
                 'banner_url' => $data['url'],
             );
