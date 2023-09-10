@@ -9,7 +9,7 @@
         <!-- table: info -->
         <div class="col s6 center">
             <label for="foto">Foto</label>
-            <input type="file" name="foto" accept="image/*"><br>
+            <input type="file" name="profile" accept="image/*"><br>
         </div>
     </div>
     <div class="row">

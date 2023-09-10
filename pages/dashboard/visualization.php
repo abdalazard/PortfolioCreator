@@ -1,5 +1,6 @@
 <?php
-include __DIR__ . '/../../db/Connection.php';
+
+include "../../db/Connection.php";
 
 include '../../src/Portfolio/Portfolio.php';
 include '../../auth/Authentication.php';
@@ -18,7 +19,6 @@ $others = $newOthers->getOthers($_SESSION['id']);
 
 $newSocial = new Portfolio;
 $social = $newSocial->getSocial($_SESSION['id']);
-
 include_once '../../icon/network.php';
 
 ?>
@@ -47,45 +47,43 @@ include_once '../../icon/network.php';
     <link rel="stylesheet" href="../../styles.css" />
     <link rel="stylesheet" href="../../styles2.css" />
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
-    <script type="text/javascript" src="../../index.js">
-    </script>
+
 </head>
+<nav>
+    <div class="nav-wrapper black">
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="../../admin.php">Inicio</a></li>
+        </ul>
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="#" class="modal-trigger">Publicar</a></li>
+        </ul>
+
+        <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="#">Mudar Layout(Em Breve)</a></li>
+        </ul>
+        <ul class="right">
+            <li><a class="waves-effect waves-light btn green modal-trigger " href="#">Publicar</a>
+            </li>
+        </ul>
+        <ul class="right">
+            <li><a class="waves-effect waves-light btn black modal-trigger " href="#">Voltar</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
 
 <body>
-    <nav>
-        <div class="nav-wrapper black">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../../admin.php">Inicio</a></li>
-            </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#" class="modal-trigger">Publicar</a></li>
-            </ul>
-
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#">Mudar Layout(Em Breve)</a></li>
-            </ul>
-            <ul class="right">
-                <li><a class="waves-effect waves-light btn green modal-trigger " href="#">Publicar</a>
-                </li>
-            </ul>
-            <ul class="right">
-                <li><a class="waves-effect waves-light btn black modal-trigger " href="#">Voltar</a>
-                </li>
-            </ul>
-
-        </div>
-    </nav>
-    <div class="center green" id="msg" name="msg">
-        <p style="color:black;"><?php if(isset($_GET['msg'])){echo $_GET['msg'];} ?></p>
-    </div>
     <div id="wrapper">
         <div id="main">
             <div class="inner">
                 <div id="container01" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <div id="image04" class="style1 image"><span class="frame">
-                                    <img src="<?php echo '../../' . $info['path']; ?>" alt="Foto" /> </span>
+                            <div id="image04" class="style1 image">
+                                <span class="frame">
+                                    <img src="<?php echo '../../' . $info['profile']; ?>" alt="Foto" />
+                                </span>
                             </div>
                             <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
                             <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>
@@ -124,14 +122,15 @@ include_once '../../icon/network.php';
                     </div>
                 </div>
 
+
                 <div class="wrapper">
                     <div class="inner" data-onvisible-trigger="1">
                         <ul id="icons01" class="style1 icons">
                             <?php foreach ($skills as $skill) { ?>
                             <li>
                                 <div id="image02" class="style2 image">
-                                    <img src="<?php echo '../../' . $skill['skill']; ?>" alt="ReactJS" widht="100px"
-                                        height="100px" />
+                                    <img src="<?php echo '../../' . $skill['skill']; ?>" alt="Stacks" widht="50px"
+                                        height="50px" />
                                 </div>
                             </li>
                             <?php } ?>
@@ -139,20 +138,22 @@ include_once '../../icon/network.php';
 
                     </div>
                 </div>
+
                 <hr id="divider01" class="style1 full">
                 <div id="container03" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <h2 id="text07" class="style3">Palestras e workshops</h2>
                             <br><br>
-                            <ul id="icons01" class="style1 icons" style="padding: 25%;">
-                                <?php foreach ($others as $other) { ?>
+                            <ul id="buttons04" class="style1 buttons">
 
+                                <?php foreach ($others as $other) { ?>
                                 <li>
-                                    <a href="<?php echo $other['banner_url'] ?>">
-                                        <img name="banner" id="banner" src="<?php echo '../../' . $other['banner']; ?>"
-                                            alt="Palestra 'Testes com PHPUnit: o básico sobre TDD'" widht="200px"
-                                            height="300px" />
+                                    <a href="<?php echo $other['banner']; ?>" class="button n01">
+                                        <svg>
+                                            <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
+                                        </svg>
+                                        <span class="label"><?php echo $other['banner_url']; ?></span>
                                     </a>
                                 </li>
                                 <?php } ?>
@@ -186,19 +187,6 @@ include_once '../../icon/network.php';
             </div>
         </div>
     </div>
-    <script type="text/javascript" src="../../index.js"></script>
-    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script>
-    M.AutoInit();
-    $("#msg").addClass("logged");
-    $(document).ready(function() {
-        setTimeout(function() {
-            $('#msg').fadeOut();
-        }, 1000);
-    });
-    </script>
 </body>
 
 </html>
