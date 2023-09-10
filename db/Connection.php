@@ -1,12 +1,15 @@
 <?php
 
+
 class Connection
 {
     public $con;
 
     public function __construct()
     {
-        $this->con = mysqli_connect('localhost', 'root', '123', 'portfolio1');
+        include '../../config.php';
+
+        $this->con = mysqli_connect($localhost, $user, $password, $db);
     }
     public function toDatabase($query)
     {
