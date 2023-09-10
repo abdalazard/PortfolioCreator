@@ -155,7 +155,7 @@ include_once '../../icon/network.php';
                                 <div id="modal<?php echo $other['id']; ?>" name="modal<?php echo $other['id']; ?>"
                                     class="modal modal-fixed-footer">
                                     <div class="modal-content">
-                                        <h4><?php echo "Tema da palestra"; ?></h4>
+                                        <h4><?php echo $other['tema']; ?></h4>
                                         <img src=<?php echo '../../' . $other['banner']; ?> widht="250px"
                                             height="450px" />
                                     </div>
@@ -191,7 +191,9 @@ include_once '../../icon/network.php';
                         </div>
                     </div>
                 </div>
-                <p id="text02">abdalazard@gmail.com</p>
+                <?php if(isset($social['email'])){ ?>
+                <p id="text02"><?php echo $social['email']; ?></p>
+                <?php } ?>
             </div>
         </div>
     </div>

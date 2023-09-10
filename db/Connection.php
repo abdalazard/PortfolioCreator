@@ -7,7 +7,7 @@ class Connection
 
     public function __construct()
     {
-        include '../../config.php';
+        include 'config.php';
 
         $this->con = mysqli_connect($localhost, $user, $password, $db);
     }

@@ -34,6 +34,7 @@ class Portfolio
             }
 
             // Project
+            $previa = $this->setImage($skills, 'projects');
             $newProject = "INSERT INTO projects VALUES(null, ,'" . $previa . "' '" . $project_name . "', '" . $url . "', '" . $userId . "')";
             $this->dataBase($newProject);
 

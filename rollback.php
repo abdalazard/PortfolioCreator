@@ -44,4 +44,3 @@ $dbB = new Connection;
 
 $dbB->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5(123))");
 echo "\nUsuario administrador criado com sucesso!\n";;
-?>
