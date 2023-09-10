@@ -4,11 +4,25 @@
 class Portfolio
 {
 
-    public function store($foto, $titulo, $subtitulo, $skills, $project_name, $url, $banner, $url_banner, $github, $linkedin, $userId)
-    {
+    public function store(
+        $profile,
+        $titulo,
+        $subtitulo,
+        $skills,
+        $previa,
+        $project_name,
+        $url,
+        $tema,
+        $banner,
+        $url_banner,
+        $email,
+        $github,
+        $linkedin,
+        $userId
+    ) {
         try {
             //Profile
-            $pathInfo = $this->setImage($foto, 'info');
+            $pathInfo = $this->setImage($profile, 'info');
             $newInfo = "INSERT INTO info VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
             $this->dataBase($newInfo);
 
@@ -20,18 +34,18 @@ class Portfolio
             }
 
             // Project
-            $newProject = "INSERT INTO projects VALUES(null, '" . $project_name . "', '" . $url . "', '" . $userId . "')";
+            $newProject = "INSERT INTO projects VALUES(null, ,'" . $previa . "' '" . $project_name . "', '" . $url . "', '" . $userId . "')";
             $this->dataBase($newProject);
 
             //Others
             $pathOthers = $this->setImages($banner, 'others');
             foreach ($pathOthers as $banners) {
-                $newOthers =  "INSERT INTO others VALUES(null, '" . $banners . "', '" . $url_banner . "', '" . $userId . "')";
+                $newOthers =  "INSERT INTO others VALUES(null, '" . $tema . "','" . $banners . "', '" . $url_banner . "', '" . $userId . "')";
                 $this->dataBase($newOthers);
             }
 
             //Social
-            $newSocial = "INSERT INTO social VALUES(null, '" . $github . "', '" . $linkedin . "', '" . $userId . "')";
+            $newSocial = "INSERT INTO social VALUES(null, '" . $email . "','" . $github . "', '" . $linkedin . "', '" . $userId . "')";
             $this->dataBase($newSocial);
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
@@ -43,13 +57,13 @@ class Portfolio
         $infoQuery = "SELECT * FROM info WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($infoQuery);
         if ($data = mysqli_fetch_array($db)) {
-            $foto = $data['profile'];
+            $profile = $data['profile'];
             $titulo = $data['titulo'];
             $subtitulo = $data['subtitulo'];
         }
 
         $data = [
-            'profile' => $foto,
+            'profile' => $profile,
             'titulo' => $titulo,
             'subtitulo' => $subtitulo
         ];
@@ -64,6 +78,7 @@ class Portfolio
 
         while ($data = mysqli_fetch_array($db)) {
             $project = array(
+                'previa' => $data['print'],
                 'project_name' => $data['nome_projeto'],
                 'url_project' => $data['url']
             );
@@ -95,6 +110,7 @@ class Portfolio
         while ($data = mysqli_fetch_array($db)) {
             $other = array(
                 'id' => $data['id'],
+                'tema' => $data['tema'],
                 'banner' => $data['banner'],
                 'banner_url' => $data['url'],
             );
@@ -109,14 +125,14 @@ class Portfolio
         $infoQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($infoQuery);
         if ($data = mysqli_fetch_array($db)) {
+            $email = $data['email'];
             $github = $data['github'];
             $linkedin = $data['linkedin'];
-            // $email = $data['email'];
         }
 
         $data = [
+            'email' => $email,
             'github' => $github,
-            // 'email' => $email,
             'linkedin' => $linkedin
         ];
         return $data;
