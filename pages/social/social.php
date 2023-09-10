@@ -1,6 +1,12 @@
     <h5>Redes Sociais</h5>
     <div class="row">
         <div class="col s6 center">
+            <label for="email">E-mail</label>
+            <input type="text" name="email" placeholder="Endereço de e-mail">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s6 center">
             <label for="github">Github</label>
             <input type="text" name="github" placeholder="URL do Github">
         </div>

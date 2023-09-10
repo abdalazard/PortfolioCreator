@@ -14,6 +14,12 @@
     <div class="modal-content">
         <div class="row">
             <div class="col s12 ">
+                <label for="previa">Anexar uma imagem que represente o projeto</label>
+                <input type="file" name="previa" accept="image/*">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12 ">
                 <label for="projetos">Projetos</label>
                 <input type="text" name="nome_projeto" placeholder="Nome do projeto">
             </div>

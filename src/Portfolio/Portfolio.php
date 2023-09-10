@@ -34,14 +34,14 @@ class Portfolio
             }
 
             // Project
-            $previa = $this->setImage($skills, 'projects');
-            $newProject = "INSERT INTO projects VALUES(null, ,'" . $previa . "' '" . $project_name . "', '" . $url . "', '" . $userId . "')";
+            $previaProject = $this->setImage($previa, 'projects');
+            $newProject = "INSERT INTO projects VALUES(null, '" . $previaProject . "', '" . $project_name . "', '" . $url . "', '" . $userId . "')";
             $this->dataBase($newProject);
 
             //Others
             $pathOthers = $this->setImages($banner, 'others');
             foreach ($pathOthers as $banners) {
-                $newOthers =  "INSERT INTO others VALUES(null, '" . $tema . "','" . $banners . "', '" . $url_banner . "', '" . $userId . "')";
+                $newOthers =  "INSERT INTO others VALUES(null, '" . $tema . "', '" . $banners . "', '" . $url_banner . "', '" . $userId . "')";
                 $this->dataBase($newOthers);
             }
 
@@ -79,7 +79,7 @@ class Portfolio
 
         while ($data = mysqli_fetch_array($db)) {
             $project = array(
-                'previa' => $data['print'],
+                'previa' => $data['previa'],
                 'project_name' => $data['nome_projeto'],
                 'url_project' => $data['url']
             );

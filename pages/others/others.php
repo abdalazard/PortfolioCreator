@@ -14,8 +14,14 @@
         <div class="modal-content">
             <div class="row">
                 <div class="col s12 ">
+                    <label for="tema">Tema da palestra/workshop</label>
+                    <input type="text" name="tema">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 ">
                     <label for="banner">Flyer/banner(Adicione os banners, fotos e anúncios)</label>
-                    <input type="file" name="others[]" multiple accept="image/*">
+                    <input type="file" name="others[]" accept="image/*">
                 </div>
             </div>
             <div class="row">
