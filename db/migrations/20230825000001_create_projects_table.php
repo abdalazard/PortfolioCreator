@@ -5,8 +5,8 @@ try {
     $query = "CREATE TABLE " . $table . " (
              id INT(11) AUTO_INCREMENT PRIMARY KEY,
              print VARCHAR(255) NULL,
-             nome_projeto VARCHAR(255) NOT NULL,
-             url VARCHAR(255) NOT NULL,
+             nome_projeto VARCHAR(255) NULL,
+             url VARCHAR(255) NULL,
              id_user INT,
             FOREIGN KEY (id_user) REFERENCES users(id)
      )";

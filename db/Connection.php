@@ -7,8 +7,12 @@ class Connection
 
     public function __construct()
     {
-        include '../../config.php';
 
+        $localhost = 'localhost';
+        $user = 'root';
+        $password = '123';
+        $db = "portfolio1";
+        
         $this->con = mysqli_connect($localhost, $user, $password, $db);
     }
     public function toDatabase($query)

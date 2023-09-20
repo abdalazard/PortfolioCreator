@@ -20,18 +20,18 @@ class Portfolio
             }
 
             // Project
-            $newProject = "INSERT INTO projects VALUES(null, '" . $project_name . "', '" . $url . "', '" . $userId . "')";
+            $newProject = "INSERT INTO projects VALUES(null, null, '" . $project_name . "', '" . $url . "', '" . $userId . "')";
             $this->dataBase($newProject);
 
             //Others
             $pathOthers = $this->setImages($banner, 'others');
             foreach ($pathOthers as $banners) {
-                $newOthers =  "INSERT INTO others VALUES(null, '" . $banners . "', '" . $url_banner . "', '" . $userId . "')";
+                $newOthers =  "INSERT INTO others VALUES(null, null, '" . $banners . "', '" . $url_banner . "', '" . $userId . "')";
                 $this->dataBase($newOthers);
             }
 
             //Social
-            $newSocial = "INSERT INTO social VALUES(null, '" . $github . "', '" . $linkedin . "', '" . $userId . "')";
+            $newSocial = "INSERT INTO social VALUES(null, null,'" . $github . "', '" . $linkedin . "', '" . $userId . "')";
             $this->dataBase($newSocial);
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
