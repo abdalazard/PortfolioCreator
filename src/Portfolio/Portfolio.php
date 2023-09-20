@@ -3,41 +3,6 @@
 
 class Portfolio
 {
-
-    public function store($foto, $titulo, $subtitulo, $skills, $project_name, $url, $banner, $url_banner, $github, $linkedin, $userId)
-    {
-        try {
-            //Profile
-            $pathInfo = $this->setImage($foto, 'info');
-            $newInfo = "INSERT INTO info VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
-            $this->dataBase($newInfo);
-
-            //Skills
-            $pathSkills = $this->setImages($skills, 'skills');
-            foreach ($pathSkills as $skill) {
-                $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
-                $this->dataBase($newSkill);
-            }
-
-            // Project
-            $newProject = "INSERT INTO projects VALUES(null, null, '" . $project_name . "', '" . $url . "', '" . $userId . "')";
-            $this->dataBase($newProject);
-
-            //Others
-            $pathOthers = $this->setImages($banner, 'others');
-            foreach ($pathOthers as $banners) {
-                $newOthers =  "INSERT INTO others VALUES(null, null, '" . $banners . "', '" . $url_banner . "', '" . $userId . "')";
-                $this->dataBase($newOthers);
-            }
-
-            //Social
-            $newSocial = "INSERT INTO social VALUES(null, null,'" . $github . "', '" . $linkedin . "', '" . $userId . "')";
-            $this->dataBase($newSocial);
-        } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
-        }
-    }
-
     public function getInfo($id)
     {
         $infoQuery = "SELECT * FROM info WHERE id_user LIKE '" . $id . "'";
@@ -64,6 +29,7 @@ class Portfolio
 
         while ($data = mysqli_fetch_array($db)) {
             $project = array(
+                'print' => $data['print'],
                 'project_name' => $data['nome_projeto'],
                 'url_project' => $data['url']
             );

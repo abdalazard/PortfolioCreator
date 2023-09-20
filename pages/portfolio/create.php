@@ -11,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
     <title>Criação de portfolio</title>
 </head>
 
@@ -36,8 +37,6 @@
     <div class="container">
         <?php if(isset($_GET['msg'])) { echo "<p class='red' id='msg' name='msg'>".$_GET['msg']."</p>";} ?>
         <h3>Criar novo Portfolio</h3>
-        <form action="../../src/Portfolio/Create.php" METHOD="POST" enctype="multipart/form-data">
-
             <?php include '../info/info.php'; ?>
 
             <?php include '../skills/skills.php'; ?>
@@ -55,7 +54,6 @@
                 </div>
             </div>
 
-        </form>
     </div>
 
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
@@ -68,6 +66,8 @@
             $('#msg').fadeOut();
         }, 1000);
     });
+
+
     </script>
     </script>
 </body>
