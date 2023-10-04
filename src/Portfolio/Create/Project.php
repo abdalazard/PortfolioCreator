@@ -7,13 +7,12 @@ $portfolio = new Portfolio;
 session_start();
 $userId = $_SESSION['id'];
 
-$data = json_decode(file_get_contents('php://input'), true);
+$inputNomeProjeto = $_POST['inputNomeProjeto'];
+$inputPrint = $_FILES['inputPrint'];
+$inputUrlProjeto = $_POST['inputUrlProjeto'];
 
-foreach ($data as $d) {
-    $inputPrint = $d['inputPrint'] ?? null;
-    $inputNomeProjeto = $d['inputNomeProjeto'] ?? null;
-    $inputUrlProjeto = $d['inputUrlProjeto'] ?? null;
-} 
+// var_dump($inputPrint);
+// die;
 
 if($inputPrint && $inputNomeProjeto) {
     if ($portfolio->moreThanOne($userId) == false) {

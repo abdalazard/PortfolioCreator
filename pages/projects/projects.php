@@ -1,18 +1,8 @@
 <h5>Projetos</h5>
 <!-- table: projects -->
+<br>
 <form id="formProjects">
-<div class="row">
-    <div class="col s6 center">
-        <a href="#modalProjects" class="modal-trigger">Adicionar Projeto</a>
-    </div>
-</div>
-<div id="modalProjects" class="modal modalProjects">
-    <div class="row">
-        <div class="col s2 offset-s10">
-            <a href="#!" class="modal-close btn-white black-text closeButton">Fechar</a>
-        </div>
-    </div>
-    <div class="modal-content">
+
         <div class="row">
             <div class="col s12">
                 <label>ScreenShot</label>
@@ -36,51 +26,32 @@
                 <button type="submit" id="gravaProjeto">Gravar projeto</button>
             </div>
         </div>
-    </div>
-</div>
 </form>
 <script>
-    $('#formProjects').on('submit', () => event.preventDefault());
-    $('#inputPrint').val('');
-    if($('#inputPrint').on('change', () => console.log('Imagem selecionada'))) {
-        var file = $('#inputPrint');
-        console.log(file);
-    }
-    $('#gravaProjeto').on('click', function() {
-
-        if($('#inputPrint').length > 0 && $('#inputNomeProjeto').length > 0){
-            var novaDiv = $('#form').clone();
-            var formData = new FormData();
-            $('#inputPrint').val('');
-
-            // Adicione o arquivo de imagem ao FormData
- 
-            const data = [{
-                inputPrint: $('#inputPrint').val(),
-                inputNomeProjeto: $('#inputNomeProjeto').val(),
-                inputUrlProjeto: $('#inputUrlProjeto').val()
-            }];
-
+    $(document).ready(function() {
+        $('#formProjects').on('submit', function(event) {
+            event.preventDefault();
+            
+            var formData = new FormData(this);
+            
             $.ajax({
-                url: '../../src/Portfolio/Create/Project.php', // Substitua com a URL do seu backend
+                url: '../../src/Portfolio/Create/Project.php',
                 type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(data), // Envie os dados como JSON
+                processData: false,
+                contentType: false,
+                data: formData,
                 success: function(response) {
-                    console.log('Dados enviados com sucesso:', response);
-                    // novaDiv.find('input').val('');
-                    // $('formProjects').append(novaDiv);
-
+                    alert('Projeto salvo com sucesso!');
+                
+                    // Limpar os campos do formulário
+                    $('#inputPrint').val('');
+                    $('#inputNomeProjeto').val('');
+                    $('#inputUrlProjeto').val('');
                 },
                 error: function(error) {
                     console.error('Erro ao enviar dados:', error);
                 }
             });
-           
-        
-            }
-        }
-    );
-  
-    
+        });
+    });
 </script>

@@ -107,7 +107,7 @@ class Portfolio
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];
                 $num = rand(0, 9);
-                $directory = "../../images/users/" . $folder . "/" . $typePicture . "/";
+                $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
 
                 if (is_dir($directory)) {
                     removeAllFilesAndSubdirectories($directory);
