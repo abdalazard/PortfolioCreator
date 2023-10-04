@@ -1,4 +1,7 @@
-<h5>Projetos</h5>
+<h5 id="title">Projetos</h5>
+<h3 id="projetoMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+    Projeto salvo com sucesso
+</h3>
 <!-- table: projects -->
 <br>
 <form id="formProjects">
@@ -29,9 +32,9 @@
 </form>
 <script>
     $(document).ready(function() {
+        $('#projetoMsg').hide();
         $('#formProjects').on('submit', function(event) {
             event.preventDefault();
-            
             var formData = new FormData(this);
             
             $.ajax({
@@ -41,9 +44,11 @@
                 contentType: false,
                 data: formData,
                 success: function(response) {
-                    alert('Projeto salvo com sucesso!');
-                
-                    // Limpar os campos do formulário
+                    $('#projetoMsg').show();
+                    setTimeout(function() {
+                        $('#projetoMsg').hide();
+                    }, 3000);
+                   // Limpar os campos do formulário
                     $('#inputPrint').val('');
                     $('#inputNomeProjeto').val('');
                     $('#inputUrlProjeto').val('');
