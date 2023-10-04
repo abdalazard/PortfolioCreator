@@ -1,5 +1,5 @@
 <?php
-include '../../db/Connection.php';
+include '../../../db/Connection.php';
 
 include 'Portfolio.php';
 $portfolio = new Portfolio;
@@ -14,10 +14,8 @@ $subtitulo = $_POST['subtitulo'];
 
 if($foto && $titulo) {
     if ($portfolio->moreThanOne($userId) == true) {
-        $msg = "Dados de perfil já existentes";
-
-    } else {
-        
+        return "Dados de perfil já existentes";
+    } else {        
         $msg = "Dados de perfil gravados com sucesso!";
 
         $pathInfo = $this->setImage($foto, 'info');
@@ -25,9 +23,7 @@ if($foto && $titulo) {
         
         if ($this->dataBase($newProfile)) {
             return 'Projeto gravado com sucesso!';
-
         }
         return "Erro ao gravar o perfil!";
-
     }
 }

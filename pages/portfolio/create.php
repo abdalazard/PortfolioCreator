@@ -48,11 +48,11 @@
             <?php include '../others/others.php'; ?>
 
             <?php include '../social/social.php'; ?>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col s6 center">
                     <input type='submit' value="Visualizar novo portfolio" class="btn white black-text">
                 </div>
-            </div>
+            </div> -->
 
     </div>
 

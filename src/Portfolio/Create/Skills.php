@@ -1,7 +1,7 @@
 <?php
-include '../../db/Connection.php';
+include '../../../db/Connection.php';
 
-include 'Portfolio.php';
+include '../Portfolio.php';
 $portfolio = new Portfolio;
 
 session_start();
@@ -9,6 +9,8 @@ $userId = $_SESSION['id'];
 
 //Skills
 $skills = $_FILES['skill'];
+var_dump($skills);
+die;
 
 if($skills) {
     try{
