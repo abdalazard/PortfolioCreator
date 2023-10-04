@@ -40,17 +40,21 @@
 </div>
 </form>
 <script>
-    $('#formProjects').on('submit', function(){ event.preventDefault(); });
-
+    $('#formProjects').on('submit', () => event.preventDefault());
+    $('#inputPrint').val('');
+    if($('#inputPrint').on('change', () => console.log('Imagem selecionada'))) {
+        var file = $('#inputPrint');
+        console.log(file);
+    }
     $('#gravaProjeto').on('click', function() {
 
         if($('#inputPrint').length > 0 && $('#inputNomeProjeto').length > 0){
             var novaDiv = $('#form').clone();
             var formData = new FormData();
+            $('#inputPrint').val('');
 
             // Adicione o arquivo de imagem ao FormData
-            formData.append('file', file);
-
+ 
             const data = [{
                 inputPrint: $('#inputPrint').val(),
                 inputNomeProjeto: $('#inputNomeProjeto').val(),
@@ -64,14 +68,15 @@
                 data: JSON.stringify(data), // Envie os dados como JSON
                 success: function(response) {
                     console.log('Dados enviados com sucesso:', response);
+                    // novaDiv.find('input').val('');
+                    // $('formProjects').append(novaDiv);
+
                 },
                 error: function(error) {
                     console.error('Erro ao enviar dados:', error);
                 }
             });
-            novaDiv.find('input').val('');
-
-            $('formProjects').append(novaDiv);
+           
         
             }
         }

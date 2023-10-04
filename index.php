@@ -2,23 +2,32 @@
 include "db/Connection.php";
 
 include 'src/Portfolio/Portfolio.php';
-$newInfo = new Portfolio;
-$info = $newInfo->getInfo(1);
-
-$newProject = new Portfolio;
-$projects = $newProject->getProjects(1);
-
-$newSkill = new Portfolio;
-$skills = $newSkill->getSkills(1);
-
-$newOthers = new Portfolio;
-$others = $newOthers->getOthers(1);
-
-$newSocial = new Portfolio;
-$social = $newSocial->getSocial(1);
 
 
-include_once 'icon/network.php';
+try {
+    if(!isset($_SESSION['id'])){
+        $msg = "Você não possui um portfolio!";
+        header("location: noportfolio.php?msg=" . $msg);
+    }
+    $newInfo = new Portfolio;
+    $info = $newInfo->getInfo($_SESSION['id']);
+
+    $newProject = new Portfolio;
+    $projects = $newProject->getProjects($_SESSION['id']);
+
+    $newSkill = new Portfolio;
+    $skills = $newSkill->getSkills($_SESSION['id']);
+
+    $newOthers = new Portfolio;
+    $others = $newOthers->getOthers($_SESSION['id']);
+
+    $newSocial = new Portfolio;
+    $social = $newSocial->getSocial($_SESSION['id']);
+    include_once 'icon/network.php';
+} catch (Exception $e) {
+    $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
+    header("location: noportfolio.php?msg=" . $msg);
+}
 
 ?>
 <!DOCTYPE HTML>

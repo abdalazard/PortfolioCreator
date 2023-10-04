@@ -1,5 +1,6 @@
     <h5>Profile</h5>
     <br>
+    <form action="" method="POST">
     <div class="row">
         <div class="col s5 center">
             <img src="" alt="foto" />
@@ -24,3 +25,9 @@
             <input type="text" name="subtitulo" placeholder="Subtitulo(tecnologias)" required>
         </div>
     </div>
+    <div class="row">
+        <div class="col s6">
+            <input type="button" value="Salvar">
+        </div>
+    </div>
+    </form>
