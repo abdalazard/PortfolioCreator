@@ -19,7 +19,7 @@ if($inputPrint && $inputNomeProjeto) {
             $portfolio->dataBase($newProject);
             return 'Projeto gravado com sucesso!';
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
+            echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados de projeto do portfolio.";
         }
     } else {
         //à substituir

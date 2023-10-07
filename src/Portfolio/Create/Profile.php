@@ -22,7 +22,7 @@ if($foto && $titulo) {
         $newProfile = "INSERT INTO info VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
         
         if ($this->dataBase($newProfile)) {
-            return 'Projeto gravado com sucesso!';
+            return 'Profile gravado com sucesso!';
         }
         return "Erro ao gravar o perfil!";
     }

@@ -8,6 +8,7 @@ session_start();
 $userId = $_SESSION['id'];
 
 //Social
+$email = $_POST['email'];
 $github = $_POST['github'];
 $linkedin = $_POST['linkedin'];
 if($github && $linkedin) {
@@ -18,10 +19,10 @@ if($github && $linkedin) {
     } else {
         try{
             //Social
-            $newSocial = "INSERT INTO social VALUES(null, null,'" . $github . "', '" . $linkedin . "', '" . $userId . "')";
+            $newSocial = "INSERT INTO social VALUES(null, '".$email."','" . $github . "', '" . $linkedin . "', '" . $userId . "')";
             $this->dataBase($newSocial);
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
+            echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados de contato do portfolio.";
         }
     }
 }

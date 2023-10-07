@@ -19,7 +19,7 @@ if($skills) {
             $portfolio->dataBase($newSkill);
         }
     } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
+        echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados de habilidades do portfolio.";
     }
 }
 
