@@ -2,7 +2,6 @@
 include '../../../db/Connection.php';
 
 include '../Portfolio.php';
-$portfolio = new Portfolio;
 
 session_start();
 $userId = $_SESSION['id'];
@@ -14,6 +13,8 @@ $url_banner = $_POST['url_others'];
 
 if($banner && $url_banner) {
     try{
+        $portfolio = new Portfolio;
+
         $pathOthers = $portfolio->setImage($banner, 'others');
         $newOthers =  "INSERT INTO others VALUES(null, '".$titulo."', '" . $pathOthers . "', '" . $url_banner . "', '" . $userId . "')";
         $portfolio->dataBase($newOthers);
