@@ -109,10 +109,9 @@ class Portfolio
                 $num = rand(0, 9);
                 $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
 
-                if (is_dir($directory)) {
-                    removeAllFilesAndSubdirectories($directory);
+                if (!is_dir($directory)) {
+                    mkdir($directory, 0777, true);
                 }
-                mkdir($directory, 0777, true);
                 move_uploaded_file($file['tmp_name'], $directory . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext);
                 return $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext;
             }
@@ -124,9 +123,9 @@ class Portfolio
 
         $hoje = date("d-m-y");
         $folder = "pasta_de_" . $_SESSION['user'];
-        $directory = "../../images/users/" . $folder . "/" . $typePicture . "/";
+        $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
         if (is_dir($directory)) {
-            $this->removeAllFilesAndSubdirectories("../../images/users/" . $folder . "/" . $typePicture . "/");
+            $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
         }
         mkdir($directory, 0777, true);
         $uploadedPaths = [];

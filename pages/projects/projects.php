@@ -1,6 +1,5 @@
 <h5 id="title">Projetos</h5>
 <h3 id="projetoMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-    Projeto salvo com sucesso
 </h3>
 <!-- table: projects -->
 <br>
@@ -33,21 +32,23 @@
 <script>
     $(document).ready(function() {
         $('#projetoMsg').hide();
-        $('#formProjects').on('submit', function(event) {
+        $('#gravaProjeto').on('click', function(event) {
             event.preventDefault();
-            var formData = new FormData(this);
-            
+            var formProjects = new FormData();
+            formProjects.append('inputPrint', $('#inputPrint')[0].files[0]); // Obtem o arquivo do input)
+            formProjects.append('inputNomeProjeto', $('#inputNomeProjeto').val()); // Obtem o arquivo do input)
+            formProjects.append('inputUrlProjeto', $('#inputUrlProjeto').val()); // Obtem o arquivo do input)
+            var nomeProj = $('#inputNomeProjeto').val();
+
             $.ajax({
                 url: '../../src/Portfolio/Create/Project.php',
                 type: 'POST',
                 processData: false,
                 contentType: false,
-                data: formData,
+                data: formProjects,
                 success: function(response) {
+                    $('#projetoMsg').text("Projeto " + nomeProj + " salvo com sucesso");
                     $('#projetoMsg').show();
-                    setTimeout(function() {
-                        $('#projetoMsg').hide();
-                    }, 3000);
                    // Limpar os campos do formulário
                     $('#inputPrint').val('');
                     $('#inputNomeProjeto').val('');

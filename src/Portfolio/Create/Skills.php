@@ -7,19 +7,20 @@ $portfolio = new Portfolio;
 session_start();
 $userId = $_SESSION['id'];
 
+$set = new Connection;
 //Skills
 $skills = $_FILES['skill'];
-var_dump($skills);
-die;
 
 if($skills) {
     try{
-        $pathSkills = $this->setImages($skills, 'skills');
+        $pathSkills = $portfolio->setImages($skills, 'skills');
         foreach ($pathSkills as $skill) {
             $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
-            $this->dataBase($newSkill);
+            $portfolio->dataBase($newSkill);
         }
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
     }
 }
+
+?>

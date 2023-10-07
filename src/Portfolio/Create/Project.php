@@ -11,9 +11,6 @@ $inputNomeProjeto = $_POST['inputNomeProjeto'];
 $inputPrint = $_FILES['inputPrint'];
 $inputUrlProjeto = $_POST['inputUrlProjeto'];
 
-// var_dump($inputPrint);
-// die;
-
 if($inputPrint && $inputNomeProjeto) {
     if ($portfolio->moreThanOne($userId) == false) {
         try{

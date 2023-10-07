@@ -28,7 +28,7 @@
                 <div class="row">
                     <div class="col s12 ">
                         <label for="skill">Habilidade(Adicione várias imagens renderizada das stacks)</label>
-                        <input type="file" name="skill[]" multiple accept="image/*">
+                        <input type="file" name="skill[]"  id="skill" multiple accept="image/*">
                     </div>
                 </div>
                 <div class="row">
@@ -50,8 +50,11 @@
         $('#formSkills').on('submit', function(event) {
             event.preventDefault();
             var formSkills = new FormData();
-            formSkills.append('skill', $('#skill').val()); // Adicione o valor do campo1
-            
+            var files = $('#skill')[0].files;
+
+            for (var i = 0; i < files.length; i++) {
+                formSkills.append('skill[]', files[i]);
+            }
             $.ajax({
                 url: '../../src/Portfolio/Create/Skills.php',
                 type: 'POST',

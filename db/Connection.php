@@ -19,4 +19,9 @@ class Connection
     {
         return mysqli_query($this->con, $query);
     }
+
+    public function dd($item){
+        var_dump($item);
+        die();
+    }
 }
