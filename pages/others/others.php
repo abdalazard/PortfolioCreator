@@ -12,6 +12,8 @@
         </div>
     </div>
     <div class="modal-content">
+    <h3 id="othersMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+    </h3>
         <form id="formOthers">
             <input type="checkbox" id="othersOk" name="othersOk" value="false" hidden>
             <div class="row">

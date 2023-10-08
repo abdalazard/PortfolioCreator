@@ -8,11 +8,7 @@
 <div id="modalProjects" class="modal modalProjects">
     <input type="text" value="true" name="ProjectOk" hidden>
 
-    <div class="row">
-        <div class="col s12 center">
-            <h3 id="projetoMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-        </div>
-    </div>
+    <h3 id="projetoMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
     <form id="formProjects">
         <input type="checkbox" id="projectOk" name="projectOk" value="false" hidden>

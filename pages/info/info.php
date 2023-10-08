@@ -2,12 +2,11 @@
 <br>
 
 <h3 id="profileMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-    Perfil salvo com sucesso
 </h3>
-<a href="#modalProfile" class="modal-trigger">Adicione seus dados pessoais</a>
+<a href="#modalProfile" id="modalProfileButton" class="modal-trigger">Adicione seus dados pessoais</a>
 <div id="modalProfile" class="modal modalBanner">
-    <h3 id="profileMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-        Perfil salvo com sucesso
+    
+    <h3 id="profileMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
     <form id="formProfile">
         <input type="checkbox" id="profileOk" name="profileOk" value="false" hidden>

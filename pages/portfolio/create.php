@@ -1,4 +1,5 @@
 <?php include '../../auth/Authentication.php'; ?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -11,9 +12,9 @@
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-    <script src="../utils.js"></script>
-    
+    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="utils.js"></script>
     <title>Criação de portfolio</title>
 </head>
 
@@ -35,8 +36,9 @@
     </nav>
     <div class="container">
         <?php if(isset($_GET['msg'])) { echo "<p class='red' id='msg' name='msg'>".$_GET['msg']."</p>";} ?>
-        <h3>Criar novo Portfolio</h3>
         <div id="createNewPortfolio">
+            <h3>Criar novo Portfolio</h3>
+
             <?php include '../info/info.php'; ?>
 
             <?php include '../skills/skills.php'; ?>
@@ -57,8 +59,11 @@
         </div> -->
 
     </div>
-
-    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
+
+    <script>
+        M.AutoInit();
+        var userId = '<?php echo  $_SESSION['id']; ?>';
+        var user = '<?php echo  $_SESSION['user']; ?>';
+    </script>
 </html>

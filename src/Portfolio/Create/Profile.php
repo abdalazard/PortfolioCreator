@@ -18,10 +18,8 @@ if($foto && $titulo) {
         return "Dados de perfil já existentes";
     } else {        
 
-        $pathInfo = $portfolio->setImage($foto, 'info');
-        $newProfile = "INSERT INTO info VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
-        $msg = "Dados de perfil gravados com sucesso!";
-        return [$msg => "msg"];
+        $pathInfo = $portfolio->setImage($foto, 'profile');
+        $newProfile = "INSERT INTO profile VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
 
         if ($portfolio->dataBase($newProfile)) {
             return 'Profile gravado com sucesso!';

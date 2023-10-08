@@ -1,6 +1,6 @@
 <?php
 
-$table = "info";
+$table = "profile";
 try {
     $query = "CREATE TABLE " . $table . " (
              id INT(11) AUTO_INCREMENT PRIMARY KEY,

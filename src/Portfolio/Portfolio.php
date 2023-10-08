@@ -3,9 +3,9 @@
 
 class Portfolio
 {
-    public function getInfo($id)
+    public function getProfile($id)
     {
-        $infoQuery = "SELECT * FROM info WHERE id_user LIKE '" . $id . "'";
+        $infoQuery = "SELECT * FROM profile WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($infoQuery);
         if ($data = mysqli_fetch_array($db)) {
             $foto = $data['profile'];
@@ -61,6 +61,7 @@ class Portfolio
         while ($data = mysqli_fetch_array($db)) {
             $other = array(
                 'id' => $data['id'],
+                'titulo' => $data['titulo'],
                 'banner' => $data['banner'],
                 'banner_url' => $data['url'],
             );
@@ -74,17 +75,15 @@ class Portfolio
     {
         $infoQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($infoQuery);
-        if ($data = mysqli_fetch_array($db)) {
-            $github = $data['github'];
-            $linkedin = $data['linkedin'];
-            // $email = $data['email'];
+        if (!$data = mysqli_fetch_array($db)) {
+        return "Erro ao obter as redes sociais";  
         }
-
         $data = [
-            'github' => $github,
-            // 'email' => $email,
-            'linkedin' => $linkedin
+            'github' => $data['github'],
+            'email' => $data['email'],
+            'linkedin' => $data['linkedin']
         ];
+        
         return $data;
     }
 
@@ -109,11 +108,15 @@ class Portfolio
                 $num = rand(0, 9);
                 $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
 
-                if (!is_dir($directory)) {
-                    mkdir($directory, 0777, true);
-                }
+                // if (is_dir($directory)) {
+                //     $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
+                // }
+                mkdir($directory, 0777, true);
                 move_uploaded_file($file['tmp_name'], $directory . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext);
-                return $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext;
+                
+                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext;
+                return $path;
+
             }
         }
     }
@@ -124,9 +127,9 @@ class Portfolio
         $hoje = date("d-m-y");
         $folder = "pasta_de_" . $_SESSION['user'];
         $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
-        if (is_dir($directory)) {
-            $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
-        }
+        // if (is_dir($directory)) {
+        //     $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
+        // }
         mkdir($directory, 0777, true);
         $uploadedPaths = [];
 
@@ -148,7 +151,7 @@ class Portfolio
 
     public function moreThanOne($userId)
     {
-        $query = "SELECT * FROM info WHERE id_user LIKE '" . $userId . "'";
+        $query = "SELECT * FROM profile WHERE id_user LIKE '" . $userId . "'";
         $db = new Connection;
 
         $linhas = mysqli_num_rows($db->toDatabase($query));
@@ -169,11 +172,11 @@ class Portfolio
     public function removeAllFilesAndSubdirectories($directory)
     {
         $files = scandir($directory);
-
+    
         foreach ($files as $file) {
             if ($file !== '.' && $file !== '..') {
                 $path = $directory . '/' . $file;
-
+    
                 if (is_dir($path)) {
                     removeAllFilesAndSubdirectories($path); // Recursively remove subdirectories
                     rmdir($path);
@@ -183,4 +186,5 @@ class Portfolio
             }
         }
     }
+    
 }

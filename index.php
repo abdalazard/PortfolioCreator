@@ -10,7 +10,7 @@ try {
         header("location: noportfolio.php?msg=" . $msg);
     }
     $newInfo = new Portfolio;
-    $info = $newInfo->getInfo($_SESSION['id']);
+    $info = $newInfo->getProfile($_SESSION['id']);
 
     $newProject = new Portfolio;
     $projects = $newProject->getProjects($_SESSION['id']);
