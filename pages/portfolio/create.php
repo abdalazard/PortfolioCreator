@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://code.jquery.com/jquery-3.7.1.slim.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
-
+    <script src="../utils.js"></script>
     
     <title>Criação de portfolio</title>
 </head>
@@ -24,7 +24,7 @@
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#" id="preview" disabled></a></li>
+                <li><a href="../dashboard/visualization.php" id="preview" disabled></a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger"
@@ -49,6 +49,12 @@
 
             <?php include '../social/social.php'; ?>
         </div>
+        <!-- <div class="row">
+            <div class="col s12 center">
+                <input type="button" value="Verificar portfolio" id="verifica">
+
+            </div>
+        </div> -->
 
     </div>
 
@@ -56,58 +62,3 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
 </html>
-
-<script>
-    M.AutoInit();
-    $("#msg").addClass("logged");
-    $(document).ready(function() {
-
-        setTimeout(function() {
-            $('#msg').fadeOut();
-        }, 1000);
-
-        $('#preview').prop('disabled', true);
-        $('#preview').text("Você ainda não pode visualizar seu portfólio");
-        $('#preview').css({"background-color": "grey"});
-
-        $(
-        '#gravaProfile',
-        '#gravaProjeto',
-        '#gravaSkills',
-        '#gravaOthers',
-        '#gravaSocial'
-        ).on('click', function() {
-            $('#preview').prop('disabled', false);
-            $('#preview').text("Visualize seu portfólio!");
-            $('#preview').css({"background-color": "green"});
-        });
-
-        $('#preview').on('click', function() {
-            var formsValidos = true;
-
-            // Validar cada formulário individualmente
-            $('#createNewPortfolio form').each(function() {
-                if (!this.checkValidity()) {
-                    formsValidos = false;
-                }
-            });
-
-            if (formsValidos) {
-                // Todos os formulários são válidos, enviar requisição AJAX
-                $.ajax({
-                    url: '',
-                    type: 'POST',
-                    data: $('#createNewPortfolio form').serialize(), // Envie todos os formulários
-                    success: function(response) {
-                        console.log('Todos os formulários foram enviados com sucesso!');
-                    },
-                    error: function(error) {
-                        console.error('Erro ao enviar formulários:', error);
-                    }
-                });
-            } else {
-                console.log('Alguns formulários não são válidos, corrija os erros antes de enviar.');
-            }
-        });
-    });
-</script>
