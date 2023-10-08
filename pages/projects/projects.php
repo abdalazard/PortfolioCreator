@@ -1,18 +1,15 @@
 <h5 id="title">Projetos</h5>
 <h3 id="projetoMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
 </h3>
-<a href="#modalProjects" class="modal-trigger">Adicione novo projeto</a>
+<a href="#modalProjects" id="modelProjectsButton" class="modal-trigger">Adicione novo projeto</a>
 
 <!-- table: projects -->
 <br>
 <div id="modalProjects" class="modal modalProjects">
-    <input type="text" value="true" name="ProjectOk" hidden>
 
     <h3 id="projetoMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
     <form id="formProjects">
-        <input type="checkbox" id="projectOk" name="projectOk" value="false" hidden>
-
             <div class="row">
                 <label>ScreenShot</label>
                 <div class="col s12 center">

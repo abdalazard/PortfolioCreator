@@ -149,6 +149,8 @@ include_once '../../icon/network.php';
                                         <svg>
                                             <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
                                         </svg>
+                                        <span class="label"><?php echo $project['project_name'] ?></span>
+
                                     </a>
                                 </li>
 

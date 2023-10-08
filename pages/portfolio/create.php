@@ -57,7 +57,7 @@
 
             </div>
         </div> -->
-
+        <br>
     </div>
     </body>
 
@@ -65,5 +65,10 @@
         M.AutoInit();
         var userId = '<?php echo  $_SESSION['id']; ?>';
         var user = '<?php echo  $_SESSION['user']; ?>';
+        let profileOk = false;
+        let skillsOk = false;
+        let projectOk = false;
+        let othersOk = false;
+        let socialOk = false;
     </script>
 </html>

@@ -2,9 +2,7 @@
 <!-- others -->
 <h3 id="othersMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
 </h3>
-<div class="col s6">
-    <a href="#modalBanner" class="modal-trigger">Adicionar banners de palestras, workshops e eventos.</a>
-</div>
+<a href="#modalBanner" id="modalOthersButton" class="modal-trigger">Adicionar banners de palestras, workshops e eventos.</a>
 <div id="modalBanner" class="modal modalBanner">
     <div class="row">
         <div class="col s2 offset-s10">
@@ -15,7 +13,6 @@
     <h3 id="othersMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
         <form id="formOthers">
-            <input type="checkbox" id="othersOk" name="othersOk" value="false" hidden>
             <div class="row">
                 <div class="col s12 ">
                     <label for="titulo_others">Titulo do evento/artigo/palestra/workshop/curso</label>

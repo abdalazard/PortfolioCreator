@@ -1,6 +1,11 @@
 <h5>Profile</h5>
 <br>
 
+<div class="row">
+    <div class="col s12 center">
+        <img src="" alt="foto" id="profile-pic" disabled hidden/>
+    </div>
+</div>
 <h3 id="profileMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
 </h3>
 <a href="#modalProfile" id="modalProfileButton" class="modal-trigger">Adicione seus dados pessoais</a>
@@ -8,14 +13,8 @@
     
     <h3 id="profileMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
+    
     <form id="formProfile">
-        <input type="checkbox" id="profileOk" name="profileOk" value="false" hidden>
-
-        <div class="row">
-            <div class="col s12 center">
-                <img src="" alt="foto" />
-            </div>
-        </div>
         <div class="row">
             <!-- table: info -->
             <div class="col s12 center">

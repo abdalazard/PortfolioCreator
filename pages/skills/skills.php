@@ -2,22 +2,18 @@
 
 <div class="col s12">
     <h3 id="skillMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-        Habilidades salvas com sucesso
     </h3>
-    <a href="#modalSkills" class="modal-trigger">Adicione mais de uma logo</a>
+    <a href="#modalSkills" id="modalSkillsButton" class="modal-trigger">Adicione mais de uma logo</a>
 </div>
 <br>
 <!-- table: projects -->
 <div id="modalSkills" class="modal modalSkills">
-    <input type="checkbox" id="skillsOk" name="skillsOk" value="false" hidden>
-
     <div class="row">
         <div class="col s2 offset-s10">
             <a href="#!" class="modal-close btn-white black-text closeButton" id="closeButton">Fechar</a>
         </div>
     </div>
     <h3 id="skillMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-        Habilidades salvas com sucesso
     </h3>
     <div class="modal-content">
         <form id="formSkills" enctype="multipart/form-data">

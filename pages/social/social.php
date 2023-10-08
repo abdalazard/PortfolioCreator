@@ -1,15 +1,13 @@
 <h5>Redes Sociais</h5>
 <h3 id="socialMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
 </h3>
-<a href="#modalSocial" class="modal-trigger">Adicione seus contatos</a>
+<a href="#modalSocial" id="modelSocialButton" class="modal-trigger">Adicione seus contatos</a>
 
 <!-- table: socials -->
 <div id="modalSocial" class="modal modalSocial">
     <h3 id="socialMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
     <form id="formSocial">
-        <input type="checkbox" id="socialOk" name="socialOk" value="false" hidden>
-
         <div class="row">
             <div class="col s12 center">
                 <label for="email">Email</label>

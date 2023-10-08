@@ -8,12 +8,14 @@ class Portfolio
         $infoQuery = "SELECT * FROM profile WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($infoQuery);
         if ($data = mysqli_fetch_array($db)) {
+            $id = $data['id'];
             $foto = $data['profile'];
             $titulo = $data['titulo'];
             $subtitulo = $data['subtitulo'];
         }
 
         $data = [
+            'id' => $id,
             'profile' => $foto,
             'titulo' => $titulo,
             'subtitulo' => $subtitulo
@@ -47,6 +49,7 @@ class Portfolio
         $skills = array();
         while ($data = mysqli_fetch_array($db)) {
             $skill = array(
+                'id' => $data['id'],
                 'skill' => $data['logo'],
             );
             $skills[] = $skill;
@@ -79,6 +82,7 @@ class Portfolio
         return "Erro ao obter as redes sociais";  
         }
         $data = [
+            'id' => $data['id'],
             'github' => $data['github'],
             'email' => $data['email'],
             'linkedin' => $data['linkedin']
