@@ -8,6 +8,8 @@
     <h3 id="socialMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
     <form id="formSocial">
+        <input type="checkbox" id="socialOk" name="socialOk" value="false" hidden>
+
         <div class="row">
             <div class="col s12 center">
                 <label for="email">Email</label>

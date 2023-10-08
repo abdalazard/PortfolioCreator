@@ -65,10 +65,10 @@
         M.AutoInit();
         var userId = '<?php echo  $_SESSION['id']; ?>';
         var user = '<?php echo  $_SESSION['user']; ?>';
-        let profileOk = false;
-        let skillsOk = false;
-        let projectOk = false;
-        let othersOk = false;
-        let socialOk = false;
+        // let profileOk = $('#profileOk').prop('change', true)
+        // let skillsOk = $('#skillsOk').prop('change', true)
+        // let projectOk = $('#projectOk').prop('change', true)
+        // let othersOk = $('#othersOk').prop('change', true)
+        // let socialOk = $('#socialOk').prop('change', true)
     </script>
 </html>

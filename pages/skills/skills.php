@@ -8,6 +8,7 @@
 <br>
 <!-- table: projects -->
 <div id="modalSkills" class="modal modalSkills">
+
     <div class="row">
         <div class="col s2 offset-s10">
             <a href="#!" class="modal-close btn-white black-text closeButton" id="closeButton">Fechar</a>
@@ -17,6 +18,8 @@
     </h3>
     <div class="modal-content">
         <form id="formSkills" enctype="multipart/form-data">
+        <input type="checkbox" id="skillsOk" name="skillsOk" value="false" hidden>
+
             <div class="row">
             <label for="skill">Habilidade(Adicione várias imagens renderizada das stacks)</label>
                 <div class="col s12">

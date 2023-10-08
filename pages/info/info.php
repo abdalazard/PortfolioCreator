@@ -15,6 +15,7 @@
     </h3>
     
     <form id="formProfile">
+        <input type="checkbox" id="profileOk" name="profileOk" value="false" hidden>
         <div class="row">
             <!-- table: info -->
             <div class="col s12 center">
