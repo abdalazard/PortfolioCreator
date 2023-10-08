@@ -1,12 +1,10 @@
     <h5>Skills</h5>
     
-    <div class="row">
-        <div class="col s6 center">
-            <h3 id="skillMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-                Perfil salvo com sucesso
-            </h3>
-            <a href="#modalSkills" class="modal-trigger">Adicione mais de uma logo</a>
-        </div>
+    <div class="col s6">
+        <h3 id="skillMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+            Habilidades salvas com sucesso
+        </h3>
+        <a href="#modalSkills" class="modal-trigger">Adicione mais de uma logo</a>
     </div>
     <br>
     <!-- table: projects -->
@@ -19,7 +17,7 @@
         <div class="row">
             <div class="col s6 center">
                 <h3 id="skillMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
-                    Perfil salvo com sucesso
+                    Habilidades salvas com sucesso
                 </h3>
             </div>
         </div>

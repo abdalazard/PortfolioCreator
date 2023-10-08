@@ -1,39 +1,46 @@
     <h5>Profile</h5>
     <br>
+    
     <h3 id="profileMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
         Perfil salvo com sucesso
     </h3>
-    <form id="formProfile">
-        <div class="row">
-            <div class="col s5 center">
-                <img src="" alt="foto" />
+    <a href="#modalProfile" class="modal-trigger">Adicione seus dados pessoais</a>
+    <div id="modalProfile" class="modal modalBanner">
+        <h3 id="profileMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+            Perfil salvo com sucesso
+        </h3>
+        <form id="formProfile">
+            <div class="row">
+                <div class="col s5 center">
+                    <img src="" alt="foto" />
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <!-- table: info -->
-            <div class="col s6 center">
-                <label for="foto">Foto</label>
-                <input type="file" name="profile" id="profile" accept="image/*"><br>
+            <div class="row">
+                <!-- table: info -->
+                <div class="col s6 center">
+                    <label for="foto">Foto</label>
+                    <input type="file" name="profile" id="profile" accept="image/*"><br>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s6">
-                <label for="titulo">Titulo</label>
-                <input type="text" name="titulo" id="titulo" placeholder="Título" required>
+            <div class="row">
+                <div class="col s6">
+                    <label for="titulo">Titulo</label>
+                    <input type="text" name="titulo" id="titulo" placeholder="Título" required>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s6">
-                <label for="subtitulo">Subtitulo</label>
-                <input type="text" name="subtitulo" id="subtitulo" placeholder="Subtitulo(tecnologias)" required>
+            <div class="row">
+                <div class="col s6">
+                    <label for="subtitulo">Subtitulo</label>
+                    <input type="text" name="subtitulo" id="subtitulo" placeholder="Subtitulo(tecnologias)" required>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s6">
-                <input type="submit" value="Salvar" id="gravaProfile">
+            <div class="row">
+                <div class="col s6">
+                    <input type="submit" value="Salvar" id="gravaProfile">
+                </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
     <script>
     $(document).ready(function() {
         $('#profileMsg').hide();

@@ -1,34 +1,39 @@
 <h5 id="title">Projetos</h5>
 <h3 id="projetoMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
 </h3>
+<a href="#modalProjects" class="modal-trigger">Adicione novo projeto</a>
+
 <!-- table: projects -->
 <br>
-<form id="formProjects">
-
-        <div class="row">
-            <div class="col s12">
-                <label>ScreenShot</label>
-                <input type="file" name="inputPrint" id="inputPrint" alt="Print da tela">
+<div id="#modalProjects" class="modal modalProjects">
+    <h3 id="projetoMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+    </h3>
+    <form id="formProjects">
+            <div class="row">
+                <div class="col s12">
+                    <label>ScreenShot</label>
+                    <input type="file" name="inputPrint" id="inputPrint" alt="Print da tela">
+                </div>
             </div>
-        </div>
-        <div class="row" id="form">
-            <div class="col s12 ">
-                <label for="projetos">Projetos</label>
-                <input type="text" name="inputNomeProjeto" id="inputNomeProjeto" placeholder="Nome do projeto">
+            <div class="row" id="form">
+                <div class="col s12 ">
+                    <label for="projetos">Projetos</label>
+                    <input type="text" name="inputNomeProjeto" id="inputNomeProjeto" placeholder="Nome do projeto">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <label for="URL">URL</label>
-                <input type="text" name="inputUrlProjeto" id="inputUrlProjeto" placeholder="URL do projeto">
+            <div class="row">
+                <div class="col s12">
+                    <label for="URL">URL</label>
+                    <input type="text" name="inputUrlProjeto" id="inputUrlProjeto" placeholder="URL do projeto">
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <button type="submit" id="gravaProjeto">Gravar projeto</button>
+            <div class="row">
+                <div class="col s12">
+                    <button type="submit" id="gravaProjeto">Gravar projeto</button>
+                </div>
             </div>
-        </div>
-</form>
+    </form>
+</div>
 <script>
     $(document).ready(function() {
         $('#projetoMsg').hide();

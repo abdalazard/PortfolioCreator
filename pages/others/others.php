@@ -2,10 +2,8 @@
 <!-- others -->
 <h3 id="othersMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
 </h3>
-<div class="row">
-    <div class="col s6 center">
-        <a href="#modalBanner" class="modal-trigger">Adicionar banners de palestras, workshops e eventos.</a>
-    </div>
+<div class="col s6">
+    <a href="#modalBanner" class="modal-trigger">Adicionar banners de palestras, workshops e eventos.</a>
 </div>
 <div id="modalBanner" class="modal modalBanner">
     <div class="row">
