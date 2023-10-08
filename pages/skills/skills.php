@@ -13,7 +13,7 @@
     <div id="modalSkills" class="modal modalSkills">
         <div class="row">
             <div class="col s2 offset-s10">
-                <a href="#!" class="modal-close btn-white black-text closeButton">Fechar</a>
+                <a href="#!" class="modal-close btn-white black-text closeButton" id="closeButton">Fechar</a>
             </div>
         </div>
         <div class="row">
@@ -40,8 +40,7 @@
         </div>
 
     </div>
-
-
+    
     <script>
     $(document).ready(function() {
         $('#skillMsg').hide();
@@ -66,9 +65,6 @@
                     $('#skillMsg2').show();
                    // Limpar os campos do formulário
                     $('#skill').val('');
-                    // $('#inputPrint').prop('disabled', false);
-                    // $('#inputNomeProjeto').prop('disabled', false);
-                    // $('#inputUrlProjeto').prop('disabled', false);
                 },
                 error: function(error) {
                     console.error('Erro ao enviar dados:', error);

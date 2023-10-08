@@ -30,7 +30,7 @@
         </div>
         <div class="row">
             <div class="col s6">
-                <input type="submit" value="Salvar">
+                <input type="submit" value="Salvar" id="gravaProfile">
             </div>
         </div>
     </form>

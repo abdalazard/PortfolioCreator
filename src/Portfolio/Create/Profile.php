@@ -1,7 +1,7 @@
 <?php
 include '../../../db/Connection.php';
 
-include 'Portfolio.php';
+include '../Portfolio.php';
 
 session_start();
 $userId = $_SESSION['id'];
