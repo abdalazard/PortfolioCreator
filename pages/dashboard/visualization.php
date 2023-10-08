@@ -6,7 +6,7 @@ include '../../src/Portfolio/Portfolio.php';
 include '../../auth/Authentication.php';
 
 $newInfo = new Portfolio;
-$info = $newInfo->getInfo($_SESSION['id']);
+$info = $newInfo->getProfile($_SESSION['id']);
 
 $newProject = new Portfolio;
 $projects = $newProject->getProjects($_SESSION['id']);
@@ -191,7 +191,7 @@ include_once '../../icon/network.php';
                         </div>
                     </div>
                 </div>
-                <p id="text02">abdalazard@gmail.com</p>
+                <p id="text02"><?php echo $social['email']; ?></p>
             </div>
         </div>
     </div>
