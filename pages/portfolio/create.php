@@ -51,6 +51,7 @@
 
             <?php include '../social/social.php'; ?>
         </div>
+        <div id="finished"></div>
         <!-- <div class="row">
             <div class="col s12 center">
                 <input type="button" value="Verificar portfolio" id="verifica">

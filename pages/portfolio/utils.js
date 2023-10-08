@@ -1,4 +1,3 @@
-$("#msg").addClass("logged");
 $(document).ready(function() {
     
     //Create
@@ -191,7 +190,6 @@ $(document).ready(function() {
         });
     });
 
-
     function checkForms(allOk) {
 
         if (allOk.every(function(item) { return item; })) {
@@ -203,13 +201,9 @@ $(document).ready(function() {
 
         $('#preview').text("Visualize seu portfólio!");
         $('#preview').css({"background-color": "green"});
-        $('body').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
+        $('#finished').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
         }
-        // $('#preview').prop('disabled', true);
-        // $('#preview').text("Você ainda não pode visualizar seu portfólio");
-        // $('#preview').css({"background-color": "grey"});
-        
-    };
+     };
     //Finaliza portfolio
 
     function existData() {
@@ -233,7 +227,6 @@ $(document).ready(function() {
             success: function(data) {
                 thisProfileId = data.id;
                 thisProfilePath = data.profile;
-
 
                 if(thisProfileId >= 1) {
 
