@@ -1,5 +1,5 @@
 <?php
-include '../../db/Connection.php';
+include "../../db/Connection.php";
 include '../../auth/Authentication.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -13,6 +13,8 @@ include '../../auth/Authentication.php'; ?>
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Login</title>
 </head>
 
@@ -22,23 +24,9 @@ include '../../auth/Authentication.php'; ?>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
-            <?php include '../../src/Portfolio/Portfolio.php';
-            $portfolio = new Portfolio;
-
-            if ($portfolio->moreThanOne($_SESSION['id']) == true) {
-
-                ?>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../portfolio/update.php" class="modal-trigger">Atualizar</a></li>
+                <li><a href="../portfolio/create.php" id="new" class="modal-trigger">Criar novo</a></li>
             </ul>
-            <?php
-            // header("location: ../../pages/dashboard/dashboard.php?msg=" . $msg);
-            } else { ?>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../portfolio/create.php" class="modal-trigger">Criar novo</a></li>
-            </ul>
-            <?php } ?>
-
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
             </ul>
@@ -61,23 +49,88 @@ include '../../auth/Authentication.php'; ?>
             <h6>Olá, <?php echo $_SESSION['user']; ?></h6>
         </div>
 
-        <h2>Meu portfólio atual</h2>
         <hr />
-        <p>Baixe o portfolio do banco aqui</p>
+        <h3>Lista de projetos de portfólio</h3>
+        <table id="portfolioList">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Imagem</th>
+                    <th>Título</th>
+                    <th>Editar</th>
+                    <th>Excluir</th>
 
+                </tr>
+            </thead>
+            <tbody>
+                <td id="profileId"></td>
+                <td class="left"><img src="" alt="foto" id="profilePic"></td>
+                <td id="tituloProfile"></td>
+            </tbody>
+        </table>
     </div>
-    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <script>
-    M.AutoInit();
-    $("#msg").addClass("logged");
-    $(document).ready(function() {
-        setTimeout(function() {
-            $('#msg').fadeOut();
-        }, 1000);
-    });
-    </script>
+<script>
+M.AutoInit();
+var userId = '<?php echo  $_SESSION['id']; ?>';
+var user = '<?php echo  $_SESSION['user']; ?>';
+
+$(document).ready(function() {
+
+$('#portfolioList').hide();
+
+$("#msg").addClass("logged");
+setTimeout(function() {
+        $('#msg').fadeOut();
+    }, 1000);
+
+function getList() {
+        $.ajax({
+            url: '../../src/Portfolio/Get.php',
+            type: 'GET', 
+            dataType: 'json',
+            data: {
+                userId: userId,
+                action: 'getProfile' 
+            },
+            success: function(data) {
+                thisProfileId = data.id;
+                thisProfilePath = data.profile;
+                thisProfileTitle = data.titulo;
+
+                if(data.id >= 1) {
+                    // thisProfileId.forEach(function(item){
+                        $('#profileId').text(thisProfileId);
+                        $('#profilePic').css({
+                            'width': '50px',
+                            'height': '50px',
+                            'border-radius': '50%',
+                            'object-fit': 'cover',
+                            'display': 'block',
+                            'margin': 'auto',
+                            'border': '2px solid #ffffff'
+                        });                    
+                        thisProfilePath = '../../'+thisProfilePath;
+                        $('#profilePic').prop('src', thisProfilePath);
+
+                        // console.log(thisProfilePath)
+                        $('#tituloProfile').text(thisProfileTitle);
+                        $('#new').hide();
+                    // });         
+
+                } 
+                $('#portfolioList').show();
+
+            },
+            error: function(error) {
+                console.error('Erro ao enviar dados:', error);
+            }
+        });
+    }
+    getList()
+});
+</script>
+
 </body>
 
 </html>

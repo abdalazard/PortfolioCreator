@@ -10,7 +10,7 @@
     <h3 id="projetoMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
     </h3>
     <form id="formProjects">
-        <input type="checkbox" id="projectOk" name="projectOk" value="false" hidden>
+        <!-- <input type="type" id="projectOk" name="projectOk" value="false" hidden> -->
 
             <div class="row">
                 <label>ScreenShot</label>

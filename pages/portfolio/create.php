@@ -24,8 +24,8 @@
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../dashboard/visualization.php" id="preview" disabled></a></li>
+            <ul id="nav-mobile" class="left hide-on-med-and-down" >
+                <li ><a href="../dashboard/visualization.php" id="preview" disabled></a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger"
@@ -51,6 +51,7 @@
 
             <?php include '../social/social.php'; ?>
         </div>
+        <div id="finished"></div>
         <!-- <div class="row">
             <div class="col s12 center">
                 <input type="button" value="Verificar portfolio" id="verifica">
@@ -65,10 +66,5 @@
         M.AutoInit();
         var userId = '<?php echo  $_SESSION['id']; ?>';
         var user = '<?php echo  $_SESSION['user']; ?>';
-        // let profileOk = $('#profileOk').prop('change', true)
-        // let skillsOk = $('#skillsOk').prop('change', true)
-        // let projectOk = $('#projectOk').prop('change', true)
-        // let othersOk = $('#othersOk').prop('change', true)
-        // let socialOk = $('#socialOk').prop('change', true)
     </script>
 </html>

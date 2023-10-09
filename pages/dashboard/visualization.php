@@ -54,10 +54,6 @@ include_once '../../icon/network.php';
             <li><a href="../../admin.php">Inicio</a></li>
         </ul>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="#" class="modal-trigger">Publicar</a></li>
-        </ul>
-
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="#">Mudar Layout(Em Breve)</a></li>
         </ul>
         <ul class="right">
@@ -65,10 +61,9 @@ include_once '../../icon/network.php';
             </li>
         </ul>
         <ul class="right">
-            <li><a class="waves-effect waves-light btn black modal-trigger " href="#">Voltar</a>
+            <li><a class="waves-effect waves-light btn black modal-trigger " id="botaoVoltar" href="#">Voltar</a>
             </li>
         </ul>
-
     </div>
 </nav>
 
@@ -202,6 +197,10 @@ include_once '../../icon/network.php';
     <script>
     $(document).ready(function() {
         $('.modal').modal();
+        $('#botaoVoltar').on('click', function() {
+            window.history.back();
+        });
+
     });
     </script>
 </body>

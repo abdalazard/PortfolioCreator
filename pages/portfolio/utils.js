@@ -1,8 +1,5 @@
-$("#msg").addClass("logged");
 $(document).ready(function() {
-    existData()
-    checkForms()
-
+    
     //Create
     setTimeout(function() {
         $('#msg').fadeOut();
@@ -11,6 +8,8 @@ $(document).ready(function() {
     $('#preview').prop('disabled', true);
     $('#preview').text("Você ainda não pode visualizar seu portfólio");
     $('#preview').css({"background-color": "grey"});
+
+    existData()
 
     //Profile
     $('#profileMsg').hide();
@@ -191,33 +190,32 @@ $(document).ready(function() {
         });
     });
 
+    function checkForms(allOk) {
+
+        if (allOk.every(function(item) { return item; })) {
+        $('#createNewPortfolio').slideUp(1000, function() {
+            $(this).hide(); 
+        });           
+        
+        $('#preview').prop('disabled', false);
+
+        $('#preview').text("Visualize seu portfólio!");
+        $('#preview').css({"background-color": "green"});
+        $('#finished').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
+        }
+     };
     //Finaliza portfolio
 
-    function checkForms() {
+    function existData() {
+        var profileOk = false;
+        var skillsOk = false;
+        var projectsOk = false;
+        var othersOk = false;
+        var contactsOk = false;
         var allOk = [];
 
-        // allOk.forEach(function (item) { 
-        //  });
-        //  console.log()
+        checkForms(allOk)
 
-        //  if($allOk) {
-        //  $('#createNewPortfolio').slideUp(1000, function() {
-                //     // Esta função será chamada após a animação de slide terminar
-                //     $(this).hide(); // Esconde a div após a animação
-                // });           
-                // $('#preview').prop('disabled', false);
-                // $('#preview').val('')
-
-                // $('#preview').text("Visualize seu portfólio!");
-                // $('#preview').css({"background-color": "green"});
-                // $('body').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
-            // console.log(allOk)
-        //  }
-        
-    };
-
-    function existData() {
-        
         $.ajax({
             url: '../../src/Portfolio/Get.php',
             type: 'GET', 
@@ -229,7 +227,6 @@ $(document).ready(function() {
             success: function(data) {
                 thisProfileId = data.id;
                 thisProfilePath = data.profile;
-
 
                 if(thisProfileId >= 1) {
 
@@ -250,9 +247,9 @@ $(document).ready(function() {
                         });                    
                     $('#profile-pic').show();
                     $('#profileMsg').show();     
-    
+                    profileOk = true;
                 }   
-
+                allOk.push(profileOk);
             },
             error: function(error) {
                 console.error('Não se preocupe, só não existe nenhum perfil com este id. Erro:', error);
@@ -273,8 +270,11 @@ $(document).ready(function() {
                     $('#skillMsg').text('Habilidades já presentes no banco de dados')
                     $('#skillMsg').show();
                     $('#modalSkillsButton').hide();
+                    skillsOk = true;
+
                 }
-             
+                allOk.push(skillsOk);
+
             },
             error: function(error) {
                 console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
@@ -295,8 +295,12 @@ $(document).ready(function() {
                     $('#projetoMsg').text('Projetos já presentes no banco de dados')
                     $('#projetoMsg').show();
                     $('#modelProjectsButton').hide();
+                                   
+                    projectsOk = true
+
                 }
-             
+                allOk.push(projectsOk);
+
             },
             error: function(error) {
                 console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
@@ -316,8 +320,11 @@ $(document).ready(function() {
                 if(theseOthers.length >= 1) {
                     $('#othersMsg').text('Eventos já presentes no banco de dados')
                     $('#othersMsg').show();
-                    $('#modalOthersButton').hide();             
+                    $('#modalOthersButton').hide();   
+                    othersOk = true;          
                 }
+                allOk.push(othersOk);
+
             },
             error: function(error) {
                 console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
@@ -340,13 +347,17 @@ $(document).ready(function() {
                     $('#socialMsg').text('Contatos já presentes no banco de dados')
                     $('#socialMsg').show();
                     $('#modelSocialButton').hide();
-                }             
+                    contactsOk = true;
+                }       
+                allOk.push(contactsOk);
+      
             },
             error: function(error) {
                 console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
             }
+
         });       
     }
-   
+    
 
-});
+});    
