@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    //Check
+    checkForms()
     //Create
     setTimeout(function() {
         $('#msg').fadeOut();
@@ -30,6 +30,7 @@ $(document).ready(function() {
             data: formProfile,
             success: function(response) {
                 console.log('resposta: '+response)
+
                 $('#profileMsg').text('Perfil salvo com sucesso!');
                 $('#profileMsg2').text('Perfil salvo com sucesso!');
 
@@ -41,9 +42,8 @@ $(document).ready(function() {
                 $('#subtitulo').val('');
 
                 $('#formProfile').hide();
-                checkForms()
+                setState(`profile`, 1);
 
-                
             },
             error: function(error) {
                 console.error('Erro ao enviar dados:', error);
@@ -79,7 +79,7 @@ $(document).ready(function() {
                 $('#inputNomeProjeto').val('');
                 $('#inputUrlProjeto').val('');
                 $('#formProjects').hide();
-                checkForms()
+                setState(`projects`, 1);
 
                 
             },
@@ -118,7 +118,7 @@ $(document).ready(function() {
                 $('#skill').val('');
                 $('#formskills').hide();
                 $('#modalSkillsButton').hide();
-                checkForms()
+                setState(`skills`, 1);
 
             },
             error: function(error) {
@@ -157,7 +157,7 @@ $(document).ready(function() {
                 $('#url_others').val('');
 
                 $('#modalOthersButton').hide();
-                checkForms()
+                setState(`others`, 1);
 
                 
             },
@@ -195,7 +195,7 @@ $(document).ready(function() {
                 $('#github').val('');
                 $('#linkedin').val('');
                 $('#modelSocialButton').hide();
-                checkForms()
+                setState(`contacts`, 1);
 
             },
             error: function(error) {
@@ -204,12 +204,8 @@ $(document).ready(function() {
         });
 
     });
+});
 
-
-    // checkForms()
-    var statusState, userIdState, profileState, skillsState, projectsState, othersState, contactsState;
-
-    checkForms()
     function checkForms() {
 
         try {
@@ -221,12 +217,9 @@ $(document).ready(function() {
                     action: "getFormState"
                 },
                 success: function(data) {
-
-                    // console.log("utils/checkforms/data: "+data)
                     var stateId = data.id;
                     var msgState = data.msg;
 
-                    statusState = data.id_status;
                     userIdState = data.userId;
                     profileState = data.profile;
                     skillsState = data.skills;
@@ -234,7 +227,164 @@ $(document).ready(function() {
                     othersState = data.others;
                     contactsState = data.contacts;
 
-                   if(profileState == true && skillsState == true && projectsState == true && othersState == true && contactsState == true) {
+                    if(profileState == true) {
+    
+                        $.ajax({
+                            url: '../../src/Portfolio/Get.php',
+                            type: 'GET', 
+                            dataType: 'json',
+                            data: {
+                                userId: userId,
+                                action: 'getProfile' 
+                            },
+                            success: function(data) {
+                                var thisProfileId = data.id;
+                                var thisProfilePath = data.profile;
+                
+                                if(thisProfileId >= 1) {
+                
+                                    $('#profileMsg').text('Perfil já preenchido!');
+                
+                                    $('#profileMsg').show();
+                                    $('#modalProfileButton').hide();
+                                    $('#profile-pic').prop('disabled', false);
+                                    $('#profile-pic').prop('src','../../'+thisProfilePath);
+                                    $('#profile-pic').css({
+                                        'width': '50px',
+                                        'height': '50px',
+                                        'border-radius': '50%',
+                                        'object-fit': 'cover',
+                                        'display': 'block',
+                                        'margin': 'auto',
+                                        'border': '2px solid #ffffff'
+                                        });                    
+                                    $('#profile-pic').show();
+                                    $('#profileMsg').show();                     
+                                }
+                            }
+                        });
+                    }
+
+                    if(skillsState == true) {
+    
+                        $.ajax({
+                            url: '../../src/Portfolio/Get.php',
+                            type: 'GET', 
+                            dataType: 'json',
+                            data: {
+                                userId: userId,
+                                action: 'getSkills'
+                            },
+                            success: function(data) {
+                                var theseSkills = data;
+                                if(theseSkills.length >= 1) {
+                                    $('#skillMsg').text('Habilidades já presentes no banco de dados')
+                                    $('#skillMsg').show();
+                                    $('#modalSkillsButton').hide();
+                                }
+                
+                            },
+                            error: function(error) {
+                                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                            }
+                        });    
+                    }
+
+                    if(projectsState == true) {
+    
+                        $.ajax({
+                            url: '../../src/Portfolio/Get.php',
+                            type: 'GET', 
+                            dataType: 'json',
+                            data: {
+                                userId: userId,
+                                action: 'getProjects'
+                            },
+                            success: function(data) {
+                                var theseProjects = data;
+                                if(theseProjects.length >= 1) {
+                                    $('#projetoMsg').text('Projetos já presentes no banco de dados')
+                                    $('#projetoMsg').show();
+                                    $('#modelProjectsButton').hide();
+                                                    
+                                }
+                
+                            },
+                            error: function(error) {
+                                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                            }
+                        });      
+                    }
+                    if(projectsState == true) {
+                        $.ajax({
+                            url: '../../src/Portfolio/Get.php',
+                            type: 'GET', 
+                            dataType: 'json',
+                            data: {
+                                userId: userId,
+                                action: 'getOthers'
+                            },
+                            success: function(data) {
+                                var theseOthers = data;
+                                if(theseOthers.length >= 1) {
+                                    $('#othersMsg').text('Eventos já presentes no banco de dados')
+                                    $('#othersMsg').show();
+                                    $('#modalOthersButton').hide();   
+                                }
+                
+                            },
+                            error: function(error) {
+                                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                            }
+                        });   
+                    }
+                    if(othersState == true) {
+                        $.ajax({
+                            url: '../../src/Portfolio/Get.php',
+                            type: 'GET', 
+                            dataType: 'json',
+                            data: {
+                                userId: userId,
+                                action: 'getOthers'
+                            },
+                            success: function(data) {
+                                var theseOthers = data;
+                                if(theseOthers.length >= 1) {
+                                    $('#othersMsg').text('Eventos já presentes no banco de dados')
+                                    $('#othersMsg').show();
+                                    $('#modalOthersButton').hide();   
+                                }
+                
+                            },
+                            error: function(error) {
+                                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                            }
+                        });  
+                    }
+                    if(contactsState == true) {
+                        $.ajax({
+                            url: '../../src/Portfolio/Get.php',
+                            type: 'GET', 
+                            dataType: 'json',
+                            data: {
+                                userId: userId,
+                                action: 'getContacts'
+                            },
+                            success: function(data) {
+                                var theseContacts = data.id;
+                                if(theseContacts >= 1) {
+                                    $('#socialMsg').text('Contatos já presentes no banco de dados')
+                                    $('#socialMsg').show();
+                                    $('#modelSocialButton').hide();                    
+                                }       
+                
+                            },
+                            error: function(error) {
+                                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                            }            
+                        });
+                    }
+                    if(profileState == true && skillsState == true && projectsState == true && othersState == true && contactsState == true) {
                         $('#createNewPortfolio').slideUp(1000, function() {
                             $(this).hide(); 
                         });
@@ -243,12 +393,7 @@ $(document).ready(function() {
                         $('#preview').text("Visualize seu portfólio!");
                         $('#preview').css({"background-color": "green"});
                         $('#finished').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
-                    } else {
-                        existData()
-                    }
-
-                    
-                   
+                    } 
                 },
                 error: function(error) {
                     console.log("Requisição do FormState deu errado! codigo: "+error)
@@ -257,13 +402,12 @@ $(document).ready(function() {
         } catch (erro) {
             console.error(erro);
         }
-       
     };
 
-    function setState(column, state) {
+    function setState(col, stt) {
+        var column = col;
+        var state = stt;
         var formState = new FormData();
-        formState.append('userId', userId);
-        formState.append('statusId', statusId); 
         formState.append('column', column); 
         formState.append('state', state);
         formState.append('action', "setState");
@@ -275,150 +419,12 @@ $(document).ready(function() {
             contentType: false,
             data: formState,
             success: function(data) {
-                console.log("setState atualizado")
+                console.log("utils: setState atualizado")
+                checkForms()
             },
             error: function(error) {
                 console.log("setState do arquivo utils deu ruim!")
             }
         });
     }
-    
-    //Finaliza portfolio
-    
-    function existData() {
-
-        $.ajax({
-            url: '../../src/Portfolio/Get.php',
-            type: 'GET', 
-            dataType: 'json',
-            data: {
-                userId: userId,
-                action: 'getProfile' 
-            },
-            success: function(data) {
-                thisProfileId = data.id;
-                thisProfilePath = data.profile;
-
-                if(thisProfileId >= 1) {
-
-                    $('#profileMsg').text('Perfil já preenchido!');
-
-                    $('#profileMsg').show();
-                    $('#modalProfileButton').hide();
-                    $('#profile-pic').prop('disabled', false);
-                    $('#profile-pic').prop('src','../../'+thisProfilePath);
-                    $('#profile-pic').css({
-                        'width': '50px',
-                        'height': '50px',
-                        'border-radius': '50%',
-                        'object-fit': 'cover',
-                        'display': 'block',
-                        'margin': 'auto',
-                        'border': '2px solid #ffffff'
-                        });                    
-                    $('#profile-pic').show();
-                    $('#profileMsg').show();                     
-                }
-                setState('profile', true)    
-            },
-            error: function(error) {
-                console.error('Não se preocupe, só não existe nenhum perfil com este id. Erro:', error);
-            }
-        }); 
-        $.ajax({
-            url: '../../src/Portfolio/Get.php',
-            type: 'GET', 
-            dataType: 'json',
-            data: {
-                userId: userId,
-                action: 'getSkills'
-            },
-            success: function(data) {
-                theseSkills = data;
-                setState('skills', true)    
-                if(theseSkills.length >= 1) {
-                    $('#skillMsg').text('Habilidades já presentes no banco de dados')
-                    $('#skillMsg').show();
-                    $('#modalSkillsButton').hide();
-                }
-
-            },
-            error: function(error) {
-                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
-            }
-        });    
-
-        $.ajax({
-            url: '../../src/Portfolio/Get.php',
-            type: 'GET', 
-            dataType: 'json',
-            data: {
-                userId: userId,
-                action: 'getProjects'
-            },
-            success: function(data) {
-                theseProjects = data;
-                if(theseProjects.length >= 1) {
-                    $('#projetoMsg').text('Projetos já presentes no banco de dados')
-                    $('#projetoMsg').show();
-                    $('#modelProjectsButton').hide();
-                                    
-                }
-                setState('projects', true)    
-
-            },
-            error: function(error) {
-                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
-            }
-        });        
-        
-        $.ajax({
-            url: '../../src/Portfolio/Get.php',
-            type: 'GET', 
-            dataType: 'json',
-            data: {
-                userId: userId,
-                action: 'getOthers'
-            },
-            success: function(data) {
-                theseOthers = data;
-                if(theseOthers.length >= 1) {
-                    $('#othersMsg').text('Eventos já presentes no banco de dados')
-                    $('#othersMsg').show();
-                    $('#modalOthersButton').hide();   
-                }
-                setState('others', true)    
-
-            },
-            error: function(error) {
-                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
-            }
-        });   
-        
-
-        $.ajax({
-            url: '../../src/Portfolio/Get.php',
-            type: 'GET', 
-            dataType: 'json',
-            data: {
-                userId: userId,
-                action: 'getContacts'
-            },
-            success: function(data) {
-                theseContacts = data.id;
-
-                if(theseContacts >= 1) {
-                    $('#socialMsg').text('Contatos já presentes no banco de dados')
-                    $('#socialMsg').show();
-                    $('#modelSocialButton').hide();                    
-                }       
-                setState('contacts', true)    
-
-            },
-            error: function(error) {
-                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
-            }            
-        });
-    }
-        
-});    
+ 

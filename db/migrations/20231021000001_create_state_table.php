@@ -9,8 +9,6 @@ try {
         projects TINYINT(1) DEFAULT 0,
         others TINYINT(1) DEFAULT 0,
         contacts TINYINT(1) DEFAULT 0,
-        id_status INT,
-        FOREIGN KEY (id_status) REFERENCES status(id),
         id_user INT,
         FOREIGN KEY (id_user) REFERENCES users(id)
 

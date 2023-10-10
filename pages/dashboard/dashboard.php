@@ -119,7 +119,6 @@ function getStatus(){
 function setState() {
     var formState = new FormData();
     formState.append('userId', userId);
-    formState.append('statusId', statusId); 
     formState.append('status', statusCode);
     formState.append('action', "setState");
 
@@ -151,6 +150,7 @@ $('#new').on('click', function(event){
             contentType: false,
             data: formStatus,
             success: function(data) {
+                setState()
                 location.href = "../portfolio/create.php"
                 console.log("aqui")
             },

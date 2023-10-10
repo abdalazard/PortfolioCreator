@@ -9,7 +9,6 @@ class Portfolio
         if (!$data) {
             $data = [
                 'id' => null,
-                'id_status' => null,
                 'userId' => null,
                 'profile' => null,
                 'skills' => null,
@@ -22,7 +21,6 @@ class Portfolio
         }
 
         $id = $data['id'] ?? false;
-        $statusId = $data['id_status'] ?? false;
         $user = $data['id_user'] ?? false;
         $profile = $data['profile'] ?? false;
         $skills = $data['skills'] ?? false;
@@ -32,7 +30,6 @@ class Portfolio
 
         $data = [
             'id' => $id,
-            'id_status' => $statusId,
             'userId' => $user,
             'profile' => $profile,
             'skills' => $skills,

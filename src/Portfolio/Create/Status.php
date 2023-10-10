@@ -5,7 +5,7 @@ include '../Portfolio.php';
 session_start();
 
 $userId = $_POST['userId'];
-$code = $_POST['status'] ?? 403;
+$code = $_POST['status'] ?? 0;
 $action = $_POST['action'];
 
 if($action == "setStatus"){
@@ -21,7 +21,7 @@ if($action == "setStatus"){
             $queryUpdate = $portfolio->dataBase($updateStatus);
             echo "Status atualizado!";
         } else {
-            $createStatus = "INSERT INTO status VALUES(null, 403, '".$userId."')";
+            $createStatus = "INSERT INTO status VALUES(null, 0, '".$userId."')";
             $queryCreate = $portfolio->dataBase($createStatus);
             echo "Status criado!";
         }
