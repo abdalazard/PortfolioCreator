@@ -392,7 +392,10 @@ $(document).ready(function() {
                         $('#preview').removeClass('disabled');
                         $('#preview').text("Visualize seu portfólio!");
                         $('#preview').css({"background-color": "green"});
-                        $('#finished').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
+                        $('#finished').append('<h4 class="center">Já encontramos um portfolio seu gravado. Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
+                        $('#preview').click(function() {
+                            window.location.href = '../dashboard/visualization.php';
+                        });
                     } 
                 },
                 error: function(error) {

@@ -74,7 +74,7 @@ include '../../auth/Authentication.php'; ?>
 M.AutoInit();
 var userId = '<?php echo  $_SESSION['id']; ?>';
 var user = '<?php echo  $_SESSION['user']; ?>';
-var statusCode;
+var status;
 var statusId;
 
 $(document).ready(function() {
@@ -98,15 +98,15 @@ function getStatus(){
             action: 'getStatus' 
         },
         success: function(data) {
-            statusCode = data.status;
+            status = data.status;
             statusId = data.id;
             console.log(data)
-            if(statusCode == 403) {
+            if(status == 0) {
                 $('#new').show();
                 setState()
 
             } 
-            if(statusCode == '') {
+            if(status == 1) {
                 getList()
             }
         },
@@ -119,7 +119,7 @@ function getStatus(){
 function setState() {
     var formState = new FormData();
     formState.append('userId', userId);
-    formState.append('status', statusCode);
+    formState.append('status', status);
     formState.append('action', "setState");
 
     $.ajax({
