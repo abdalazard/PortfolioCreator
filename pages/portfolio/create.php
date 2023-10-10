@@ -25,7 +25,7 @@
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down" >
-                <li ><a href="../dashboard/visualization.php" id="preview" disabled></a></li>
+                <li ><a href="../dashboard/visualization.php" id="preview"></a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger"
@@ -51,13 +51,9 @@
 
             <?php include '../social/social.php'; ?>
         </div>
-        <div id="finished"></div>
-        <!-- <div class="row">
-            <div class="col s12 center">
-                <input type="button" value="Verificar portfolio" id="verifica">
 
-            </div>
-        </div> -->
+        <div id="finished"></div>
+
         <br>
     </div>
     </body>

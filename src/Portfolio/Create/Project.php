@@ -13,21 +13,16 @@ $inputUrlProjeto = $_POST['inputUrlProjeto'];
 if($inputPrint && $inputNomeProjeto) {
     $portfolio = new Portfolio;
 
-    // if ($portfolio->moreThanOne($userId) == false) {
     try{
         $pathProjects = $portfolio->setImage($inputPrint, 'projects');
         $newProject = "INSERT INTO projects VALUES(null, '".$pathProjects."', '" . $inputNomeProjeto . "', '" . $inputUrlProjeto . "', '" . $userId . "')";
         $portfolio->dataBase($newProject);
-
+        if (!$portfolio->dataBase($newProject)) {
+            return  "Erro ao gravar os projetos!";
+        }
         return 'Projeto gravado com sucesso!';            
     } catch (PDOException $e) {
         echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados de projeto do portfolio.";
     }
-    // } else {
-        //à substituir
-    if (!$portfolio->dataBase($newProject)) {
-        $msg = "Erro ao gravar os projetos!";
-        return [$msg => "msg"];
-    }
-    // }
+    
 }

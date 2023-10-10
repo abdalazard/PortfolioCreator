@@ -11,7 +11,6 @@ $email = $_POST['email'];
 $github = $_POST['github'];
 $linkedin = $_POST['linkedin'];
 
-// var_dump($email, $github, $linkedin);
 try{
     //Social
     $portfolio = new Portfolio;

@@ -25,7 +25,7 @@ include '../../auth/Authentication.php'; ?>
                 <li><a href="../../admin.php">Inicio</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../portfolio/create.php" id="new" class="modal-trigger">Criar novo</a></li>
+                <li><a id="new" class="modal-trigger">Criar novo</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="#">Mudar Layout(Em Breve)</a></li>
@@ -84,6 +84,53 @@ setTimeout(function() {
         $('#msg').fadeOut();
     }, 1000);
 
+$('#new').on('click', function(event){
+    event.preventDefault();
+    var formStatus = new FormData();
+    formStatus.append('userId', userId); 
+    formStatus.append('action', "setStatus");
+
+    $.ajax({
+            url: '../../src/Portfolio/Create/Status.php',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: formStatus,
+            success: function(data) {
+            location.href = "../portfolio/create.php"
+            console.log("aqui")
+        },
+        error: function(error) {
+            console.log("botão new deu errado!")
+        }
+    });
+});
+
+function getStatus(){
+    $.ajax({
+        url: '../../src/Portfolio/Get.php',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            userId: userId,
+            action: 'getStatus' 
+        },
+        success: function(data) {
+            let statusCode = data.status;
+            console.log(data)
+            if(statusCode == 403) {
+                $('#new').show();
+            } 
+            if(statusCode == '') {
+                getList()
+            }
+        },
+        error: function(error) {
+            console.log("getStatus com problema!")
+        }
+    });
+};
+
 function getList() {
         $.ajax({
             url: '../../src/Portfolio/Get.php',
@@ -98,8 +145,7 @@ function getList() {
                 thisProfilePath = data.profile;
                 thisProfileTitle = data.titulo;
 
-                if(data.id >= 1) {
-                    // thisProfileId.forEach(function(item){
+                if(thisProfileId >= 1) {
                         $('#profileId').text(thisProfileId);
                         $('#profilePic').css({
                             'width': '50px',
@@ -113,21 +159,18 @@ function getList() {
                         thisProfilePath = '../../'+thisProfilePath;
                         $('#profilePic').prop('src', thisProfilePath);
 
-                        // console.log(thisProfilePath)
                         $('#tituloProfile').text(thisProfileTitle);
                         $('#new').hide();
-                    // });         
+                        $('#portfolioList').show();
 
                 } 
-                $('#portfolioList').show();
-
             },
             error: function(error) {
-                console.error('Erro ao enviar dados:', error);
+                console.log("getProfile com problema!")
             }
         });
-    }
-    getList()
+    };
+    getStatus();
 });
 </script>
 

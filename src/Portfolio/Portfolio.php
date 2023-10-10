@@ -1,8 +1,35 @@
 <?php
 
-
 class Portfolio
 {
+    public function getStatus($id)
+    {
+        $statusQuery = "SELECT * FROM status WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($statusQuery);
+        $data = mysqli_fetch_array($db);
+        if (!$data) {
+            $data = [
+                'id' => null,
+                'status' => null,
+                'user' => null,
+                'msg' => "Sem status definido",
+            ];
+            return $data;
+        }
+
+        $id = $data['id'] ?? null;
+        $status = $data['status'] ?? null;
+        $user = $data['id_user'] ?? null;
+
+        $data = [
+            'id' => $id,
+            'status' => $status,
+            'user' => $user,
+            'msg' => "Status encontrado!",
+        ];
+        return $data;
+    }
+
     public function getProfile($id)
     {
         $infoQuery = "SELECT * FROM profile WHERE id_user LIKE '" . $id . "'";
@@ -79,7 +106,7 @@ class Portfolio
         $infoQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($infoQuery);
         if (!$data = mysqli_fetch_array($db)) {
-        return "Erro ao obter as redes sociais";  
+            return "Erro ao obter as redes sociais";  
         }
         $data = [
             'id' => $data['id'],

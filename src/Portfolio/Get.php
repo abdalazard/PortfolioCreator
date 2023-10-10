@@ -7,6 +7,15 @@ include 'Portfolio.php';
 $userId = $_GET['userId'];
 $action = $_GET['action'];
 
+// var_dump($userId, $action);
+
+if($action == "getStatus"){
+    $portfolio = new Portfolio;
+    $data = $portfolio->getStatus($userId);
+    echo json_encode($data);
+    exit();
+}
+
 if($action == "getProfile"){
     $portfolio = new Portfolio;
     $data = $portfolio->getProfile($userId);
