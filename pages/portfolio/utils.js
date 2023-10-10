@@ -205,9 +205,12 @@ $(document).ready(function() {
 
     });
 
-    checkForms()
 
-    async function checkForms() {
+    // checkForms()
+    var statusState, userIdState, profileState, skillsState, projectsState, othersState, contactsState;
+
+    checkForms()
+    function checkForms() {
 
         try {
             $.ajax({
@@ -219,17 +222,33 @@ $(document).ready(function() {
                 },
                 success: function(data) {
 
-                    console.log("utils/checkforms/data: "+data)
+                    // console.log("utils/checkforms/data: "+data)
+                    var stateId = data.id;
+                    var msgState = data.msg;
 
-                    $('#createNewPortfolio').slideUp(1000, function() {
-                        $(this).hide(); 
-                    });
+                    statusState = data.id_status;
+                    userIdState = data.userId;
+                    profileState = data.profile;
+                    skillsState = data.skills;
+                    projectsState = data.projects;
+                    othersState = data.others;
+                    contactsState = data.contacts;
+
+                   if(profileState == true && skillsState == true && projectsState == true && othersState == true && contactsState == true) {
+                        $('#createNewPortfolio').slideUp(1000, function() {
+                            $(this).hide(); 
+                        });
+                        
+                        $('#preview').removeClass('disabled');
+                        $('#preview').text("Visualize seu portfólio!");
+                        $('#preview').css({"background-color": "green"});
+                        $('#finished').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
+                    } else {
+                        existData()
+                    }
+
                     
-                    $('#preview').removeClass('disabled');
-                    $('#preview').text("Visualize seu portfólio!");
-                    $('#preview').css({"background-color": "green"});
-                    $('#finished').append('<h4 class="center">Clique no botão verde para visualizar seu portfolio com o template padrão!</h4>')
-                    
+                   
                 },
                 error: function(error) {
                     console.log("Requisição do FormState deu errado! codigo: "+error)
@@ -240,10 +259,33 @@ $(document).ready(function() {
         }
        
     };
+
+    function setState(column, state) {
+        var formState = new FormData();
+        formState.append('userId', userId);
+        formState.append('statusId', statusId); 
+        formState.append('column', column); 
+        formState.append('state', state);
+        formState.append('action', "setState");
+    
+        $.ajax({
+            url: '../../src/Portfolio/Create/FormState.php',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: formState,
+            success: function(data) {
+                console.log("setState atualizado")
+            },
+            error: function(error) {
+                console.log("setState do arquivo utils deu ruim!")
+            }
+        });
+    }
     
     //Finaliza portfolio
-
-    function existData(allOk) {
+    
+    function existData() {
 
         $.ajax({
             url: '../../src/Portfolio/Get.php',
@@ -275,10 +317,9 @@ $(document).ready(function() {
                         'border': '2px solid #ffffff'
                         });                    
                     $('#profile-pic').show();
-                    $('#profileMsg').show();     
-                    profileOk = true;
-                    allOk[0] = profileOk
-                }   
+                    $('#profileMsg').show();                     
+                }
+                setState('profile', true)    
             },
             error: function(error) {
                 console.error('Não se preocupe, só não existe nenhum perfil com este id. Erro:', error);
@@ -294,13 +335,11 @@ $(document).ready(function() {
             },
             success: function(data) {
                 theseSkills = data;
+                setState('skills', true)    
                 if(theseSkills.length >= 1) {
                     $('#skillMsg').text('Habilidades já presentes no banco de dados')
                     $('#skillMsg').show();
                     $('#modalSkillsButton').hide();
-                    skillsOk = true;
-                    allOk[1] = skillsOk
-                    // checkForms()
                 }
 
             },
@@ -323,10 +362,9 @@ $(document).ready(function() {
                     $('#projetoMsg').text('Projetos já presentes no banco de dados')
                     $('#projetoMsg').show();
                     $('#modelProjectsButton').hide();
-                                
-                    projectsOk = true
-                    allOk[2] = projectsOk
+                                    
                 }
+                setState('projects', true)    
 
             },
             error: function(error) {
@@ -348,9 +386,8 @@ $(document).ready(function() {
                     $('#othersMsg').text('Eventos já presentes no banco de dados')
                     $('#othersMsg').show();
                     $('#modalOthersButton').hide();   
-                    othersOk = true;   
-                    allOk[3] = othersOk
                 }
+                setState('others', true)    
 
             },
             error: function(error) {
@@ -373,10 +410,10 @@ $(document).ready(function() {
                 if(theseContacts >= 1) {
                     $('#socialMsg').text('Contatos já presentes no banco de dados')
                     $('#socialMsg').show();
-                    $('#modelSocialButton').hide();
-                    contactsOk = true;
-                    allOk[4] = contactsOk
+                    $('#modelSocialButton').hide();                    
                 }       
+                setState('contacts', true)    
+
             },
             error: function(error) {
                 console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);

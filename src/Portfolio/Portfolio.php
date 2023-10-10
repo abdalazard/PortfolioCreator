@@ -8,7 +8,15 @@ class Portfolio
         $data = mysqli_fetch_array($db);
         if (!$data) {
             $data = [
-              
+                'id' => null,
+                'id_status' => null,
+                'userId' => null,
+                'profile' => null,
+                'skills' => null,
+                'projects' => null,
+                'others' => null,
+                'contacts' => null,
+                'msg' => 'Erro ao criar array!'
             ];
             return $data;
         }
@@ -31,6 +39,8 @@ class Portfolio
             'projects' => $projects,
             'others' => $others,
             'contacts' => $contacts,
+            'msg' => 'State encontrado!'
+
         ];
         return $data;
     }

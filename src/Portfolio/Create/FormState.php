@@ -50,7 +50,7 @@ if($action == "setState"){
             echo "Tabela de referecia para atualização de state nula!";
 
         } else {
-            $createState = "INSERT INTO formState VALUES(null, 0, 0, 0, 0, 0, '".$statusId."', '".$userId."')";
+            $createState = "INSERT INTO formState VALUES(null, false, false, false, false, false, '".$statusId."', '".$userId."')";
             $queryState = $portfolio->dataBase($createState);
             echo "State criado!";
         }

@@ -2,7 +2,7 @@
 require_once 'db/Connection.php';
 
 $db = new Connection;
-$db->toDatabase("DROP TABLE `status`,`profile`, `others`, `projects`, `skills`, `social`, `users`, `formState`");
+$db->toDatabase("DROP TABLE `formState`,`status`,`profile`, `others`, `projects`, `skills`, `social`, `users`");
 
 //remove arquivos
 function removeAllFilesAndSubdirectories($directory) {
