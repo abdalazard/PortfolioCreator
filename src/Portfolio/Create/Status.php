@@ -5,7 +5,7 @@ include '../Portfolio.php';
 session_start();
 
 $userId = $_POST['userId'];
-$code = $_POST['code'] ?? 403;
+$code = $_POST['status'] ?? 403;
 $action = $_POST['action'];
 
 if($action == "setStatus"){

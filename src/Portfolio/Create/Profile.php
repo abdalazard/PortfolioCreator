@@ -1,13 +1,18 @@
 <?php
 session_start();
-include '../../db/Connection.php';
+include '../../../db/Connection.php';
 include '../Portfolio.php';
 
-$userId = $_GET['userId'];
+$userId = $_SESSION['id'];
+
+$profile = $_FILES['profile'];
+$titulo = $_POST['titulo'];
+$subtitulo = $_POST['subtitulo'];
+
 
 $portfolio = new Portfolio;
 
-$pathInfo = $portfolio->setImage($foto, 'profile');
+$pathInfo = $portfolio->setImage($profile, 'profile');
 $newProfile = "INSERT INTO profile VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
 
 if ($portfolio->dataBase($newProfile)) {

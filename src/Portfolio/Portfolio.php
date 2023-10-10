@@ -2,6 +2,39 @@
 
 class Portfolio
 {
+    public function getState($id) {
+        $formStateQuery = "SELECT * FROM formState WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($formStateQuery);
+        $data = mysqli_fetch_array($db);
+        if (!$data) {
+            $data = [
+              
+            ];
+            return $data;
+        }
+
+        $id = $data['id'] ?? false;
+        $statusId = $data['id_status'] ?? false;
+        $user = $data['id_user'] ?? false;
+        $profile = $data['profile'] ?? false;
+        $skills = $data['skills'] ?? false;
+        $projects = $data['projects'] ?? false;
+        $others = $data['others'] ?? false;
+        $contacts = $data['contacts'] ?? false;
+
+        $data = [
+            'id' => $id,
+            'id_status' => $statusId,
+            'userId' => $user,
+            'profile' => $profile,
+            'skills' => $skills,
+            'projects' => $projects,
+            'others' => $others,
+            'contacts' => $contacts,
+        ];
+        return $data;
+    }
+
     public function getStatus($id)
     {
         $statusQuery = "SELECT * FROM status WHERE id_user LIKE '" . $id . "'";

@@ -74,8 +74,11 @@ include '../../auth/Authentication.php'; ?>
 M.AutoInit();
 var userId = '<?php echo  $_SESSION['id']; ?>';
 var user = '<?php echo  $_SESSION['user']; ?>';
+var statusCode;
+var statusId;
 
 $(document).ready(function() {
+getStatus();
 
 $('#portfolioList').hide();
 
@@ -83,6 +86,57 @@ $("#msg").addClass("logged");
 setTimeout(function() {
         $('#msg').fadeOut();
     }, 1000);
+
+
+function getStatus(){
+    $.ajax({
+        url: '../../src/Portfolio/Get.php',
+        type: 'GET',
+        dataType: 'json',
+        data: {
+            userId: userId,
+            action: 'getStatus' 
+        },
+        success: function(data) {
+            statusCode = data.status;
+            statusId = data.id;
+            console.log(data)
+            if(statusCode == 403) {
+                $('#new').show();
+                setState()
+
+            } 
+            if(statusCode == '') {
+                getList()
+            }
+        },
+        error: function(error) {
+            console.log("getStatus com problema!")
+        }
+    });
+};
+
+function setState() {
+    var formState = new FormData();
+    formState.append('userId', userId);
+    formState.append('statusId', statusId); 
+    formState.append('status', statusCode);
+    formState.append('action', "setState");
+
+    $.ajax({
+        url: '../../src/Portfolio/Create/FormState.php',
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        data: formState,
+        success: function(data) {
+            console.log("setState ok")
+        },
+        error: function(error) {
+            console.log("setState do botão new deu errado!")
+        }
+    });
+}
 
 $('#new').on('click', function(event){
     event.preventDefault();
@@ -97,39 +151,15 @@ $('#new').on('click', function(event){
             contentType: false,
             data: formStatus,
             success: function(data) {
-            location.href = "../portfolio/create.php"
-            console.log("aqui")
-        },
-        error: function(error) {
-            console.log("botão new deu errado!")
-        }
-    });
-});
-
-function getStatus(){
-    $.ajax({
-        url: '../../src/Portfolio/Get.php',
-        type: 'GET',
-        dataType: 'json',
-        data: {
-            userId: userId,
-            action: 'getStatus' 
-        },
-        success: function(data) {
-            let statusCode = data.status;
-            console.log(data)
-            if(statusCode == 403) {
-                $('#new').show();
-            } 
-            if(statusCode == '') {
-                getList()
+                location.href = "../portfolio/create.php"
+                console.log("aqui")
+            },
+            error: function(error) {
+                console.log("botão new deu errado!")
             }
-        },
-        error: function(error) {
-            console.log("getStatus com problema!")
-        }
+        });
+
     });
-};
 
 function getList() {
         $.ajax({
@@ -146,22 +176,22 @@ function getList() {
                 thisProfileTitle = data.titulo;
 
                 if(thisProfileId >= 1) {
-                        $('#profileId').text(thisProfileId);
-                        $('#profilePic').css({
-                            'width': '50px',
-                            'height': '50px',
-                            'border-radius': '50%',
-                            'object-fit': 'cover',
-                            'display': 'block',
-                            'margin': 'auto',
-                            'border': '2px solid #ffffff'
-                        });                    
-                        thisProfilePath = '../../'+thisProfilePath;
-                        $('#profilePic').prop('src', thisProfilePath);
+                    $('#profileId').text(thisProfileId);
+                    $('#profilePic').css({
+                        'width': '50px',
+                        'height': '50px',
+                        'border-radius': '50%',
+                        'object-fit': 'cover',
+                        'display': 'block',
+                        'margin': 'auto',
+                        'border': '2px solid #ffffff'
+                    });                    
+                    thisProfilePath = '../../'+thisProfilePath;
+                    $('#profilePic').prop('src', thisProfilePath);
 
-                        $('#tituloProfile').text(thisProfileTitle);
-                        $('#new').hide();
-                        $('#portfolioList').show();
+                    $('#tituloProfile').text(thisProfileTitle);
+                    $('#new').hide();
+                    $('#portfolioList').show();
 
                 } 
             },
@@ -170,7 +200,6 @@ function getList() {
             }
         });
     };
-    getStatus();
 });
 </script>
 
