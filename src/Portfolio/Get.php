@@ -4,10 +4,8 @@ include '../../db/Connection.php';
 
 include 'Portfolio.php';
 
-$userId = $_SESSION['id'] ?? null;
+$userId = $_SESSION['id'];
 $action = $_GET['action'];
-
-// var_dump($userId, $action);
 
 if($action == "getFormState"){
     $portfolio = new Portfolio;
