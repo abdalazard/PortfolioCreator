@@ -24,23 +24,23 @@ if($action == "setState"){
 
                 if($column == "profile") {
                     $updateState = "UPDATE formState SET profile = '".$state."' WHERE id_user LIKE '".$userId."'";
-                    $stateUpdate = $portfolio->dataBase($updateState);
+                    $portfolio->dataBase($updateState);
                 }
                 if($column == "skills") {
                     $updateState = "UPDATE formState SET skills = '".$state."' WHERE id_user LIKE '".$userId."'";
-                    $stateUpdate = $portfolio->dataBase($updateState);
+                    $portfolio->dataBase($updateState);
                 }
                 if($column == "projects") {
                     $updateState = "UPDATE formState SET projects = '".$state."' WHERE id_user LIKE '".$userId."'";
-                    $stateUpdate = $portfolio->dataBase($updateState);
+                    $portfolio->dataBase($updateState);
                 }
                 if($column == "others") {
                     $updateState = "UPDATE formState SET others = '".$state."' WHERE id_user LIKE '".$userId."'";
-                    $stateUpdate = $portfolio->dataBase($updateState);
+                    $portfolio->dataBase($updateState);
                 }
                 if($column == "contacts") {
                     $updateState = "UPDATE formState SET contacts = '".$state."' WHERE id_user LIKE '".$userId."'";
-                    $stateUpdate = $portfolio->dataBase($updateState);
+                    $portfolio->dataBase($updateState);
                 }
                 echo "State ".$column." atualizado!";
 
