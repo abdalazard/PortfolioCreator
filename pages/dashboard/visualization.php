@@ -57,7 +57,7 @@ include_once '../../icon/network.php';
             <li><a href="#">Mudar Layout(Em Breve)</a></li>
         </ul>
         <ul class="right">
-            <li><a class="waves-effect waves-light btn green modal-trigger " href="#">Publicar</a>
+            <li><a class="waves-effect waves-light btn green modal-trigger " href="#" id="publish">Publicar</a>
             </li>
         </ul>
         <ul class="right">
@@ -196,14 +196,35 @@ include_once '../../icon/network.php';
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script>
     $(document).ready(function() {
+        var userId = <?php echo $_SESSION['id']; ?>;
         $('.modal').modal();
         $('#botaoVoltar').on('click', function() {
             window.history.back();
         });
 
+        $('#publish').on('click', function() {
+            event.preventDefault();
+            var formStatus = new FormData();
+            formStatus.append('userId', userId); 
+            formStatus.append('status', 1); 
+            formStatus.append('action', "setStatus");
+
+            $.ajax({
+                url: '../../src/Portfolio/Create/Status.php',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formStatus,
+                success: function(data) {
+                    location.href = "dashboard.php"
+                    console.log("visualization para dashboard")
+                },
+                error: function(error) {
+                    console.log("botão publish deu errado!")
+                }
+            });
+        });
     });
     </script>
 </body>
-
-
 </html>
