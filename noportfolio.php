@@ -30,9 +30,9 @@
         M.AutoInit();
         $("#msg").addClass("msg");
         $(document).ready(function() {
-            setTimeout(function() {
-                $('#msg').fadeOut();
-            }, 10000);
+            // setTimeout(function() {
+            //     $('#msg').fadeOut();
+            // }, 10000);
         });
     </script>
 </body>

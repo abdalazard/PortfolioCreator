@@ -3,18 +3,18 @@ include "db/Connection.php";
 
 include 'src/Portfolio/Portfolio.php';
 
-
 try {
     $getPort = new Portfolio;
     $getPage = $getPort->getPage();
-    if($getPage){
-        $info = $getPort->getProfile($getPage);
-        $skills = $getPort->getSkills($getPage);
-        $projects = $getPort->getProjects($getPage);
-        $others = $getPort->getOthers($getPage);
-        $social = $getPort->getSocial($getPage);
+    if($getPage == null){
+        $msg = "Sem portfolio no banco de dados";
+        header("location: noportfolio.php?msg=" . $msg);
     }
-   
+    $info = $getPort->getProfile($getPage);
+    $skills = $getPort->getSkills($getPage);
+    $projects = $getPort->getProjects($getPage);
+    $others = $getPort->getOthers($getPage);
+    $social = $getPort->getSocial($getPage);
     include_once 'icon/network.php';
 } catch (Exception $e) {
     $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
