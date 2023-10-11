@@ -15,13 +15,7 @@ class Portfolio
             $data = mysqli_fetch_array($db);
 
             return $data['id_user'];
-            // $info = $this->getProfile($data['id_user']);
 
-            // $skills = $this->getSkills($data['id_user']);
-            // $project = $this->getProjects($data['id_user']);
-            // $others = $this->getOthers($data['id_user']);
-            // $social = $this->getSocial($data['id_user']);
-        
         } catch (Exception $e) {
             $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
             header("location: noportfolio.php?msg=" . $msg);

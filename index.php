@@ -66,11 +66,11 @@ try {
                         </div>
                     </div>
                 </div>
-                <ul id="icons02" class="style1 icons">
+                <!-- <ul id="icons02" class="style1 icons">
                     <li><a class="n01" href="#start" aria-label="Arrow Down"><svg>
                                 <use xlink:href="#icon-8a75e9205b2d7697ad826d592ebf05f0"></use>
                             </svg><span class="label">Arrow Down</span></a></li>
-                </ul>
+                </ul> -->
                 <hr id="divider02" class="style1 full" />
                 <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0"
                     data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
@@ -84,7 +84,7 @@ try {
                                 foreach ($projects as $project) {
                                 ?>
                                 <li>
-                                    <a href='#' class="button n01">
+                                    <a href="<?php echo $project['url_project'] ?>" class="button n01">
                                         <svg>
                                             <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
                                         </svg>
@@ -122,12 +122,9 @@ try {
                                 <?php foreach ($others as $other) { ?>
                                 <li>
                                     <a href="#modal<?php echo $other['id']; ?>"
-                                        class="button n01 waves-effect waves-light btn modal-trigger">
-                                        <svg>
-                                            <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
-                                        </svg>
+                                    class="button n01 waves-effect waves-light btn modal-trigger"
+                                    style="padding: 15px 20px; font-size: 15px; ">
                                         <span class="label"><?php echo $other['titulo'] ?></span>
-
                                     </a>
                                 </li>
 

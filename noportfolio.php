@@ -1,3 +1,22 @@
+<?php
+include "db/Connection.php";
+
+include 'src/Portfolio/Portfolio.php';
+
+try {
+    $getPort = new Portfolio;
+    $getPage = $getPort->getPage();
+    if($getPage != null){
+        
+        header("location: index.php");
+    }
+    include_once 'icon/network.php';
+} catch (Exception $e) {
+    $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
+    ?><script>alert($msg);<script>
+    <?php
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

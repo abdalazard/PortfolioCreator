@@ -1,6 +1,6 @@
-CREATE Database portfolio1;
+CREATE Database NoobPHP;
 
-use portfolio1;
+use NoobPHP;
 
 -- CREATE TABLE Usuarios(
 -- 	`id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

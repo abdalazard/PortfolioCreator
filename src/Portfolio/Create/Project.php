@@ -16,8 +16,8 @@ if($inputPrint && $inputNomeProjeto) {
     try{
         $pathProjects = $portfolio->setImage($inputPrint, 'projects');
         $newProject = "INSERT INTO projects VALUES(null, '".$pathProjects."', '" . $inputNomeProjeto . "', '" . $inputUrlProjeto . "', '" . $userId . "')";
-        $portfolio->dataBase($newProject);
-        if (!$portfolio->dataBase($newProject)) {
+        $saveProject = $portfolio->dataBase($newProject);
+        if (!$saveProject) {
             return  "Erro ao gravar os projetos!";
         }
         return 'Projeto gravado com sucesso!';            

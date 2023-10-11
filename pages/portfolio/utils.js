@@ -78,6 +78,7 @@ $(document).ready(function() {
                 $('#inputPrint').val('');
                 $('#inputNomeProjeto').val('');
                 $('#inputUrlProjeto').val('');
+
                 $('#formProjects').hide();
                 setState(`projects`, 1);
 
@@ -90,7 +91,6 @@ $(document).ready(function() {
     });
 
     //Skills
-
     $('#skillMsg').hide();
     $('#skillMsg2').hide();
 
@@ -156,6 +156,8 @@ $(document).ready(function() {
                 $('#others').val('');
                 $('#url_others').val('');
 
+                $('#formOthers').hide();
+
                 $('#modalOthersButton').hide();
                 setState(`others`, 1);
 
@@ -195,6 +197,9 @@ $(document).ready(function() {
                 $('#github').val('');
                 $('#linkedin').val('');
                 $('#modelSocialButton').hide();
+
+                $('#formSocial').hide();
+
                 setState(`contacts`, 1);
 
             },
@@ -217,9 +222,7 @@ $(document).ready(function() {
                     action: "getFormState"
                 },
                 success: function(data) {
-                    var stateId = data.id;
-                    var msgState = data.msg;
-
+                    
                     userIdState = data.userId;
                     profileState = data.profile;
                     skillsState = data.skills;
