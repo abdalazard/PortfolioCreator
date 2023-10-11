@@ -4,10 +4,6 @@ include "../../db/Connection.php";
 
 include '../../src/Portfolio/Portfolio.php';
 include '../../auth/Authentication.php';
-
-if(!$_SESSION['id']) {
-    ?><script>window.location.href = '../../index.php' </script><?php
- }
  
 $newInfo = new Portfolio;
 $info = $newInfo->getProfile($_SESSION['id']);
