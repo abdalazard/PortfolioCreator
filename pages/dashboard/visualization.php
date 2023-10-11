@@ -174,16 +174,21 @@ include_once '../../icon/network.php';
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <h2 id="text07" class="style3">Minhas
-                                redes</h2>
+                                redes
+                            </h2>
                             <ul id="icons01" class="style1 icons">
-                                <li><a class="n01" href="linkedin.com/in/<?php echo $social['linkedin']; ?>"
+                                <li><a class="n01" href="https://linkedin.com/in/<?php echo $social['linkedin']; ?>"
                                         aria-label="LinkedIn"><svg>
                                             <use xlink:href="#icon-bf393d6ea48a4e69e1ed58a3563b94a5"></use>
-                                        </svg><span class="label">LinkedIn</span></a></li>
+                                        </svg><span class="label">LinkedIn</span>
+                                    </a>
+                                </li>
                                 <li><a class="n02" href="https://github.com/<?php echo $social['github']; ?>"
                                         aria-label="GitHub"><svg>
                                             <use xlink:href="#icon-8c4b37645de3c276d895d87df51ba614"></use>
-                                        </svg><span class="label">GitHub</span></a></li>
+                                        </svg><span class="label">GitHub</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>
