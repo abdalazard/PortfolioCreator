@@ -1,51 +1,110 @@
 <?php
 
-
 class Portfolio
 {
 
-    public function store($foto, $titulo, $subtitulo, $skill, $project_name, $url, $banner, $url_banner, $github, $linkedin, $userId)
-    {
+    public function getPage() {
+    
         try {
-            //Profile
-            $pathInfo = $this->setImage($foto, 'info');
-            $newInfo = "INSERT INTO info VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
-            $this->dataBase($newInfo);
+            $selectPage  = "SELECT * FROM status WHERE status LIKE 1";
+            $db = $this->dataBase($selectPage);
+            if (!$db) {
+                $msg = 'Erro ao obter status para portfolio';
+                header("location: ../../noportfolio.php?msg=" . $msg);
+            }
+            $data = mysqli_fetch_array($db);
 
-            //Skills
-            $pathSkills = $this->setImage($skill, 'skill');
-            $newSkill = "INSERT INTO skills VALUES(null, '" . $pathSkills . "', '" . $userId . "')";
-            $this->dataBase($newSkill);
+            return $data['id_user'];
 
-            //Project
-            $newProject = "INSERT INTO projects VALUES(null, '" . $project_name . "', '" . $url . "', '" . $userId . "')";
-            $this->dataBase($newProject);
-
-            //Others
-            $pathOthers = $this->setImage($banner, 'others');
-            $newOthers =  "INSERT INTO others VALUES(null, '" . $pathOthers . "', '" . $url_banner . "', '" . $userId . "')";
-            $this->dataBase($newOthers);
-
-            //Social
-            $newSocial = "INSERT INTO social VALUES(null, '" . $github . "', '" . $linkedin . "', '" . $userId . "')";
-            $this->dataBase($newSocial);
-        } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados do portfolio.";
+        } catch (Exception $e) {
+            $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
+            header("location: noportfolio.php?msg=" . $msg);
         }
+       
     }
 
-    public function getInfo($id)
+    public function getState($id) {
+        $formStateQuery = "SELECT * FROM formState WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($formStateQuery);
+        $data = mysqli_fetch_array($db);
+        if (!$data) {
+            $data = [
+                'id' => null,
+                'userId' => null,
+                'profile' => null,
+                'skills' => null,
+                'projects' => null,
+                'others' => null,
+                'contacts' => null,
+                'msg' => 'Erro ao criar array!'
+            ];
+            return $data;
+        }
+
+        $id = $data['id'] ?? false;
+        $user = $data['id_user'] ?? false;
+        $profile = $data['profile'] ?? false;
+        $skills = $data['skills'] ?? false;
+        $projects = $data['projects'] ?? false;
+        $others = $data['others'] ?? false;
+        $contacts = $data['contacts'] ?? false;
+
+        $data = [
+            'id' => $id,
+            'userId' => $user,
+            'profile' => $profile,
+            'skills' => $skills,
+            'projects' => $projects,
+            'others' => $others,
+            'contacts' => $contacts,
+            'msg' => 'State encontrado!'
+
+        ];
+        return $data;
+    }
+
+    public function getStatus($id)
     {
-        $infoQuery = "SELECT * FROM info WHERE id_user LIKE '" . $id . "'";
+        $statusQuery = "SELECT * FROM status WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($statusQuery);
+        $data = mysqli_fetch_array($db);
+        if (!$data) {
+            $data = [
+                'id' => null,
+                'status' => null,
+                'user' => null,
+                'msg' => "Sem status definido",
+            ];
+            return $data;
+        }
+
+        $id = $data['id'] ?? null;
+        $status = $data['status'] ?? null;
+        $user = $data['id_user'] ?? null;
+
+        $data = [
+            'id' => $id,
+            'status' => $status,
+            'user' => $user,
+            'msg' => "Status encontrado!",
+        ];
+        return $data;
+    }
+
+    public function getProfile($id)
+    {
+        $infoQuery = "SELECT * FROM profile WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($infoQuery);
         if ($data = mysqli_fetch_array($db)) {
-            $foto = $data['foto'];
+            $id = $data['id'];
+            $foto = $data['profile'];
             $titulo = $data['titulo'];
             $subtitulo = $data['subtitulo'];
         }
 
         $data = [
-            'path' => $foto,
+            'id' => $id,
+            'profile' => $foto,
             'titulo' => $titulo,
             'subtitulo' => $subtitulo
         ];
@@ -54,12 +113,13 @@ class Portfolio
 
     public function getProjects($id)
     {
-        $infoQuery = "SELECT * FROM projects WHERE id_user = '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
+        $projetoQuery = "SELECT * FROM projects WHERE id_user = '" . $id . "'";
+        $db = $this->dataBase($projetoQuery);
         $projects = array();
 
         while ($data = mysqli_fetch_array($db)) {
             $project = array(
+                'print' => $data['print'],
                 'project_name' => $data['nome_projeto'],
                 'url_project' => $data['url']
             );
@@ -71,12 +131,13 @@ class Portfolio
 
     public function getSkills($id)
     {
-        $infoQuery = "SELECT * FROM skills WHERE id_user LIKE '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
+        $skillsQuery = "SELECT * FROM skills WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($skillsQuery);
 
         $skills = array();
         while ($data = mysqli_fetch_array($db)) {
             $skill = array(
+                'id' => $data['id'],
                 'skill' => $data['logo'],
             );
             $skills[] = $skill;
@@ -85,11 +146,13 @@ class Portfolio
     }
     public function getOthers($id)
     {
-        $infoQuery = "SELECT * FROM others WHERE id_user LIKE '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
+        $othersQuery = "SELECT * FROM others WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($othersQuery);
         $others = array();
         while ($data = mysqli_fetch_array($db)) {
             $other = array(
+                'id' => $data['id'],
+                'titulo' => $data['titulo'],
                 'banner' => $data['banner'],
                 'banner_url' => $data['url'],
             );
@@ -101,56 +164,86 @@ class Portfolio
 
     public function getSocial($id)
     {
-        $infoQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
-        if ($data = mysqli_fetch_array($db)) {
-            $github = $data['github'];
-            $linkedin = $data['linkedin'];
-            // $email = $data['email'];
+        $socialQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($socialQuery);
+        if (!$data = mysqli_fetch_array($db)) {
+            return "Erro ao obter as redes sociais";  
         }
-
         $data = [
-            'github' => $github,
-            // 'email' => $email,
-            'linkedin' => $linkedin
+            'id' => $data['id'],
+            'github' => $data['github'],
+            'email' => $data['email'],
+            'linkedin' => $data['linkedin']
         ];
+        
         return $data;
     }
 
 
-    public function setImage($foto, $typePicture)
+    public function setImage($file, $typePicture)
     {
-        //Necessário validar todos os dados
         $hoje = date("d-m-y");
-        $ext = explode(".", $foto["name"]); //[foto][ferias][jpg]
+        $ext = explode(".", $file['name']); //[foto][ferias][jpg]
         $ext = array_reverse($ext); //[jpg][ferias][foto]
         $ext = $ext[0]; //jpg
-        if ((!isset($foto) || !is_uploaded_file($foto['tmp_name']))) {
-            $path = null;
+
+
+        if ((!isset($file))) {
+            $path = "Arquivo inexistente!";
         } else {
             if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
                 $path = "Arquivo de imagem inválido!";
-                $foto = null;
+                $file = null;
                 return $path;
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];
-                if (!is_dir("../../images/users/" . $folder . "/" . $typePicture . "/")) {
-                    mkdir("../../images/users/" . $folder . "/" . $typePicture . "/", 0777, true);
+                $num = rand(0, 9);
+                $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
 
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
-                } else {
-                    move_uploaded_file($foto["tmp_name"], "../../images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext);
-                }
-                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . $hoje . '.' . $ext;
+                // if (is_dir($directory)) {
+                //     $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
+                // }
+                mkdir($directory, 0777, true);
+                move_uploaded_file($file['tmp_name'], $directory . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext);
+                
+                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext;
                 return $path;
+
             }
         }
     }
 
+    public function setImages($files, $typePicture)
+    {
+
+        $hoje = date("d-m-y");
+        $folder = "pasta_de_" . $_SESSION['user'];
+        $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
+        // if (is_dir($directory)) {
+        //     $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
+        // }
+        mkdir($directory, 0777, true);
+        $uploadedPaths = [];
+
+        foreach ($files['tmp_name'] as $key => $tmpName) {
+            $ext = pathinfo($files['name'][$key], PATHINFO_EXTENSION);
+            $num = rand(0, 9);
+            $newFileName = $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext;
+            $destination = $directory . $newFileName;
+
+            if (move_uploaded_file($tmpName, $destination)) {
+                $uploadedPaths[] = "images/users/" . $folder . "/" . $typePicture . "/" . $newFileName;
+            } else {
+                $uploadedPaths[] = "Erro no diretório " . $typePicture . "";
+            }
+        }
+
+        return $uploadedPaths;
+    }
 
     public function moreThanOne($userId)
     {
-        $query = "SELECT * FROM info WHERE id_user LIKE '" . $userId . "'";
+        $query = "SELECT * FROM profile WHERE id_user LIKE '" . $userId . "'";
         $db = new Connection;
 
         $linhas = mysqli_num_rows($db->toDatabase($query));
@@ -166,4 +259,24 @@ class Portfolio
 
         return $db->toDatabase($query);
     }
+
+    //remove arquivos
+    public function removeAllFilesAndSubdirectories($directory)
+    {
+        $files = scandir($directory);
+    
+        foreach ($files as $file) {
+            if ($file !== '.' && $file !== '..') {
+                $path = $directory . '/' . $file;
+    
+                if (is_dir($path)) {
+                    removeAllFilesAndSubdirectories($path); // Recursively remove subdirectories
+                    rmdir($path);
+                } else {
+                    unlink($path); // Remove individual file
+                }
+            }
+        }
+    }
+    
 }

@@ -1,35 +1,39 @@
-<h5>Projetos</h5>
-<!-- table: projects -->
-<div class="row">
-    <div class="col s6 center">
-        <a href="#modalProjects" class="modal-trigger">Adicionar Projeto</a>
-    </div>
-</div>
-<div id="modalProjects" class="modal modalProjects">
-    <div class="row">
-        <div class="col s2 offset-s10">
-            <a href="#!" class="modal-close btn-white black-text closeButton">Fechar</a>
-        </div>
-    </div>
-    <div class="modal-content">
-        <div class="row">
-            <div class="col s12 ">
-                <label for="projetos">Projetos</label>
-                <input type="text" name="nome_projeto" placeholder="Nome do projeto">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <label for="URL">URL</label>
-                <input type="text" name="url_projeto" placeholder="URL do projeto">
-            </div>
-        </div>
+<h5 id="title">Projetos</h5>
+<h3 id="projetoMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+</h3>
+<a href="#modalProjects" id="modelProjectsButton" class="modal-trigger">Adicione novo projeto</a>
 
-        <!-- Usar ajax para -->
-        <div class="row">
-            <div class="col s12">
-                <input type="submit" value="Adicionar">
+<!-- table: projects -->
+<br>
+<div id="modalProjects" class="modal modalProjects">
+
+    <h3 id="projetoMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+    </h3>
+    <form id="formProjects">
+        <!-- <input type="type" id="projectOk" name="projectOk" value="false" hidden> -->
+
+            <div class="row">
+                <label>ScreenShot</label>
+                <div class="col s12 center">
+                    <input type="file" name="inputPrint" id="inputPrint" alt="Print da tela">
+                </div>
             </div>
-        </div>
-    </div>
+            <div class="row" id="form">
+                <div class="col s12 center ">
+                    <label for="projetos">Projetos</label>
+                    <input type="text" name="inputNomeProjeto" id="inputNomeProjeto" placeholder="Nome do projeto">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center">
+                    <label for="URL">URL</label>
+                    <input type="text" name="inputUrlProjeto" id="inputUrlProjeto" placeholder="URL do projeto">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 center">
+                    <button type="submit" id="gravaProjeto">Gravar projeto</button>
+                </div>
+            </div>
+    </form>
 </div>

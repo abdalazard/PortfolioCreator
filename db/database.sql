@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 -- Adminer 4.8.1 MySQL 8.0.30 dump
 
 SET NAMES utf8;
@@ -107,4 +108,9 @@ CREATE TABLE `formstate` (
   KEY `id_user` (`id_user`),
   CONSTRAINT `formstate_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+=======
+CREATE Database NoobPHP;
+
+use NoobPHP;
+>>>>>>> 2d61caeb02c177552070b0db92355f27c0a60b8b
 

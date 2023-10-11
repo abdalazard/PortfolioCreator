@@ -8,8 +8,10 @@ try {
         pass VARCHAR(255) NOT NULL
     )";
     $db->toDatabase($query);
-
+    
     echo "Tabela " . $table . " criada com sucesso!";
+    echo "Status registrado com sucesso!";
+
 } catch (PDOException $e) {
     echo "Erro: " . $e->getMessage();
 }

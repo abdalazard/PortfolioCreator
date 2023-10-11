@@ -4,6 +4,7 @@ $table = "others";
 try {
     $query = "CREATE TABLE " . $table . " (
              id INT(11) AUTO_INCREMENT PRIMARY KEY,
+             titulo VARCHAR(255) NULL,
              banner VARCHAR(255) NULL,
              url VARCHAR(255) NULL,
              id_user INT,

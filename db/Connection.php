@@ -1,15 +1,27 @@
 <?php
 
+
 class Connection
 {
     public $con;
 
     public function __construct()
     {
-        $this->con = mysqli_connect('localhost', 'root', '123', 'portfolio1');
+
+        $localhost = 'localhost';
+        $user = 'root';
+        $password = '123';
+        $db = "NoobPHP";
+        
+        $this->con = mysqli_connect($localhost, $user, $password, $db);
     }
     public function toDatabase($query)
     {
         return mysqli_query($this->con, $query);
+    }
+
+    public function dd($item){
+        var_dump($item);
+        die();
     }
 }
