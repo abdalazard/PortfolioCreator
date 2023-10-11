@@ -13,7 +13,7 @@ if($action == "setState"){
     $portfolio = new Portfolio;
     $selectState = "SELECT * FROM formState WHERE id_user LIKE '".$userId."'";
     $queryState = $portfolio->dataBase($selectState);
-    if(!$queryState) {
+    if(!$queryState || $queryState == null) {
         echo "Erro ao verificar state";
     } else {
         $result = mysqli_num_rows($queryState);
