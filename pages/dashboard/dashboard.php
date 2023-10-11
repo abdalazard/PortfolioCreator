@@ -118,7 +118,7 @@ function getStatus(){
 
 function setState() {
     var formState = new FormData();
-    formState.append('state', status);
+    formState.append('state', 0);
     formState.append('action', "setState");
 
     $.ajax({
