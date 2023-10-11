@@ -2,9 +2,7 @@
 
 class Portfolio
 {
-
     public function getPage() {
-    
         try {
             $selectPage  = "SELECT * FROM status WHERE status LIKE 1";
             $db = $this->dataBase($selectPage);
@@ -14,7 +12,7 @@ class Portfolio
             }
             $data = mysqli_fetch_array($db);
 
-            return $data['id_user'];
+            return $data['id_user'] ?? null;
 
         } catch (Exception $e) {
             $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";

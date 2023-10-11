@@ -13,9 +13,9 @@ try {
     include_once 'icon/network.php';
 } catch (Exception $e) {
     $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
-    ?><script>alert($msg);<script>
+    ?><script>alert($msg);</script>
     <?php
-    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
