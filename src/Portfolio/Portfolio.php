@@ -39,13 +39,13 @@ class Portfolio
             return $data;
         }
 
-        $id = $data['id'] ?? false;
-        $user = $data['id_user'] ?? false;
-        $profile = $data['profile'] ?? false;
-        $skills = $data['skills'] ?? false;
-        $projects = $data['projects'] ?? false;
-        $others = $data['others'] ?? false;
-        $contacts = $data['contacts'] ?? false;
+        $id = $data['id'] ?? 0;
+        $user = $data['id_user'] ?? 0;
+        $profile = $data['profile'] ?? 0;
+        $skills = $data['skills'] ?? 0;
+        $projects = $data['projects'] ?? 0;
+        $others = $data['others'] ?? 0;
+        $contacts = $data['contacts'] ?? 0;
 
         $data = [
             'id' => $id,
@@ -248,7 +248,7 @@ class Portfolio
         if ($linhas >= 1) {
             return true;
         }
-        return false;
+        return 0;
     }
 
     public function dataBase($query)
