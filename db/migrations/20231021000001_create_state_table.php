@@ -1,15 +1,18 @@
 <?php
-$table = "social";
+$table = "formState";
 
 try {
-    $query = "CREATE TABLE " . $table . " (
+    $query = "CREATE TABLE ".$table." (
         id INT(11) AUTO_INCREMENT PRIMARY KEY,
-        email VARCHAR(255) NULL,
-        github VARCHAR(255) NULL,
-        linkedin VARCHAR(255) NULL,
+        profile TINYINT(1) DEFAULT 0,
+        skills TINYINT(1) DEFAULT 0,
+        projects TINYINT(1) DEFAULT 0,
+        others TINYINT(1) DEFAULT 0,
+        contacts TINYINT(1) DEFAULT 0,
         id_user INT,
         FOREIGN KEY (id_user) REFERENCES users(id)
-    )";
+
+    );";
     $db->toDatabase($query);
 
     echo "Tabela " . $table . " criada com sucesso!";

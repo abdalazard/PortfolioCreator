@@ -3,6 +3,11 @@
     padding: 10px;
     text-align: 'center';
 }
+a.disabled {
+    pointer-events: none;
+    color: gray;
+    text-decoration: none;
+}
 
 .bloco-titulo {
     height: 30px;

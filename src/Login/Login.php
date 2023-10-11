@@ -21,7 +21,7 @@ if (!$userExists) {
         if (!strcmp($password, $data['pass'])) {
             $_SESSION['id'] = $data['id'];
             $_SESSION['user'] = $data['user'];
-
+            $msg = "Logado com sucesso!";
             header('location: ../../pages/dashboard/dashboard.php?');
         }
     } else {
