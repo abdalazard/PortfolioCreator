@@ -2,6 +2,33 @@
 
 class Portfolio
 {
+
+    public function getPage() {
+    
+        try {
+            $selectPage  = "SELECT * FROM status WHERE status LIKE 1";
+            $db = $this->dataBase($selectPage);
+            if (!$db) {
+                $msg = 'Erro ao obter status para portfolio';
+                header("location: ../../noportfolio.php?msg=" . $msg);
+            }
+            $data = mysqli_fetch_array($db);
+
+            return $data['id_user'];
+            // $info = $this->getProfile($data['id_user']);
+
+            // $skills = $this->getSkills($data['id_user']);
+            // $project = $this->getProjects($data['id_user']);
+            // $others = $this->getOthers($data['id_user']);
+            // $social = $this->getSocial($data['id_user']);
+        
+        } catch (Exception $e) {
+            $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
+            header("location: noportfolio.php?msg=" . $msg);
+        }
+       
+    }
+
     public function getState($id) {
         $formStateQuery = "SELECT * FROM formState WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($formStateQuery);
@@ -92,8 +119,8 @@ class Portfolio
 
     public function getProjects($id)
     {
-        $infoQuery = "SELECT * FROM projects WHERE id_user = '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
+        $projetoQuery = "SELECT * FROM projects WHERE id_user = '" . $id . "'";
+        $db = $this->dataBase($projetoQuery);
         $projects = array();
 
         while ($data = mysqli_fetch_array($db)) {
@@ -110,8 +137,8 @@ class Portfolio
 
     public function getSkills($id)
     {
-        $infoQuery = "SELECT * FROM skills WHERE id_user LIKE '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
+        $skillsQuery = "SELECT * FROM skills WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($skillsQuery);
 
         $skills = array();
         while ($data = mysqli_fetch_array($db)) {
@@ -125,8 +152,8 @@ class Portfolio
     }
     public function getOthers($id)
     {
-        $infoQuery = "SELECT * FROM others WHERE id_user LIKE '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
+        $othersQuery = "SELECT * FROM others WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($othersQuery);
         $others = array();
         while ($data = mysqli_fetch_array($db)) {
             $other = array(
@@ -143,8 +170,8 @@ class Portfolio
 
     public function getSocial($id)
     {
-        $infoQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
-        $db = $this->dataBase($infoQuery);
+        $socialQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
+        $db = $this->dataBase($socialQuery);
         if (!$data = mysqli_fetch_array($db)) {
             return "Erro ao obter as redes sociais";  
         }
