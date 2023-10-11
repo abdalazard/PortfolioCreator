@@ -23,7 +23,7 @@ class Portfolio
 
     public function getState($id) {
 
-        $formStateQuery = "SELECT * FROM formState WHERE id_user LIKE '" . $_SESSION['id'] . "'";
+        $formStateQuery = "SELECT * FROM formstate WHERE id_user LIKE '" . $_SESSION['id'] . "'";
         $db = $this->dataBase($formStateQuery);
         $data = mysqli_fetch_array($db);
         if (!$data) {

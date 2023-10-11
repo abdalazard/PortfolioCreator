@@ -4,14 +4,15 @@ include '../Portfolio.php';
 
 session_start();
 
-$userId = $_SESSION['id'];
 $action = $_POST['action'];
 $state = $_POST['state'] ?? 0;
 $column = $_POST['column'] ?? null;
 
 if($action == "setState"){
     $portfolio = new Portfolio;
-    $selectState = "SELECT * FROM formState WHERE id_user LIKE '".$userId."'";
+    $userId = $_SESSION['id'];
+
+    $selectState = "SELECT * FROM formstate WHERE id_user LIKE '".$userId."'";
     $queryState = $portfolio->dataBase($selectState);
     if(!$queryState || $queryState == null) {
         echo "Erro ao verificar state";
@@ -23,23 +24,23 @@ if($action == "setState"){
                 $data = mysqli_fetch_array($queryState);
 
                 if($column == "profile") {
-                    $updateState = "UPDATE formState SET profile = '".$state."' WHERE id_user LIKE '".$userId."'";
+                    $updateState = "UPDATE formstate SET profile = '".$state."' WHERE id_user LIKE '".$userId."'";
                     $portfolio->dataBase($updateState);
                 }
                 if($column == "skills") {
-                    $updateState = "UPDATE formState SET skills = '".$state."' WHERE id_user LIKE '".$userId."'";
+                    $updateState = "UPDATE formstate SET skills = '".$state."' WHERE id_user LIKE '".$userId."'";
                     $portfolio->dataBase($updateState);
                 }
                 if($column == "projects") {
-                    $updateState = "UPDATE formState SET projects = '".$state."' WHERE id_user LIKE '".$userId."'";
+                    $updateState = "UPDATE formstate SET projects = '".$state."' WHERE id_user LIKE '".$userId."'";
                     $portfolio->dataBase($updateState);
                 }
                 if($column == "others") {
-                    $updateState = "UPDATE formState SET others = '".$state."' WHERE id_user LIKE '".$userId."'";
+                    $updateState = "UPDATE formstate SET others = '".$state."' WHERE id_user LIKE '".$userId."'";
                     $portfolio->dataBase($updateState);
                 }
                 if($column == "contacts") {
-                    $updateState = "UPDATE formState SET contacts = '".$state."' WHERE id_user LIKE '".$userId."'";
+                    $updateState = "UPDATE formstate SET contacts = '".$state."' WHERE id_user LIKE '".$userId."'";
                     $portfolio->dataBase($updateState);
                 }
                 echo "State ".$column." atualizado!";
@@ -49,7 +50,7 @@ if($action == "setState"){
             echo "Tabela de referecia para atualização de state nula!";
 
         } else {
-            $createState = "INSERT INTO formState VALUES(null, 0, 0, 0, 0, 0, '".$userId."')";
+            $createState = "INSERT INTO formstate VALUES(null, 0, 0, 0, 0, 0, '".$userId."')";
             $queryState = $portfolio->dataBase($createState);
             echo "State criado!";
         }
