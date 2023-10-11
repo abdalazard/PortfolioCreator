@@ -12,7 +12,7 @@ class Portfolio
             }
             $data = mysqli_fetch_array($db);
 
-            return $data['id_user'] ?? null;
+            return $data['id_user'] ?? 0;
 
         } catch (Exception $e) {
             $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
@@ -27,13 +27,13 @@ class Portfolio
         $data = mysqli_fetch_array($db);
         if (!$data) {
             $data = [
-                'id' => null,
-                'userId' => null,
-                'profile' => null,
-                'skills' => null,
-                'projects' => null,
-                'others' => null,
-                'contacts' => null,
+                'id' => 0,
+                'userId' => 0,
+                'profile' => 0,
+                'skills' => 0,
+                'projects' => 0,
+                'others' => 0,
+                'contacts' => 0,
                 'msg' => 'Erro ao criar array!'
             ];
             return $data;
@@ -68,17 +68,17 @@ class Portfolio
         $data = mysqli_fetch_array($db);
         if (!$data) {
             $data = [
-                'id' => null,
-                'status' => null,
-                'user' => null,
+                'id' => 0,
+                'status' => 0,
+                'user' => 0,
                 'msg' => "Sem status definido",
             ];
             return $data;
         }
 
-        $id = $data['id'] ?? null;
-        $status = $data['status'] ?? null;
-        $user = $data['id_user'] ?? null;
+        $id = $data['id'] ?? 0;
+        $status = $data['status'] ?? 0;
+        $user = $data['id_user'] ?? 0;
 
         $data = [
             'id' => $id,
@@ -191,7 +191,7 @@ class Portfolio
         } else {
             if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
                 $path = "Arquivo de imagem inválido!";
-                $file = null;
+                $file = 0;
                 return $path;
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];

@@ -4,7 +4,7 @@ include '../../db/Connection.php';
 
 include 'Portfolio.php';
 
-$userId = $_SESSION['id'];
+$userId = $_SESSION['id']; 
 $action = $_GET['action'];
 
 if($action == "getFormState"){
