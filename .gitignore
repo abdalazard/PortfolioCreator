@@ -1,10 +1,5 @@
 .adminer.php
 adminer.php
-images/
-.images/
-config.php
-.config.php
-.git.8015/
 loginscreen/
 veddit/
 db/Connection.php
