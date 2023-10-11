@@ -155,7 +155,7 @@ try {
                             <h2 id="text07" class="style3">Minhas
                                 redes</h2>
                             <ul id="icons01" class="style1 icons">
-                                <li><a class="n01" href="linkedin.com/in/<?php echo $social['linkedin']; ?>"
+                                <li><a class="n01" href="https://linkedin.com/in/<?php echo $social['linkedin']; ?>"
                                         aria-label="LinkedIn"><svg>
                                             <use xlink:href="#icon-bf393d6ea48a4e69e1ed58a3563b94a5"></use>
                                         </svg><span class="label">LinkedIn</span></a></li>
