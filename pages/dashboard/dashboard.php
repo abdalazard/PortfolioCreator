@@ -8,8 +8,7 @@ include '../../auth/Authentication.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />    <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -71,6 +70,16 @@ include '../../auth/Authentication.php'; ?>
                 <td id="profileId"></td>
                 <td class="left"><img src="" alt="foto" id="profilePic"></td>
                 <td id="tituloProfile"></td>
+                <td id="editProfile">
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                </td>
+                <td id="deleteProfile">
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </td>
             </tbody>
         </table>
     </div>
