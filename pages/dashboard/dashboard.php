@@ -40,7 +40,7 @@ include '../../auth/Authentication.php'; ?>
     <div class="container">
         <?php if (isset($_GET['msg'])) {
         ?>
-        <h3 id="msg" style="font-size: 15px; background-color: red; color: white; text-align:center;">
+        <h3 id="msg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
             <?php echo $_GET['msg']; ?>
         </h3>
         <?php } ?>
@@ -51,6 +51,11 @@ include '../../auth/Authentication.php'; ?>
 
         <hr />
         <h3>Lista de projetos de portfólio</h3>
+        <?php if (isset($_GET['statusMsg'])) { ?>
+            <h4 id="statusMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+                <?php echo $_GET['statusMsg']; ?>
+            </h4>
+        <?php } ?>
         <table id="portfolioList">
             <thead>
                 <tr>
@@ -106,8 +111,13 @@ function getStatus(){
                 setState()
 
             } 
-            if(status == 1) {
+            if(status == 1) {          
                 getList()
+                if($('#statusMsg').val() != null) {
+                    setTimeout(function() {
+                        $('#statusMsg').fadeOut();
+                    }, 1000);                
+                }
             }
         },
         error: function(error) {

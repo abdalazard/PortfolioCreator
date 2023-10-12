@@ -19,7 +19,6 @@ if($action == "setStatus"){
         if($resultSelect >= 1) {
             $updateStatus = "UPDATE status SET status = '".$code."' WHERE id_user LIKE '".$userId."'";
             $queryUpdate = $portfolio->dataBase($updateStatus);
-            echo "Status atualizado!";
         } else {
             $createStatus = "INSERT INTO status VALUES(null, 0, '".$userId."')";
             $queryCreate = $portfolio->dataBase($createStatus);

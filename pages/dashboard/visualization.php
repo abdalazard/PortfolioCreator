@@ -221,8 +221,10 @@ include_once '../../icon/network.php';
                 contentType: false,
                 data: formStatus,
                 success: function(data) {
-                    location.href = "dashboard.php"
-                    console.log("visualization para dashboard")
+                    let statusMsg = "Portfolio publicado com sucesso!";
+                    location.href = "dashboard.php?statusMsg="+statusMsg;
+                    console.log("visualization para dashboard");
+                    
                 },
                 error: function(error) {
                     console.log("botão publish deu errado!")
