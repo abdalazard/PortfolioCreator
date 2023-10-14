@@ -36,5 +36,23 @@ a.disabled {
     background-color: green;
     text-align: center;
     height: 20px;
+}
+#boxSkills {
+    display: flex;
+    flex-direction: column;
+    background-color: "white";
+    border: "1px solid green";
+}
 
+#skillsGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+#skillsGallery img {
+    max-width: 80px;
+    height: 40px;
+    margin: 5px;
 }

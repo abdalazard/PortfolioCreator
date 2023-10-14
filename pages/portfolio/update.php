@@ -61,7 +61,7 @@
         </div>
     </div>
     <br>
-    <div id="boxSkills">
+    <div id="boxSkills" class="boxSkills">
         <h5 id="skillsForm"></h5>
         <p id="skillsMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
         <div class="row">
@@ -72,14 +72,41 @@
         </div>
         <div class="row">
             <div class="col s9">
-                <!-- <label for="skill">Habilidade(Adicione várias imagens renderizada das stacks)</label> -->
                 <input type="file" name="skill[]"  id="skill" multiple accept="image/*">
             </div>
             <div class="col s3">
-                <button type="submit" id="updateSkills" disabled>Atualizar skills</button>
+                <button type="submit" id="updateSkills" disabled>Atualizar</button>
             </div>
         </div>
+        <br>
     </div>
+    <br>
+    <div id="boxProjects">
+        <h5 id="projectsForm"></h5>
+        <p id="projectSMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
+        <div class="row">
+            <div class="col s12 center">
+                <div id="projectsGallery">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s9">
+            </div>
+            <div class="col s3">
+                <button type="submit" id="updateProjects" disabled>Atualizar</button>
+            </div>
+        </div>
+        <br>
+    </div>
+    <div id="boxOthers">
+
+    </div>
+    <br>
+    <div id="boxContacts">
+
+    </div>
+
 <script>
     M.AutoInit();
 
@@ -88,20 +115,33 @@
     $(document).ready(function() {
         $('#profileForm').text('Editar Profile');
         $('#skillsForm').text('Editar Skills');
+        $('#projectsForm').text('Editar Projetos');
+
         $("#boxProfile").css({
             "width": 600,
-            "height": 300,
             "padding": 10,
             "background-color": "white",  // Cor de fundo verde
             "border": "1px solid green"  // Borda fina verde
         });
         $("#boxSkills").css({
             "width": 600,
-            "height": 180,
             "padding": 10,
             "background-color": "white",  // Cor de fundo verde
             "border": "1px solid green"  // Borda fina verde
         });
+
+        $("#boxProjects").css({
+            "width": 600,
+            "padding": 10,
+            "background-color": "white",  // Cor de fundo verde
+            "border": "1px solid green"  // Borda fina verde
+        });
+
+        $("#footer-field").css({
+            "background-color": "black"
+        })
+        $("#footer-text").text("teste")
+
         checkForms();
         listSkills();
 
@@ -128,6 +168,9 @@
                     $('#profileMsg').text('');
                     $('#profileMsg').text('Imagem atualizada com sucesso!');
                     $('#profileMsg').show();
+                    setTimeout(function() {
+                        $('#profileMsg').fadeOut();
+                    }, 1000);
                     checkForms()
                     
                 },
@@ -157,6 +200,9 @@
                     $('#profileMsg').text('');
                     $('#profileMsg').text('Titulo atualizado com sucesso!');
                     $('#profileMsg').show();
+                    setTimeout(function() {
+                        $('#profileMsg').fadeOut();
+                    }, 1000);
 
                     $('#profileTitle').val($('#profileTitle').val());
                     checkForms()
@@ -188,6 +234,9 @@
                     $('#profileMsg').text('');
                     $('#profileMsg').text('Subtitulo atualizado com sucesso!');
                     $('#profileMsg').show();
+                    setTimeout(function() {
+                        $('#profileMsg').fadeOut();
+                    }, 1000);
 
                     $('#profileSubtitle').val($('#profileSubtitle').val());
                 },
@@ -221,6 +270,9 @@
                 success: function(response) {
                     $('#skillsMsg').text('Habilidades atualizadas com sucesso')
                     $('#skillsMsg').show();
+                    setTimeout(function() {
+                        $('#skillsMsg').fadeOut();
+                    }, 1000);
 
                     $('#skill').val('');
                     listSkills()
@@ -257,8 +309,17 @@
                                 'height': '40px',
                                 'margin': 5
                             });
+
+                            $("#boxSkills").css({
+                                "width": 600,
+                                "padding": 10,
+                                "background-color": "white",  // Cor de fundo verde
+                                "border": "1px solid green",
+                            });
                             $("#skillsGallery").append(imgElement)
+
                         }
+
                     }
     
                 },
