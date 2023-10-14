@@ -390,7 +390,7 @@
                                                     
                                                 },
                                                 error: function(error) {
-                                                    console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                                                    console.error('Isso não é um erro, só não existe mais nenhuma skill com este id. Erro:', error);
                                                 }
                                             });    
                                         }                                   
