@@ -179,77 +179,98 @@ class Portfolio
     }
 
 
-    public function setImage($file, $typePicture)
+    // public function updateProfile($id, $data, $column) {
+
+        // $profileQuery = "UPDATE `profile` SET ".$column." = '".$data."' WHERE `id` = '".$id."'";
+
+    //     $db = $this->dataBase($profileQuery);
+    //     if ($data = mysqli_fetch_array($db)) {
+    //         $id = $data['id'];
+    //         $foto = $data['profile'];
+    //         $titulo = $data['titulo'];
+    //         $subtitulo = $data['subtitulo'];
+    //     }
+
+    //     $data = [
+    //         'id' => $id,
+    //         'profile' => $foto,
+    //         'titulo' => $titulo,
+    //         'subtitulo' => $subtitulo
+    //     ];
+    //     return $data;
+    // }
+
+    // public function updateSkills($id, $data) {
+
+    // }
+
+    // public function updateProject($id, $data) {
+
+    // }
+
+    // public function updateOthers($id, $data) {
+
+    // }
+
+    // public function updateContact($id, $data) {
+
+    // }
+
+
+    public function setImage($file, $typePicture, $dir)
     {
-        $hoje = date("d-m-y");
         $ext = explode(".", $file['name']); //[foto][ferias][jpg]
         $ext = array_reverse($ext); //[jpg][ferias][foto]
         $ext = $ext[0]; //jpg
 
-
-        if ((!isset($file))) {
-            $path = "Arquivo inexistente!";
+        if (!isset($file) || !is_uploaded_file($file['tmp_name'])) {
+            $path = "Arquivo inexistente ou inválido!";
+            return $path;
         } else {
             if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
                 $path = "Arquivo de imagem inválido!";
-                $file = 0;
+                $file = '';
                 return $path;
             } else {
                 $folder = "pasta_de_" . $_SESSION['user'];
-                $num = rand(0, 9);
-                $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
+                $num = uniqid();
+                // $directory = "../";
+                if (is_dir($dir.$folder."/" . $typePicture . "/")) {
+                    $this->removeAllFilesAndSubdirectories($dir.$folder."/" . $typePicture . "/");
+                }
+                mkdir($dir . $folder."/" . $typePicture . "/", 0777, true);
 
-                // if (is_dir($directory)) {
-                //     $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
-                // }
-                mkdir($directory, 0777, true);
-                move_uploaded_file($file['tmp_name'], $directory . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext);
-                
-                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext;
+                move_uploaded_file($file['tmp_name'], $dir . $folder."/" . $typePicture . "/". $num . '.' . $ext);
+
+                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $num . '.' . $ext;
                 return $path;
 
             }
         }
     }
 
-    public function setImages($files, $typePicture)
+    public function setImages($files, $typePicture, $dir)
     {
 
-        $hoje = date("d-m-y");
         $folder = "pasta_de_" . $_SESSION['user'];
-        $directory = "../../../images/users/" . $folder . "/" . $typePicture . "/";
-        // if (is_dir($directory)) {
-        //     $this->removeAllFilesAndSubdirectories("../../../images/users/" . $folder . "/");
-        // }
-        mkdir($directory, 0777, true);
+        if (is_dir($dir.$folder."/" . $typePicture . "/")) {
+            $this->removeAllFilesAndSubdirectories($dir.$folder."/" . $typePicture . "/");
+        }
+        mkdir($dir . $folder."/" . $typePicture . "/", 0777, true);
         $uploadedPaths = [];
 
         foreach ($files['tmp_name'] as $key => $tmpName) {
             $ext = pathinfo($files['name'][$key], PATHINFO_EXTENSION);
-            $num = rand(0, 9);
-            $newFileName = $_SESSION['user'] . "[" . $num . "]" . $hoje . '.' . $ext;
-            $destination = $directory . $newFileName;
-
+            $num = uniqid();
+            $destination = $dir . $folder."/" . $typePicture . "/" . $num . '.' . $ext;
             if (move_uploaded_file($tmpName, $destination)) {
-                $uploadedPaths[] = "images/users/" . $folder . "/" . $typePicture . "/" . $newFileName;
+                $uploadedPaths[] = "images/users/" . $folder . "/" . $typePicture . "/" . $num . "." . $ext;
             } else {
                 $uploadedPaths[] = "Erro no diretório " . $typePicture . "";
             }
         }
 
         return $uploadedPaths;
-    }
-
-    public function moreThanOne($userId)
-    {
-        $query = "SELECT * FROM profile WHERE id_user LIKE '" . $userId . "'";
-        $db = new Connection;
-
-        $linhas = mysqli_num_rows($db->toDatabase($query));
-        if ($linhas >= 1) {
-            return true;
-        }
-        return 0;
     }
 
     public function dataBase($query)
@@ -260,22 +281,14 @@ class Portfolio
     }
 
     //remove arquivos
-    public function removeAllFilesAndSubdirectories($directory)
+    public function removeAllFilesAndSubdirectories($dir)
     {
-        $files = scandir($directory);
-    
-        foreach ($files as $file) {
-            if ($file !== '.' && $file !== '..') {
-                $path = $directory . '/' . $file;
-    
-                if (is_dir($path)) {
-                    removeAllFilesAndSubdirectories($path); // Recursively remove subdirectories
-                    rmdir($path);
-                } else {
-                    unlink($path); // Remove individual file
-                }
-            }
+            $files = array_diff(scandir($dir), array('.','..')); 
+            foreach ($files as $file) { 
+              (is_dir("$dir/$file")) ? removeAllFilesAndSubdirectories("$dir/$file") : unlink("$dir/$file"); 
+            } 
+            return rmdir($dir); 
+      
         }
-    }
     
 }

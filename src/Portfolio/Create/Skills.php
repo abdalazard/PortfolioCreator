@@ -8,12 +8,13 @@ $userId = $_SESSION['id'];
 
 //Skills
 $skills = $_FILES['skill'];
+$dir = "../../../images/users/";
 
 if($skills) {
     try{
         $portfolio = new Portfolio;
 
-        $pathSkills = $portfolio->setImages($skills, 'skills');
+        $pathSkills = $portfolio->setImages($skills, 'skills', $dir);
         foreach ($pathSkills as $skill) {
             $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
             $portfolio->dataBase($newSkill);

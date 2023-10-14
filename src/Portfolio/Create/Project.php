@@ -9,12 +9,13 @@ $userId = $_SESSION['id'];
 $inputNomeProjeto = $_POST['inputNomeProjeto'];
 $inputPrint = $_FILES['inputPrint'];
 $inputUrlProjeto = $_POST['inputUrlProjeto'];
+$dir = "../../../images/users/";
 
 if($inputPrint && $inputNomeProjeto) {
     $portfolio = new Portfolio;
 
     try{
-        $pathProjects = $portfolio->setImage($inputPrint, 'projects');
+        $pathProjects = $portfolio->setImage($inputPrint, 'projects', $dir);
         $newProject = "INSERT INTO projects VALUES(null, '".$pathProjects."', '" . $inputNomeProjeto . "', '" . $inputUrlProjeto . "', '" . $userId . "')";
         $saveProject = $portfolio->dataBase($newProject);
         if (!$saveProject) {

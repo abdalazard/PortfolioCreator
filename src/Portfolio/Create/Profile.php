@@ -8,11 +8,11 @@ $userId = $_SESSION['id'];
 $profile = $_FILES['profile'];
 $titulo = $_POST['titulo'];
 $subtitulo = $_POST['subtitulo'];
-
+$dir = "../../../images/users/";
 
 $portfolio = new Portfolio;
 
-$pathInfo = $portfolio->setImage($profile, 'profile');
+$pathInfo = $portfolio->setImage($profile, 'profile', $dir);
 $newProfile = "INSERT INTO profile VALUES(null, '" . $pathInfo . "', '" . $titulo . "', '" . $subtitulo . "', '" . $userId . "')";
 
 if ($portfolio->dataBase($newProfile)) {

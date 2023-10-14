@@ -70,18 +70,28 @@ include '../../auth/Authentication.php'; ?>
                 <td id="profileId"></td>
                 <td class="left"><img src="" alt="foto" id="profilePic"></td>
                 <td id="tituloProfile"></td>
-                <td id="editProfile">
-                    <span class="material-symbols-outlined">
-                        edit
-                    </span>
+                <td>
+                    <a id="editPortfolio"  class="modal-trigger">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </a>
                 </td>
-                <td id="deleteProfile">
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
+                <td id="deletePortfolio">
+                    <a href="#modalDelete" id="modalDeletePortfolio"  class="modal-trigger">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
                 </td>
             </tbody>
         </table>
+        <!-- <div id="modalEdit" class="modal center">
+            <h3>teste edit</h3>
+        </div> -->
+        <div id="modalDelete" class="modal center">
+            <h1>teste delete</h1>
+        </div>
     </div>
 
 <script>
@@ -218,6 +228,13 @@ function getList() {
             }
         });
     };
+    $('#editPortfolio').on('click', function () {
+        console.log("Edit: "+statusId)
+        window.location.href = '../portfolio/update.php?statusId='+statusId
+    });
+    $('#deletePortfolio').on('click', function () {
+        console.log("Delete")
+    });
 });
 </script>
 
