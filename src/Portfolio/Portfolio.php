@@ -178,32 +178,6 @@ class Portfolio
         return $data;
     }
 
-
-    // public function updateProfile($id, $data, $column) {
-
-        // $profileQuery = "UPDATE `profile` SET ".$column." = '".$data."' WHERE `id` = '".$id."'";
-
-    //     $db = $this->dataBase($profileQuery);
-    //     if ($data = mysqli_fetch_array($db)) {
-    //         $id = $data['id'];
-    //         $foto = $data['profile'];
-    //         $titulo = $data['titulo'];
-    //         $subtitulo = $data['subtitulo'];
-    //     }
-
-    //     $data = [
-    //         'id' => $id,
-    //         'profile' => $foto,
-    //         'titulo' => $titulo,
-    //         'subtitulo' => $subtitulo
-    //     ];
-    //     return $data;
-    // }
-
-    // public function updateSkills($id, $data) {
-
-    // }
-
     // public function updateProject($id, $data) {
 
     // }

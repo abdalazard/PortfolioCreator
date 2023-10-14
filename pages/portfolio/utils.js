@@ -318,29 +318,6 @@ function checkForms() {
                         }
                     });      
                 }
-                if(projectsState == true) {
-                    $.ajax({
-                        url: '../../src/Portfolio/Get.php',
-                        type: 'GET', 
-                        dataType: 'json',
-                        data: {
-                            userId: userId,
-                            action: 'getOthers'
-                        },
-                        success: function(data) {
-                            var theseOthers = data;
-                            if(theseOthers.length >= 1) {
-                                $('#othersMsg').text('Eventos já presentes no banco de dados')
-                                $('#othersMsg').show();
-                                $('#modalOthersButton').hide();   
-                            }
-            
-                        },
-                        error: function(error) {
-                            console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
-                        }
-                    });   
-                }
                 if(othersState == true) {
                     $.ajax({
                         url: '../../src/Portfolio/Get.php',
