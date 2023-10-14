@@ -249,6 +249,11 @@ class Portfolio
         }
     }
 
+    public function deleteImages($dir){
+            unlink("$dir"); 
+            return true;
+        }
+
     public function setImages($files, $typePicture, $dir, $action = null)
     {
 
@@ -285,12 +290,12 @@ class Portfolio
     //remove arquivos
     public function removeAllFilesAndSubdirectories($dir)
     {
-            $files = array_diff(scandir($dir), array('.','..')); 
-            foreach ($files as $file) { 
-              (is_dir("$dir/$file")) ? removeAllFilesAndSubdirectories("$dir/$file") : unlink("$dir/$file"); 
-            } 
-            return rmdir($dir); 
-      
-        }
+        $files = array_diff(scandir($dir), array('.','..')); 
+        foreach ($files as $file) { 
+            (is_dir("$dir/$file")) ? removeAllFilesAndSubdirectories("$dir/$file") : unlink("$dir/$file"); 
+        } 
+        return rmdir($dir); 
+    
+    }
     
 }
