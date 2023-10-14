@@ -30,8 +30,9 @@
         </div>
     </nav>
     <div class="container">
-        <h3>Atualizar Portfolio</h3>
-        <div id="box">
+    <h3>Atualizar Portfolio</h3>
+
+        <div id="boxProfile">
             <h5 id="profileForm"></h5>
             <div class="row">
                 <div class="col s12 center">
@@ -59,19 +60,50 @@
                 </div>
         </div>
     </div>
+    <br>
+    <div id="boxSkills">
+        <h5 id="skillsForm"></h5>
+        <p id="skillsMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
+        <div class="row">
+            <div class="col s12 center">
+                <div id="skillsGallery">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s9">
+                <!-- <label for="skill">Habilidade(Adicione várias imagens renderizada das stacks)</label> -->
+                <input type="file" name="skill[]"  id="skill" multiple accept="image/*">
+            </div>
+            <div class="col s3">
+                <button type="submit" id="updateSkills" disabled>Atualizar skills</button>
+            </div>
+        </div>
+    </div>
 <script>
     M.AutoInit();
 
     var statusId = <?php echo  $_GET['statusId']; ?>;
 
     $(document).ready(function() {
-        $('#profileForm').text('Editar Profile')
-        $("#box").css({
+        $('#profileForm').text('Editar Profile');
+        $('#skillsForm').text('Editar Skills');
+        $("#boxProfile").css({
+            "width": 600,
+            "height": 300,
+            "padding": 10,
+            "background-color": "white",  // Cor de fundo verde
+            "border": "1px solid green"  // Borda fina verde
+        });
+        $("#boxSkills").css({
+            "width": 600,
+            "height": 180,
             "padding": 10,
             "background-color": "white",  // Cor de fundo verde
             "border": "1px solid green"  // Borda fina verde
         });
         checkForms();
+        listSkills();
 
         $('#profile').change(function() {
             if (this.files && this.files[0]) {
@@ -166,6 +198,75 @@
 
         });
 
+        
+        $('#skill').change(function() {
+                $('#updateSkills').prop('disabled', false);
+        });
+
+        $('#updateSkills').on('click', function(event) {
+            event.preventDefault();
+            var formSkills = new FormData();
+            var files = $('#skill')[0].files;
+            formSkills.append('action', 'updateSkills');
+
+            for (var i = 0; i < files.length; i++) {
+                formSkills.append('skill[]', files[i]);
+            }
+            $.ajax({
+                url: '../../src/Portfolio/Update.php',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formSkills,
+                success: function(response) {
+                    $('#skillsMsg').text('Habilidades atualizadas com sucesso')
+                    $('#skillsMsg').show();
+
+                    $('#skill').val('');
+                    listSkills()
+                },
+                error: function(error) {
+                    console.error('Erro ao enviar dados:', error);
+                }
+
+            });
+
+        });
+
+        function listSkills() {
+            $.ajax({
+                url: '../../src/Portfolio/Get.php',
+                type: 'GET', 
+                dataType: 'json',
+                data: {
+                    action: 'getSkills'
+                },
+                success: function(data) {
+                    var theseSkills = data;
+                    $("#skillsGallery").empty();
+
+                    if(theseSkills.length >= 1) {
+
+                        for (var i = 0; i < theseSkills.length; i++) {
+                            var skillsGallery = data[i].skill;
+
+                            var imgElement = $('<img>');
+                            imgElement.attr('src', '../../' + skillsGallery);
+                            imgElement.css({
+                                'max-width': '80px',
+                                'height': '40px',
+                                'margin': 5
+                            });
+                            $("#skillsGallery").append(imgElement)
+                        }
+                    }
+    
+                },
+                error: function(error) {
+                    console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                }
+            });    
+        }
 
         function checkForms() {
 

@@ -249,13 +249,15 @@ class Portfolio
         }
     }
 
-    public function setImages($files, $typePicture, $dir)
+    public function setImages($files, $typePicture, $dir, $action = null)
     {
 
         $folder = "pasta_de_" . $_SESSION['user'];
-        if (is_dir($dir.$folder."/" . $typePicture . "/")) {
-            $this->removeAllFilesAndSubdirectories($dir.$folder."/" . $typePicture . "/");
-        }
+        if(!$action) {
+            if (is_dir($dir.$folder."/" . $typePicture . "/")) {
+                $this->removeAllFilesAndSubdirectories($dir.$folder."/" . $typePicture . "/");
+            }
+        }         
         mkdir($dir . $folder."/" . $typePicture . "/", 0777, true);
         $uploadedPaths = [];
 
