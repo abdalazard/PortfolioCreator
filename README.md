@@ -26,6 +26,5 @@ Este projeto é de código aberto e estamos abertos a contribuições! Se você 
 4. Faça push para o branch (`git push origin nova-feature`)
 5. Abra um [pull request](https://github.com/abdalazard/NoobPHP/compare).
 
-## Tecnologias Utilizadas
 
 Agradecemos antecipadamente por suas contribuições!
