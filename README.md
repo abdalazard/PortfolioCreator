@@ -1,1 +1,3 @@
-Meu portfolio, no qual usei um pacote de backend que eu mesmo criei, o NoobPHP, para criar um sistema de seleção de templates, com administração de dados do usuário.
+Um criador de portfolios em PHP que registra dados padronizados em um banco MySQL e permite o usuário a criar seus próprios templates.
+
+Projeto aberto a contribuições!
