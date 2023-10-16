@@ -1,10 +1,10 @@
 <?php
 include "db/Connection.php";
 
-include 'src/Portfolio/Portfolio.php';
+include 'src/Devfolio/Devfolio.php';
 
 try {
-    $getPort = new Portfolio;
+    $getPort = new Devfolio;
     $getPage = $getPort->getPage();
     if($getPage != null){
         
@@ -12,7 +12,7 @@ try {
     }
     include_once 'icon/network.php';
 } catch (Exception $e) {
-    $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
+    $msg = "Erro: " . $e->getMessage() . "\nYou don't have any devfolio! ):";
     ?><script>alert($msg);</script>
     <?php
 }
@@ -22,7 +22,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio não encontrado</title>
+    <title>Devfolio project not found</title>
     <style>
         #msg {
             background-color: black;

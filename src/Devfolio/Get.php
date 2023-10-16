@@ -2,55 +2,55 @@
 session_start();
 include '../../db/Connection.php';
 
-include 'Portfolio.php';
+include 'Devfolio.php';
 
 $userId = $_SESSION['id']; 
 $action = $_GET['action'];
 
-if($action == "getFormState"){
-    $portfolio = new Portfolio;
-    $data = $portfolio->getState($userId);
+if($action == "getstate"){
+    $devfolio = new Devfolio;
+    $data = $devfolio->getState($userId);
     echo json_encode($data);
     exit();
 }
 
 if($action == "getStatus"){
-    $portfolio = new Portfolio;
-    $data = $portfolio->getStatus($userId);
+    $devfolio = new Devfolio;
+    $data = $devfolio->getStatus($userId);
     echo json_encode($data);
     exit();
 }
 
 if($action == "getProfile"){
-    $portfolio = new Portfolio;
-    $data = $portfolio->getProfile($userId);
+    $devfolio = new Devfolio;
+    $data = $devfolio->getProfile($userId);
     echo json_encode($data);
     exit();  
 }
 
 if($action == "getSkills"){
-    $portfolio = new Portfolio;
-    $data = $portfolio->getSkills($userId);
+    $devfolio = new Devfolio;
+    $data = $devfolio->getSkills($userId);
     echo json_encode($data);
     exit();  
 }
 
 if($action == "getProjects"){
-    $portfolio = new Portfolio;
-    $data = $portfolio->getProjects($userId);
+    $devfolio = new Devfolio;
+    $data = $devfolio->getProjects($userId);
     echo json_encode($data);
     exit();  
 }
 
 if($action == "getOthers"){
-    $portfolio = new Portfolio;
-    $data = $portfolio->getOthers($userId);
+    $devfolio = new Devfolio;
+    $data = $devfolio->getOthers($userId);
     echo json_encode($data);
     exit();  
 }
 if($action == "getContacts"){
-    $portfolio = new Portfolio;
-    $data = $portfolio->getSocial($userId);
+    $devfolio = new Devfolio;
+    $data = $devfolio->getContacts($userId);
     echo json_encode($data);
     exit();  
 }

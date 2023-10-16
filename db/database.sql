@@ -95,8 +95,8 @@ CREATE TABLE `status` (
 
 
 
-DROP TABLE IF EXISTS `formstate`;
-CREATE TABLE `formstate` (
+DROP TABLE IF EXISTS `state`;
+CREATE TABLE `state` (
   `id` int NOT NULL AUTO_INCREMENT,
   `profile` tinyint(1) DEFAULT '0',
   `skills` tinyint(1) DEFAULT '0',
@@ -106,7 +106,7 @@ CREATE TABLE `formstate` (
   `id_user` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`),
-  CONSTRAINT `formstate_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
+  CONSTRAINT `state_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 =======
 CREATE Database NoobPHP;

@@ -2,7 +2,7 @@
 require_once 'db/Connection.php';
 
 $db = new Connection;
-$db->toDatabase("DROP TABLE `formState`,`status`,`profile`, `others`, `projects`, `skills`, `social`, `users`");
+$db->toDatabase("DROP TABLE `state`,`status`,`profile`, `others`, `projects`, `skills`, `contacts`, `users`");
 
 //remove arquivos
 function removeAllFilesAndSubdirectories($directory) {
@@ -26,9 +26,9 @@ function removeAllFilesAndSubdirectories($directory) {
 
 $directory = 'images/users/';
 removeAllFilesAndSubdirectories($directory);
-echo "Arquivos de imagens deletados\n";
-echo "Você executou o rollback!";
-echo "\nBanco de dados deletado com sucesso!\n\n";
+echo "Image files deleted\n";
+echo "Rollback executed!";
+echo "\nDatabase deleted successfully!\n\n";
 
 $migrations = scandir(__DIR__ . '/db/migrations');
 
@@ -39,10 +39,10 @@ foreach ($migrations as $migration) {
 
     require_once 'db/migrations/' . $migration;
 
-    echo "\nExecutada a migração: $migration\n";
+    echo "\nMigration done: $migration\n";
 }
 $dbB = new Connection;
 
 $dbB->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5(123))");
-echo "\nUsuario administrador criado com sucesso!\n";;
+echo "\nUser admin created successfully!!\n";;
 ?>

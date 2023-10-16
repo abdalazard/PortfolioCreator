@@ -5,6 +5,7 @@ include '../../auth/Authentication.php'; ?>
 <html lang="pt-br">
 
 <head>
+    <title>DevFolio</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Import Google Icon Font-->
@@ -21,17 +22,17 @@ include '../../auth/Authentication.php'; ?>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../../admin.php">Inicio</a></li>
+                <li><a href="../../admin.php">Home</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a id="new" class="modal-trigger">Criar novo</a></li>
+                <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#">Mudar Layout(Em Breve)</a></li>
+                <li><a href="#">Change Layout(Soon)</a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger "
-                        href="../../src/Logout/Logout.php">Deslogar</a>
+                        href="../../src/Logout/Logout.php">Logout</a>
                 </li>
             </ul>
         </div>
@@ -45,11 +46,11 @@ include '../../auth/Authentication.php'; ?>
         <?php } ?>
         <h1>Dashboard</h1>
         <div>
-            <h6>Olá, <?php echo $_SESSION['user']; ?></h6>
+            <h6>Hello, <?php echo $_SESSION['user']; ?>!</h6>
         </div>
 
         <hr />
-        <h3>Lista de projetos de portfólio</h3>
+        <h3> My Devfolio's projects</h3>
         <?php if (isset($_GET['statusMsg'])) { ?>
             <h4 id="statusMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
                 <?php echo $_GET['statusMsg']; ?>
@@ -59,10 +60,10 @@ include '../../auth/Authentication.php'; ?>
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>Imagem</th>
-                    <th>Título</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th>Profile</th>
+                    <th>Title</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
                 </tr>
             </thead>
@@ -114,7 +115,7 @@ setTimeout(function() {
 
 function getStatus(){
     $.ajax({
-        url: '../../src/Portfolio/Get.php',
+        url: '../../src/Devfolio/Get.php',
         type: 'GET',
         dataType: 'json',
         data: {
@@ -146,21 +147,21 @@ function getStatus(){
 };
 
 function setState() {
-    var formState = new FormData();
-    formState.append('state', 0);
-    formState.append('action', "setState");
+    var state = new FormData();
+    state.append('state', 0);
+    state.append('action', "setState");
 
     $.ajax({
-        url: '../../src/Portfolio/Create/FormState.php',
+        url: '../../src/Devfolio/Create/state.php',
         type: 'POST',
         processData: false,
         contentType: false,
-        data: formState,
+        data: state,
         success: function(data) {
             console.log("setState ok")
         },
         error: function(error) {
-            console.log("setState do botão new deu errado!")
+            console.log("setState button didn't work well!")
         }
     });
 }
@@ -172,7 +173,7 @@ $('#new').on('click', function(event){
     formStatus.append('action', "setStatus");
 
     $.ajax({
-            url: '../../src/Portfolio/Create/Status.php',
+            url: '../../src/Devfolio/Create/Status.php',
             type: 'POST',
             processData: false,
             contentType: false,
@@ -183,7 +184,7 @@ $('#new').on('click', function(event){
                 console.log("aqui")
             },
             error: function(error) {
-                console.log("botão new deu errado!")
+                console.log("Create new's button didn't work well")
             }
         });
 
@@ -191,7 +192,7 @@ $('#new').on('click', function(event){
 
 function getList() {
         $.ajax({
-            url: '../../src/Portfolio/Get.php',
+            url: '../../src/Devfolio/Get.php',
             type: 'GET', 
             dataType: 'json',
             data: {
@@ -224,7 +225,7 @@ function getList() {
                 } 
             },
             error: function(error) {
-                console.log("getProfile com problema!")
+                console.log("getProfile's trouble!")
             }
         });
     };

@@ -1,30 +1,30 @@
 <?php
 
-class Portfolio
+class Devfolio
 {
     public function getPage() {
         try {
             $selectPage  = "SELECT * FROM status WHERE status LIKE 1";
             $db = $this->dataBase($selectPage);
             if (!$db) {
-                $msg = 'Erro ao obter status para portfolio';
-                header("location: ../../noportfolio.php?msg=" . $msg);
+                $msg = 'Problems to get this devfolio';
+                header("location: ../../nodevfolio.php?msg=" . $msg);
             }
             $data = mysqli_fetch_array($db);
 
             return $data['id_user'] ?? 0;
 
         } catch (Exception $e) {
-            $msg = "Erro: " . $e->getMessage() . "\nVocê não possui um portfolio!";
-            header("location: noportfolio.php?msg=" . $msg);
+            $msg = "Error: " . $e->getMessage() . "\nYou don't have any devfolio created!";
+            header("location: nodevfolio.php?msg=" . $msg);
         }
        
     }
 
     public function getState($id) {
 
-        $formStateQuery = "SELECT * FROM formstate WHERE id_user LIKE '" . $_SESSION['id'] . "'";
-        $db = $this->dataBase($formStateQuery);
+        $stateQuery = "SELECT * FROM state WHERE id_user LIKE '" . $_SESSION['id'] . "'";
+        $db = $this->dataBase($stateQuery);
         $data = mysqli_fetch_array($db);
         if (!$data) {
             $data = [
@@ -35,7 +35,7 @@ class Portfolio
                 'projects' => 0,
                 'others' => 0,
                 'contacts' => 0,
-                'msg' => 'Erro ao criar array!'
+                'msg' => 'Problems to attempt to create an array of states!'
             ];
             return $data;
         }
@@ -56,7 +56,7 @@ class Portfolio
             'projects' => $projects,
             'others' => $others,
             'contacts' => $contacts,
-            'msg' => 'State encontrado!'
+            'msg' => 'State found!'
 
         ];
         return $data;
@@ -72,7 +72,7 @@ class Portfolio
                 'id' => 0,
                 'status' => 0,
                 'user' => 0,
-                'msg' => "Sem status definido",
+                'msg' => "No status defined",
             ];
             return $data;
         }
@@ -85,7 +85,7 @@ class Portfolio
             'id' => $id,
             'status' => $status,
             'user' => $user,
-            'msg' => "Status encontrado!",
+            'msg' => "Status found!",
         ];
         return $data;
     }
@@ -97,30 +97,30 @@ class Portfolio
         if ($data = mysqli_fetch_array($db)) {
             $id = $data['id'];
             $foto = $data['profile'];
-            $titulo = $data['titulo'];
-            $subtitulo = $data['subtitulo'];
+            $title = $data['title'];
+            $subtitle = $data['subtitle'];
         }
 
         $data = [
             'id' => $id,
             'profile' => $foto,
-            'titulo' => $titulo,
-            'subtitulo' => $subtitulo
+            'title' => $title,
+            'subtitle' => $subtitle
         ];
         return $data;
     }
 
     public function getProjects($id)
     {
-        $projetoQuery = "SELECT * FROM projects WHERE id_user = '" . $id . "'";
-        $db = $this->dataBase($projetoQuery);
+        $projectQuery = "SELECT * FROM projects WHERE id_user = '" . $id . "'";
+        $db = $this->dataBase($projectQuery);
         $projects = array();
 
         while ($data = mysqli_fetch_array($db)) {
             $project = array(
-                'print' => $data['print'],
-                'project_name' => $data['nome_projeto'],
-                'url_project' => $data['url']
+                'screenshot' => $data['screenshot'],
+                'project_name' => $data['project_name'],
+                'project_link' => $data['link']
             );
             $projects[] = $project;
         }
@@ -151,9 +151,9 @@ class Portfolio
         while ($data = mysqli_fetch_array($db)) {
             $other = array(
                 'id' => $data['id'],
-                'titulo' => $data['titulo'],
+                'title' => $data['title'],
                 'banner' => $data['banner'],
-                'banner_url' => $data['url'],
+                'banner_link' => $data['link'],
             );
             $others[] = $other;
         }
@@ -161,9 +161,9 @@ class Portfolio
         return $others;
     }
 
-    public function getSocial($id)
+    public function getContacts($id)
     {
-        $socialQuery = "SELECT * FROM social WHERE id_user LIKE '" . $id . "'";
+        $socialQuery = "SELECT * FROM contacts WHERE id_user LIKE '" . $id . "'";
         $db = $this->dataBase($socialQuery);
         if (!$data = mysqli_fetch_array($db)) {
             return "Erro ao obter as redes sociais";  
@@ -198,15 +198,15 @@ class Portfolio
         $ext = $ext[0]; //jpg
 
         if (!isset($file) || !is_uploaded_file($file['tmp_name'])) {
-            $path = "Arquivo inexistente ou inválido!";
+            $path = "Nonexistent or invalid file!";
             return $path;
         } else {
             if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
-                $path = "Arquivo de imagem inválido!";
+                $path = "Invalid image file!";
                 $file = '';
                 return $path;
             } else {
-                $folder = "pasta_de_" . $_SESSION['user'];
+                $folder = $_SESSION['user']. "_folder";
                 $num = uniqid();
                 // $directory = "../";
                 if (is_dir($dir.$folder."/" . $typePicture . "/")) {
@@ -231,7 +231,7 @@ class Portfolio
     public function setImages($files, $typePicture, $dir, $action = null)
     {
 
-        $folder = "pasta_de_" . $_SESSION['user'];
+        $folder = $_SESSION['user']. "_folder";
         if(!$action) {
             if (is_dir($dir.$folder."/" . $typePicture . "/")) {
                 $this->removeAllFilesAndSubdirectories($dir.$folder."/" . $typePicture . "/");
@@ -247,7 +247,7 @@ class Portfolio
             if (move_uploaded_file($tmpName, $destination)) {
                 $uploadedPaths[] = "images/users/" . $folder . "/" . $typePicture . "/" . $num . "." . $ext;
             } else {
-                $uploadedPaths[] = "Erro no diretório " . $typePicture . "";
+                $uploadedPaths[] = "Problemas with the directory " . $typePicture . "";
             }
         }
 

@@ -1,6 +1,6 @@
 <?php
 include '../../../db/Connection.php';
-include '../Portfolio.php';
+include '../Devfolio.php';
 
 session_start();
 
@@ -9,24 +9,24 @@ $code = $_POST['status'] ?? 0;
 $action = $_POST['action'];
 
 if($action == "setStatus"){
-    $portfolio = new Portfolio;
+    $devfolio = new Devfolio;
     $selectStatus = "SELECT * FROM status WHERE id_user LIKE '".$userId."'";
-    $querySelect = $portfolio->dataBase($selectStatus);
+    $querySelect = $devfolio->dataBase($selectStatus);
     if(!$querySelect) {
-        echo "Erro ao verificar status";
+        echo "Problems to attempt to verify this status";
     } else {
         $resultSelect = mysqli_num_rows($querySelect);
         if($resultSelect >= 1) {
             $updateStatus = "UPDATE status SET status = '".$code."' WHERE id_user LIKE '".$userId."'";
-            $queryUpdate = $portfolio->dataBase($updateStatus);
+            $queryUpdate = $devfolio->dataBase($updateStatus);
         } else {
             $createStatus = "INSERT INTO status VALUES(null, 0, '".$userId."')";
-            $queryCreate = $portfolio->dataBase($createStatus);
-            echo "Status criado!";
+            $queryCreate = $devfolio->dataBase($createStatus);
+            echo "Status created sucessfully!";
         }
-        echo "Status ok";
+        echo "Status 200";
     }
 } else {
-    echo "Ação inválida.";
+    echo "Invalid action!";
 }
 ?>

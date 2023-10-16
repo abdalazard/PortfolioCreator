@@ -2,26 +2,26 @@
 session_start();
 include '../../db/Connection.php';
 
-include 'Portfolio.php';
+include 'Devfolio.php';
 
 $userId = $_SESSION['id']; 
 $action = $_GET['action'];
 $id = $_GET['id'];
-$dir = $_GET['path'] ?? NULL;
+$dir = $_GET['dir'] ?? NULL;
 
 if($action == "deleteSkill"){
 
-    $portfolio = new Portfolio;
+    $devfolio = new Devfolio;
     $table = "skills";
 
-    $deleteImage = $portfolio->deleteImages('../../'.$dir);
+    $deleteImage = $devfolio->deleteImages('../../'.$dir);
     if($deleteImage) {
         $deleteSkill = "DELETE FROM `".$table."` WHERE id LIKE '".$id."'";  
-        if ($portfolio->dataBase($deleteSkill)) {
-            echo 'Skill excluída com sucesso!';
+        if ($devfolio->dataBase($deleteSkill)) {
+            echo 'Skill deleted successfully!';
         }
     }    
-    echo "Erro ao excluir uma skill do profile!";
+    echo "Problems to attempt to delete skill.";
     exit();
 }
 

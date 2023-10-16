@@ -11,7 +11,7 @@ class Connection
         $localhost = 'localhost';
         $user = 'root';
         $password = '123';
-        $db = "NoobPHP";
+        $db = "DevFolio";
         
         $this->con = mysqli_connect($localhost, $user, $password, $db);
     }

@@ -13,29 +13,29 @@
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atualizar portfolio</title>
+    <title>Update DevFolio</title>
 </head>
 
 <body>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../../admin.php">Inicio</a></li>
+                <li><a href="../../admin.php">Home</a></li>
             </ul>
             <ul class="right">
-                <li><a class="waves-effect waves-light btn black modal-trigger " href="../../src/Logout/Logout.php">Deslogar</a>
+                <li><a class="waves-effect waves-light btn black modal-trigger " href="../../src/Logout/Logout.php">Logout</a>
                 </li>
             </ul>
         </div>
     </nav>
     <div class="container">
-        <h3>Atualizar Portfolio</h3>
+        <h3>Update your Devfolio</h3>
 
         <div id="boxProfile">
             <h5 id="profileForm"></h5>
             <div class="row">
                 <div class="col s12 center">
-                    <img src="" alt="foto" id="profile-pic" disabled hidden />
+                    <img src="" alt="Me" id="profile-pic" disabled hidden />
                     <p id="profileMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
 
                 </div>
@@ -43,19 +43,19 @@
             <div class="row">
                 <div class="col s12 center">
                     <input type="file" name="profilePic" id="profile" accept="image/*" style="margin-right: 80px;">
-                    <input type="submit" id="profilePicUpdateButton" value="Gravar Titulo" disabled>
+                    <input type="submit" id="profilePicUpdateButton" value="Save profile" disabled>
 
                 </div>
             </div>
             <div class="row">
                 <div class="col s6">
-                    <input type="text" id="profileTitle" placeholder="Titulo">
-                    <input type="submit" id="profileTitleUpdateButton" value="Gravar Titulo" disabled>
+                    <input type="text" id="profileTitle" placeholder="Title">
+                    <input type="submit" id="profileTitleUpdateButton" value="Save title" disabled>
                 </div>
 
                 <div class="col s6">
-                    <input type="text" id="profileSubtitle" placeholder="Subtitulo">
-                    <input type="submit" id="profileSubtitleUpdateButton" value="Gravar Titulo" disabled>
+                    <input type="text" id="profileSubtitle" placeholder="Subtitle">
+                    <input type="submit" id="profileSubtitleUpdateButton" value="Save subtitle" disabled>
                 </div>
             </div>
         </div>
@@ -74,7 +74,7 @@
                     <input type="file" name="skill[]" id="skill" multiple accept="image/*">
                 </div>
                 <div class="col s3">
-                    <input type="submit" id="updateSkills" disabled value="Atualizar">
+                    <input type="submit" id="updateSkills" disabled value="Update">
                 </div>
             </div>
             <br>
@@ -93,7 +93,7 @@
                 <div class="col s9">
                 </div>
                 <div class="col s3">
-                <input type="submit" id="updateProjects" disabled value="Atualizar">
+                <input type="submit" id="updateProjects" disabled value="Update">
                 </div>
             </div>
             <br>
@@ -112,9 +112,9 @@
             var statusId = <?php echo  $_GET['statusId']; ?>;
 
             $(document).ready(function() {
-                $('#profileForm').text('Editar Profile');
-                $('#skillsForm').text('Editar Skills');
-                $('#projectsForm').text('Editar Projetos');
+                $('#profileForm').text('Edit Profile');
+                $('#skillsForm').text('Edit Skills');
+                $('#projectsForm').text('Edit Project');
 
                 $("#boxProfile").css({
                     "width": 600,
@@ -174,7 +174,7 @@
                         data: formProfile,
                         success: function(response) {
                             $('#profileMsg').text('');
-                            $('#profileMsg').text('Imagem atualizada com sucesso!');
+                            $('#profileMsg').text('Profile updated successfully!');
                             $('#profileMsg').show();
                             setTimeout(function() {
                                 $('#profileMsg').fadeOut();
@@ -183,7 +183,7 @@
 
                         },
                         error: function(error) {
-                            console.error('Erro ao enviar dados:', error);
+                            console.error('ProfilePicUpdateButton go worng:', error);
                         }
                     });
 
@@ -213,10 +213,10 @@
                         data: formProfile,
                         success: function(response) {
                             M.toast({
-                                html: 'Titulo atualizado com sucesso'
+                                html: 'Title updated successfully'
                             })
                             $('#profileMsg').text('');
-                            $('#profileMsg').text('Titulo atualizado com sucesso!');
+                            $('#profileMsg').text('Title updated successfully');
                             $('#profileMsg').show();
                             setTimeout(function() {
                                 $('#profileMsg').fadeOut();
@@ -227,7 +227,7 @@
 
                         },
                         error: function(error) {
-                            console.error('Erro ao enviar dados:', error);
+                            console.error('profileTitleUpdateButton go worng:', error);
                         }
                     });
 
@@ -257,10 +257,10 @@
                         data: formProfile,
                         success: function(response) {
                             M.toast({
-                                html: 'Subtitulo atualizado com sucesso'
+                                html: 'Subtitle updated successfully!'
                             })
                             $('#profileMsg').text('');
-                            $('#profileMsg').text('Subtitulo atualizado com sucesso!');
+                            $('#profileMsg').text('Subtitle updated successfully!');
                             $('#profileMsg').show();
                             setTimeout(function() {
                                 $('#profileMsg').fadeOut();
@@ -269,7 +269,7 @@
                             $('#profileSubtitle').val($('#profileSubtitle').val());
                         },
                         error: function(error) {
-                            console.error('Erro ao enviar dados:', error);
+                            console.error('profileSubtitleUpdateButton go wrong:', error);
                         }
                     });
 
@@ -297,9 +297,9 @@
                         data: formSkills,
                         success: function(response) {
                             M.toast({
-                                html: 'Habilidades atualizadas com sucesso'
+                                html: 'Skill updated successfully!'
                             })
-                            $('#skillsMsg').text('Habilidades atualizadas com sucesso')
+                            $('#skillsMsg').text('Skill updated successfully!')
                             $('#skillsMsg').show();
                             setTimeout(function() {
                                 $('#skillsMsg').fadeOut();
@@ -309,7 +309,7 @@
                             listSkills()
                         },
                         error: function(error) {
-                            console.error('Erro ao enviar dados:', error);
+                            console.error('updateSkill go wrong:', error);
                         }
 
                     });
@@ -359,10 +359,11 @@
                                             alertBox.classList.add('custom-alert');
                                             
                                             alertBox.innerHTML = `
-                                                <p>Você deseja mesmo deletar essa habilidade?</p>
-                                                <img src="../../`+path+`" alt='Logotipo de linguagem' width='110px' height='60px' /> 
-                                                <button class="red" id="confirmDelete">Sim</button>
-                                                <button id="cancelDelete">Não</button>
+                                                <p>This picture will be deleted.</p>
+                                                <p>Are you sure?</p>
+                                                <img src="../../`+path+`" alt='Logo' width='110px' height='60px' /> 
+                                                <button class="red" id="confirmDelete">Yes</button>
+                                                <button id="cancelDelete">No</button>
                                             `;
                                             document.body.appendChild(alertBox);
                                             $(document).on('click', '#confirmDelete', function() {
@@ -390,7 +391,7 @@
                                                     
                                                 },
                                                 error: function(error) {
-                                                    console.error('Isso não é um erro, só não existe mais nenhuma skill com este id. Erro:', error);
+                                                    console.error('No id found. Error:', error);
                                                 }
                                             });    
                                         }                                   
@@ -410,7 +411,7 @@
                         },
                         error: function(error) {
                             console.error(
-                                'Não se preocupe, só não existe nenhuma skill com este id. Erro:',
+                                'No skill found. Error:',
                                 error);
                         }
                     });
@@ -456,7 +457,7 @@
                         },
                         error: function(error) {
                             console.error(
-                                'Não se preocupe, só não existe nenhuma skill com este id. Erro:',
+                                'No project found. Error:',
                                 error);
                         }
                     });
@@ -496,7 +497,7 @@
                                 }
                             },
                             error: function(error) {
-                                console.log("Requisição do FormState deu errado! codigo: " + error)
+                                console.log("setState requisition go wrong! code: " + error)
                             }
                         });  
                         
@@ -515,14 +516,14 @@
                             success: function(data) {
                                 var theseOthers = data;
                                 if (theseOthers.length >= 1) {
-                                    $('#othersMsg').text('Eventos já presentes no banco de dados')
+                                    $('#othersMsg').text('Saved!')
                                     $('#othersMsg').show();
                                     $('#modalOthersButton').hide();
                                 }
 
                             },
                             error: function(error) {
-                                console.error('Não se preocupe, só não existe nenhuma skill com este id. Erro:', error);
+                                console.error('listOthers go wrong. Error:', error);
                             }
                         });
                     }
@@ -538,7 +539,7 @@
                             success: function(data) {
                                 var theseContacts = data.id;
                                 if (theseContacts >= 1) {
-                                    $('#socialMsg').text('Contatos já presentes no banco de dados')
+                                    $('#socialMsg').text('Saved')
                                     $('#socialMsg').show();
                                     $('#modelSocialButton').hide();
                                 }
@@ -546,7 +547,7 @@
                             },
                             error: function(error) {
                                 console.error(
-                                    'Não se preocupe, só não existe nenhuma skill com este id. Erro:',
+                                    'showContacts go wrong. Erro:',
                                     error);
                             }
                         });

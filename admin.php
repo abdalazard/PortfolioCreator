@@ -7,7 +7,7 @@ if (isset($_SESSION["id"])) {
 <html lang="pt-br">
 
 <head>
-    <title>Portfolio</title>
+    <title>Devfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light only" />
@@ -37,20 +37,20 @@ if (isset($_SESSION["id"])) {
             <div class="inner">
                 <div class="container">
                     <a href="index.php">
-                        <h2 id="text02" class="style1">Voltar</h2>
+                        <h2 id="text02" class="style1">Go back</h2>
                     </a>
                     <div id="container01" class="style1 container default">
                         <div class="wrapper">
                             <div class="inner" data-onvisible-trigger="1">
 
-                                <h2 id="text05" class="style1">Acesso</h2>
+                                <h2 id="text05" class="style1">Access</h2>
                                 <form action="src/Login/Login.php" METHOD="POST">
                                     <div>
                                         <input type="text" name="user" placeholder="Usuário" required>
                                     </div>
                                     <hr />
                                     <div>
-                                        <input type="password" name="pass" placeholder="Senha" required>
+                                        <input type="password" name="password" placeholder="Senha" required>
                                     </div>
                                     <hr />
                                     <div> <input type="submit" value="Acessar" class="button">

@@ -1,5 +1,5 @@
 <?php
-$table = "social";
+$table = "contacts";
 
 try {
     $query = "CREATE TABLE " . $table . " (
@@ -12,7 +12,7 @@ try {
     )";
     $db->toDatabase($query);
 
-    echo "Tabela " . $table . " criada com sucesso!";
+    echo "Table " . $table . " created successfully!";
 } catch (PDOException $e) {
-    echo "Erro: " . $e->getMessage();
+    echo "Error: " . $e->getMessage();
 }

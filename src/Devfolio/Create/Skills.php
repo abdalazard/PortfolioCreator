@@ -1,7 +1,7 @@
 <?php
 include '../../../db/Connection.php';
 
-include '../Portfolio.php';
+include '../Devfolio.php';
 
 session_start();
 $userId = $_SESSION['id'];
@@ -12,15 +12,15 @@ $dir = "../../../images/users/";
 
 if($skills) {
     try{
-        $portfolio = new Portfolio;
+        $devfolio = new Devfolio;
 
-        $pathSkills = $portfolio->setImages($skills, 'skills', $dir);
+        $pathSkills = $devfolio->setImages($skills, 'skills', $dir);
         foreach ($pathSkills as $skill) {
             $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
-            $portfolio->dataBase($newSkill);
+            $devfolio->dataBase($newSkill);
         }
     } catch (PDOException $e) {
-        echo "Erro: " . $e->getMessage() . "\nErro ao gravar alguns dos dados de habilidades do portfolio.";
+        echo "Erro: " . $e->getMessage() . "\nProblems to attempt to save some data in this skills list";
     }
 }
 
