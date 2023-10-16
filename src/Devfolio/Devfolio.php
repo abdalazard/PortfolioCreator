@@ -96,14 +96,14 @@ class Devfolio
         $db = $this->dataBase($infoQuery);
         if ($data = mysqli_fetch_array($db)) {
             $id = $data['id'];
-            $foto = $data['profile'];
+            $profile = $data['profile'];
             $title = $data['title'];
             $subtitle = $data['subtitle'];
         }
 
         $data = [
             'id' => $id,
-            'profile' => $foto,
+            'profile' => $profile,
             'title' => $title,
             'subtitle' => $subtitle
         ];
@@ -178,23 +178,10 @@ class Devfolio
         return $data;
     }
 
-    // public function updateProject($id, $data) {
-
-    // }
-
-    // public function updateOthers($id, $data) {
-
-    // }
-
-    // public function updateContact($id, $data) {
-
-    // }
-
-
     public function setImage($file, $typePicture, $dir)
     {
-        $ext = explode(".", $file['name']); //[foto][ferias][jpg]
-        $ext = array_reverse($ext); //[jpg][ferias][foto]
+        $ext = explode(".", $file['name']); //[profile][ferias][jpg]
+        $ext = array_reverse($ext); //[jpg][ferias][profile]
         $ext = $ext[0]; //jpg
 
         if (!isset($file) || !is_uploaded_file($file['tmp_name'])) {
