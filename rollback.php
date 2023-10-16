@@ -14,10 +14,10 @@ function removeAllFilesAndSubdirectories($directory) {
                 $path = $directory . '/' . $file;
                 
                 if (is_dir($path)) {
-                    removeAllFilesAndSubdirectories($path); // Recursively remove subdirectories
+                    removeAllFilesAndSubdirectories($path); 
                     rmdir($path);
                 } else {
-                    unlink($path); // Remove individual file
+                    unlink($path); 
                 }
             }
         }

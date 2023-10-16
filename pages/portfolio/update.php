@@ -167,7 +167,7 @@
                     formProfile.append('action', 'updateProfilePic');
 
                     $.ajax({
-                        url: '../../src/Portfolio/Update.php',
+                        url: '../../src/Devfolio/Update.php',
                         type: 'POST',
                         processData: false,
                         contentType: false,
@@ -206,7 +206,7 @@
                     formProfile.append('action', 'updateProfileTitle');
 
                     $.ajax({
-                        url: '../../src/Portfolio/Update.php',
+                        url: '../../src/Devfolio/Update.php',
                         type: 'POST',
                         processData: false,
                         contentType: false,
@@ -250,7 +250,7 @@
                     formProfile.append('action', 'updateProfileSubtitle');
 
                     $.ajax({
-                        url: '../../src/Portfolio/Update.php',
+                        url: '../../src/Devfolio/Update.php',
                         type: 'POST',
                         processData: false,
                         contentType: false,
@@ -290,7 +290,7 @@
                         formSkills.append('skill[]', files[i]);
                     }
                     $.ajax({
-                        url: '../../src/Portfolio/Update.php',
+                        url: '../../src/Devfolio/Update.php',
                         type: 'POST',
                         processData: false,
                         contentType: false,
@@ -318,7 +318,7 @@
 
                 function listSkills() {
                     $.ajax({
-                        url: '../../src/Portfolio/Get.php',
+                        url: '../../src/Devfolio/Get.php',
                         type: 'GET',
                         dataType: 'json',
                         data: {
@@ -379,7 +379,7 @@
                                         }
                                         function deleteSkill(id) {
                                             $.ajax({
-                                                url: '../../src/Portfolio/Delete.php',
+                                                url: '../../src/Devfolio/Delete.php',
                                                 type: 'GET', 
                                                 dataType: 'json',
                                                 data: {
@@ -419,7 +419,7 @@
                 
                 function listProjects() {
                     $.ajax({
-                        url: '../../src/Portfolio/Get.php',
+                        url: '../../src/Devfolio/Get.php',
                         type: 'GET',
                         dataType: 'json',
                         data: {
@@ -466,7 +466,7 @@
                 function showProfile() {
                     try {
                         $.ajax({
-                            url: '../../src/Portfolio/Get.php',
+                            url: '../../src/Devfolio/Get.php',
                             type: 'GET',
                             dataType: 'json',
                             data: {
@@ -475,8 +475,8 @@
                             success: function(data) {
                                 var thisProfileId = data.id;
                                 var thisProfilePath = data.profile;
-                                var thisProfileTitle = data.titulo;
-                                var thisProfileSubtitle = data.subtitulo;
+                                var thisProfileTitle = data.title;
+                                var thisProfileSubtitle = data.subtitle;
 
                                 if (thisProfileId >= 1) {
 
@@ -507,7 +507,7 @@
 
                     function listOthers() {
                         $.ajax({
-                            url: '../../src/Portfolio/Get.php',
+                            url: '../../src/Devfolio/Get.php',
                             type: 'GET',
                             dataType: 'json',
                             data: {
@@ -530,7 +530,7 @@
                     
                     function showContacts() {
                         $.ajax({
-                            url: '../../src/Portfolio/Get.php',
+                            url: '../../src/Devfolio/Get.php',
                             type: 'GET',
                             dataType: 'json',
                             data: {
