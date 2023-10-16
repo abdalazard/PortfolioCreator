@@ -84,7 +84,7 @@ try {
                                 foreach ($projects as $project) {
                                 ?>
                                 <li>
-                                    <a href="<?php echo $project['url_project'] ?>" class="button n01">
+                                    <a href="<?php echo $project['project_link'] ?>" class="button n01">
                                         <svg>
                                             <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
                                         </svg>
