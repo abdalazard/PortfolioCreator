@@ -10,7 +10,7 @@ Este projeto é um criador de portfolios desenvolvido em PHP que registra dados 
 
 ## Contribuições
 
-Este projeto é de código aberto e estamos abertos a contribuições! Se você tem ideias, sugestões ou correções, sinta-se à vontade para [abrir uma issue](https://github.com/abdalazard/NoobPHP/issues/new) ou enviar um [pull request](https://github.com/abdalazard/NoobPHP/compare).
+Este projeto é de código aberto e contribuições são muito bem-vindas! Se você tem ideias, sugestões ou correções, sinta-se à vontade para [abrir uma issue](https://github.com/abdalazard/NoobPHP/issues/new) ou enviar um [pull request](https://github.com/abdalazard/NoobPHP/compare).
 
 ## Tecnologias Utilizadas
 
