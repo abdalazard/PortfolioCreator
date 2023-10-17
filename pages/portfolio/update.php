@@ -103,22 +103,22 @@
                 <h3 id="projectMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;"></h3> 
                     <div class="row">
                         <div class="col s12">
-                            <input type="file" name="screenshot" id="screenshot" accept="image/*" >
+                            <input type="file" name="screenshot" id="screenshot" accept="image/*" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <input type="text" name="project_name" id="project_name" placeholder="Add the project's title">
+                            <input type="text" name="project_name" id="project_name" placeholder="Add the project's title" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <input type="text" name="project_link" id="project_link" placeholder="Add the project's link">
+                            <input type="text" name="project_link" id="project_link" placeholder="Add the project's link" required>
                         </div>
                     </div>
                     <div class='row'>
                         <div class="col s12 center">
-                            <button id="updateProject" disabled>Update project</button>
+                            <button id="updateProjectList" disabled>Update project</button>
                         </div>
                     </div>
             </div>            
@@ -197,10 +197,17 @@
                     }
                 });
 
+                $('#screenshot').change(function() {
+                    if ($('#screenshot')[0].files[0]) {
+                        
+                        $('#updateProjectList').prop('disabled', false);                        
+                    }
+                });
+
                 $('#profilePicUpdateButton').on('click', function(event) {
                     event.preventDefault();
                     var formProfile = new FormData();
-                    console.log($('#profile')[0].files[0])
+                    // console.log($('#profile')[0].files[0])
                     formProfile.append('profile', $('#profile')[0].files[0]); // Obtem o arquivo do input)
                     formProfile.append('action', 'updateProfilePic');
 
@@ -354,11 +361,10 @@
 
                 });
 
-                $('#updateProject').on('click',function() {
+                $('#updateProjectList').on('click',function() {
                     event.preventDefault();
                     var formProject = new FormData();
-                    var files = $('#screenshot')[0].files[0]
-                    formProject.append('screenshot', files[0].files[0]);
+                    formProject.append('screenshot', $('#screenshot')[0].files[0]);
                     formProject.append('project_name', $('#project_name').val());
                     formProject.append('project_link', $('#project_link').val());
                     formProject.append('action', 'updateProject');
@@ -379,13 +385,12 @@
                                 $('#projectMsg').fadeOut();
                             }, 1000);
 
-                            // $('#currentProject').prop('src', '../../' + files);
                             $('#project_name').val('');
                             $('#project_link').val('');
                             listProjects()
                         },
                         error: function(error) {
-                            console.error('updateProject go wrong:', error);
+                            console.error('updateProjectList go wrong:', error);
                         }
 
                     });

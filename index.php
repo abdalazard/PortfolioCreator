@@ -131,7 +131,7 @@ try {
                                 <div id="modal<?php echo $other['id']; ?>" name="modal<?php echo $other['id']; ?>"
                                     class="modal modal-fixed-footer">
                                     <div class="modal-content">
-                                        <h4><?php echo $other['subtitle']; ?></h4>
+                                        <h4><?php echo $other['title']; ?></h4>
                                         <img src=<?php echo $other['banner']; ?> widht="250px"
                                             height="350px" />
                                     </div>

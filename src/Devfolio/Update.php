@@ -12,8 +12,9 @@ $data = $_POST['data'] ?? null;
 
 $skills = $_FILES['skill'] ?? null;
 
-$idProject = $_POST['idProject'] ?? null;
 $screenshot = $_FILES['screenshot'] ?? null;
+$projectNameInput = $_POST['project_name'];
+$projectLink = $_POST['project_link'];
 
 $dir = "../../images/users/";
 
@@ -26,8 +27,9 @@ if($action == "updateProfilePic"){
 
     if ($devfolio->dataBase($updateProfile)) {
         echo 'Profile picture updated successfully!';
+    } else {
+        echo "Problems to attempt to update profile picture!";
     }
-    // echo "Problems to attempt to update profile picture!";
     
 }
 
@@ -39,8 +41,9 @@ if($action == "updateProfileTitle"){
 
     if ($devfolio->dataBase($updateProfile)) {
         echo 'Profile title updated successfully!';
+    } else {
+        echo "Problems to attempt to update profile title!";    
     }
-    // echo "Problems to attempt to update profile title!";    
 }
 
 if($action == "updateProfileSubtitle"){
@@ -51,8 +54,9 @@ if($action == "updateProfileSubtitle"){
 
     if ($devfolio->dataBase($updateProfile)) {
         echo 'Profile subtitle updated successfully';
+    } else {
+        echo "Problems to attempt to update profile subtitle!";    
     }
-    // echo "Problems to attempt to update profile subtitle!";    
 }
 
 if($action == "updateSkills") {
@@ -63,12 +67,11 @@ if($action == "updateSkills") {
             $column = "skills";
             $pathSkills = $devfolio->setImages($skills, 'skills', $dir, true);
             foreach ($pathSkills as $skill) {
-                // $updateSkills = "UPDATE `skills` SET ".$column." = '".$data."' WHERE `id_user` LIKE '".$userId."'";  
                 $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
 
                 $devfolio->dataBase($newSkill);
             }
-            echo "Skill updated successfully!s";
+            echo "Skill updated successfully!";
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update skills.";
         }
@@ -77,20 +80,17 @@ if($action == "updateSkills") {
 
 if($action == "updateProject") {
     
-    if($project) {
+    if($projectNameInput) {
         try{
             $devfolio = new Devfolio;
-            $column = "skills";
-            $pathSkills = $devfolio->setImages($skills, 'skills', $dir, true);
-            foreach ($pathSkills as $skill) {
-                // $updateSkills = "UPDATE `skills` SET ".$column." = '".$data."' WHERE `id_user` LIKE '".$userId."'";  
-                $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
+            $column = "projects";
+            $pathProject = $devfolio->setImage($screenshot, $column, $dir);
+            $updateProject = "INSERT INTO projects VALUES(null, '".$pathProject."', '" . $projectNameInput . "', '" . $projectLinkInput . "', '" . $userId . "')";
 
-                $devfolio->dataBase($newSkill);
-            }
-            echo "Skill updated successfully!s";
+            $devfolio->dataBase($updateProject);
+            echo "Project updated successfully!s";
         } catch (PDOException $e) {
-            echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update skills.";
+            echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update project.";
         }
     }
 }
