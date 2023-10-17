@@ -12,7 +12,7 @@ try {
      )";
     $db->toDatabase($query);
 
-    echo "Table " . $table . " create successfully";
+    echo "Table " . $table . " created successfully";
 } catch (PDOException $e) {
     echo "Error: " . $e->getMessage();
 }

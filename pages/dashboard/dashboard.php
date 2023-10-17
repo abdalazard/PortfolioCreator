@@ -202,7 +202,7 @@ function getList() {
             success: function(data) {
                 thisProfileId = data.id;
                 thisProfilePath = data.profile;
-                thisProfileTitle = data.titulo;
+                thisProfileTitle = data.title;
 
                 if(thisProfileId >= 1) {
                     $('#profileId').text(thisProfileId);

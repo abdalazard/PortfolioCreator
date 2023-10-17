@@ -73,6 +73,8 @@
                 <div class="col s9">
                     <input type="file" name="skill[]" id="skill" multiple accept="image/*">
                 </div>
+            </div>
+            <div class="row">
                 <div class="col s3">
                     <input type="submit" id="updateSkills" disabled value="Update">
                 </div>
@@ -80,22 +82,46 @@
             <br>
         </div>
         <br>
-        <div id="boxProjects">
-            <h5 id="projectsForm"></h5>
+        <div id="boxProjects" class="boxProjects">
+            <div class="row">
+                    <h5 id="projectsForm"></h5>
+                    <a href="#modalProject" id="newProject" class="modal-trigger"></a>
+            </div>
             <p id="projectSMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
             <div class="row">
                 <div class="col s12 center">
-                    <div id="projectsGallery">
+                    <div id="projectIndividual">
+                        <a id="project_link"><label id="labelProjects" for="projectsGallery"></label></a>
+                        <div id="projectsGallery" name="projectsGallery">
+                        </div>
+                    </div> 
+                </div>
+            </div>
+
+            <div id="modalProject" class="modal modalProject">
+    
+                <h3 id="projectMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;"></h3> 
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="file" name="screenshot" id="screenshot" accept="image/*" >
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col s9">
-                </div>
-                <div class="col s3">
-                <input type="submit" id="updateProjects" disabled value="Update">
-                </div>
-            </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="text" name="project_name" id="project_name" placeholder="Add the project's title">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="text" name="project_link" id="project_link" placeholder="Add the project's link">
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="col s12 center">
+                            <button id="updateProject" disabled>Update project</button>
+                        </div>
+                    </div>
+            </div>            
             <br>
         </div>
         <div id="boxOthers">
@@ -111,6 +137,7 @@
 
             var statusId = <?php echo  $_GET['statusId']; ?>;
 
+            //init
             $(document).ready(function() {
                 $('#profileForm').text('Edit Profile');
                 $('#skillsForm').text('Edit Skills');
@@ -135,6 +162,15 @@
                     "background-color": "white", // Cor de fundo verde
                     "border": "1px solid green" // Borda fina verde
                 });
+                $('#modalProject').css({
+                    "width": 350,
+                    "height": 300,
+                    "padding": 10,
+                    "background-color": "white", // Cor de fundo verde
+                    "border": "1px solid green" // Borda fina verde
+                })
+
+                $('#newProject').text("Publish new project");
 
                 $("#footer-field").css({
                     "background-color": "black"
@@ -144,6 +180,8 @@
                 showProfile();
                 listSkills();
                 listProjects()
+
+                //Update scripts
 
                 $('#profile').change(function() {
                     if (this.files && this.files[0]) {
@@ -316,245 +354,362 @@
 
                 });
 
-                function listSkills() {
-                    $.ajax({
-                        url: '../../src/Devfolio/Get.php',
-                        type: 'GET',
-                        dataType: 'json',
-                        data: {
-                            action: 'getSkills'
-                        },
-                        success: function(data) {
-                            var theseSkills = data;
-                            $("#skillsGallery").empty();
+                $('#updateProject').on('click',function() {
+                    event.preventDefault();
+                    var formProject = new FormData();
+                    var files = $('#screenshot')[0].files[0]
+                    formProject.append('screenshot', files[0].files[0]);
+                    formProject.append('project_name', $('#project_name').val());
+                    formProject.append('project_link', $('#project_link').val());
+                    formProject.append('action', 'updateProject');
 
-                            if (theseSkills.length >= 1) {
+                    $.ajax({
+                        url: '../../src/Devfolio/Update.php',
+                        type: 'POST',
+                        processData: false,
+                        contentType: false,
+                        data: formProject,
+                        success: function(response) {
+                            M.toast({
+                                html: 'Project updated successfully!'
+                            })
+                            $('#projectMsg').text('Project updated successfully!')
+                            $('#projectMsg').show();
+                            setTimeout(function() {
+                                $('#projectMsg').fadeOut();
+                            }, 1000);
+
+                            // $('#currentProject').prop('src', '../../' + files);
+                            $('#project_name').val('');
+                            $('#project_link').val('');
+                            listProjects()
+                        },
+                        error: function(error) {
+                            console.error('updateProject go wrong:', error);
+                        }
+
+                    });
+
+                });   
+
+            //Lists information
+
+            function listSkills() {
+                $.ajax({
+                    url: '../../src/Devfolio/Get.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        action: 'getSkills'
+                    },
+                    success: function(data) {
+                        var theseSkills = data;
+                        $("#skillsGallery").empty();
+
+                        if (theseSkills.length >= 1) {
+                            
+                            for (var i = 0; i < theseSkills.length; i++) {
+                                var skillGallery = data[i].skill;
+                                var skillId = data[i].id;
+
+                                var imgElement = $('<img>');
+                                imgElement.attr('src', '../../' + skillGallery);
+                                imgElement.attr('id',  skillId);
+
+                                imgElement.css({
+                                    'width': '110px',
+                                    'height': '60px',
+                                    'margin': 5,
+                                    'cursor': 'pointer',
+                                    "background-color": "white", // Cor de fundo verde
+                                    "border": "1px solid green",
+                                    "padding": 10,
+                                    "border-radius": "20px",
+
+                                });
+                                imgElement.click(function() {
+                                    var id = $(this).attr('id');
+                                    var path = skillGallery;
+                                    // Aqui você pode usar 'index' para identificar a imagem clicada
+                                    showAlert()
+                                    function showAlert() {
+                                        var alertBox = document.createElement('div');
+                                        alertBox.classList.add('custom-alert');
+                                        
+                                        alertBox.innerHTML = `
+                                            <p>This picture will be deleted.</p>
+                                            <p>Are you sure?</p>
+                                            <img src="../../`+path+`" alt='Logo' width='110px' height='60px' /><br> 
+                                            <button class="red" id="confirmDelete">Yes</button>
+                                            <button id="cancelDelete">No</button>
+                                        `;
+                                        document.body.appendChild(alertBox);
+                                        $(document).on('click', '#confirmDelete', function() {
+                                            deleteSkill(id);
+                                            alertBox.remove();
+                                            $("#skillsGallery").empty();
+                                            listSkills();
+                                        });
+
+                                        $(document).on('click', '#cancelDelete', function() {
+                                            alertBox.remove();
+                                        });
+                                    }
+                                });
                                 
-                                for (var i = 0; i < theseSkills.length; i++) {
-                                    var skillGallery = data[i].skill;
-                                    var skillId = data[i].id;
-
-                                    var imgElement = $('<img>');
-                                    imgElement.attr('src', '../../' + skillGallery);
-                                    imgElement.attr('id',  skillId);
-
-                                    imgElement.css({
-                                        'width': '110px',
-                                        'height': '60px',
-                                        'margin': 5,
-                                        'cursor': 'pointer',
-                                        "background-color": "white", // Cor de fundo verde
-                                        "border": "1px solid green",
-                                        "padding": 10,
-                                        "border-radius": "20px",
-
-                                    });
-                                    imgElement.click(function() {
-                                        var id = $(this).attr('id');
-                                        var path = skillGallery;
-                                        // Aqui você pode usar 'index' para identificar a imagem clicada
-                                        showAlert()
-                                        function showAlert() {
-                                            var alertBox = document.createElement('div');
-                                            alertBox.classList.add('custom-alert');
-                                            
-                                            alertBox.innerHTML = `
-                                                <p>This picture will be deleted.</p>
-                                                <p>Are you sure?</p>
-                                                <img src="../../`+path+`" alt='Logo' width='110px' height='60px' /> 
-                                                <button class="red" id="confirmDelete">Yes</button>
-                                                <button id="cancelDelete">No</button>
-                                            `;
-                                            document.body.appendChild(alertBox);
-                                            $(document).on('click', '#confirmDelete', function() {
-                                                deleteSkill(id);
-                                                alertBox.remove();
-                                                $("#skillsGallery").empty();
-                                                listSkills();
-                                            });
-
-                                            $(document).on('click', '#cancelDelete', function() {
-                                                alertBox.remove();
-                                            });
-                                        }
-                                        function deleteSkill(id) {
-                                            $.ajax({
-                                                url: '../../src/Devfolio/Delete.php',
-                                                type: 'GET', 
-                                                dataType: 'json',
-                                                data: {
-                                                    id: id,
-                                                    path: path,
-                                                    action: 'deleteSkill'
-                                                },
-                                                success: function(data) {
-                                                    
-                                                },
-                                                error: function(error) {
-                                                    console.error('No id found. Error:', error);
-                                                }
-                                            });    
-                                        }                                   
-                                    });
-
-                                    $("#boxSkills").css({
-                                        "width": 600,
-                                        "padding": 10,
-                                        "background-color": "white", // Cor de fundo verde
-                                        "border": "1px solid green",
-                                    });
-                                    $("#skillsGallery").append(imgElement)
-                                }
-
+                                $("#boxSkills").css({
+                                    "width": 600,
+                                    "padding": 10,
+                                    "background-color": "white",
+                                    "border": "1px solid green",
+                                });
+                                $("#skillsGallery").append(imgElement)
                             }
 
-                        },
-                        error: function(error) {
-                            console.error(
-                                'No skill found. Error:',
-                                error);
                         }
-                    });
-                }
-                
-                function listProjects() {
+
+                    },
+                    error: function(error) {
+                        console.error(
+                            'No skill found. Error:',
+                            error);
+                    }
+                });
+            }
+            
+            function listProjects() {
+                $.ajax({
+                    url: '../../src/Devfolio/Get.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        action: 'getProjects'
+                    },
+                    success: function(data) {
+                        var theseProjects = data;
+                        $("#projectsGallery").empty();
+
+                        if (theseProjects.length >= 1) {
+
+                            for (var i = 0; i < theseProjects.length; i++) {
+                                var projectId = data[i].id;
+                                var projectLogo = data[i].screenshot;
+                                var projectsName = data[i].project_name;
+                                var projectsLink = data[i].project_link;
+
+
+                                var imgElement = $('<img>');
+                                imgElement.attr('src', '../../' + projectLogo);
+                                imgElement.attr('id', projectId);
+                                imgElement.css({
+                                    'max-width': '110px',
+                                    'height': '60px',
+                                    'margin': 5,
+                                    'cursor': 'pointer',
+                                    "background-color": "white", // Cor de fundo verde
+                                    "border": "1px solid green",
+                                    "padding": 10,
+                                    "border-radius": "20px",                                        
+                                });
+                                                                    
+                                $("#projectsGallery").append(imgElement)
+                                
+                                $('#labelProjects').append(projectsName)
+                                $('#project_link').attr('href', projectsLink)
+
+                                imgElement.click(function() {
+                                    showAlert()
+                                        
+                                    function showAlert() {
+                                        var alertBox = document.createElement('div');
+                                        alertBox.classList.add('custom-alert');
+                                        
+                                        alertBox.innerHTML = `
+                                            <p>This project will be deleted.</p>
+                                            <p>Are you sure?</p>
+                                            <img src="../../`+projectLogo+`" alt='Screenshot' width='150px' height='160px' /><br><br>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <div class="col s6">
+                                                    <button class="red" id='deleteProject' white-text">Yes</button>
+                                                    </div>
+                                                    <div class="col s6">
+                                                        <button id='noDeleteProject'>No</button>    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        `;
+
+                                        document.body.appendChild(alertBox);
+
+                                        $('#deleteProject').on('click', function() {
+                                            deleteProject(projectId), projectLogo;
+                                            alertBox.remove();
+                                            $("#labelProjects").empty();
+                                            $("#projectGallery").empty();
+                                            M.toast({
+                                                html: 'Project '+projectsName+' updated successfully!'
+                                            })
+                                            listProjects();
+                                        });
+
+                                        $('#noDeleteProject').on('click', function() {
+                                            alertBox.remove();                                         
+                                            
+                                        });
+
+                                    }
+                                                                                
+                                });
+                            }
+                        } else {
+                            var htmlElement = $('<h4>');
+                            htmlElement.text('No project in database!').css({
+                                'color': 'green',
+                                'text-align': 'center',
+                                'padding': 10
+                            })
+                            
+                            $("#boxProjects").append(htmlElement)
+                        }
+                    }            
+                });
+            }    
+
+            function showProfile() {
+                try {
                     $.ajax({
                         url: '../../src/Devfolio/Get.php',
                         type: 'GET',
                         dataType: 'json',
                         data: {
-                            action: 'getProjects'
+                            action: 'getProfile'
                         },
                         success: function(data) {
-                            var theseProjects = data;
-                            $("#projectsList").empty();
+                            var thisProfileId = data.id;
+                            var thisProfilePath = data.profile;
+                            var thisProfileTitle = data.title;
+                            var thisProfileSubtitle = data.subtitle;
 
-                            if (theseProjects.length >= 1) {
+                            if (thisProfileId >= 1) {
 
-                                for (var i = 0; i < theseProjects.length; i++) {
-                                    var projectsGallery = data[i].print;
-                                    var projectsName = data[i].nome_projeto;
-                                    var projectsLink = data[i].url;
-
-
-                                    var imgElement = $('<img>');
-                                    imgElement.attr('src', '../../' + projectsGallery);
-                                    imgElement.css({
-                                        'max-width': '80px',
-                                        'height': '40px',
-                                        'margin': 5
-                                    });
-
-                                    $("#boxProjects").css({
-                                        "width": 600,
-                                        "padding": 10,
-                                        "background-color": "white", // Cor de fundo verde
-                                        "border": "1px solid green",
-                                    });
-                                    $("#projectsList").append(imgElement)
-                                }
+                                $('#profile-pic').prop('disabled', false);
+                                $('#profile-pic').prop('src', '../../' + thisProfilePath);
+                                $('#profile-pic').css({
+                                    'width': '50px',
+                                    'height': '50px',
+                                    'border-radius': '50%',
+                                    'object-fit': 'cover',
+                                    'display': 'block',
+                                    'margin': 'auto',
+                                    'border': '4px solid green'
+                                });
+                                $('#profile-pic').show();
+                                $('#profileTitle').val(thisProfileTitle);
+                                $('#profileSubtitle').val(thisProfileSubtitle);
                             }
                         },
                         error: function(error) {
-                            console.error(
-                                'No project found. Error:',
-                                error);
+                            console.log("setState requisition go wrong! code: " + error)
                         }
-                    });
-                }
+                    });  
+                    
+                } catch (erro) {
+                    console.error(erro);
+                }                        
+            };
 
-                function showProfile() {
-                    try {
-                        $.ajax({
-                            url: '../../src/Devfolio/Get.php',
-                            type: 'GET',
-                            dataType: 'json',
-                            data: {
-                                action: 'getProfile'
-                            },
-                            success: function(data) {
-                                var thisProfileId = data.id;
-                                var thisProfilePath = data.profile;
-                                var thisProfileTitle = data.title;
-                                var thisProfileSubtitle = data.subtitle;
+            //Function Aux.
 
-                                if (thisProfileId >= 1) {
+            function listOthers() {
+                $.ajax({
+                    url: '../../src/Devfolio/Get.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        action: 'getOthers'
+                    },
+                    success: function(data) {
+                        var theseOthers = data;
+                        if (theseOthers.length >= 1) {
+                            $('#othersMsg').text('Saved!')
+                            $('#othersMsg').show();
+                            $('#modalOthersButton').hide();
+                        }
 
-                                    $('#profile-pic').prop('disabled', false);
-                                    $('#profile-pic').prop('src', '../../' + thisProfilePath);
-                                    $('#profile-pic').css({
-                                        'width': '50px',
-                                        'height': '50px',
-                                        'border-radius': '50%',
-                                        'object-fit': 'cover',
-                                        'display': 'block',
-                                        'margin': 'auto',
-                                        'border': '4px solid green'
-                                    });
-                                    $('#profile-pic').show();
-                                    $('#profileTitle').val(thisProfileTitle);
-                                    $('#profileSubtitle').val(thisProfileSubtitle);
-                                }
-                            },
-                            error: function(error) {
-                                console.log("setState requisition go wrong! code: " + error)
-                            }
-                        });  
-                        
-                    } catch (erro) {
-                        console.error(erro);
+                    },
+                    error: function(error) {
+                        console.error('listOthers go wrong. Error:', error);
                     }
+                });
+            }
+                
+            function showContacts() {
+                $.ajax({
+                    url: '../../src/Devfolio/Get.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        action: 'getContacts'
+                    },
+                    success: function(data) {
+                        var theseContacts = data.id;
+                        if (theseContacts >= 1) {
+                            $('#socialMsg').text('Saved')
+                            $('#socialMsg').show();
+                            $('#modelSocialButton').hide();
+                        }
 
-                    function listOthers() {
-                        $.ajax({
-                            url: '../../src/Devfolio/Get.php',
-                            type: 'GET',
-                            dataType: 'json',
-                            data: {
-                                action: 'getOthers'
-                            },
-                            success: function(data) {
-                                var theseOthers = data;
-                                if (theseOthers.length >= 1) {
-                                    $('#othersMsg').text('Saved!')
-                                    $('#othersMsg').show();
-                                    $('#modalOthersButton').hide();
-                                }
+                    },
+                    error: function(error) {
+                        console.error(
+                            'showContacts go wrong. Erro:',
+                            error);
+                    }
+                });
+            }  
 
-                            },
-                            error: function(error) {
-                                console.error('listOthers go wrong. Error:', error);
-                            }
-                        });
+            function deleteProject(id, path) {
+                $.ajax({
+                    url: '../../src/Devfolio/Delete.php',
+                    type: 'GET', 
+                    dataType: 'json',
+                    data: {
+                        id: id,
+                        dir: path,
+                        action: 'deleteProject'
+                    },
+                    success: function(data) {
+                        console.log("ok")
+                    },
+                    error: function(error) {
+                        console.error('No id found. Error:', error);
                     }
                     
-                    function showContacts() {
-                        $.ajax({
-                            url: '../../src/Devfolio/Get.php',
-                            type: 'GET',
-                            dataType: 'json',
-                            data: {
-                                action: 'getContacts'
-                            },
-                            success: function(data) {
-                                var theseContacts = data.id;
-                                if (theseContacts >= 1) {
-                                    $('#socialMsg').text('Saved')
-                                    $('#socialMsg').show();
-                                    $('#modelSocialButton').hide();
-                                }
+                });    
 
-                            },
-                            error: function(error) {
-                                console.error(
-                                    'showContacts go wrong. Erro:',
-                                    error);
-                            }
-                        });
-                    }                           
-                           
-                };
-            });
+            }      
+            
+            function deleteSkill(id) {
+                $.ajax({
+                    url: '../../src/Devfolio/Delete.php',
+                    type: 'GET', 
+                    dataType: 'json',
+                    data: {
+                        id: id,
+                        path: path,
+                        action: 'deleteSkill'
+                    },
+                    success: function(data) {
+                        
+                    },
+                    error: function(error) {
+                        console.error('No id found. Error:', error);
+                    }
+                });    
+            }                                   
+        });
         </script>
 </body>
 

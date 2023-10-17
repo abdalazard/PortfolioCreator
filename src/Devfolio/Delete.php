@@ -25,3 +25,19 @@ if($action == "deleteSkill"){
     exit();
 }
 
+if($action == "deleteProject"){
+
+    $devfolio = new Devfolio;
+    $table = "projects";
+
+    $deleteImage = $devfolio->deleteImages('../../'.$dir);
+    if($deleteImage) {
+        $deleteSkill = "DELETE FROM `".$table."` WHERE id LIKE '".$id."'";  
+        if ($devfolio->dataBase($deleteSkill)) {
+            echo 'Project deleted successfully!';
+        }
+    }    
+    echo "Problems to attempt to delete project.";
+    exit();
+}
+

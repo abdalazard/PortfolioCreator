@@ -8,9 +8,12 @@ $userId = $_SESSION['id'];
 $action = $_POST['action'];
 
 $profile = $_FILES['profile'] ?? null;
+$title = $_POST['data'] ?? null;
 
-$data = $_POST['data'] ?? null;
-$skills = $_FILES['skill'];
+$skills = $_FILES['skill'] ?? null;
+
+$idProject = $_POST['idProject'] ?? null;
+$screenshot = $_FILES['screenshot'] ?? null;
 
 $dir = "../../images/users/";
 
@@ -32,7 +35,7 @@ if($action == "updateProfileTitle"){
 
     $devfolio = new Devfolio;
     $column = "title";
-    $updateProfile = "UPDATE `profile` SET ".$column." = '".$data."' WHERE `id_user` LIKE '".$userId."'";  
+    $updateProfile = "UPDATE `profile` SET ".$column." = '".$title."' WHERE `id_user` LIKE '".$userId."'";  
 
     if ($devfolio->dataBase($updateProfile)) {
         echo 'Profile title updated successfully!';
@@ -51,9 +54,30 @@ if($action == "updateProfileSubtitle"){
     }
     echo "Problems to attempt to update profile subtitle!";    
 }
+
 if($action == "updateSkills") {
     
     if($skills) {
+        try{
+            $devfolio = new Devfolio;
+            $column = "skills";
+            $pathSkills = $devfolio->setImages($skills, 'skills', $dir, true);
+            foreach ($pathSkills as $skill) {
+                // $updateSkills = "UPDATE `skills` SET ".$column." = '".$data."' WHERE `id_user` LIKE '".$userId."'";  
+                $newSkill = "INSERT INTO skills VALUES(null, '" . $skill . "', '" . $userId . "')";
+
+                $devfolio->dataBase($newSkill);
+            }
+            echo "Skill updated successfully!s";
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update skills.";
+        }
+    }
+}
+
+if($action == "updateProject") {
+    
+    if($project) {
         try{
             $devfolio = new Devfolio;
             $column = "skills";

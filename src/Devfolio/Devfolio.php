@@ -118,6 +118,7 @@ class Devfolio
 
         while ($data = mysqli_fetch_array($db)) {
             $project = array(
+                'id' => $data['id'],
                 'screenshot' => $data['screenshot'],
                 'project_name' => $data['project_name'],
                 'project_link' => $data['link']
