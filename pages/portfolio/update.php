@@ -113,7 +113,7 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <input type="text" name="project_link" id="project_link" placeholder="Add the project's link" required>
+                            <input type="text" name="new_project_link" id="new_project_link" placeholder="Add the project's link" required>
                         </div>
                     </div>
                     <div class='row'>
@@ -366,7 +366,7 @@
                     var formProject = new FormData();
                     formProject.append('screenshot', $('#screenshot')[0].files[0]);
                     formProject.append('project_name', $('#project_name').val());
-                    formProject.append('project_link', $('#project_link').val());
+                    formProject.append('project_link', $('#new_project_link').val());
                     formProject.append('action', 'updateProject');
 
                     $.ajax({
@@ -388,6 +388,7 @@
                             $('#project_name').val('');
                             $('#project_link').val('');
                             listProjects()
+                            
                         },
                         error: function(error) {
                             console.error('updateProjectList go wrong:', error);
@@ -426,7 +427,7 @@
                                     'height': '60px',
                                     'margin': 5,
                                     'cursor': 'pointer',
-                                    "background-color": "white", // Cor de fundo verde
+                                    "background-color": "white",
                                     "border": "1px solid green",
                                     "padding": 10,
                                     "border-radius": "20px",
@@ -435,7 +436,6 @@
                                 imgElement.click(function() {
                                     var id = $(this).attr('id');
                                     var path = skillGallery;
-                                    // Aqui você pode usar 'index' para identificar a imagem clicada
                                     showAlert()
                                     function showAlert() {
                                         var alertBox = document.createElement('div');
@@ -502,7 +502,6 @@
                                 var projectsName = data[i].project_name;
                                 var projectsLink = data[i].project_link;
 
-
                                 var imgElement = $('<img>');
                                 imgElement.attr('src', '../../' + projectLogo);
                                 imgElement.attr('id', projectId);
@@ -516,7 +515,7 @@
                                     "padding": 10,
                                     "border-radius": "20px",                                        
                                 });
-                                                                    
+  
                                 $("#projectsGallery").append(imgElement)
                                 
                                 $('#labelProjects').append(projectsName)
@@ -532,7 +531,7 @@
                                         alertBox.innerHTML = `
                                             <p>This project will be deleted.</p>
                                             <p>Are you sure?</p>
-                                            <img src="../../`+projectLogo+`" alt='Screenshot' width='150px' height='160px' /><br><br>
+                                            <img src="../../`+projectLogo+`" alt='Screenshot' width='150px' height='60px' /><br><br>
                                             <div class="row">
                                                 <div class="col s12">
                                                     <div class="col s6">
@@ -570,13 +569,14 @@
                             }
                         } else {
                             var htmlElement = $('<h4>');
+                            htmlElement.atte('id', "noProjectDatabase");
                             htmlElement.text('No project in database!').css({
-                                'color': 'green',
+                                'color': 'black',
                                 'text-align': 'center',
                                 'padding': 10
-                            })
+                            });
                             
-                            $("#boxProjects").append(htmlElement)
+                            $("#boxProjects").append(htmlElement);
                         }
                     }            
                 });
