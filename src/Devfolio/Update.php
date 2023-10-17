@@ -8,7 +8,7 @@ $userId = $_SESSION['id'];
 $action = $_POST['action'];
 
 $profile = $_FILES['profile'] ?? null;
-$title = $_POST['data'] ?? null;
+$data = $_POST['data'] ?? null;
 
 $skills = $_FILES['skill'] ?? null;
 
@@ -27,7 +27,7 @@ if($action == "updateProfilePic"){
     if ($devfolio->dataBase($updateProfile)) {
         echo 'Profile picture updated successfully!';
     }
-    echo "Problems to attempt to update profile picture!";
+    // echo "Problems to attempt to update profile picture!";
     
 }
 
@@ -35,12 +35,12 @@ if($action == "updateProfileTitle"){
 
     $devfolio = new Devfolio;
     $column = "title";
-    $updateProfile = "UPDATE `profile` SET ".$column." = '".$title."' WHERE `id_user` LIKE '".$userId."'";  
+    $updateProfile = "UPDATE `profile` SET ".$column." = '".$data."' WHERE `id_user` LIKE '".$userId."'";  
 
     if ($devfolio->dataBase($updateProfile)) {
         echo 'Profile title updated successfully!';
     }
-    echo "Problems to attempt to update profile title!";    
+    // echo "Problems to attempt to update profile title!";    
 }
 
 if($action == "updateProfileSubtitle"){
@@ -52,7 +52,7 @@ if($action == "updateProfileSubtitle"){
     if ($devfolio->dataBase($updateProfile)) {
         echo 'Profile subtitle updated successfully';
     }
-    echo "Problems to attempt to update profile subtitle!";    
+    // echo "Problems to attempt to update profile subtitle!";    
 }
 
 if($action == "updateSkills") {

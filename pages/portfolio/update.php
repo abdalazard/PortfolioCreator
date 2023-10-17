@@ -265,7 +265,7 @@
 
                         },
                         error: function(error) {
-                            console.error('profileTitleUpdateButton go worng:', error);
+                            console.error('profileTitleUpdateButton go wrong:', error);
                         }
                     });
 
