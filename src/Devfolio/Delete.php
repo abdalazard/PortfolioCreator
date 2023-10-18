@@ -7,7 +7,7 @@ include 'Devfolio.php';
 $userId = $_SESSION['id']; 
 $action = $_GET['action'];
 $id = $_GET['id'];
-$dir = $_GET['dir'] ?? NULL;
+$dir = $_GET['dir'];
 
 if($action == "deleteSkill"){
 
@@ -29,11 +29,10 @@ if($action == "deleteProject"){
 
     $devfolio = new Devfolio;
     $table = "projects";
-
-    $deleteImage = $devfolio->deleteImages('../../'.$dir);
-    if($deleteImage) {
-        $deleteSkill = "DELETE FROM `".$table."` WHERE id LIKE '".$id."'";  
-        if ($devfolio->dataBase($deleteSkill)) {
+    $directory = '../../'.$dir;
+    if($devfolio->deleteImages($directory)) {
+        $deleteProject = "DELETE FROM `".$table."` WHERE id LIKE '".$id."'";  
+        if ($devfolio->dataBase($deleteProject)) {
             echo 'Project deleted successfully!';
         }
     }    

@@ -179,8 +179,7 @@ class Devfolio
         return $data;
     }
 
-    public function setImage($file, $typePicture, $dir)
-    {
+    public function setImage($file, $typePicture, $dir) {
         $ext = explode(".", $file['name']); //[profile][ferias][jpg]
         $ext = array_reverse($ext); //[jpg][ferias][profile]
         $ext = $ext[0]; //jpg
@@ -196,12 +195,36 @@ class Devfolio
             } else {
                 $folder = $_SESSION['user']. "_folder";
                 $num = uniqid();
-                // $directory = "../";
                 if (is_dir($dir.$folder."/" . $typePicture . "/")) {
                     $this->removeAllFilesAndSubdirectories($dir.$folder."/" . $typePicture . "/");
                 }
-                mkdir($dir . $folder."/" . $typePicture . "/", 0777, true);
+                mkdir($dir . $folder."/" . $typePicture . "/", 0777, true);                    
+                move_uploaded_file($file['tmp_name'], $dir . $folder."/" . $typePicture . "/". $num . '.' . $ext);
 
+                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $num . '.' . $ext;
+                return $path;
+
+            }
+        }
+    }
+
+    public function setImageProject($file, $typePicture, $dir, )
+    {
+        $ext = explode(".", $file['name']); //[profile][ferias][jpg]
+        $ext = array_reverse($ext); //[jpg][ferias][profile]
+        $ext = $ext[0]; //jpg
+
+        if (!isset($file) || !is_uploaded_file($file['tmp_name'])) {
+            $path = "Nonexistent or invalid file!";
+            return $path;
+        } else {
+            if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
+                $path = "Invalid image file!";
+                $file = '';
+                return $path;
+            } else {
+                $folder = $_SESSION['user']. "_folder";
+                $num = uniqid();               
                 move_uploaded_file($file['tmp_name'], $dir . $folder."/" . $typePicture . "/". $num . '.' . $ext);
 
                 $path = "images/users/" . $folder . "/" . $typePicture . "/" . $num . '.' . $ext;
@@ -212,6 +235,8 @@ class Devfolio
     }
 
     public function deleteImages($dir){
+        // var_dump($dir);
+        // die();
             unlink("$dir"); 
             return true;
         }

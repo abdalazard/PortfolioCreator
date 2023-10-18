@@ -90,8 +90,9 @@
             <p id="projectSMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
             <div class="row">
                 <div class="col s12 center">
+                <!-- <a id="project_link"><label id="labelProjects" for="projectsGallery"></label></a> -->
+
                     <div id="projectIndividual">
-                        <a id="project_link"><label id="labelProjects" for="projectsGallery"></label></a>
                         <div id="projectsGallery" name="projectsGallery">
                         </div>
                     </div> 
@@ -493,7 +494,7 @@
                     success: function(data) {
                         var theseProjects = data;
                         $("#projectsGallery").empty();
-
+                        console.log(theseProjects)
                         if (theseProjects.length >= 1) {
 
                             for (var i = 0; i < theseProjects.length; i++) {
@@ -506,7 +507,7 @@
                                 imgElement.attr('src', '../../' + projectLogo);
                                 imgElement.attr('id', projectId);
                                 imgElement.css({
-                                    'max-width': '110px',
+                                    'width': '80px',
                                     'height': '60px',
                                     'margin': 5,
                                     'cursor': 'pointer',
@@ -548,7 +549,7 @@
                                         document.body.appendChild(alertBox);
 
                                         $('#deleteProject').on('click', function() {
-                                            deleteProject(projectId), projectLogo;
+                                            deleteProject(projectId, projectLogo);
                                             alertBox.remove();
                                             $("#labelProjects").empty();
                                             $("#projectGallery").empty();

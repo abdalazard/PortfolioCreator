@@ -84,7 +84,7 @@ if($action == "updateProject") {
         try{
             $devfolio = new Devfolio;
             $column = "projects";
-            $pathProject = $devfolio->setImage($screenshot, $column, $dir);
+            $pathProject = $devfolio->setImageProject($screenshot, $column, $dir);
             $updateProject = "INSERT INTO projects VALUES(null, '".$pathProject."', '" . $projectNameInput . "', '" . $projectLink . "', '" . $userId . "')";
 
             $devfolio->dataBase($updateProject);
