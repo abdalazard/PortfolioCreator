@@ -87,11 +87,9 @@
                     <h5 id="projectsForm"></h5>
                     <a href="#modalProject" id="newProject" class="modal-trigger"></a>
             </div>
-            <p id="projectSMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
+            <p id="projectMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
             <div class="row">
                 <div class="col s12 center">
-                <!-- <a id="project_link"><label id="labelProjects" for="projectsGallery"></label></a> -->
-
                     <div id="projectIndividual">
                         <div id="projectsGallery" name="projectsGallery">
                         </div>
@@ -101,7 +99,7 @@
 
             <div id="modalProject" class="modal modalProject">
     
-                <h3 id="projectMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;"></h3> 
+                <h3 id="projectsMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></h3> 
                     <div class="row">
                         <div class="col s12">
                             <input type="file" name="screenshot" id="screenshot" accept="image/*" required>
@@ -512,7 +510,7 @@
                                 var skillId = data[i].id;
 
                                 var imgElement = $('<img>');
-                                imgElement.attr('src', '../../' + skillGallery);
+                                imgElement.attr('src', "../../" + skillGallery);
                                 imgElement.attr('id',  skillId);
 
                                 imgElement.css({
@@ -528,7 +526,8 @@
                                 });
                                 imgElement.click(function() {
                                     var id = $(this).attr('id');
-                                    var path = skillGallery;
+                                    var src = $(this).attr('src');
+
                                     showAlert()
                                     function showAlert() {
                                         var alertBox = document.createElement('div');
@@ -537,13 +536,13 @@
                                         alertBox.innerHTML = `
                                             <p>This picture will be deleted.</p>
                                             <p>Are you sure?</p>
-                                            <img src="../../`+path+`" alt='Logo' width='110px' height='60px' /><br> 
+                                            <img src="`+src+`" alt='Logo' width='110px' height='60px' /><br> 
                                             <button class="red" id="confirmDelete">Yes</button>
                                             <button id="cancelDelete">No</button>
                                         `;
                                         document.body.appendChild(alertBox);
                                         $(document).on('click', '#confirmDelete', function() {
-                                            deleteSkill(id);
+                                            deleteSkill(id, src);
                                             alertBox.remove();
                                             $("#skillsGallery").empty();
                                             listSkills();
@@ -614,6 +613,8 @@
                                 $('#project_link').attr('href', projectsLink)
 
                                 imgElement.click(function() {
+                                    var id = $(this).attr('id');
+                                    var src = $(this).attr('src');
                                     showAlert()
                                         
                                     function showAlert() {
@@ -623,7 +624,7 @@
                                         alertBox.innerHTML = `
                                             <p>This project will be deleted.</p>
                                             <p>Are you sure?</p>
-                                            <img src="../../`+projectLogo+`" alt='Screenshot' width='150px' height='60px' /><br><br>
+                                            <img src="`+src+`" alt='Screenshot' width='150px' height='60px' /><br><br>
                                             <div class="row">
                                                 <div class="col s12">
                                                     <div class="col s6">
@@ -640,12 +641,12 @@
                                         document.body.appendChild(alertBox);
 
                                         $('#deleteProject').on('click', function() {
-                                            deleteProject(projectId, projectLogo);
+                                            deleteProject(id, src);
                                             alertBox.remove();
                                             $("#labelProjects").empty();
                                             $("#projectGallery").empty();
                                             M.toast({
-                                                html: 'Project '+projectsName+' updated successfully!'
+                                                html: 'Project updated successfully!'
                                             })
                                             listProjects();
                                         });
@@ -661,7 +662,7 @@
                             }
                         } else {
                             var htmlElement = $('<h4>');
-                            htmlElement.atte('id', "noProjectDatabase");
+                            htmlElement.attr('id', "noProjectDatabase");
                             htmlElement.text('No project in database!').css({
                                 'color': 'black',
                                 'text-align': 'center',
@@ -757,6 +758,8 @@
                                 $('#others_link').attr('href', eventLink)
 
                                 imgElement.click(function() {
+                                    var id = $(this).attr('id');
+                                    var src = $(this).attr('src');
                                     showAlert()
                                         
                                     function showAlert() {
@@ -766,7 +769,7 @@
                                         alertBox.innerHTML = `
                                             <p>This event will be deleted.</p>
                                             <p>Are you sure?</p>
-                                            <img src="../../`+eventBanner+`" alt='Screenshot' width='150px' height='60px' /><br><br>
+                                            <img src="`+src+`" alt='Screenshot' width='150px' height='60px' /><br><br>
                                             <div class="row">
                                                 <div class="col s12">
                                                     <div class="col s6">
@@ -783,7 +786,7 @@
                                         document.body.appendChild(alertBox);
 
                                         $('#deleteEvent').on('click', function() {
-                                            deleteEvent(eventId, eventBanner);
+                                            deleteEvent(id, src);
                                             console.log("Event deleted!")
                                             alertBox.remove();
 
@@ -805,7 +808,7 @@
                         }
                         else {
                             var htmlElement = $('<h4>');
-                            htmlElement.atte('id', "noOthersInDatabase");
+                            htmlElement.attr('id', "noOthersInDatabase");
                             htmlElement.text('No event in database!').css({
                                 'color': 'black',
                                 'text-align': 'center',
@@ -847,13 +850,17 @@
             }  
 
             function deleteEvent(id, path) {
+                let url = path;
+                if (url.startsWith("../../")) {
+                    url = url.substring(6);
+                }
                 $.ajax({
                     url: '../../src/Devfolio/Delete.php',
                     type: 'GET', 
                     dataType: 'json',
                     data: {
                         id: id,
-                        dir: path,
+                        dir: url,
                         action: 'deleteEvent'
                     },
                     success: function(data) {
@@ -867,13 +874,17 @@
             }      
 
             function deleteProject(id, path) {
+                let url = path;
+                if (url.startsWith("../../")) {
+                    url = url.substring(6);
+                }
                 $.ajax({
                     url: '../../src/Devfolio/Delete.php',
                     type: 'GET', 
                     dataType: 'json',
                     data: {
                         id: id,
-                        dir: path,
+                        dir: url,
                         action: 'deleteProject'
                     },
                     success: function(data) {
@@ -886,14 +897,18 @@
                 });    
             }      
             
-            function deleteSkill(id) {
+            function deleteSkill(id, path) {
+                let url = path;
+                if (url.startsWith("../../")) {
+                    url = url.substring(6);
+                }
                 $.ajax({
                     url: '../../src/Devfolio/Delete.php',
                     type: 'GET', 
                     dataType: 'json',
                     data: {
                         id: id,
-                        path: path,
+                        dir: url,
                         action: 'deleteSkill'
                     },
                     success: function(data) {

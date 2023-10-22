@@ -30,6 +30,9 @@ include '../../auth/Authentication.php'; ?>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
                 <li><a href="#">Change Layout(Soon)</a></li>
             </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="visualization.php">Visualizar Devfolio</a></li>
+            </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger "
                         href="../../src/Logout/Logout.php">Logout</a>
