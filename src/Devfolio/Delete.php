@@ -40,3 +40,17 @@ if($action == "deleteProject"){
     exit();
 }
 
+if($action == "deleteEvent"){
+
+    $devfolio = new Devfolio;
+    $table = "others";
+    $directory = '../../'.$dir;
+    if($devfolio->deleteImages($directory)) {
+        $deleteOthers = "DELETE FROM `".$table."` WHERE id LIKE '".$id."'";  
+        if ($devfolio->dataBase($deleteOthers)) {
+            echo 'Event deleted successfully!';
+        }
+    }    
+    echo "Problems to attempt to delete event.";
+    exit();
+}

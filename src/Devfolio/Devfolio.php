@@ -234,12 +234,36 @@ class Devfolio
         }
     }
 
-    public function deleteImages($dir){
-        // var_dump($dir);
-        // die();
-            unlink("$dir"); 
-            return true;
+    public function setImageOthers($file, $typePicture, $dir, )
+    {
+        $ext = explode(".", $file['name']); //[profile][ferias][jpg]
+        $ext = array_reverse($ext); //[jpg][ferias][profile]
+        $ext = $ext[0]; //jpg
+
+        if (!isset($file) || !is_uploaded_file($file['tmp_name'])) {
+            $path = "Nonexistent or invalid file!";
+            return $path;
+        } else {
+            if ($ext != "jpg" && $ext != "png" && $ext != "jpeg") {
+                $path = "Invalid image file!";
+                $file = '';
+                return $path;
+            } else {
+                $folder = $_SESSION['user']. "_folder";
+                $num = uniqid();               
+                move_uploaded_file($file['tmp_name'], $dir . $folder."/" . $typePicture . "/". $num . '.' . $ext);
+
+                $path = "images/users/" . $folder . "/" . $typePicture . "/" . $num . '.' . $ext;
+                return $path;
+
+            }
         }
+    }
+    
+    public function deleteImages($dir){
+        unlink("$dir"); 
+        return true;
+    }
 
     public function setImages($files, $typePicture, $dir, $action = null)
     {

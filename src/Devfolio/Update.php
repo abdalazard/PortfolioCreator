@@ -4,19 +4,27 @@ include '../../db/Connection.php';
 
 include 'Devfolio.php';
 
+//Utils
 $userId = $_SESSION['id']; 
 $action = $_POST['action'];
+$dir = "../../images/users/";
 
+//Profile
 $profile = $_FILES['profile'] ?? null;
 $data = $_POST['data'] ?? null;
 
+//Skills
 $skills = $_FILES['skill'] ?? null;
 
+//Projects
 $screenshot = $_FILES['screenshot'] ?? null;
 $projectNameInput = $_POST['project_name'];
 $projectLink = $_POST['project_link'];
 
-$dir = "../../images/users/";
+//Others
+$banner = $_FILES['banner'];
+$others_title = $_POST['others_title'];
+$others_link = $_POST['others_link'];
 
 if($action == "updateProfilePic"){
 
@@ -91,6 +99,23 @@ if($action == "updateProject") {
             echo "Project updated successfully!s";
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update project.";
+        }
+    }
+}
+
+if($action == "updateOthers") {
+    
+    if($others_title) {
+        try{
+            $devfolio = new Devfolio;
+            $column = "others";
+            $pathOthers = $devfolio->setImageOthers($banner, $column, $dir);
+            $updateOthers = "INSERT INTO others VALUES(null, '".$others_title."', '" . $pathOthers . "', '" . $others_link . "', '" . $userId . "')";
+
+            $devfolio->dataBase($updateOthers);
+            echo "Event updated successfully!s";
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update event.";
         }
     }
 }

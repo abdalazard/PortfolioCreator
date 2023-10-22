@@ -125,8 +125,46 @@
             </div>            
             <br>
         </div>
+        <br>
         <div id="boxOthers">
+            <div class="row">
+                    <h5 id="othersForm"></h5>
+                    <a href="#modalOthers" id="newOthers" class="modal-trigger"></a>
+            </div>
+            <p id="othersMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;"></p>
+            <div class="row">
+                <div class="col s12 center">
+                    <div id="othersIndividual">
+                        <div id="othersGallery" name="othersGallery">
+                        </div>
+                    </div> 
+                </div>
+            </div>
 
+            <div id="modalOthers" class="modal modalOthers">
+                <h3 id="othersMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;"></h3> 
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="file" name="others_banner" id="others_banner" accept="image/*" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="text" name="others_name" id="others_name" placeholder="Add the event's title" required>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <input type="text" name="others_link" id="others_link" placeholder="Add the event's link" required>
+                        </div>
+                    </div>
+                    <div class='row'>
+                        <div class="col s12 center">
+                            <button id="updateOthersList">Update your event/article</button>
+                        </div>
+                    </div>
+            </div>            
+            <br>
         </div>
         <br>
         <div id="boxContacts">
@@ -143,6 +181,7 @@
                 $('#profileForm').text('Edit Profile');
                 $('#skillsForm').text('Edit Skills');
                 $('#projectsForm').text('Edit Project');
+                $('#othersForm').text('Edit Event');
 
                 $("#boxProfile").css({
                     "width": 600,
@@ -163,6 +202,22 @@
                     "background-color": "white", // Cor de fundo verde
                     "border": "1px solid green" // Borda fina verde
                 });
+
+                $("#boxOthers").css({
+                    "width": 600,
+                    "padding": 10,
+                    "background-color": "white", // Cor de fundo verde
+                    "border": "1px solid green" // Borda fina verde
+                });
+
+                $('#modalOthers').css({
+                    "width": 350,
+                    "height": 300,
+                    "padding": 10,
+                    "background-color": "white", // Cor de fundo verde
+                    "border": "1px solid green" // Borda fina verde
+                })
+
                 $('#modalProject').css({
                     "width": 350,
                     "height": 300,
@@ -172,6 +227,7 @@
                 })
 
                 $('#newProject').text("Publish new project");
+                $('#newOthers').text("Publish new event");
 
                 $("#footer-field").css({
                     "background-color": "black"
@@ -181,6 +237,7 @@
                 showProfile();
                 listSkills();
                 listProjects()
+                listOthers()
 
                 //Update scripts
 
@@ -208,7 +265,6 @@
                 $('#profilePicUpdateButton').on('click', function(event) {
                     event.preventDefault();
                     var formProfile = new FormData();
-                    // console.log($('#profile')[0].files[0])
                     formProfile.append('profile', $('#profile')[0].files[0]); // Obtem o arquivo do input)
                     formProfile.append('action', 'updateProfilePic');
 
@@ -388,11 +444,47 @@
 
                             $('#project_name').val('');
                             $('#project_link').val('');
-                            listProjects()
-                            
+                            listProjects() ;                           
                         },
                         error: function(error) {
                             console.error('updateProjectList go wrong:', error);
+                        }
+
+                    });
+
+                });   
+
+                $('#updateOthersList').on('click',function() {
+                    event.preventDefault();
+                    var formOthers = new FormData();
+                    formOthers.append('banner', $('#others_banner')[0].files[0]);
+                    formOthers.append('others_title', $('#others_name').val());
+                    formOthers.append('others_link', $('#others_link').val());
+                    formOthers.append('action', 'updateOthers');
+                    
+                    $.ajax({
+                        url: '../../src/Devfolio/Update.php',
+                        type: 'POST',
+                        processData: false,
+                        contentType: false,
+                        data: formOthers,
+                        success: function(response) {
+                            M.toast({
+                                html: 'Event updated successfully!'
+                            })
+                            $('#othersMsg').text('Event updated successfully!')
+                            $('#othersMsg').show();
+                            setTimeout(function() {
+                                $('#othersMsg').fadeOut();
+                            }, 1000);
+
+                            $('#others_name').val('');
+                            $('#others_link').val('');
+                            listOthers()
+                            
+                        },
+                        error: function(error) {
+                            console.error('updateOthersList go wrong:', error);
                         }
 
                     });
@@ -494,7 +586,6 @@
                     success: function(data) {
                         var theseProjects = data;
                         $("#projectsGallery").empty();
-                        console.log(theseProjects)
                         if (theseProjects.length >= 1) {
 
                             for (var i = 0; i < theseProjects.length; i++) {
@@ -627,7 +718,6 @@
             };
 
             //Function Aux.
-
             function listOthers() {
                 $.ajax({
                     url: '../../src/Devfolio/Get.php',
@@ -637,13 +727,93 @@
                         action: 'getOthers'
                     },
                     success: function(data) {
-                        var theseOthers = data;
-                        if (theseOthers.length >= 1) {
-                            $('#othersMsg').text('Saved!')
-                            $('#othersMsg').show();
-                            $('#modalOthersButton').hide();
-                        }
 
+                        var theseOthers = data;
+                        $("#othersGallery").empty();
+                        if (theseOthers.length >= 1) {
+                            for (var i = 0; i < theseOthers.length; i++) {
+                                var eventId = data[i].id;
+                                var eventBanner = data[i].banner;
+                                var eventTitle = data[i].title;
+                                var eventLink = data[i].banner_link;
+
+                                var imgElement = $('<img>');
+                                imgElement.attr('src', '../../' + eventBanner);
+                                imgElement.attr('id', eventId);
+                                imgElement.css({
+                                    'width': '80px',
+                                    'height': '60px',
+                                    'margin': 5,
+                                    'cursor': 'pointer',
+                                    "background-color": "white", // Cor de fundo verde
+                                    "border": "1px solid green",
+                                    "padding": 10,
+                                    "border-radius": "20px",                                        
+                                });
+  
+                                $("#othersGallery").append(imgElement)
+                                
+                                $('#others_name').append(eventTitle)
+                                $('#others_link').attr('href', eventLink)
+
+                                imgElement.click(function() {
+                                    showAlert()
+                                        
+                                    function showAlert() {
+                                        var alertBox = document.createElement('div');
+                                        alertBox.classList.add('custom-alert');
+                                        
+                                        alertBox.innerHTML = `
+                                            <p>This event will be deleted.</p>
+                                            <p>Are you sure?</p>
+                                            <img src="../../`+eventBanner+`" alt='Screenshot' width='150px' height='60px' /><br><br>
+                                            <div class="row">
+                                                <div class="col s12">
+                                                    <div class="col s6">
+                                                    <button class="red" id='deleteEvent' white-text">Yes</button>
+                                                    </div>
+                                                    <div class="col s6">
+                                                        <button id='noDeleteEvent'>No</button>    
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                        `;
+
+                                        document.body.appendChild(alertBox);
+
+                                        $('#deleteEvent').on('click', function() {
+                                            deleteEvent(eventId, eventBanner);
+                                            console.log("Event deleted!")
+                                            alertBox.remove();
+
+                                            M.toast({
+                                                html: 'Event '+eventTitle+' updated successfully!'
+                                            })
+                                            listOthers();
+                                        });
+
+                                        $('#noDeleteEvent').on('click', function() {
+                                            alertBox.remove();                                         
+                                            
+                                        });
+
+                                    }
+                                                                                
+                                });
+                            }
+                        }
+                        else {
+                            var htmlElement = $('<h4>');
+                            htmlElement.atte('id', "noOthersInDatabase");
+                            htmlElement.text('No event in database!').css({
+                                'color': 'black',
+                                'text-align': 'center',
+                                'padding': 10
+                            });
+                            
+                            $("#boxOthers").append(htmlElement);
+                        }
                     },
                     error: function(error) {
                         console.error('listOthers go wrong. Error:', error);
@@ -676,6 +846,26 @@
                 });
             }  
 
+            function deleteEvent(id, path) {
+                $.ajax({
+                    url: '../../src/Devfolio/Delete.php',
+                    type: 'GET', 
+                    dataType: 'json',
+                    data: {
+                        id: id,
+                        dir: path,
+                        action: 'deleteEvent'
+                    },
+                    success: function(data) {
+                        console.log("ok")
+                    },
+                    error: function(error) {
+                        console.error('Problems with deleteEvent function in update.php. Error:', error);
+                    }
+                    
+                });    
+            }      
+
             function deleteProject(id, path) {
                 $.ajax({
                     url: '../../src/Devfolio/Delete.php',
@@ -694,7 +884,6 @@
                     }
                     
                 });    
-
             }      
             
             function deleteSkill(id) {
