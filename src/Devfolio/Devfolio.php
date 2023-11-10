@@ -260,10 +260,50 @@ class Devfolio
         }
     }
     
-    public function deleteImages($dir){
-        unlink("$dir"); 
-        return true;
+    public function deleteImages($dir) {
+        if (!file_exists($dir)) {
+            return true;
+        }
+    
+        if (!is_dir($dir)) {
+            return unlink($dir);
+        }
+    
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+    
+            if (!$this->deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+                return false;
+            }
+        }
+    
+        return rmdir($dir);
     }
+
+    public function deleteDirectory($dir) {
+        if (!file_exists($dir)) {
+            return true;
+        }
+    
+        if (!is_dir($dir)) {
+            return unlink($dir);
+        }
+    
+        foreach (scandir($dir) as $item) {
+            if ($item == '.' || $item == '..') {
+                continue;
+            }
+    
+            if (!$this->deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+                return false;
+            }
+        }
+    
+        return rmdir($dir);
+    }
+    
 
     public function setImages($files, $typePicture, $dir, $action = null)
     {

@@ -19,7 +19,7 @@
         <div class="row">
             <!-- table: info -->
             <div class="col s12 center">
-                <input type="file" name="profile" id="profile" accept="image/*"><br>
+                <input type="file" name="profile" id="profile" accept=" .png, .jpg, .jpeg"><br>
             </div>
         </div>
         <div class="row">

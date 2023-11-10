@@ -7,7 +7,7 @@ include 'Devfolio.php';
 $userId = $_SESSION['id']; 
 $action = $_GET['action'];
 $id = $_GET['id'];
-$dir = $_GET['dir'];
+$dir = $_GET['dir'] ?? null;
 
 if($action == "deleteSkill"){
 
@@ -53,4 +53,54 @@ if($action == "deleteEvent"){
     }    
     echo "Problems to attempt to delete event.";
     exit();
+}
+
+if($action == "deletePortfolio"){
+   
+    
+    try {
+        $devfolio = new Devfolio;
+
+        $directory = '../../images/users/'.$_SESSION['user'].'_folder/';
+
+        // $devfolio->deleteImages($directory);
+
+        $deleteOthers = "DELETE FROM profile WHERE id_user LIKE '".$userId."'";  
+        if ($devfolio->dataBase($deleteOthers)) {
+            echo 'Profile deleted successfully!';
+        }
+        $deleteSkill = "DELETE FROM skills WHERE id_user LIKE '".$userId."'";  
+        if ($devfolio->dataBase($deleteSkill)) {
+            echo 'Skill deleted successfully!';
+        }
+        
+        $deleteProject = "DELETE FROM projects WHERE id_user LIKE '".$userId."'";  
+        if ($devfolio->dataBase($deleteProject)) {
+            echo 'Project deleted successfully!';
+        }
+
+        $deleteOthers = "DELETE FROM others WHERE id_user LIKE '".$userId."'";  
+        if ($devfolio->dataBase($deleteOthers)) {
+            echo 'Event deleted successfully!';
+        }
+
+        $deleteOthers = "DELETE FROM contacts WHERE id_user LIKE '".$userId."'";  
+        if ($devfolio->dataBase($deleteOthers)) {
+            echo 'Contacts deleted successfully!';
+        }
+
+        $deleteState =  "DELETE FROM state WHERE id_user LIKE '".$userId."'";
+        $devfolio->dataBase($deleteState);
+        
+        $createNewState = "INSERT INTO state VALUES(null, '0','0','0','0','0', '" . $userId . "')";
+        $devfolio->dataBase($createNewState);
+
+        $updateStatus = "UPDATE status SET status = '0' WHERE id_user LIKE '".$userId."'";
+        $devfolio->dataBase($updateStatus);
+
+        echo json_encode(['success' => true]);
+    } catch (Exception $e) {
+        // Se ocorrer um erro, enviar uma resposta JSON com um indicador de erro e uma mensagem
+        echo json_encode(['success' => false, 'error' => $e->getMessage()]);
+    }
 }

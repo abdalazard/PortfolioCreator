@@ -31,7 +31,7 @@ include '../../auth/Authentication.php'; ?>
                 <li><a href="#">Change Layout(Soon)</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="visualization.php">Visualizar Devfolio</a></li>
+                <li><a id="visu" href="visualization.php">Visualizar Devfolio</a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger "
@@ -94,7 +94,11 @@ include '../../auth/Authentication.php'; ?>
             <h3>teste edit</h3>
         </div> -->
         <div id="modalDelete" class="modal center">
-            <h1>teste delete</h1>
+            <h1>Your portfolio will be erased.</h1>
+            <h4>Are you  sure about that?</h4>
+            <div id="confirmButton">
+
+            </div>
         </div>
     </div>
 
@@ -113,8 +117,15 @@ $('#portfolioList').hide();
 $("#msg").addClass("logged");
 setTimeout(function() {
         $('#msg').fadeOut();
-    }, 1000);
+}, 1000);
 
+$('#confirmButton').css({
+    'padding': '10px 20px',
+    'background-color': '#ef1047',
+    'color': '#fff',
+    'border': 'none',
+    'cursor': 'pointer',
+}).text('Yes, I am!');
 
 function getStatus(){
     $.ajax({
@@ -131,6 +142,7 @@ function getStatus(){
             console.log(data)
             if(status == 0) {
                 $('#new').show();
+                $('#visu').hide();
                 setState()
 
             } 
@@ -223,6 +235,7 @@ function getList() {
 
                     $('#tituloProfile').text(thisProfileTitle);
                     $('#new').hide();
+                    $('#visu').show();
                     $('#portfolioList').show();
 
                 } 
@@ -236,9 +249,30 @@ function getList() {
         console.log("Edit: "+statusId)
         window.location.href = '../portfolio/update.php?statusId='+statusId
     });
-    $('#deletePortfolio').on('click', function () {
-        console.log("Delete")
+
+    $('#confirmButton').on('click', function () {
+        $.ajax({
+            url: '../../src/Devfolio/Delete.php',
+            type: 'GET', 
+            dataType: 'json',
+            data: {
+                id: userId,
+                action: 'deletePortfolio' 
+            },
+            success: function(data) {
+                if (data.success) {
+                    $('#modalDelete').hide();
+                    window.location.reload(true);
+                } else {
+                    console.error('Erro ao excluir portfolio:', data.error);
+                }
+            },
+            error: function(error) {
+                console.log("deletePortfolio's trouble!")
+            }
+        });
     });
+
 });
 </script>
 
