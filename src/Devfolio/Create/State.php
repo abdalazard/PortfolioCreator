@@ -15,6 +15,8 @@ if($action == "setState"){
     $selectState = "SELECT * FROM state WHERE id_user LIKE '".$userId."'";
     $queryState = $devfolio->dataBase($selectState);
     if(!$queryState || $queryState == null) {
+        // $createNewState = "INSERT INTO state VALUES(null, '0','0','0','0','0', '" . $userId . "')";
+        // $devfolio->dataBase($createNewState);
         echo "Problems to attempt to verify state";
     } else {
         $result = mysqli_num_rows($queryState);

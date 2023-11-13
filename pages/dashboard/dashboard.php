@@ -167,7 +167,7 @@ $(document).ready(function() {
         state.append('action', "setState");
 
         $.ajax({
-            url: '../../src/Devfolio/Create/state.php',
+            url: '../../src/Devfolio/Create/State.php',
             type: 'POST',
             processData: false,
             contentType: false,
