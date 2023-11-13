@@ -8,7 +8,7 @@
 </div>
 <h3 id="profileMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
 </h3>
-<a href="#modalProfile" id="modalProfileButton" class="modal-trigger">Adicione seus dados pessoais</a>
+<a href="#modalProfile" id="modalProfileButton" class="modal-trigger">Who are you?</a>
 <div id="modalProfile" class="modal modalBanner">
     
     <h3 id="profileMsg2" style="font-size: 15px; background-color: green; color: white; text-align:center;">
@@ -19,24 +19,24 @@
         <div class="row">
             <!-- table: info -->
             <div class="col s12 center">
-                <input type="file" name="profile" id="profile" accept="image/*"><br>
+                <input type="file" name="profile" id="profile" accept=" .png, .jpg, .jpeg"><br>
             </div>
         </div>
         <div class="row">
             <div class="col s12">
-                <label for="titulo">Titulo</label>
-                <input type="text" name="titulo" id="titulo" placeholder="Título" required>
+                <label for="title">Title</label>
+                <input type="text" name="title" id="title" placeholder="Title" required>
             </div>
         </div>
         <div class="row">
             <div class="col s12">
-                <label for="subtitulo">Subtitulo</label>
-                <input type="text" name="subtitulo" id="subtitulo" placeholder="Subtitulo(tecnologias)" required>
+                <label for="subtitle">Subtitle</label>
+                <input type="text" name="subtitle" id="subtitle" placeholder="Subtitle" required>
             </div>
         </div>
         <div class="row">
             <div class="col s12">
-                <input type="submit" value="Salvar" id="gravaProfile">
+                <button id="saveProfile">Save</button>
             </div>
         </div>
     </form>

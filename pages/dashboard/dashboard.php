@@ -5,11 +5,11 @@ include '../../auth/Authentication.php'; ?>
 <html lang="pt-br">
 
 <head>
+    <title>DevFolio</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />    <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,17 +22,20 @@ include '../../auth/Authentication.php'; ?>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../../admin.php">Inicio</a></li>
+                <li><a href="../../admin.php">Home</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a id="new" class="modal-trigger">Criar novo</a></li>
+                <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="#">Mudar Layout(Em Breve)</a></li>
+                <li><a href="#">Change Layout(Soon)</a></li>
+            </ul>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a id="visu" href="visualization.php">Visualizar Devfolio</a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger "
-                        href="../../src/Logout/Logout.php">Deslogar</a>
+                        href="../../src/Logout/Logout.php">Logout</a>
                 </li>
             </ul>
         </div>
@@ -40,25 +43,30 @@ include '../../auth/Authentication.php'; ?>
     <div class="container">
         <?php if (isset($_GET['msg'])) {
         ?>
-        <h3 id="msg" style="font-size: 15px; background-color: red; color: white; text-align:center;">
+        <h3 id="msg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
             <?php echo $_GET['msg']; ?>
         </h3>
         <?php } ?>
         <h1>Dashboard</h1>
         <div>
-            <h6>Olá, <?php echo $_SESSION['user']; ?></h6>
+            <h6>Hello, <?php echo $_SESSION['user']; ?>!</h6>
         </div>
 
         <hr />
-        <h3>Lista de projetos de portfólio</h3>
+        <h3> My Devfolio's projects</h3>
+        <?php if (isset($_GET['statusMsg'])) { ?>
+            <h4 id="statusMsg" style="font-size: 15px; background-color: green; color: white; text-align:center;">
+                <?php echo $_GET['statusMsg']; ?>
+            </h4>
+        <?php } ?>
         <table id="portfolioList">
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>Imagem</th>
-                    <th>Título</th>
-                    <th>Editar</th>
-                    <th>Excluir</th>
+                    <th>Profile</th>
+                    <th>Title</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
                 </tr>
             </thead>
@@ -66,8 +74,32 @@ include '../../auth/Authentication.php'; ?>
                 <td id="profileId"></td>
                 <td class="left"><img src="" alt="foto" id="profilePic"></td>
                 <td id="tituloProfile"></td>
+                <td>
+                    <a id="editPortfolio"  class="modal-trigger">
+                        <span class="material-symbols-outlined">
+                            edit
+                        </span>
+                    </a>
+                </td>
+                <td id="deletePortfolio">
+                    <a href="#modalDelete" id="modalDeletePortfolio"  class="modal-trigger">
+                        <span class="material-symbols-outlined">
+                            delete
+                        </span>
+                    </a>
+                </td>
             </tbody>
         </table>
+        <!-- <div id="modalEdit" class="modal center">
+            <h3>teste edit</h3>
+        </div> -->
+        <div id="modalDelete" class="modal center">
+            <h1>Your portfolio will be erased.</h1>
+            <h4>Are you  sure about that?</h4>
+            <div id="confirmButton">
+
+            </div>
+        </div>
     </div>
 
 <script>
@@ -78,72 +110,85 @@ var status;
 var statusId;
 
 $(document).ready(function() {
-getStatus();
+    getStatus();
 
-$('#portfolioList').hide();
+    $('#portfolioList').hide();
 
-$("#msg").addClass("logged");
-setTimeout(function() {
-        $('#msg').fadeOut();
+    $("#msg").addClass("logged");
+    setTimeout(function() {
+            $('#msg').fadeOut();
     }, 1000);
 
+    $('#confirmButton').css({
+        'padding': '10px 20px',
+        'background-color': '#ef1047',
+        'color': '#fff',
+        'border': 'none',
+        'cursor': 'pointer',
+    }).text('Yes, I am!');
 
-function getStatus(){
-    $.ajax({
-        url: '../../src/Portfolio/Get.php',
-        type: 'GET',
-        dataType: 'json',
-        data: {
-            userId: userId,
-            action: 'getStatus' 
-        },
-        success: function(data) {
-            status = data.status;
-            statusId = data.id;
-            console.log(data)
-            if(status == 0) {
-                $('#new').show();
-                setState()
+    function getStatus(){
+        $.ajax({
+            url: '../../src/Devfolio/Get.php',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                userId: userId,
+                action: 'getStatus' 
+            },
+            success: function(data) {
+                status = data.status;
+                statusId = data.id;
+                console.log(data)
+                if(status == 0) {
+                    $('#new').show();
+                    $('#visu').hide();
+                    setState()
 
-            } 
-            if(status == 1) {
-                getList()
+                } 
+                if(status == 1) {          
+                    getList()
+                    if($('#statusMsg').val() != null) {
+                        setTimeout(function() {
+                            $('#statusMsg').fadeOut();
+                        }, 1000);                
+                    }
+                }
+            },
+            error: function(error) {
+                console.log("getStatus com problema!")
             }
-        },
-        error: function(error) {
-            console.log("getStatus com problema!")
-        }
-    });
-};
+        });
+    };
 
-function setState() {
-    var formState = new FormData();
-    formState.append('state', 0);
-    formState.append('action', "setState");
+    function setState() {
+        var state = new FormData();
+        state.append('state', 0);
+        state.append('action', "setState");
 
-    $.ajax({
-        url: '../../src/Portfolio/Create/FormState.php',
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        data: formState,
-        success: function(data) {
-            console.log("setState ok")
-        },
-        error: function(error) {
-            console.log("setState do botão new deu errado!")
-        }
-    });
-}
+        $.ajax({
+            url: '../../src/Devfolio/Create/state.php',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: state,
+            success: function(data) {
+                console.log("setState ok")
+            },
+            error: function(error) {
+                console.log("setState button didn't work well!")
+            }
+        });
+    }
 
-$('#new').on('click', function(event){
-    event.preventDefault();
-    var formStatus = new FormData();
-    formStatus.append('userId', userId); 
-    formStatus.append('action', "setStatus");
+    $('#new').on('click', function(event){
+        event.preventDefault();
+        var formStatus = new FormData();
+        formStatus.append('userId', userId); 
+        formStatus.append('action', "setStatus");
 
-    $.ajax({
-            url: '../../src/Portfolio/Create/Status.php',
+        $.ajax({
+            url: '../../src/Devfolio/Create/Status.php',
             type: 'POST',
             processData: false,
             contentType: false,
@@ -154,15 +199,15 @@ $('#new').on('click', function(event){
                 console.log("aqui")
             },
             error: function(error) {
-                console.log("botão new deu errado!")
+                console.log("Create new's button didn't work well")
             }
         });
 
     });
 
-function getList() {
+    function getList() {
         $.ajax({
-            url: '../../src/Portfolio/Get.php',
+            url: '../../src/Devfolio/Get.php',
             type: 'GET', 
             dataType: 'json',
             data: {
@@ -172,7 +217,7 @@ function getList() {
             success: function(data) {
                 thisProfileId = data.id;
                 thisProfilePath = data.profile;
-                thisProfileTitle = data.titulo;
+                thisProfileTitle = data.title;
 
                 if(thisProfileId >= 1) {
                     $('#profileId').text(thisProfileId);
@@ -190,15 +235,46 @@ function getList() {
 
                     $('#tituloProfile').text(thisProfileTitle);
                     $('#new').hide();
+                    $('#visu').show();
                     $('#portfolioList').show();
 
                 } 
             },
             error: function(error) {
-                console.log("getProfile com problema!")
+                console.log("getProfile's trouble!")
             }
         });
     };
+    $('#editPortfolio').on('click', function () {
+        console.log("Edit: "+statusId)
+        window.location.href = '../portfolio/update.php?statusId='+statusId
+    });
+
+    $('#confirmButton').on('click', function () {
+        $.ajax({
+            url: '../../src/Devfolio/Delete.php',
+            type: 'GET', 
+            dataType: 'json',
+            data: {
+                id: userId,
+                action: 'deletePortfolio' 
+            },
+            success: function(data) {
+                if (data.success) {
+                    $('#modalDelete').hide();
+                    window.location.reload(true);
+                } else {
+                    console.error('Erro ao excluir portfolio:', data.error);
+                }
+            },
+            error: function(error) {
+                console.log("deletePortfolio's trouble!")
+                $('#modalDelete').hide();
+                window.location.reload(true);
+            }
+        });
+    });
+
 });
 </script>
 

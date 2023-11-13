@@ -2,23 +2,26 @@
 
 include "../../db/Connection.php";
 
-include '../../src/Portfolio/Portfolio.php';
+include '../../src/Devfolio/Devfolio.php';
 include '../../auth/Authentication.php';
+
+$newprofile = new Devfolio;
+$profile = $newprofile->getProfile($_SESSION['id']);
  
 $newInfo = new Portfolio;
 $info = $newInfo->getProfile($_SESSION['id']);
 
-$newProject = new Portfolio;
+$newProject = new Devfolio;
 $projects = $newProject->getProjects($_SESSION['id']);
 
-$newSkill = new Portfolio;
+$newSkill = new Devfolio;
 $skills = $newSkill->getSkills($_SESSION['id']);
 
-$newOthers = new Portfolio;
+$newOthers = new Devfolio;
 $others = $newOthers->getOthers($_SESSION['id']);
 
-$newSocial = new Portfolio;
-$social = $newSocial->getSocial($_SESSION['id']);
+$newSocial = new Devfolio;
+$social = $newSocial->getContacts($_SESSION['id']);
 include_once '../../icon/network.php';
 
 ?>
@@ -26,7 +29,7 @@ include_once '../../icon/network.php';
 <html lang="pt-br">
 
 <head>
-    <title>Portfolio</title>
+    <title>DevFolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="color-scheme" content="light only" />
@@ -51,17 +54,17 @@ include_once '../../icon/network.php';
 <nav>
     <div class="nav-wrapper black">
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="../../admin.php">Inicio</a></li>
+            <li><a href="../../admin.php">Home</a></li>
         </ul>
         <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="#">Mudar Layout(Em Breve)</a></li>
+            <li><a href="#">Change Layout(soon)</a></li>
         </ul>
         <ul class="right">
-            <li><a class="waves-effect waves-light btn green modal-trigger " href="#" id="publish">Publicar</a>
+            <li><a class="waves-effect waves-light btn green modal-trigger " href="#" id="publish">Publish</a>
             </li>
         </ul>
         <ul class="right">
-            <li><a class="waves-effect waves-light btn black modal-trigger " id="botaoVoltar" href="#">Voltar</a>
+            <li><a class="waves-effect waves-light btn black modal-trigger " id="backButton" href="#">Go back</a>
             </li>
         </ul>
     </div>
@@ -76,11 +79,11 @@ include_once '../../icon/network.php';
                         <div class="inner" data-onvisible-trigger="1">
                             <div id="image04" class="style1 image">
                                 <span class="frame">
-                                    <img src="<?php echo '../../' . $info['profile']; ?>" alt="Foto" />
+                                    <img src="<?php echo '../../' . $profile['profile']; ?>" alt="Foto" />
                                 </span>
                             </div>
-                            <h2 id="text05" class="style1"><?php echo $info['titulo']; ?></h2>
-                            <p id="text13" class="style2" style="font-size: 20px"><?php echo $info['subtitulo']; ?></p>
+                            <h2 id="text05" class="style1"><?php echo $profile['title']; ?></h2>
+                            <p id="text13" class="style2" style="font-size: 20px"><?php echo $profile['subtitle']; ?></p>
                         </div>
                     </div>
                 </div>
@@ -95,14 +98,14 @@ include_once '../../icon/network.php';
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
                             <h2 id="text14" class="style3" data-scroll-id="start" data-scroll-behavior="center"
-                                data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Meus Projetos
+                                data-scroll-offset="0" data-scroll-speed="3" data-scroll-invisible="1">Projects
                             </h2>
                             <ul id="buttons04" class="style1 buttons">
                                 <?php
                                 foreach ($projects as $project) {
                                 ?>
                                 <li>
-                                    <a href="<?php echo $project['url_project'] ?>" class="button n01">
+                                    <a href="<?php echo $project['project_link'] ?>" class="button n01">
                                         <svg>
                                             <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
                                         </svg>
@@ -111,7 +114,7 @@ include_once '../../icon/network.php';
                                 </li>
                                 <?php } ?>
                             </ul>
-                            <p id="text01" class="style2">Tecnologias usadas em alguns projetos:</p>
+                            <p id="text01" class="style2">My current stacks:</p>
                         </div>
                     </div>
                 </div>
@@ -134,7 +137,7 @@ include_once '../../icon/network.php';
                 <div id="container03" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <h2 id="text07" class="style3">Palestras e workshops</h2>
+                        <h2 id="text07" class="style3">Talks, workshops, articles...</h2>
                             <br><br>
                             <ul id="buttons04" class="style1 buttons">
                                 <?php foreach ($others as $other) { ?>
@@ -144,7 +147,7 @@ include_once '../../icon/network.php';
                                         <svg>
                                             <use xlink:href="#icon-49c7b76f0edfabe10e324ba1ac396f84"></use>
                                         </svg>
-                                        <span class="label"><?php echo $other['titulo'] ?></span>
+                                        <span class="label"><?php echo $other['title'] ?></span>
 
                                     </a>
                                 </li>
@@ -156,8 +159,12 @@ include_once '../../icon/network.php';
                                         <img src=<?php echo '../../' . $other['banner']; ?> widht="250px"
                                             height="450px" />
                                     </div>
-                                    <div class="modal-footer center">
-                                        <a href="<?php echo $other['banner_url']; ?>">Link</a>
+                                    <div class="modal-footer">
+                                        <div class="row">
+                                            <div class="col s7">
+                                                <a href="<?php echo $other['banner_link']; ?>">Link: <?php echo $other['title']; ?></a>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <?php } ?>
@@ -173,9 +180,7 @@ include_once '../../icon/network.php';
                 <div id="container03" class="style1 container default">
                     <div class="wrapper">
                         <div class="inner" data-onvisible-trigger="1">
-                            <h2 id="text07" class="style3">Minhas
-                                redes
-                            </h2>
+                        <h2 id="text07" class="style3">How to find about me: </h2>
                             <ul id="icons01" class="style1 icons">
                                 <li><a class="n01" href="https://linkedin.com/in/<?php echo $social['linkedin']; ?>"
                                         aria-label="LinkedIn"><svg>
@@ -203,7 +208,7 @@ include_once '../../icon/network.php';
     $(document).ready(function() {
         var userId = <?php echo $_SESSION['id']; ?>;
         $('.modal').modal();
-        $('#botaoVoltar').on('click', function() {
+        $('#backButton').on('click', function() {
             window.history.back();
         });
 
@@ -215,17 +220,19 @@ include_once '../../icon/network.php';
             formStatus.append('action', "setStatus");
 
             $.ajax({
-                url: '../../src/Portfolio/Create/Status.php',
+                url: '../../src/Devfolio/Create/Status.php',
                 type: 'POST',
                 processData: false,
                 contentType: false,
                 data: formStatus,
                 success: function(data) {
-                    location.href = "dashboard.php"
-                    console.log("visualization para dashboard")
+                    let statusMsg = "Your Devfolio project is published!";
+                    location.href = "dashboard.php?statusMsg="+statusMsg;
+                    console.log("visualization to dashboard");
+                    
                 },
                 error: function(error) {
-                    console.log("botão publish deu errado!")
+                    console.log("Publish button not good!")
                 }
             });
         });

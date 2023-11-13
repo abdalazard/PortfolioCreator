@@ -12,18 +12,18 @@ if ($userExists) {
     $linhas = mysqli_num_rows($userExists);
     if ($linhas >= 1) {
         $msg =
-            "<div class='bloco' style='background-color: red;'><h5 class='msg'>Usuário já existente na base de dados.</h5></div>";
+            "<div class='bloco' style='background-color: red;'><h5 class='msg'>This user already exists in our database.</h5></div>";
         header('location: ../../admin.php?msg=' . $msg);
     } else {
         $msg =
-            "<div class='bloco' style='background-color: green;'><h5 class='msg'> Usuário cadastrado com sucesso!</h5></div>";
+            "<div class='bloco' style='background-color: green;'><h5 class='msg'> User created successfully!</h5></div>";
         $insertUser = "INSERT INTO users VALUES(null, '" . $user . "', '" . $password . "')";
         $data = $database->toDatabase($insertUser);
 
         header('location: ../../admin.php?msg=' . $msg);
     }
 } else {
-    $msg = "<div class='bloco'><h5 class='msg' style='background-color: red;'>Erro! Um problema foi detectado em sua tentativa de cadastro.</h5></div>";
+    $msg = "<div class='bloco'><h5 class='msg' style='background-color: red;'>Error! Problems to attempt to create a new user.</h5></div>";
 
     header('location: ../../admin.php?msg=' . $msg);
 }

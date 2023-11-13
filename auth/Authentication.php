@@ -2,6 +2,6 @@
 session_start();
 if (!isset($_SESSION['id'])) {
     session_destroy();
-    $msg = "Acesso negado!";
+    $msg = "Acesso denied!";
     header("location: ../../admin.php?msg=" . $msg);
 }

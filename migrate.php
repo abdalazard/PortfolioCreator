@@ -12,9 +12,9 @@ foreach ($migrations as $migration) {
 
     require_once 'db/migrations/' . $migration;
 
-    echo "\nExecutada a migração: $migration\n";
+    echo "\nMigration done: $migration\n";
 }
 
 $db->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5(123))");
-echo "\nUsuario administrador criado com sucesso!\n";
+echo "\nUser admin created successfully!!\n";;
 ?>

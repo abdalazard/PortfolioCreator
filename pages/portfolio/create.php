@@ -15,21 +15,21 @@
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="utils.js"></script>
-    <title>Criação de portfolio</title>
+    <title>Create DevFolio</title>
 </head>
 
 <body>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../../admin.php">Inicio</a></li>
+                <li><a href="../../admin.php">Home</a></li>
             </ul>
             <ul id="nav-mobile" class="left hide-on-med-and-down" >
                 <li ><a href="../dashboard/visualization.php" id="preview"></a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger"
-                        href="../../src/Logout/Logout.php">Deslogar</a>
+                        href="../../src/Logout/Logout.php">Logout</a>
                 </li>
             </ul>
         </div>
@@ -37,7 +37,7 @@
     <div class="container">
         <?php if(isset($_GET['msg'])) { echo "<p class='red' id='msg' name='msg'>".$_GET['msg']."</p>";} ?>
         <div id="createNewPortfolio">
-            <h3>Criar novo Portfolio</h3>
+            <h3>Create a new Devfolio</h3>
 
             <?php include '../info/info.php'; ?>
 
@@ -49,7 +49,7 @@
 
             <?php include '../others/others.php'; ?>
 
-            <?php include '../social/social.php'; ?>
+            <?php include '../contacts/contacts.php'; ?>
         </div>
 
         <div id="finished"></div>
