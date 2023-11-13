@@ -4,8 +4,8 @@ Este projeto é um criador de portfolios desenvolvido em PHP que registra dados 
 
 ## Estado Atual do Projeto
 
-- **Fase 1 Concluída:** Implementação do construtor de portfolios.
-- **Fase 2 em Andamento:** Atualmente trabalhando na funcionalidade de edição de portfolios e na opção de exclusão.
+- **Fase 1 Concluída:** ~~Implementação do construtor de portfolios.~~
+- **Fase 2 em Andamento:** ~~Atualmente trabalhando na funcionalidade de edição de portfolios e na opção de exclusão.~~
 - **Fase 3 Aguardando:** Planejando a implementação do sistema de templates e a capacidade de selecionar diferentes estilos.
 
 ## Contribuições
