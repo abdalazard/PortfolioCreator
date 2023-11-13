@@ -110,84 +110,84 @@ var status;
 var statusId;
 
 $(document).ready(function() {
-getStatus();
+    getStatus();
 
-$('#portfolioList').hide();
+    $('#portfolioList').hide();
 
-$("#msg").addClass("logged");
-setTimeout(function() {
-        $('#msg').fadeOut();
-}, 1000);
+    $("#msg").addClass("logged");
+    setTimeout(function() {
+            $('#msg').fadeOut();
+    }, 1000);
 
-$('#confirmButton').css({
-    'padding': '10px 20px',
-    'background-color': '#ef1047',
-    'color': '#fff',
-    'border': 'none',
-    'cursor': 'pointer',
-}).text('Yes, I am!');
+    $('#confirmButton').css({
+        'padding': '10px 20px',
+        'background-color': '#ef1047',
+        'color': '#fff',
+        'border': 'none',
+        'cursor': 'pointer',
+    }).text('Yes, I am!');
 
-function getStatus(){
-    $.ajax({
-        url: '../../src/Devfolio/Get.php',
-        type: 'GET',
-        dataType: 'json',
-        data: {
-            userId: userId,
-            action: 'getStatus' 
-        },
-        success: function(data) {
-            status = data.status;
-            statusId = data.id;
-            console.log(data)
-            if(status == 0) {
-                $('#new').show();
-                $('#visu').hide();
-                setState()
+    function getStatus(){
+        $.ajax({
+            url: '../../src/Devfolio/Get.php',
+            type: 'GET',
+            dataType: 'json',
+            data: {
+                userId: userId,
+                action: 'getStatus' 
+            },
+            success: function(data) {
+                status = data.status;
+                statusId = data.id;
+                console.log(data)
+                if(status == 0) {
+                    $('#new').show();
+                    $('#visu').hide();
+                    setState()
 
-            } 
-            if(status == 1) {          
-                getList()
-                if($('#statusMsg').val() != null) {
-                    setTimeout(function() {
-                        $('#statusMsg').fadeOut();
-                    }, 1000);                
+                } 
+                if(status == 1) {          
+                    getList()
+                    if($('#statusMsg').val() != null) {
+                        setTimeout(function() {
+                            $('#statusMsg').fadeOut();
+                        }, 1000);                
+                    }
                 }
+            },
+            error: function(error) {
+                console.log("getStatus com problema!")
             }
-        },
-        error: function(error) {
-            console.log("getStatus com problema!")
-        }
-    });
-};
+        });
+    };
 
-function setState() {
-    var state = new FormData();
-    state.append('state', 0);
-    state.append('action', "setState");
+    function setState() {
+        var state = new FormData();
+        state.append('state', 0);
+        state.append('action', "setState");
 
-    $.ajax({
-        url: '../../src/Devfolio/Create/state.php',
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        data: state,
-        success: function(data) {
-            console.log("setState ok")
-        },
-        error: function(error) {
-            console.log("setState button didn't work well!")
-        }
-    });
-}
+        $.ajax({
+            url: '../../src/Devfolio/Create/state.php',
+            type: 'POST',
+            processData: false,
+            contentType: false,
+            data: state,
+            success: function(data) {
+                console.log("setState ok")
+            },
+            error: function(error) {
+                console.log("setState button didn't work well!")
+            }
+        });
+    }
 
-$('#new').on('click', function(event){
-    event.preventDefault();
-    var formStatus = new FormData();
-    formStatus.append('userId', userId); 
-    formStatus.append('action', "setStatus");
+    $('#new').on('click', function(event){
+        event.preventDefault();
+        var formStatus = new FormData();
+        formStatus.append('userId', userId); 
+        formStatus.append('action', "setStatus");
 
-    $.ajax({
+        $.ajax({
             url: '../../src/Devfolio/Create/Status.php',
             type: 'POST',
             processData: false,
@@ -205,7 +205,7 @@ $('#new').on('click', function(event){
 
     });
 
-function getList() {
+    function getList() {
         $.ajax({
             url: '../../src/Devfolio/Get.php',
             type: 'GET', 
@@ -269,6 +269,8 @@ function getList() {
             },
             error: function(error) {
                 console.log("deletePortfolio's trouble!")
+                $('#modalDelete').hide();
+                window.location.reload(true);
             }
         });
     });

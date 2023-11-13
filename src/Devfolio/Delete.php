@@ -6,7 +6,7 @@ include 'Devfolio.php';
 
 $userId = $_SESSION['id']; 
 $action = $_GET['action'];
-$id = $_GET['id'];
+$id = $_GET['id'] ? $_GET['id'] : null;
 $dir = $_GET['dir'] ?? null;
 
 if($action == "deleteSkill"){
@@ -57,13 +57,12 @@ if($action == "deleteEvent"){
 
 if($action == "deletePortfolio"){
    
-    
     try {
         $devfolio = new Devfolio;
 
         $directory = '../../images/users/'.$_SESSION['user'].'_folder/';
 
-        // $devfolio->deleteImages($directory);
+        $devfolio->deleteImages($directory);
 
         $deleteOthers = "DELETE FROM profile WHERE id_user LIKE '".$userId."'";  
         if ($devfolio->dataBase($deleteOthers)) {
@@ -100,7 +99,7 @@ if($action == "deletePortfolio"){
 
         echo json_encode(['success' => true]);
     } catch (Exception $e) {
-        // Se ocorrer um erro, enviar uma resposta JSON com um indicador de erro e uma mensagem
         echo json_encode(['success' => false, 'error' => $e->getMessage()]);
     }
+    exit();
 }
