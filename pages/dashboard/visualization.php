@@ -7,6 +7,9 @@ include '../../auth/Authentication.php';
 
 $newprofile = new Devfolio;
 $profile = $newprofile->getProfile($_SESSION['id']);
+ 
+$newInfo = new Portfolio;
+$info = $newInfo->getProfile($_SESSION['id']);
 
 $newProject = new Devfolio;
 $projects = $newProject->getProjects($_SESSION['id']);
