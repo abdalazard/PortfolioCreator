@@ -43,7 +43,7 @@ foreach ($migrations as $migration) {
 }
 $dbB = new Connection;
 
-$dbB->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5(123))");
+$dbB->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5(".$_ENV['DB_PASSWORD']."))");
 $db->toDatabase("INSERT INTO state VALUES(null,	0,	0,	0,	0,	0,	1)");
 echo "\nUser state created successfully!!\n";;
 
