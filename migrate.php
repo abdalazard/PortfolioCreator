@@ -15,6 +15,6 @@ foreach ($migrations as $migration) {
     echo "\nMigration done: $migration\n";
 }
 
-$db->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5(123))");
+$db->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5('".$_ENV['DB_PASSWORD']."'))");
 echo "\nUser admin created successfully!!\n";;
 ?>
