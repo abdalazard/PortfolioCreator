@@ -1,3 +1,38 @@
+# PHP Portfolio Creator
+
+This project is a PHP-based portfolio creator that stores standardized data in a MySQL database. Additionally, it provides users with the ability to create their own custom templates.
+
+## Current Project Status
+
+- ~~**Phase 1 Completed:** Implementation of the portfolio builder.~~
+- ~~**Phase 2 Completed:** Currently working on the portfolio editing feature and deletion option.~~
+- **Phase 3 In Progress:** Developing the template system and the ability to select different styles.
+
+## Contributions
+
+This project is open source, and contributions are highly welcome! If you have ideas, suggestions, or corrections, feel free to [open an issue](https://github.com/abdalazard/NoobPHP/issues/new) or submit a [pull request](https://github.com/abdalazard/NoobPHP/compare).
+
+## Technologies Used
+
+- **Backend:** PHP
+- **Frontend:** jQuery
+- **Database:** MySQL
+
+## How to Contribute
+
+1. Fork the repository
+2. Create a branch for your contribution (`git checkout -b new-feature`)
+3. Make desired changes and commit (`git commit -m 'Adding new feature'`)
+4. Push to the branch (`git push origin new-feature`)
+5. Open a [pull request](https://github.com/abdalazard/NoobPHP/compare).
+
+We appreciate your contributions in advance!
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 # Criador de Portfolios em PHP
 
 Este projeto é um criador de portfolios desenvolvido em PHP que registra dados padronizados em um banco de dados MySQL. Além disso, oferece ao usuário a capacidade de criar seus próprios templates personalizados.
