@@ -4,3 +4,6 @@ loginscreen/
 veddit/
 db/Connection.php
 images/users/
+.env
+vendor
+composer.lock

@@ -2,7 +2,11 @@
 include "db/Connection.php";
 
 include 'src/Devfolio/Devfolio.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+        
 try {
     $getPort = new Devfolio;
     $getPage = $getPort->getPage();

@@ -1,17 +1,15 @@
 <?php
 
-
 class Connection
 {
     public $con;
 
     public function __construct()
     {
-
-        $localhost = 'localhost';
-        $user = 'root';
-        $password = '123';
-        $db = "DevFolio";
+        $localhost = $_ENV['DB_HOST'];
+        $user = $_ENV['DB_USERNAME'];
+        $password = $_ENV['DB_PASSWORD'];
+        $db = $_ENV['PROJECT_NAME'];
         
         $this->con = mysqli_connect($localhost, $user, $password, $db);
     }
