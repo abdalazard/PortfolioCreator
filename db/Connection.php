@@ -1,4 +1,5 @@
 <?php
+include "EnvManager.php";
 
 class Connection
 {
@@ -6,37 +7,30 @@ class Connection
 
     public function __construct()
     {
-        
-        $this->getEnv();
-        // $localhost = $_ENV['DB_HOST'];
-        // $user = $_ENV['DB_USERNAME'];
-        // $password = $_ENV['DB_PASSWORD'];
-        // $db = $_ENV['PROJECT_NAME'];
+        new EnvManager();
 
-        $localhost = $_ENV['DB_HOST'] ?? 'localhost';
-        $user = $_ENV['DB_USERNAME'] ?? 'root';
-        $password = $_ENV['DB_PASSWORD'] ?? '123';
-        $db = $_ENV['PROJECT_NAME'] ?? 'Devfolio';
+        $localhost = $_ENV['DB_HOST'];
+        $user = $_ENV['DB_USERNAME'];
+        $password = $_ENV['DB_PASSWORD'];
+        $db = $_ENV['PROJECT_NAME'];
         
         $this->con = mysqli_connect($localhost, $user, $password, $db);
+
+        if (!$this->con) {
+            die("Connection failed: " . mysqli_connect_error());
+        }
     }
+
     public function toDatabase($query)
     {
         return mysqli_query($this->con, $query);
     }
 
-    public function dd($item){
+    public function dd($item)
+    {
         var_dump($item);
         die();
     }
 
-    public function getEnv() {
-        require_once __DIR__.'../../vendor/autoload.php';
     
-        // Ajuste o caminho com base na estrutura do seu projeto
-        $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../..');
-        $dotenv->safeLoad();
-
-
-    }
 }

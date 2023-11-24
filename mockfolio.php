@@ -1,5 +1,6 @@
 <?php
 require_once 'db/Connection.php';
+require_once 'vendor/autoload.php';
 
 $userId = 1; 
 $db = new Connection;

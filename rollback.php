@@ -1,5 +1,6 @@
 <?php
 require_once 'db/Connection.php';
+require_once 'vendor/autoload.php';
 
 $db = new Connection;
 $db->toDatabase("DROP TABLE `state`,`status`,`profile`, `others`, `projects`, `skills`, `contacts`, `users`");

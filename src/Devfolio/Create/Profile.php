@@ -2,6 +2,7 @@
 session_start();
 include '../../../db/Connection.php';
 include '../Devfolio.php';
+require_once '../../../vendor/autoload.php';
 
 $userId = $_SESSION['id'];
 

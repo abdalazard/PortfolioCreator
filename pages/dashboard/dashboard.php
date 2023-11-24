@@ -1,5 +1,6 @@
 <?php
 include "../../db/Connection.php";
+require_once '../../vendor/autoload.php';
 include '../../auth/Authentication.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-br">

@@ -1,12 +1,13 @@
 <?php
 session_start();
 
+require_once '../../vendor/autoload.php';
 include '../../db/Connection.php';
 
 $user = $_POST['user'];
 $password = MD5($_POST['password']);
 
-$database = new Connection;
+$database = new Connection();
 
 $findUsers = "SELECT * FROM users WHERE user LIKE '" . $user . "' AND password LIKE '" . $password . "'";
 $userExists = $database->toDatabase($findUsers);

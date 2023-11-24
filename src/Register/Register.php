@@ -1,5 +1,6 @@
 <?php
 include '../../db/Connection.php';
+require_once '../../vendor/autoload.php';
 
 $user = $_POST['emailRegister'];
 $password = MD5($_POST['passwordRegister']);

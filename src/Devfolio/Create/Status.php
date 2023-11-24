@@ -1,6 +1,7 @@
 <?php
 include '../../../db/Connection.php';
 include '../Devfolio.php';
+require_once '../../../vendor/autoload.php';
 
 session_start();
 

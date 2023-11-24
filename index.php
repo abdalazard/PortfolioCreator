@@ -1,8 +1,10 @@
 <?php
 
 include 'src/Devfolio/Devfolio.php';
-
 include "db/Connection.php";
+require_once 'vendor/autoload.php';
+
+$con = new Connection;
 
 try {
     $getPort = new Devfolio;

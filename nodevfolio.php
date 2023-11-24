@@ -1,6 +1,6 @@
 <?php
 include "db/Connection.php";
-
+require_once 'vendor/autoload.php';
 include 'src/Devfolio/Devfolio.php';
 
 try {
