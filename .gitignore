@@ -2,8 +2,8 @@
 adminer.php
 loginscreen/
 veddit/
-db/Connection.php
 images/users/
 .env
 vendor
 composer.lock
+db/.env

@@ -2,7 +2,7 @@
 
 include 'src/Devfolio/Devfolio.php';
 include "db/Connection.php";
-require_once 'vendor/autoload.php';
+require_once (__DIR__.'/vendor/autoload.php');
 
 $con = new Connection;
 
