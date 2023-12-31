@@ -5,24 +5,46 @@ include "../../db/Connection.php";
 include '../../src/Devfolio/Devfolio.php';
 include '../../auth/Authentication.php';
 
-$newprofile = new Devfolio;
-$profile = $newprofile->getProfile($_SESSION['id']);
- 
-$newInfo = new Devfolio;
-$info = $newInfo->getProfile($_SESSION['id']);
+// $newprofile = new Devfolio;
+// $profile = $newprofile->getProfile($_SESSION['id']);
 
-$newProject = new Devfolio;
-$projects = $newProject->getProjects($_SESSION['id']);
+// $newInfo = new Devfolio;
+// $info = $newInfo->getProfile($_SESSION['id']);
 
-$newSkill = new Devfolio;
-$skills = $newSkill->getSkills($_SESSION['id']);
+// $newProject = new Devfolio;
+// $projects = $newProject->getProjects($_SESSION['id']);
 
-$newOthers = new Devfolio;
-$others = $newOthers->getOthers($_SESSION['id']);
+// $newSkill = new Devfolio;
+// $skills = $newSkill->getSkills($_SESSION['id']);
 
-$newSocial = new Devfolio;
-$social = $newSocial->getContacts($_SESSION['id']);
+// $newOthers = new Devfolio;
+// $others = $newOthers->getOthers($_SESSION['id']);
+
+// $newSocial = new Devfolio;
+// $social = $newSocial->getContacts($_SESSION['id']);
+// include_once '../../icon/network.php';
+
+require_once ('../../vendor/autoload.php');
 include_once '../../icon/network.php';
+
+$con = new Connection;
+
+try {
+    $getPort = new Devfolio;
+    $getPage = $getPort->getPage();
+    if($getPage == null){
+        $msg = "Nothing in database!";
+        header("location: nodevfolio.php?msg=" . $msg);
+    }
+    $profile = $getPort->getProfile($getPage);
+    $skills = $getPort->getSkills($getPage);
+    $projects = $getPort->getProjects($getPage);
+    $others = $getPort->getOthers($getPage);
+    $social = $getPort->getContacts($getPage);
+} catch (Exception $e) {
+    $msg = "Erro: " . $e->getMessage() . "\nYou don't have anything registered!";
+    header("location: nodevfolio.php?msg=" . $msg);
+}
 
 ?>
 <!DOCTYPE HTML>

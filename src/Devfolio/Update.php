@@ -26,6 +26,11 @@ $banner = $_FILES['banner'];
 $others_title = $_POST['others_title'];
 $others_link = $_POST['others_link'];
 
+//Contacts
+$email = $_POST['email'];
+$github = $_POST['github'];
+$likedin = $_POST['likedin'];
+
 if($action == "updateProfilePic"){
 
     $devfolio = new Devfolio;
@@ -116,6 +121,51 @@ if($action == "updateOthers") {
             echo "Event updated successfully!s";
         } catch (PDOException $e) {
             echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update event.";
+        }
+    }
+}
+
+if($action == "updateEmail") {
+    
+    if($data) {
+        try{
+            $devfolio = new Devfolio;
+            $updateEmail = "UPDATE `contacts` SET email = '".$data."' WHERE `id_user` LIKE '".$userId."'";
+
+            $devfolio->dataBase($updateEmail);
+            echo "Email updated successfully!s";
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update email.";
+        }
+    }
+}
+
+if($action == "updateGithub") {
+    
+    if($data) {
+        try{
+            $devfolio = new Devfolio;
+            $updateGithub = "UPDATE `contacts` SET github = '".$data."' WHERE `id_user` LIKE '".$userId."'";
+
+            $devfolio->dataBase($updateGithub);
+            echo "Github updated successfully!s";
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update github.";
+        }
+    }
+}
+
+if($action == "updateLinkedin") {
+    
+    if($data) {
+        try{
+            $devfolio = new Devfolio;
+            $updateLinkedin = "UPDATE `contacts` SET linkedin = '".$data."' WHERE `id_user` LIKE '".$userId."'";
+
+            $devfolio->dataBase($updateLinkedin);
+            echo "Linkedin updated successfully!s";
+        } catch (PDOException $e) {
+            echo "Erro: " . $e->getMessage() . "\nProblems to attempt to update linkedin.";
         }
     }
 }
