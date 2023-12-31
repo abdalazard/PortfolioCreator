@@ -5,25 +5,6 @@ include "../../db/Connection.php";
 include '../../src/Devfolio/Devfolio.php';
 include '../../auth/Authentication.php';
 
-// $newprofile = new Devfolio;
-// $profile = $newprofile->getProfile($_SESSION['id']);
-
-// $newInfo = new Devfolio;
-// $info = $newInfo->getProfile($_SESSION['id']);
-
-// $newProject = new Devfolio;
-// $projects = $newProject->getProjects($_SESSION['id']);
-
-// $newSkill = new Devfolio;
-// $skills = $newSkill->getSkills($_SESSION['id']);
-
-// $newOthers = new Devfolio;
-// $others = $newOthers->getOthers($_SESSION['id']);
-
-// $newSocial = new Devfolio;
-// $social = $newSocial->getContacts($_SESSION['id']);
-// include_once '../../icon/network.php';
-
 require_once ('../../vendor/autoload.php');
 include_once '../../icon/network.php';
 
