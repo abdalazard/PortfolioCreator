@@ -12,7 +12,7 @@ $con = new Connection;
 
 try {
     $getPort = new Devfolio;
-    $getPage = $getPort->getPage();
+    $getPage = $getPort->getVisualizationPage();
     if($getPage == null){
         $msg = "Nothing in database!";
         header("location: nodevfolio.php?msg=" . $msg);
@@ -75,6 +75,30 @@ try {
 
 <body>
     <div id="wrapper">
+        <div style="position: fixed; left: 0; top: 50%; transform: translateY(-50%);">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '31624681408ac0ed416e8f139cebcec0',
+                    'format' : 'iframe',
+                    'height' : 600,
+                    'width' : 160,
+                    'params' : {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
+            </script>
+        </div>
+        <div style="position: fixed; right: 0; top: 50%; transform: translateY(-50%);">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '31624681408ac0ed416e8f139cebcec0',
+                    'format' : 'iframe',
+                    'height' : 600,
+                    'width' : 160,
+                    'params' : {}
+                };
+                document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
+            </script>
+        </div>
         <div id="main">
             <div class="inner">
                 <div id="container01" class="style1 container default">
@@ -241,5 +265,24 @@ try {
         });
     });
     </script>
+    <div class="center">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '64c9f95ee05a7716b801515f91ab0be6',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
+        </script>
+    </div>    
 </body>
+<script>
+    M.AutoInit();
+    $(document).ready(function() {
+        $('.modal').modal();
+    });
+</script>
+<script type='text/javascript' src='//pl22162032.toprevenuegate.com/3a/51/a9/3a51a92abaf7a272c0d0aeabed473567.js'></script>
 </html>

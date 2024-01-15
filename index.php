@@ -8,8 +8,8 @@ $con = new Connection;
 
 try {
     $getPort = new Devfolio;
-    $getPage = $getPort->getPage();
-    if($getPage == null){
+    $getPage = $getPort->getPage(1);
+    if(!$getPage){
         $msg = "Nothing in database!";
         header("location: nodevfolio.php?msg=" . $msg);
     }
@@ -69,11 +69,6 @@ try {
                         </div>
                     </div>
                 </div>
-                <!-- <ul id="icons02" class="style1 icons">
-                    <li><a class="n01" href="#start" aria-label="Arrow Down"><svg>
-                                <use xlink:href="#icon-8a75e9205b2d7697ad826d592ebf05f0"></use>
-                            </svg><span class="label">Arrow Down</span></a></li>
-                </ul> -->
                 <hr id="divider02" class="style1 full" />
                 <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0"
                     data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
@@ -173,14 +168,24 @@ try {
             </div>
         </div>
     </div>
-1
-    <script>
+    <div class="center">
+        <script type="text/javascript">
+            atOptions = {
+                'key' : '64c9f95ee05a7716b801515f91ab0be6',
+                'format' : 'iframe',
+                'height' : 60,
+                'width' : 468,
+                'params' : {}
+            };
+            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
+        </script>
+    </div>    
+</body>
+<script>
     M.AutoInit();
     $(document).ready(function() {
         $('.modal').modal();
     });
-    </script>
-</body>
-
-
+</script>
+<script type='text/javascript' src='//pl22162032.toprevenuegate.com/3a/51/a9/3a51a92abaf7a272c0d0aeabed473567.js'></script>
 </html>

@@ -3,7 +3,7 @@ require_once 'db/Connection.php';
 require_once 'vendor/autoload.php';
 
 $db = new Connection;
-$userId = $_SESSION['id'];
+// $userId = $_SESSION['id'];
 $migrations = scandir(__DIR__ . '/db/migrations');
 
 foreach ($migrations as $migration) {

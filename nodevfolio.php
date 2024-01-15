@@ -5,7 +5,7 @@ include 'src/Devfolio/Devfolio.php';
 
 try {
     $getPort = new Devfolio;
-    $getPage = $getPort->getPage();
+    $getPage = $getPort->getPage(1);
     if($getPage != null){
         
         header("location: index.php");

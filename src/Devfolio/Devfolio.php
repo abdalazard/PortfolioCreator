@@ -2,9 +2,28 @@
 
 class Devfolio
 {
-    public function getPage() {
+    public function getVisualizationPage() {
         try {
-            $selectPage  = "SELECT * FROM status WHERE status LIKE 1";
+            $selectPage  = "SELECT * FROM status";
+            $db = $this->dataBase($selectPage);
+            if (!$db) {
+                $msg = 'Problems to get this devfolio';
+                header("location: ../../nodevfolio.php?msg=" . $msg);
+            }
+            $data = mysqli_fetch_array($db);
+
+            return $data['id_user'] ?? 0;
+
+        } catch (Exception $e) {
+            $msg = "Error: " . $e->getMessage() . "\nYou don't have any devfolio created!";
+            header("location: nodevfolio.php?msg=" . $msg);
+        }
+       
+    }
+
+    public function getPage($status) {
+        try {
+            $selectPage  = "SELECT * FROM status WHERE status LIKE $status";
             $db = $this->dataBase($selectPage);
             if (!$db) {
                 $msg = 'Problems to get this devfolio';
