@@ -181,7 +181,6 @@ try {
             
         </script>
     </div>    
-</body>
 <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
         <script type="text/javascript">
             atOptions = {
