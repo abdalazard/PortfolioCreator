@@ -168,7 +168,7 @@ try {
             </div>
         </div>
     </div>
-    <div class="center">
+    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
         <script type="text/javascript">
             atOptions = {
                 'key' : '64c9f95ee05a7716b801515f91ab0be6',
@@ -179,7 +179,7 @@ try {
             };
             document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
         </script>
-    </div>    
+    </div>      
 </body>
 <script>
     M.AutoInit();
@@ -187,5 +187,4 @@ try {
         $('.modal').modal();
     });
 </script>
-<script type='text/javascript' src='//pl22162032.toprevenuegate.com/3a/51/a9/3a51a92abaf7a272c0d0aeabed473567.js'></script>
 </html>

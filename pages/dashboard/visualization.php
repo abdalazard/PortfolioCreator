@@ -75,7 +75,7 @@ try {
 
 <body>
     <div id="wrapper">
-        <div style="position: fixed; left: 0; top: 50%; transform: translateY(-50%);">
+        <div style="position: fixed; left: 0; top: 60%; transform: translateY(-50%);">
             <script type="text/javascript">
                 atOptions = {
                     'key' : '31624681408ac0ed416e8f139cebcec0',
@@ -87,7 +87,7 @@ try {
                 document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
             </script>
         </div>
-        <div style="position: fixed; right: 0; top: 50%; transform: translateY(-50%);">
+        <div style="position: fixed; right: 0; top: 60%; transform: translateY(-50%);">
             <script type="text/javascript">
                 atOptions = {
                     'key' : '31624681408ac0ed416e8f139cebcec0',
@@ -265,7 +265,7 @@ try {
         });
     });
     </script>
-    <div class="center">
+    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
         <script type="text/javascript">
             atOptions = {
                 'key' : '64c9f95ee05a7716b801515f91ab0be6',
@@ -276,7 +276,7 @@ try {
             };
             document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
         </script>
-    </div>    
+    </div>   
 </body>
 <script>
     M.AutoInit();
