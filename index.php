@@ -195,6 +195,7 @@ try {
         </script>
     </div>      
 </body>
+
 <script>
     M.AutoInit();
     $(document).ready(function() {
