@@ -47,8 +47,7 @@ try {
     <link
         href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../../styles.css" />
-    <link rel="stylesheet" href="../../styles2.css" />
+    <link rel="stylesheet" href="../../templates/styles.css" />
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
 </head>
 <nav>
@@ -111,11 +110,6 @@ try {
                         </div>
                     </div>
                 </div>
-                <ul id="icons02" class="style1 icons">
-                    <li><a class="n01" href="#start" aria-label="Arrow Down"><svg>
-                                <use xlink:href="#icon-8a75e9205b2d7697ad826d592ebf05f0"></use>
-                            </svg><span class="label">Arrow Down</span></a></li>
-                </ul>
                 <hr id="divider02" class="style1 full" />
                 <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0"
                     data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">

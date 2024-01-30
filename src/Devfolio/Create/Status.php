@@ -8,6 +8,7 @@ session_start();
 $userId = $_POST['userId'];
 $code = $_POST['status'] ?? 0;
 $action = $_POST['action'];
+$template = $_POST['template'] ?? "default";
 
 if($action == "setStatus"){
     $devfolio = new Devfolio;
@@ -24,6 +25,10 @@ if($action == "setStatus"){
             $createStatus = "INSERT INTO status VALUES(null, 0, '".$userId."')";
             $queryCreate = $devfolio->dataBase($createStatus);
             echo "Status created sucessfully!";
+
+            $setDefaultTemplate = "UPDATE template_user SET name = '.".$template.".' WHERE id_user LIKE '".$userId."'";
+            $queryDefaultTemplate = $devfolio->dataBase($setDefaultTemplate);
+            echo "Template settings done sucessfully!";            
         }
         echo "Status 200";
     }

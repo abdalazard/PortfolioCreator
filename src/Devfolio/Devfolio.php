@@ -2,6 +2,21 @@
 
 class Devfolio
 {
+
+    public function getTemplateDefault($id) {
+        try {
+
+            $selectTemplate = "SELECT * FROM template_user WHERE id_user LIKE '".$id."'";
+            $db = $this->dataBase($selectTemplate);
+            $data = mysqli_fetch_array($db);
+
+            return $data['name'] ?? 0;
+
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();
+        } 
+    }
+
     public function getVisualizationPage() {
         try {
             $selectPage  = "SELECT * FROM status";
