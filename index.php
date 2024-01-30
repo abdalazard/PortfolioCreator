@@ -1,5 +1,5 @@
 <?php
-
+include_once 'icon/network.php';
 include 'src/Devfolio/Devfolio.php';
 include "db/Connection.php";
 require_once (__DIR__.'/vendor/autoload.php');
@@ -19,6 +19,11 @@ try {
     $templatePath = "templates/" . $template . "/" . $template;
 
     include $templatePath . '.php';
+    echo "<style>
+            body {
+                display: none;
+            }
+        </style>";
 
     echo "<link rel='stylesheet' type='text/css' href='".$templatePath.".css'>";
     echo '<link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />';
@@ -26,7 +31,11 @@ try {
     echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
     echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>';
     echo "<script src='".$templatePath.".js'></script>";
-
+    echo "<script>
+            $(window).on('load', function() {
+                $('body').fadeIn();
+            });
+        </script>";
 
 } catch (Exception $e) {
     $msg = "Erro: " . $e->getMessage() . "\nYou don't have anything registered!";

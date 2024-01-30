@@ -24,14 +24,21 @@ try {
     $templatePath = "../../templates/" . $template . "/" . $template;
 
     include $templatePath . '.php';
-
-    echo "<link rel='stylesheet' type='text/css' href='".$templatePath.".css'>";
+    echo "<style>
+            body {
+                display: none;
+            }
+        </style>";    echo "<link rel='stylesheet' type='text/css' href='".$templatePath.".css'>";
     echo '<link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />';
     echo '<link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet" type="text/css" />';
     echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
     echo '<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>';
     echo "<script src='".$templatePath.".js'></script>";
-    
+    echo "<script>
+            $(window).on('load', function() {
+                $('body').fadeIn();
+            });
+        </script>";
     echo "<nav style='position: fixed; top: 0; width: 100%; z-index: 100;'>
             <div class='nav-wrapper black'>
                 <ul id='nav-mobile' class='left hide-on-med-and-down'>

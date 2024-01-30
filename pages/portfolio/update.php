@@ -5,17 +5,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
-    <link rel="stylesheet" href="../../styles.css" />
+    <link rel="stylesheet" href="../../styles2.css" />
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Update DevFolio</title>
 </head>
-
 <body>
     <nav>
         <div class="nav-wrapper black">
@@ -247,7 +244,8 @@
                 "width": 600,
                 "padding": 10,
                 "background-color": "white", // Cor de fundo verde
-                "border": "1px solid green" // Borda fina verde
+                "border": "1px solid green", // Borda fina verde
+                "margin-bottom": "50px"
             })
 
             $('#newProject').text("Publish new project");
