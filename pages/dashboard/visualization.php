@@ -13,7 +13,7 @@ $con = new Connection;
 try {
     $getPort = new Devfolio;
     $getPage = $getPort->getVisualizationPage();
-    
+    $template = $getPort->getTemplate();
     $profile = $getPort->getProfile($getPage);
     $skills = $getPort->getSkills($getPage);
     $projects = $getPort->getProjects($getPage);
@@ -47,7 +47,7 @@ try {
     <link
         href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../../templates/styles.css" />
+    <link rel="stylesheet" href="<?php echo "../../templates/".$template; ?>" />
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
 </head>
 <nav>
@@ -71,7 +71,7 @@ try {
 
 <body>
     <div id="wrapper">
-        <div style="position: fixed; left: 0; top: 60%; transform: translateY(-50%);">
+        <!-- <div style="position: fixed; left: 0; top: 60%; transform: translateY(-50%);">
             <script type="text/javascript">
                 atOptions = {
                     'key' : '31624681408ac0ed416e8f139cebcec0',
@@ -94,7 +94,7 @@ try {
                 };
                 document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
             </script>
-        </div>
+        </div> -->
         <div id="main">
             <div class="inner">
                 <div id="container01" class="style1 container default">

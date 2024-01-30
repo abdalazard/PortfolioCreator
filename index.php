@@ -8,17 +8,13 @@ $con = new Connection;
 
 try {
     $getPort = new Devfolio;
-    $getPage = $getPort->getPage(1);
-    if(!$getPage){
-        $msg = "Nothing in database!";
-        header("location: nodevfolio.php?msg=" . $msg);
-    }
+    $getPage = $getPort->getVisualizationPage();
+    $template = $getPort->getTemplate();
     $profile = $getPort->getProfile($getPage);
     $skills = $getPort->getSkills($getPage);
     $projects = $getPort->getProjects($getPage);
     $others = $getPort->getOthers($getPage);
     $social = $getPort->getContacts($getPage);
-    include_once 'icon/network.php';
 } catch (Exception $e) {
     $msg = "Erro: " . $e->getMessage() . "\nYou don't have anything registered!";
     header("location: nodevfolio.php?msg=" . $msg);
@@ -46,7 +42,7 @@ try {
     <link
         href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
         rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="styles.css" />
+        <link rel="stylesheet" href="<?php echo "../../templates/".$template; ?>" />
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css" media="screen,projection" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="materialize/js/materialize.min.js"></script>

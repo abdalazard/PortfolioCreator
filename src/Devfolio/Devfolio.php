@@ -3,14 +3,22 @@
 class Devfolio
 {
 
-    public function getTemplateDefault($id) {
+    public function getTemplate() {
         try {
 
-            $selectTemplate = "SELECT * FROM template_user WHERE id_user LIKE '".$id."'";
-            $db = $this->dataBase($selectTemplate);
+            $selectTemplateUser = "SELECT * FROM template_user";
+            $db = $this->dataBase($selectTemplateUser);
             $data = mysqli_fetch_array($db);
 
-            return $data['name'] ?? 0;
+            if ($data) {
+                $selectTemplate = "SELECT * FROM template WHERE id LIKE '".$data['template_id']."'";
+                $dbTemplate = $this->dataBase($selectTemplate);
+                $template = mysqli_fetch_array($dbTemplate);
+            } else {
+                $template = null;
+            }
+            
+            return $template['name'].".css" ?? 'default.css';
 
         } catch(Exception $e) {
             echo "Error: " . $e->getMessage();

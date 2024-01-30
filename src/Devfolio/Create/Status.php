@@ -26,8 +26,9 @@ if($action == "setStatus"){
             $queryCreate = $devfolio->dataBase($createStatus);
             echo "Status created sucessfully!";
 
-            $setDefaultTemplate = "UPDATE template_user SET name = '.".$template.".' WHERE id_user LIKE '".$userId."'";
-            $queryDefaultTemplate = $devfolio->dataBase($setDefaultTemplate);
+            // $setDefaultTemplate = "UPDATE template_user SET name = '.".$template.".' WHERE id_user LIKE '".$userId."'";
+            $setDefaultTemplate = "INSERT INTO template_user VALUES(null, 1, '".$userId."')";
+            $devfolio->dataBase($setDefaultTemplate);
             echo "Template settings done sucessfully!";            
         }
         echo "Status 200";
