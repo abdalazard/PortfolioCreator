@@ -1,0 +1,76 @@
+.closeButton {
+    margin-top: 10px;
+    padding: 10px;
+    text-align: 'center';
+}
+a.disabled {
+    pointer-events: none;
+    color: gray;
+    text-decoration: none;
+}
+
+.bloco-titulo {
+    height: 30px;
+    text-align: center;
+    background-color: grey;
+    color: black;
+
+}
+
+.msg {
+    color: white;
+}
+
+.modalLogin {
+    height: 390px;
+    width: 500px;
+}
+
+.modalRegister {
+    height: 540px;
+    width: 500px;
+}
+
+.logged {
+    color: #fff;
+    background-color: green;
+    text-align: center;
+    height: 20px;
+}
+#boxSkills {
+    display: flex;
+    flex-direction: column;
+    background-color: "white";
+    border: "1px solid green";
+}
+
+#skillsGallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+#skillsGallery img {
+    max-width: 80px;
+    height: 40px;
+    margin: 5px;
+}
+.custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

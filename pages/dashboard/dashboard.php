@@ -41,30 +41,7 @@ include '../../auth/Authentication.php'; ?>
             </ul>
         </div>
     </nav>
-    <div style="position: fixed; left: 0; top: 50%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '16af53543bf450bb1f9612888bb17936',
-                'format' : 'iframe',
-                'height' : 300,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/16af53543bf450bb1f9612888bb17936/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
-    <div style="position: fixed; right: 0; top: 50%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '16af53543bf450bb1f9612888bb17936',
-                'format' : 'iframe',
-                'height' : 300,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/16af53543bf450bb1f9612888bb17936/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
+
     <div class="container">
         <?php if (isset($_GET['msg'])) {
         ?>
@@ -303,19 +280,6 @@ $(document).ready(function() {
 
 });
 </script>
-<div class="center" style="margin-top: 50px;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '64c9f95ee05a7716b801515f91ab0be6',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>    
 </body>
-<script type='text/javascript' src='//pl22162032.toprevenuegate.com/3a/51/a9/3a51a92abaf7a272c0d0aeabed473567.js'></script>
 
 </html>

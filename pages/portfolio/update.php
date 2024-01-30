@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
-    <link rel="stylesheet" href="../../styles2.css" />
+    <link rel="stylesheet" href="../../styles.css" />
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,31 +27,7 @@
                 </li>
             </ul>
         </div>
-    </nav>
-    <div style="position: fixed; left: 0; top: 60%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '31624681408ac0ed416e8f139cebcec0',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
-    <div style="position: fixed; right: 0; top: 60%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '31624681408ac0ed416e8f139cebcec0',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
+    </nav>    
     <div class="container">
         <h3>Update your Devfolio</h3>
 
@@ -1091,19 +1067,7 @@
             }
         });
     </script>
-    <div class="center" style="margin-top: 30px; margin-right: 350px;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '64c9f95ee05a7716b801515f91ab0be6',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>    
+
 </body>
-<script type='text/javascript' src='//pl22162032.toprevenuegate.com/3a/51/a9/3a51a92abaf7a272c0d0aeabed473567.js'></script>
 
 </html>

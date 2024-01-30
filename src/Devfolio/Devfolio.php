@@ -18,7 +18,7 @@ class Devfolio
                 $template = null;
             }
             
-            return $template['name'].".css" ?? 'default.css';
+            return $template['name'] ?? 'default.css';
 
         } catch(Exception $e) {
             echo "Error: " . $e->getMessage();

@@ -9,7 +9,7 @@ $action = $_GET['action'];
 
 if($action == "getTemplateDefault"){
     $devfolio = new Devfolio;
-    $data = $devfolio->getTemplateDefault($userId);
+    $data = $devfolio->getTemplate();
     echo json_encode($data);
     exit();
 }
