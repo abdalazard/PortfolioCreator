@@ -2,6 +2,19 @@
 
 class Devfolio
 {
+    public function getTemplates() {
+        try {
+            $allTemplates = "SELECT * FROM template";
+            $db = $this->dataBase($allTemplates);
+            $data = [];
+            while ($row = mysqli_fetch_array($db)) {
+                $data[] = $row;
+            }
+            return $data;
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();
+        } 
+    }
 
     public function getTemplate() {
         try {

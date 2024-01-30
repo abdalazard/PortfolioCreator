@@ -14,6 +14,7 @@ try {
     $userId = $_SESSION['id'];
     $getPort = new Devfolio;
     $getPage = $getPort->getVisualizationPage();
+    $templates = $getPort->getTemplates();
     $template = $getPort->getTemplate();
     $profile = $getPort->getProfile($getPage);
     $skills = $getPort->getSkills($getPage);
@@ -24,11 +25,14 @@ try {
     $templatePath = "../../templates/" . $template . "/" . $template;
 
     include $templatePath . '.php';
+    include 'navbar.php';
+
     echo "<style>
             body {
                 display: none;
             }
-        </style>";    echo "<link rel='stylesheet' type='text/css' href='".$templatePath.".css'>";
+        </style>";
+    echo "<link rel='stylesheet' type='text/css' href='".$templatePath.".css'>";
     echo '<link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />';
     echo '<link href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600" rel="stylesheet" type="text/css" />';
     echo '<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>';
@@ -39,26 +43,12 @@ try {
                 $('body').fadeIn();
             });
         </script>";
-    echo "<nav style='position: fixed; top: 0; width: 100%; z-index: 100;'>
-            <div class='nav-wrapper black'>
-                <ul id='nav-mobile' class='left hide-on-med-and-down'>
-                    <li><a href='../../admin.php'>Home</a></li>
-                </ul>
-                <ul id='nav-mobile' class='left hide-on-med-and-down'>
-                    <li><a href='#'>Change Layout(soon)</a></li>
-                </ul>
-                <ul class='right'>
-                    <li><a class='waves-effect waves-light btn green modal-trigger' href='#' id='publish'>Publish</a>
-                    </li>
-                </ul>
-                <ul class='right'>
-                    <li><a class='waves-effect waves-light btn black modal-trigger' id='backButton' href='#'>Go back</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>";
+    
+        
 
-} catch (Exception $e) {
+
+
+    } catch (Exception $e) {
     $msg = "Erro: " . $e->getMessage() . "\nYou don't have anything registered!";
     header("location: nodevfolio.php?msg=" . $msg);
 }
