@@ -12,11 +12,11 @@ class Devfolio
             }
             $data = mysqli_fetch_array($db);
 
-            return $data['id_user'] ?? 0;
+            return $data['id_user'] ?? null;
 
         } catch (Exception $e) {
             $msg = "Error: " . $e->getMessage() . "\nYou don't have any devfolio created!";
-            header("location: nodevfolio.php?msg=" . $msg);
+            header("location: ../../nodevfolio.php?msg=" . $msg);
         }
        
     }

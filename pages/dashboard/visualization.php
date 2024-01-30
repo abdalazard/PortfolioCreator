@@ -13,10 +13,7 @@ $con = new Connection;
 try {
     $getPort = new Devfolio;
     $getPage = $getPort->getVisualizationPage();
-    if($getPage == null){
-        $msg = "Nothing in database!";
-        header("location: nodevfolio.php?msg=" . $msg);
-    }
+    
     $profile = $getPort->getProfile($getPage);
     $skills = $getPort->getSkills($getPage);
     $projects = $getPort->getProjects($getPage);
