@@ -20,7 +20,7 @@
 <div class='modal fade' id='templateList' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
     <div class="row">
         <div class="col s12">
-            <h3 class="center">Choose a template</h3>
+            <h3 class="center" style="margin-top:20px;">Choose a template</h3>
         </div>
     </div>
     <div class="templateList">

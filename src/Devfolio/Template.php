@@ -17,7 +17,14 @@ if($action == "getTemplateDefault"){
 
 if($action == "chooseTemplate"){
     $devfolio = new Devfolio;
-    $data = $devfolio->templateVisualization($template);    
-    echo json_encode($data);    
+    $data = $devfolio->templateVisualization($template);
+
+    $filter = ['name', 'id', 'creator_id'];
+    $filteredData = array_filter($data, function($value) {
+        return !is_null($value) && $value !== '';
+    });
+    $filteredData = array_intersect_key($filteredData, array_flip($filter));
+
+    echo json_encode($filteredData);    
     exit();
 }
