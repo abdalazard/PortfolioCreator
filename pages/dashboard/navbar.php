@@ -1,7 +1,7 @@
 <nav style='position: fixed; top: 0; width: 100%; z-index: 100;'>
     <div class='nav-wrapper black'>
         <ul id='nav-mobile' class='left'>
-            <li><a href='../../admin.php'>Home</a></li>
+            <li><a href='../../../admin.php'>Home</a></li>
         </ul>
         <ul id='nav-mobile' class='left'>
             <li><a href='#templateList' class='modal-trigger'>Templates</a></li>

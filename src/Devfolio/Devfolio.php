@@ -8,9 +8,9 @@ class Devfolio
             $db = $this->dataBase($allTemplates);
             $data = [];
             while ($row = mysqli_fetch_array($db)) {
-                $phpFile = "../../templates/" . $row['name'] . "/" . $row['name'] . ".php";
-                $cssFile = "../../templates/" . $row['name'] . "/" . $row['name'] . ".css";
-                $jsFile = "../../templates/" . $row['name'] . "/" . $row['name'] . ".js";
+                $phpFile = "../../../templates/" . $row['name'] . "/" . $row['name'] . ".php";
+                $cssFile = "../../../templates/" . $row['name'] . "/" . $row['name'] . ".css";
+                $jsFile = "../../../templates/" . $row['name'] . "/" . $row['name'] . ".js";
 
                 if (file_exists($phpFile) && file_exists($cssFile) && file_exists($jsFile)){
                     $data[] = $row;
@@ -44,27 +44,17 @@ class Devfolio
         }        
     }
 
-    public function getTemplate($template_id, $template_user_id = null) {
+    public function getTemplate($template_user_id) {
         try {
-            $selectTemplateUser = "SELECT * FROM template_user WHERE template_id LIKE '" .$template_id. "' AND id_user LIKE '" . $_SESSION['id'] . "'";
+            $selectTemplate = "SELECT users.id, template.* 
+                FROM users 
+                LEFT JOIN template_user ON users.id = template_user.id_user 
+                LEFT JOIN template ON template.id = template_user.template_id 
+                WHERE users.id = '".$template_user_id."'";
 
-            $db = $this->dataBase($selectTemplateUser);
-            $data = mysqli_fetch_array($db);
-
-            if ($data['template_id'] == $template_id) {
-                if($template_user_id == null) {
-                    $template_user_id = $_SESSION['id'];
-                }
-                $selectTemplate = "SELECT users.user, template.* 
-                    FROM users 
-                    LEFT JOIN template_user ON users.id = template_user.id_user 
-                    LEFT JOIN template ON template.id = template_user.template_id 
-                    WHERE users.id = '".$template_user_id."'";
-
-                $dbTemplate = $this->dataBase($selectTemplate);
-                if($dbTemplate) {
-                    $template = mysqli_fetch_array($dbTemplate);
-                } 
+            $dbTemplate = $this->dataBase($selectTemplate);
+            if($dbTemplate) {
+                $template = mysqli_fetch_array($dbTemplate);
             } else {
                 $template = null;
             }

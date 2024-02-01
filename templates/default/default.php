@@ -4,7 +4,6 @@
         <title>DevFolio</title>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
-        
     </head>
     <body>
         <div id="wrapper">
@@ -15,7 +14,7 @@
                             <div class="inner" data-onvisible-trigger="1">
                                 <div id="image04" class="style1 image">
                                     <span class="frame">
-                                        <img src="<?php echo '../../' . $profile['profile']; ?>" alt="Foto" />
+                                        <img src="<?php echo '../../../' . $profile['profile']; ?>" alt="Foto" />
                                     </span>
                                 </div>
                                 <h2 id="text05" class="style1"><?php echo $profile['title']; ?></h2>
@@ -55,7 +54,7 @@
                                 <?php foreach ($skills as $skill) { ?>
                                 <li>
                                     <div id="image02" class="style2 image">
-                                        <img src="<?php echo '../../' . $skill['skill']; ?>" alt="Stacks" widht="50px"
+                                        <img src="<?php echo '../../../' . $skill['skill']; ?>" alt="Stacks" widht="50px"
                                             height="50px" />
                                     </div>
                                 </li>
@@ -87,7 +86,7 @@
                                         class="modal modal-fixed-footer">
                                         <div class="modal-content">
                                             <h4><?php echo "Tema da palestra"; ?></h4>
-                                            <img src=<?php echo '../../' . $other['banner']; ?> widht="250px"
+                                            <img src=<?php echo '../../../' . $other['banner']; ?> widht="250px"
                                                 height="450px" />
                                         </div>
                                         <div class="modal-footer">

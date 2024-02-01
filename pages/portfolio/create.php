@@ -25,7 +25,7 @@
                 <li><a href="../../admin.php">Home</a></li>
             </ul>
             <ul id="nav-mobile" class="left " >
-                <li ><a href="../dashboard/visualization.php" id="preview"></a></li>
+                <li ><a href="../dashboard/ visuzalization/visualization.php" id="preview"></a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger"

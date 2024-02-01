@@ -1,10 +1,10 @@
 <?php
 
-include "../../db/Connection.php";
-include '../../src/Devfolio/Devfolio.php';
-include '../../auth/Authentication.php';
-require_once ('../../vendor/autoload.php');
-include_once '../../icon/network.php';
+include "../../../db/Connection.php";
+include '../../../src/Devfolio/Devfolio.php';
+include '../../../auth/Authentication.php';
+require_once ('../../../vendor/autoload.php');
+include_once '../../../icon/network.php';
 
 $con = new Connection;
 
@@ -29,25 +29,25 @@ try {
     $others = $getPort->getOthers($getPage);
     $social = $getPort->getContacts($getPage);
 
-    $templatePath = "../../templates/" . $template['name'] . "/" . $template['name'];
+    $templatePath = "../../../templates/" . $template['name'] . "/" . $template['name'];
 
     include $templatePath . '.php';
-    include 'navbar.php';
+    include '../navbar.php';
 
-    echo "<style>
-            body {
-                display: none;
-            }
-        </style>";
+
     echo "<link rel='stylesheet' type='text/css' href='".$templatePath.".css'>
-    <link type='text/css' rel='stylesheet' href='../../materialize/css/materialize.min.css' media='screen,projection' />
+    <link type='text/css' rel='stylesheet' href='../../../materialize/css/materialize.min.css' media='screen,projection' />
     <link href='https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600' rel='stylesheet' type='text/css' />
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
     <script src='".$templatePath.".js'></script>
-    <script src='visualization.js'></script>
+    <script src='../navbar.js'></script>
     <link rel='stylesheet' type='text/css' href='visualization.css' />";
-
+    echo "<style>
+        body {
+            margin-top: 100px;
+        }
+        </style>";
     echo "<script>
             $(window).on('load', function() {
                 $('body').fadeIn();
@@ -57,7 +57,7 @@ try {
                 e.preventDefault();
                 var template = $('#template').val();
                 $.ajax({
-                    url: '../../src/Devfolio/Template.php',
+                    url: '../../../src/Devfolio/Template.php',
                     type: 'GET',
                     data: {
                         template: template,
@@ -73,6 +73,36 @@ try {
                     }
                 });
             }));
+
+
+            $('#publish').on('click', function() {
+                let newTemplate = JSON.parse('".json_encode($newTemplate)."');
+                let userId = ".$userId.";
+
+                event.preventDefault();
+                var formStatus = new FormData();
+                formStatus.append('userId', userId); 
+                formStatus.append('status', 1);
+                formStatus.append('template', newTemplate['id']); 
+                formStatus.append('action', 'setStatus');
+        
+                $.ajax({
+                    url: '../../../src/Devfolio/Create/Status.php',
+                    type: 'POST',
+                    processData: false,
+                    contentType: false,
+                    data: formStatus,
+                    success: function(data) {
+                        let statusMsg = 'Your Devfolio project is published!';
+                        location.href = '../dashboard.php?statusMsg='+statusMsg;
+                        console.log('visualization to dashboard');
+                        
+                    },
+                    error: function(error) {
+                        console.log('Publish button not good!')
+                    }
+                });
+            });
         </script>";
 
 } catch (Exception $e) {

@@ -23,7 +23,7 @@ include '../../auth/Authentication.php'; ?>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left ">
-                <li><a href="../../admin.php">Home</a></li>
+                <li><a href="../../../admin.php">Home</a></li>
             </ul>
             <ul id="nav-mobile" class="left ">
                 <li><a id="new" class="modal-trigger">Create new</a></li>
@@ -32,7 +32,7 @@ include '../../auth/Authentication.php'; ?>
                 <li><a href="#">Change Layout(Soon)</a></li>
             </ul>
             <ul id="nav-mobile" class="left ">
-                <li><a id="visu" href="visualization.php">Visualizar Devfolio</a></li>
+                <li><a id="visu" href="/pages/dashboard/visualization/visualization.php">Visualizar Devfolio</a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger "
