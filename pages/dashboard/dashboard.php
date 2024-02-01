@@ -22,16 +22,16 @@ include '../../auth/Authentication.php'; ?>
 <body>
     <nav>
         <div class="nav-wrapper black">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left ">
                 <li><a href="../../admin.php">Home</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left ">
                 <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left ">
                 <li><a href="#">Change Layout(Soon)</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left ">
                 <li><a id="visu" href="visualization.php">Visualizar Devfolio</a></li>
             </ul>
             <ul class="right">

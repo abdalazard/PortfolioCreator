@@ -9,10 +9,19 @@ include_once '../../icon/network.php';
 $con = new Connection;
 
 try {
+    $newTemplate = null;
+
+    if (isset($_GET['newTemplate']) && $_GET['newTemplate'] !== null) {
+        $newTemplate = json_decode($_GET['newTemplate'], true);
+    }
+
+    if (!$newTemplate) {
+        $newTemplate['id'] = 1;
+    }
     $userId = $_SESSION['id'];
     $getPort = new Devfolio;
     $getPage = $getPort->getVisualizationPage();
-    $template = $getPort->templateVisualization();
+    $template = $getPort->templateVisualization($newTemplate['id']);
     $templates = $getPort->getTemplates();
     $profile = $getPort->getProfile($getPage);
     $skills = $getPort->getSkills($getPage);
@@ -56,14 +65,15 @@ try {
                     },
                     success: function(data) {
                         let newTemplate = JSON.parse(data);
-                        console.log('new template:', newTemplate)
+                        let url = new URL(window.location.href);
+                        url.searchParams.set('newTemplate', JSON.stringify(newTemplate));
+                        window.location.href = url.href;
                     }, error : function(error) {
                         console.log('seu retorno deu erro: ', error);
                     }
                 });
             }));
         </script>";
-
 
 } catch (Exception $e) {
     $msg = "Erro: " . $e->getMessage() . "\nYou don't have anything registered!";

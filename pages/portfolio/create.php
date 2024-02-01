@@ -21,10 +21,10 @@
 <body>
     <nav>
         <div class="nav-wrapper black">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left ">
                 <li><a href="../../admin.php">Home</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down" >
+            <ul id="nav-mobile" class="left " >
                 <li ><a href="../dashboard/visualization.php" id="preview"></a></li>
             </ul>
             <ul class="right">
