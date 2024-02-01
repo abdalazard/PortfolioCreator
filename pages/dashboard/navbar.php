@@ -1,9 +1,9 @@
 <nav style='position: fixed; top: 0; width: 100%; z-index: 100;'>
     <div class='nav-wrapper black'>
-        <ul id='nav-mobile' class='left hide-on-med-and-down'>
+        <ul id='nav-mobile' class='left'>
             <li><a href='../../admin.php'>Home</a></li>
         </ul>
-        <ul id='nav-mobile' class='left hide-on-med-and-down'>
+        <ul id='nav-mobile' class='left'>
             <li><a href='#templateList' class='modal-trigger'>Templates</a></li>
         </ul>
         <ul class='right'>
@@ -20,24 +20,29 @@
 <div class='modal fade' id='templateList' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
     <div class="row">
         <div class="col s12">
-        <h3 class='center'>Choose a template</h3>
-        <select id="template" name="template">
-            <?php
-                foreach ($templates as $template) {
-                    ?><option value="<?php echo $template['id']; ?>"><?php echo $template['name'];  ?></option><?php 
-                }
-            ?>
-        </select>
+            <h3 class="center">Choose a template</h3>
+        </div>
     </div>
+    <div class="templateList">
+        <div class="row">
+        <?php if ($templates) { ?>
+            <div class="col s9">
+                <select id="template" class="template" name="template">
+                    <option value="" disabled selected>Choose your option</option>
+                    <?php
+                        foreach ($templates as $temp) { ?>
+                            <option value="<?php echo $temp['id']; ?>"><?php echo $temp['name'];  ?></option>
+                    <?php }?>
+                </select>
+            </div>
+            <div class="col s3">
+                <a href="#" class="waves-effect waves-light black btn" id="chooseTemplate">Choose</a>
+            </div>
+            <?php } else {
+                echo "<h4 class='center'>You don't have any template registered, so you're using the default template.</h4>";
+                echo "<h6 class='center'>You can add a new template in the admin page <a href='#'>here</a></h6>";
+            }?>
+        </div>
+    </div>    
 </div>
-
-<script>
-    M.AutoInit();
-
-    $('.modal').modal();
-
-    $('#templateList').click(function(e) {
-        e.preventDefault(); 
-        $('#myModal').modal('show');
-    });
-</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

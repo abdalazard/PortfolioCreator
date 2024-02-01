@@ -8,7 +8,13 @@ class Devfolio
             $db = $this->dataBase($allTemplates);
             $data = [];
             while ($row = mysqli_fetch_array($db)) {
-                $data[] = $row;
+                $phpFile = "../../templates/" . $row['name'] . "/" . $row['name'] . ".php";
+                $cssFile = "../../templates/" . $row['name'] . "/" . $row['name'] . ".css";
+                $jsFile = "../../templates/" . $row['name'] . "/" . $row['name'] . ".js";
+
+                if (file_exists($phpFile) && file_exists($cssFile) && file_exists($jsFile)){
+                    $data[] = $row;
+                }
             }
             return $data;
         } catch(Exception $e) {
@@ -16,22 +22,56 @@ class Devfolio
         } 
     }
 
-    public function getTemplate() {
+    public function templateVisualization($template_id = null) {
         try {
+            if($template_id == null) {
+                $template_id = 1;
+            }
+            $selectVisualization = "SELECT * FROM template WHERE id LIKE '" .$template_id. "'";
 
-            $selectTemplateUser = "SELECT * FROM template_user";
-            $db = $this->dataBase($selectTemplateUser);
+            $db = $this->dataBase($selectVisualization);
             $data = mysqli_fetch_array($db);
 
-            if ($data) {
-                $selectTemplate = "SELECT * FROM template WHERE id LIKE '".$data['template_id']."'";
-                $dbTemplate = $this->dataBase($selectTemplate);
-                $template = mysqli_fetch_array($dbTemplate);
+            if ($data['id'] == $template_id) {
+                $template = $data;
             } else {
                 $template = null;
             }
-            
-            return $template['name'] ?? 'default.css';
+            var_dump($template);
+
+            return $template;
+
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();           
+        }        
+    }
+
+    public function getTemplate($template_id, $template_user_id = null) {
+        try {
+            $selectTemplateUser = "SELECT * FROM template_user WHERE template_id LIKE '" .$template_id. "' AND id_user LIKE '" . $_SESSION['id'] . "'";
+
+            $db = $this->dataBase($selectTemplateUser);
+            $data = mysqli_fetch_array($db);
+
+            if ($data['template_id'] == $template_id) {
+                if($template_user_id == null) {
+                    $template_user_id = $_SESSION['id'];
+                }
+                $selectTemplate = "SELECT users.user, template.* 
+                    FROM users 
+                    LEFT JOIN template_user ON users.id = template_user.id_user 
+                    LEFT JOIN template ON template.id = template_user.template_id 
+                    WHERE users.id = '".$template_user_id."'";
+
+                $dbTemplate = $this->dataBase($selectTemplate);
+                if($dbTemplate) {
+                    $template = mysqli_fetch_array($dbTemplate);
+                } 
+            } else {
+                $template = null;
+            }
+
+            return $template;
 
         } catch(Exception $e) {
             echo "Error: " . $e->getMessage();
