@@ -35,6 +35,9 @@ try {
             $(window).on('load', function() {
                 $('body').fadeIn();
             });
+            $(document).ready(function(){
+                $('.modal').modal();
+            });
         </script>";
 
 } catch (Exception $e) {
