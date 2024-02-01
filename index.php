@@ -26,10 +26,6 @@ try {
      <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
     <script src='".$templatePath.".js'></script>
     <style>
-
-    body {
-        margin-top: 100px;
-    }
     </style>";
     echo "<script>
             $(window).on('load', function() {
