@@ -17,9 +17,7 @@ if($action == "getTemplateDefault"){
 
 if($action == "chooseTemplate"){
     $devfolio = new Devfolio;
-    $devfolio->templateVisualization($template);    
-    echo json_encode($filteredData);
-    
-    
+    $data = $devfolio->templateVisualization($template);    
+    echo json_encode($data);    
     exit();
 }

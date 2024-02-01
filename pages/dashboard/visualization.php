@@ -44,7 +44,7 @@ try {
                 $('body').fadeIn();
             });
 
-            $('#chooseTemplate').click(function(e) {
+            $('#chooseTemplate').on('click', (function(e) {
                 e.preventDefault();
                 var template = $('#template').val();
                 $.ajax({
@@ -56,12 +56,12 @@ try {
                     },
                     success: function(data) {
                         let newTemplate = JSON.parse(data);
-                        console.log(newTemplate)
+                        console.log('new template:', newTemplate)
                     }, error : function(error) {
-                        console.log(error);
+                        console.log('seu retorno deu erro: ', error);
                     }
                 });
-            });
+            }));
         </script>";
 
 

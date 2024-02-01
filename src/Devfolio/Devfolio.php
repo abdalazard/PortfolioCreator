@@ -24,7 +24,7 @@ class Devfolio
 
     public function templateVisualization($template_id = null) {
         try {
-            if($template_id == null) {
+            if(!$template_id) {
                 $template_id = 1;
             }
             $selectVisualization = "SELECT * FROM template WHERE id LIKE '" .$template_id. "'";
@@ -37,8 +37,6 @@ class Devfolio
             } else {
                 $template = null;
             }
-            var_dump($template);
-
             return $template;
 
         } catch(Exception $e) {
