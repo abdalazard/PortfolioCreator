@@ -14,8 +14,6 @@ include '../../auth/Authentication.php'; ?>
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Login</title>
 </head>
 
@@ -103,7 +101,8 @@ include '../../auth/Authentication.php'; ?>
             </div>
         </div>
     </div>
-
+<script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
 M.AutoInit();
 var userId = '<?php echo  $_SESSION['id']; ?>';
