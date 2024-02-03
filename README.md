@@ -6,7 +6,7 @@ This project is a PHP-based portfolio creator that stores standardized data in a
 
 - ~~**Phase 1 Completed:** Implementation of the portfolio builder.~~
 - ~~**Phase 2 Completed:** Currently working on the portfolio editing feature and deletion option.~~
-- ~~**Phase 3 In Progress:** Developing the template system and the ability to select different styles.~~~~
+- ~~**Phase 3 In Progress:** Developing the template system and the ability to select different styles.~~
 - **Phase 4 :** Testing - Working at
 - **Phase 5 :** Update user data modal.
 - **Phase 6 :** Create a documentation and publish it.
