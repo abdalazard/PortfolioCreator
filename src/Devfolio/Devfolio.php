@@ -2,6 +2,79 @@
 
 class Devfolio
 {
+    public function getTemplates() {
+        try {
+            $allTemplates = "SELECT * FROM template";
+            $db = $this->dataBase($allTemplates);
+            $data = [];
+            while ($row = mysqli_fetch_array($db)) {
+                $phpFile = "../../../templates/" . $row['name'] . "/" . $row['name'] . ".php";
+                $cssFile = "../../../templates/" . $row['name'] . "/" . $row['name'] . ".css";
+                $jsFile = "../../../templates/" . $row['name'] . "/" . $row['name'] . ".js";
+
+                if (file_exists($phpFile) && file_exists($cssFile) && file_exists($jsFile)){
+                    $data[] = $row;
+                }
+            }
+            return $data;
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();
+        } 
+    }
+
+    public function templateVisualization($template_id, $userId) {
+        try {
+            
+            if($template_id) {
+                $selectVisualization = "SELECT * FROM template WHERE id LIKE '" .$template_id. "'";
+            } else {
+                $getTemplate = $this->getTemplate($userId);
+                $selectVisualization = "SELECT * FROM template WHERE id LIKE '" .$getTemplate['id']. "'";     
+            }
+
+            $db = $this->dataBase($selectVisualization);
+            $data = mysqli_fetch_array($db);
+            if (!$data) {
+                $msg = "Problems to get this devfolio";
+                header("location: ../../nodevfolio.php?msg=" . $msg);
+            } else {
+                $template = $data;
+            }
+            return $template;
+
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();           
+        }        
+    }
+
+    public function getTemplate($template_user_id) {
+        try {
+            $selectTemplate = "SELECT users.id, template.* 
+                FROM users 
+                LEFT JOIN template_user ON users.id = template_user.id_user 
+                LEFT JOIN template ON template.id = template_user.template_id 
+                WHERE users.id = '".$template_user_id."'";
+
+            $dbTemplate = $this->dataBase($selectTemplate);
+            if($dbTemplate) {
+                $template = mysqli_fetch_array($dbTemplate);
+                $filter = ['name', 'id', 'creator_id'];
+                $filteredData = array_filter($template, function($value) {
+                    return !is_null($value) && $value !== '';
+                });
+                $template = array_intersect_key($filteredData, array_flip($filter));
+
+            } else {
+                $template = null;
+            }
+            
+            return $template;
+
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();
+        } 
+    }
+
     public function getVisualizationPage() {
         try {
             $selectPage  = "SELECT * FROM status";

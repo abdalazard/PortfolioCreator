@@ -21,11 +21,11 @@
 <body>
     <nav>
         <div class="nav-wrapper black">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left ">
                 <li><a href="../../admin.php">Home</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down" >
-                <li ><a href="../dashboard/visualization.php" id="preview"></a></li>
+            <ul id="nav-mobile" class="left " >
+                <li ><a href="../dashboard/ visuzalization/visualization.php" id="preview"></a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger"
@@ -34,30 +34,6 @@
             </ul>
         </div>
     </nav>
-    <div style="position: fixed; left: 0; top: 60%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '31624681408ac0ed416e8f139cebcec0',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
-    <div style="position: fixed; right: 0; top: 60%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '31624681408ac0ed416e8f139cebcec0',
-                'format' : 'iframe',
-                'height' : 600,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
     <div class="container">
         <?php if(isset($_GET['msg'])) { echo "<p class='red' id='msg' name='msg'>".$_GET['msg']."</p>";} ?>
         <div id="createNewPortfolio">
@@ -67,8 +43,6 @@
 
             <?php include '../skills/skills.php'; ?>
 
-            <!-- Adicionar lista de projetos -->
-
             <?php include '../projects/projects.php'; ?>
 
             <?php include '../others/others.php'; ?>
@@ -77,7 +51,6 @@
         </div>
 
         <div id="finished"></div>
-
         <br>
     </div>
     </body>
@@ -87,15 +60,3 @@
         var userId = '<?php echo  $_SESSION['id']; ?>';
         var user = '<?php echo  $_SESSION['user']; ?>';
     </script>
-    <div class="center" style="margin-top: 30px; margin-right: 500px;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '64c9f95ee05a7716b801515f91ab0be6',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>   

@@ -374,7 +374,7 @@ function checkForms() {
                     $('#preview').css({"background-color": "green"});
                     $('#finished').append('<h4 class="center">You already have a devfolio saved. Click on the green button to view your Devfolio using the default template!</h4>')
                     $('#preview').click(function() {
-                        window.location.href = '../dashboard/visualization.php';
+                        window.location.href = '../dashboard/ visuzalization/visualization.php';
                     });
                 } 
             },

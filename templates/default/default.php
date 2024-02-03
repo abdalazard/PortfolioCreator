@@ -1,101 +1,5 @@
-<?php
-
-include "../../db/Connection.php";
-
-include '../../src/Devfolio/Devfolio.php';
-include '../../auth/Authentication.php';
-
-require_once ('../../vendor/autoload.php');
-include_once '../../icon/network.php';
-
-$con = new Connection;
-
-try {
-    $getPort = new Devfolio;
-    $getPage = $getPort->getVisualizationPage();
-    
-    $profile = $getPort->getProfile($getPage);
-    $skills = $getPort->getSkills($getPage);
-    $projects = $getPort->getProjects($getPage);
-    $others = $getPort->getOthers($getPage);
-    $social = $getPort->getContacts($getPage);
-} catch (Exception $e) {
-    $msg = "Erro: " . $e->getMessage() . "\nYou don't have anything registered!";
-    header("location: nodevfolio.php?msg=" . $msg);
-}
-
-?>
-<!DOCTYPE HTML>
-<html lang="pt-br">
-
-<head>
-    <title>DevFolio</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <meta name="color-scheme" content="light only" />
-    <meta name="description" content="Meu portfolio." />
-    <meta property="og:site_name" content="Portfolio" />
-    <meta property="og:title" content="Portfolio" />
-    <meta property="og:type" content="website" />
-    <meta property="og:description" content="Meu portfolio." />
-    <meta property="og:image:type" content="image/jpeg" />
-    <meta property="og:image:width" content="1280" />
-    <meta property="og:image:height" content="800" />
-    <meta property="og:url" content="https://abdalazard.online" />
-    <meta property="twitter:card" content="summary_large_image" />
-    <link rel="canonical" href="https://abdalazard.online" />
-    <link
-        href="https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600"
-        rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="../../styles.css" />
-    <link rel="stylesheet" href="../../styles2.css" />
-    <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
-</head>
-<nav>
-    <div class="nav-wrapper black">
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="../../admin.php">Home</a></li>
-        </ul>
-        <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="#">Change Layout(soon)</a></li>
-        </ul>
-        <ul class="right">
-            <li><a class="waves-effect waves-light btn green modal-trigger " href="#" id="publish">Publish</a>
-            </li>
-        </ul>
-        <ul class="right">
-            <li><a class="waves-effect waves-light btn black modal-trigger " id="backButton" href="#">Go back</a>
-            </li>
-        </ul>
-    </div>
-</nav>
-
 <body>
     <div id="wrapper">
-        <div style="position: fixed; left: 0; top: 60%; transform: translateY(-50%);">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '31624681408ac0ed416e8f139cebcec0',
-                    'format' : 'iframe',
-                    'height' : 600,
-                    'width' : 160,
-                    'params' : {}
-                };
-                document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
-            </script>
-        </div>
-        <div style="position: fixed; right: 0; top: 60%; transform: translateY(-50%);">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '31624681408ac0ed416e8f139cebcec0',
-                    'format' : 'iframe',
-                    'height' : 600,
-                    'width' : 160,
-                    'params' : {}
-                };
-                document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/31624681408ac0ed416e8f139cebcec0/invoke.js"></scr' + 'ipt>');
-            </script>
-        </div>
         <div id="main">
             <div class="inner">
                 <div id="container01" class="style1 container default">
@@ -103,7 +7,7 @@ try {
                         <div class="inner" data-onvisible-trigger="1">
                             <div id="image04" class="style1 image">
                                 <span class="frame">
-                                    <img src="<?php echo '../../' . $profile['profile']; ?>" alt="Foto" />
+                                <img loading="lazy" src="<?php echo '../../../' . $profile['profile']; ?>" alt="Foto" width="130" height="150" />
                                 </span>
                             </div>
                             <h2 id="text05" class="style1"><?php echo $profile['title']; ?></h2>
@@ -111,11 +15,6 @@ try {
                         </div>
                     </div>
                 </div>
-                <ul id="icons02" class="style1 icons">
-                    <li><a class="n01" href="#start" aria-label="Arrow Down"><svg>
-                                <use xlink:href="#icon-8a75e9205b2d7697ad826d592ebf05f0"></use>
-                            </svg><span class="label">Arrow Down</span></a></li>
-                </ul>
                 <hr id="divider02" class="style1 full" />
                 <div id="container02" data-scroll-id="start" data-scroll-behavior="bottom" data-scroll-offset="0"
                     data-scroll-speed="3" data-scroll-invisible="1" class="style1 container default">
@@ -148,7 +47,7 @@ try {
                             <?php foreach ($skills as $skill) { ?>
                             <li>
                                 <div id="image02" class="style2 image">
-                                    <img src="<?php echo '../../' . $skill['skill']; ?>" alt="Stacks" widht="50px"
+                                    <img src="<?php echo '../../../' . $skill['skill']; ?>" alt="Stacks" widht="50px"
                                         height="50px" />
                                 </div>
                             </li>
@@ -180,7 +79,7 @@ try {
                                     class="modal modal-fixed-footer">
                                     <div class="modal-content">
                                         <h4><?php echo "Tema da palestra"; ?></h4>
-                                        <img src=<?php echo '../../' . $other['banner']; ?> widht="250px"
+                                        <img src=<?php echo '../../../' . $other['banner']; ?> widht="250px"
                                             height="450px" />
                                     </div>
                                     <div class="modal-footer">
@@ -225,61 +124,4 @@ try {
                 <p id="text02"><?php echo $social['email']; ?></p>
             </div>
         </div>
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
-    <script>
-    $(document).ready(function() {
-        var userId = <?php echo $_SESSION['id']; ?>;
-        $('.modal').modal();
-        $('#backButton').on('click', function() {
-            window.history.back();
-        });
-
-        $('#publish').on('click', function() {
-            event.preventDefault();
-            var formStatus = new FormData();
-            formStatus.append('userId', userId); 
-            formStatus.append('status', 1); 
-            formStatus.append('action', "setStatus");
-
-            $.ajax({
-                url: '../../src/Devfolio/Create/Status.php',
-                type: 'POST',
-                processData: false,
-                contentType: false,
-                data: formStatus,
-                success: function(data) {
-                    let statusMsg = "Your Devfolio project is published!";
-                    location.href = "dashboard.php?statusMsg="+statusMsg;
-                    console.log("visualization to dashboard");
-                    
-                },
-                error: function(error) {
-                    console.log("Publish button not good!")
-                }
-            });
-        });
-    });
-    </script>
-    <div style="display: flex; justify-content: center; align-items: center; height: 10vh;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '64c9f95ee05a7716b801515f91ab0be6',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>   
 </body>
-<script>
-    M.AutoInit();
-    $(document).ready(function() {
-        $('.modal').modal();
-    });
-</script>
-<script type='text/javascript' src='//pl22162032.toprevenuegate.com/3a/51/a9/3a51a92abaf7a272c0d0aeabed473567.js'></script>
-</html>

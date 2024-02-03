@@ -14,25 +14,23 @@ include '../../auth/Authentication.php'; ?>
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Login</title>
 </head>
 
 <body>
     <nav>
         <div class="nav-wrapper black">
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="../../admin.php">Home</a></li>
+            <ul id="nav-mobile" class="left ">
+                <li><a href="../../../admin.php">Home</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left ">
                 <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <ul id="nav-mobile" class="left" hidden>
                 <li><a href="#">Change Layout(Soon)</a></li>
             </ul>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a id="visu" href="visualization.php">Visualizar Devfolio</a></li>
+            <ul id="nav-mobile" class="left ">
+                <li><a id="visu" href="/pages/dashboard/visualization/visualization.php">Visualizar Devfolio</a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger "
@@ -41,30 +39,7 @@ include '../../auth/Authentication.php'; ?>
             </ul>
         </div>
     </nav>
-    <div style="position: fixed; left: 0; top: 50%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '16af53543bf450bb1f9612888bb17936',
-                'format' : 'iframe',
-                'height' : 300,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/16af53543bf450bb1f9612888bb17936/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
-    <div style="position: fixed; right: 0; top: 50%; transform: translateY(-50%);">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '16af53543bf450bb1f9612888bb17936',
-                'format' : 'iframe',
-                'height' : 300,
-                'width' : 160,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//difficultywithhold.com/16af53543bf450bb1f9612888bb17936/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>
+
     <div class="container">
         <?php if (isset($_GET['msg'])) {
         ?>
@@ -75,6 +50,10 @@ include '../../auth/Authentication.php'; ?>
         <h1>Dashboard</h1>
         <div>
             <h6>Hello, <?php echo $_SESSION['user']; ?>!</h6>
+            <center>
+                <script type="text/javascript" src="//widget.supercounters.com/ssl/online_t.js"></script><script type="text/javascript">sc_online_t(1684704,"Users Online","170ddb");</script><br><noscript><a href="https://www.supercounters.com/">supercounters.com</a></noscript>
+            </center>
+
         </div>
 
         <hr />
@@ -91,6 +70,7 @@ include '../../auth/Authentication.php'; ?>
                     <th>id</th>
                     <th>Profile</th>
                     <th>Title</th>
+                    <th>Template</th>
                     <th>Edit</th>
                     <th>Delete</th>
 
@@ -100,6 +80,7 @@ include '../../auth/Authentication.php'; ?>
                 <td id="profileId"></td>
                 <td class="left"><img src="" alt="foto" id="profilePic"></td>
                 <td id="tituloProfile"></td>
+                <td id="template"></td>
                 <td>
                     <a id="editPortfolio"  class="modal-trigger">
                         <span class="material-symbols-outlined">
@@ -116,9 +97,6 @@ include '../../auth/Authentication.php'; ?>
                 </td>
             </tbody>
         </table>
-        <!-- <div id="modalEdit" class="modal center">
-            <h3>teste edit</h3>
-        </div> -->
         <div id="modalDelete" class="modal center">
             <h1>Your portfolio will be erased.</h1>
             <h4>Are you  sure about that?</h4>
@@ -127,6 +105,10 @@ include '../../auth/Authentication.php'; ?>
             </div>
         </div>
     </div>
+<script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
 
 <script>
 M.AutoInit();
@@ -137,6 +119,7 @@ var statusId;
 
 $(document).ready(function() {
     getStatus();
+    getTemplateName();
 
     $('#portfolioList').hide();
 
@@ -165,7 +148,6 @@ $(document).ready(function() {
             success: function(data) {
                 status = data.status;
                 statusId = data.id;
-                console.log(data)
                 if(status == 0) {
                     $('#new').show();
                     $('#visu').hide();
@@ -199,7 +181,7 @@ $(document).ready(function() {
             contentType: false,
             data: state,
             success: function(data) {
-                console.log("setState ok")
+                console.log("setState button worked well!")
             },
             error: function(error) {
                 console.log("setState button didn't work well!")
@@ -222,7 +204,6 @@ $(document).ready(function() {
             success: function(data) {
                 setState()
                 location.href = "../portfolio/create.php"
-                console.log("aqui")
             },
             error: function(error) {
                 console.log("Create new's button didn't work well")
@@ -272,7 +253,6 @@ $(document).ready(function() {
         });
     };
     $('#editPortfolio').on('click', function () {
-        console.log("Edit: "+statusId)
         window.location.href = '../portfolio/update.php?statusId='+statusId
     });
 
@@ -301,21 +281,26 @@ $(document).ready(function() {
         });
     });
 
+    function getTemplateName() {
+        $.ajax({
+            url: '../../src/Devfolio/Get.php',
+            type: 'GET', 
+            dataType: 'json',
+            data: {
+                userId: userId,
+                action: 'getTemplate' 
+            },
+            success: function(data) {
+               templateName = data.name;
+               $('#template').text(templateName);
+            },
+            error: function(error) {
+                console.log("getTemplateName's trouble!")
+            }
+        });
+    }
 });
 </script>
-<div class="center" style="margin-top: 50px;">
-        <script type="text/javascript">
-            atOptions = {
-                'key' : '64c9f95ee05a7716b801515f91ab0be6',
-                'format' : 'iframe',
-                'height' : 60,
-                'width' : 468,
-                'params' : {}
-            };
-            document.write('<scr' + 'ipt type="text/javascript" src="//www.topcreativeformat.com/64c9f95ee05a7716b801515f91ab0be6/invoke.js"></scr' + 'ipt>');
-        </script>
-    </div>    
 </body>
-<script type='text/javascript' src='//pl22162032.toprevenuegate.com/3a/51/a9/3a51a92abaf7a272c0d0aeabed473567.js'></script>
 
 </html>

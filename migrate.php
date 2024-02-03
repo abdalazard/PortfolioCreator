@@ -3,7 +3,6 @@ require_once 'db/Connection.php';
 require_once 'vendor/autoload.php';
 
 $db = new Connection;
-// $userId = $_SESSION['id'];
 $migrations = scandir(__DIR__ . '/db/migrations');
 
 foreach ($migrations as $migration) {
@@ -17,5 +16,8 @@ foreach ($migrations as $migration) {
 }
 
 $db->toDatabase("INSERT INTO users VALUES(NULL, 'admin', MD5('".$_ENV['DB_PASSWORD']."'))");
+$db->toDatabase("INSERT INTO template VALUES(NULL, 'default', 1)");
+$db->toDatabase("INSERT INTO template_user VALUES(NULL, 1, 1)");
+
 echo "\nUser admin created successfully!!\n";;
 ?>
