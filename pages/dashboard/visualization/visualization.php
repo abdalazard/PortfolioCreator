@@ -8,20 +8,17 @@ include_once '../../../icon/network.php';
 
 $con = new Connection;
 
+$userId =  $_SESSION['id'];
 try {
-    $newTemplate = null;
-
-    if (isset($_GET['newTemplate']) && $_GET['newTemplate'] !== null) {
-        $newTemplate = json_decode($_GET['newTemplate'], true);
-    }
-
-    if (!$newTemplate) {
-        $newTemplate['id'] = 1;
-    }
-    $userId = $_SESSION['id'];
+   
     $getPort = new Devfolio;
     $getPage = $getPort->getVisualizationPage();
-    $template = $getPort->templateVisualization($newTemplate['id']);
+    if(isset($_GET['newTemplate'])) {
+        $newTemplate = json_decode($_GET['newTemplate'], true);
+        $template = $newTemplate;
+    } else {
+        $template = $getPort->templateVisualization(null, $userId);
+    }
     $templates = $getPort->getTemplates();
     $profile = $getPort->getProfile($getPage);
     $skills = $getPort->getSkills($getPage);
@@ -30,6 +27,8 @@ try {
     $social = $getPort->getContacts($getPage);
 
     $templatePath = "../../../templates/" . $template['name'] . "/" . $template['name'];
+
+    $templateId = $template['id'];
 
     include $templatePath . '.php';
     include '../navbar.php';
@@ -42,68 +41,68 @@ try {
     <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
     <script src='".$templatePath.".js'></script>
     <script src='../navbar.js'></script>
-    <link rel='stylesheet' type='text/css' href='visualization.css' />";
-    echo "<style>
+    <link rel='stylesheet' type='text/css' href='visualization.css' />
+    
+    <style>
         body {
             margin-top: 100px;
         }
-        </style>";
-    echo "<script>
-            $(window).on('load', function() {
-                $('body').fadeIn();
+    </style>
+    <script>
+    $(document).ready(function() {
+
+        $('#backButton').on('click', function() {
+            window.history.back();
+        });
+
+        $('#chooseTemplate').on('click', (function(e) {
+            e.preventDefault();
+            var template = $('#template').val();
+            $.ajax({
+                url: '../../../src/Devfolio/Template.php',
+                type: 'GET',
+                data: {
+                    template: template,
+                    action: 'chooseTemplate'
+                },
+                success: function(data) {
+                console.log(data);
+                    let newTemplate = JSON.parse(data);
+                    let url = new URL(window.location.href);
+                    url.searchParams.set('newTemplate', JSON.stringify(newTemplate));
+                    window.location.href = url.href;
+                    
+                }, error : function(error) {
+                    console.log('seu retorno deu erro: ', error);
+                }
             });
+        }));
 
-            $('#chooseTemplate').on('click', (function(e) {
-                e.preventDefault();
-                var template = $('#template').val();
-                $.ajax({
-                    url: '../../../src/Devfolio/Template.php',
-                    type: 'GET',
-                    data: {
-                        template: template,
-                        action: 'chooseTemplate'
-                    },
-                    success: function(data) {
-                        let newTemplate = JSON.parse(data);
-                        let url = new URL(window.location.href);
-                        url.searchParams.set('newTemplate', JSON.stringify(newTemplate));
-                        window.location.href = url.href;
-                    }, error : function(error) {
-                        console.log('seu retorno deu erro: ', error);
-                    }
-                });
-            }));
+        $('#publish').on('click', function(event) {
+            event.preventDefault();
 
-
-            $('#publish').on('click', function() {
-                let newTemplate = JSON.parse('".json_encode($newTemplate)."');
-                let userId = ".$userId.";
-
-                event.preventDefault();
-                var formStatus = new FormData();
-                formStatus.append('userId', userId); 
-                formStatus.append('status', 1);
-                formStatus.append('template', newTemplate['id']); 
-                formStatus.append('action', 'setStatus');
-        
-                $.ajax({
-                    url: '../../../src/Devfolio/Create/Status.php',
-                    type: 'POST',
-                    processData: false,
-                    contentType: false,
-                    data: formStatus,
-                    success: function(data) {
-                        let statusMsg = 'Your Devfolio project is published!';
-                        location.href = '../dashboard.php?statusMsg='+statusMsg;
-                        console.log('visualization to dashboard');
-                        
-                    },
-                    error: function(error) {
-                        console.log('Publish button not good!')
-                    }
-                });
+            var formStatus = new FormData();
+            formStatus.append('status', 1);
+            formStatus.append('template', $templateId);
+            formStatus.append('action', 'setStatus');
+    
+            $.ajax({
+                url: '../../../src/Devfolio/Create/Status.php',
+                type: 'POST',
+                processData: false,
+                contentType: false,
+                data: formStatus,
+                success: function(data) {
+                    let statusMsg = 'Your Devfolio project is published!';
+                    location.href = '../dashboard.php?statusMsg='+statusMsg;                  
+                },
+                error: function(error) {
+                    console.log('Publish button not good!')
+                }
             });
-        </script>";
+        });
+    });
+    </script>";
 
 } catch (Exception $e) {
     $msg = "Erro: " . $e->getMessage() . "\nYou don't have anything registered!";

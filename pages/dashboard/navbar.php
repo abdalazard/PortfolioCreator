@@ -4,7 +4,7 @@
             <li><a href='../../../admin.php'>Home</a></li>
         </ul>
         <ul id='nav-mobile' class='left'>
-            <li><a href='#templateList' class='modal-trigger'>Templates</a></li>
+            <li><a href='#modal' class='modal-trigger'>Templates</a></li>
         </ul>
         <ul class='right'>
             <li><a class='waves-effect waves-light btn green modal-trigger' href='#' id='publish'>Publish</a>
@@ -17,7 +17,7 @@
     </div>
 </nav>
 
-<div class='modal fade' id='templateList' tabindex='-1' role='dialog' aria-labelledby='myModalLabel' aria-hidden='true'>
+<div class='modal fade' id='modal' tabindex='-1' role='dialog' aria-hidden='true'>
     <div class="row">
         <div class="col s12">
             <h3 class="center" style="margin-top:20px;">Choose a template</h3>

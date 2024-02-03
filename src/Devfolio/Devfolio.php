@@ -22,20 +22,23 @@ class Devfolio
         } 
     }
 
-    public function templateVisualization($template_id = null) {
+    public function templateVisualization($template_id, $userId) {
         try {
-            if(!$template_id) {
-                $template_id = 1;
+            
+            if($template_id) {
+                $selectVisualization = "SELECT * FROM template WHERE id LIKE '" .$template_id. "'";
+            } else {
+                $getTemplate = $this->getTemplate($userId);
+                $selectVisualization = "SELECT * FROM template WHERE id LIKE '" .$getTemplate['id']. "'";     
             }
-            $selectVisualization = "SELECT * FROM template WHERE id LIKE '" .$template_id. "'";
 
             $db = $this->dataBase($selectVisualization);
             $data = mysqli_fetch_array($db);
-
-            if ($data['id'] == $template_id) {
-                $template = $data;
+            if (!$data) {
+                $msg = "Problems to get this devfolio";
+                header("location: ../../nodevfolio.php?msg=" . $msg);
             } else {
-                $template = null;
+                $template = $data;
             }
             return $template;
 
@@ -55,10 +58,16 @@ class Devfolio
             $dbTemplate = $this->dataBase($selectTemplate);
             if($dbTemplate) {
                 $template = mysqli_fetch_array($dbTemplate);
+                $filter = ['name', 'id', 'creator_id'];
+                $filteredData = array_filter($template, function($value) {
+                    return !is_null($value) && $value !== '';
+                });
+                $template = array_intersect_key($filteredData, array_flip($filter));
+
             } else {
                 $template = null;
             }
-
+            
             return $template;
 
         } catch(Exception $e) {

@@ -24,6 +24,9 @@ echo "\nFake directory created";
 // (null,	'images/users/admin_folder/skills/654db1f441a61.png',	'".$userId."');");
 // echo "\nFake skills created";
 
+// $db->toDatabase("INSERT INTO `template` (`id`, `name`, `creator_id`) VALUES
+// (null,	'default', 1)");
+// echo "\nFake template created";
 
 $db->toDatabase("INSERT INTO `contacts` (`id`, `email`, `github`, `linkedin`, `id_user`) VALUES
 (null,	'abdalazard@gmail.com',	'abdalazard',	'vinicius.abdala10',	'".$userId."')");

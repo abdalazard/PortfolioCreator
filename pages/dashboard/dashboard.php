@@ -28,7 +28,7 @@ include '../../auth/Authentication.php'; ?>
             <ul id="nav-mobile" class="left ">
                 <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
-            <ul id="nav-mobile" class="left ">
+            <ul id="nav-mobile" class="left" hidden>
                 <li><a href="#">Change Layout(Soon)</a></li>
             </ul>
             <ul id="nav-mobile" class="left ">
@@ -68,6 +68,7 @@ include '../../auth/Authentication.php'; ?>
                     <th>id</th>
                     <th>Profile</th>
                     <th>Title</th>
+                    <th>Template</th>
                     <th>Edit</th>
                     <th>Delete</th>
 
@@ -77,6 +78,7 @@ include '../../auth/Authentication.php'; ?>
                 <td id="profileId"></td>
                 <td class="left"><img src="" alt="foto" id="profilePic"></td>
                 <td id="tituloProfile"></td>
+                <td id="template"></td>
                 <td>
                     <a id="editPortfolio"  class="modal-trigger">
                         <span class="material-symbols-outlined">
@@ -93,9 +95,6 @@ include '../../auth/Authentication.php'; ?>
                 </td>
             </tbody>
         </table>
-        <!-- <div id="modalEdit" class="modal center">
-            <h3>teste edit</h3>
-        </div> -->
         <div id="modalDelete" class="modal center">
             <h1>Your portfolio will be erased.</h1>
             <h4>Are you  sure about that?</h4>
@@ -114,6 +113,7 @@ var statusId;
 
 $(document).ready(function() {
     getStatus();
+    getTemplateName();
 
     $('#portfolioList').hide();
 
@@ -142,7 +142,6 @@ $(document).ready(function() {
             success: function(data) {
                 status = data.status;
                 statusId = data.id;
-                console.log(data)
                 if(status == 0) {
                     $('#new').show();
                     $('#visu').hide();
@@ -176,7 +175,7 @@ $(document).ready(function() {
             contentType: false,
             data: state,
             success: function(data) {
-                console.log("setState ok")
+                console.log("setState button worked well!")
             },
             error: function(error) {
                 console.log("setState button didn't work well!")
@@ -199,7 +198,6 @@ $(document).ready(function() {
             success: function(data) {
                 setState()
                 location.href = "../portfolio/create.php"
-                console.log("aqui")
             },
             error: function(error) {
                 console.log("Create new's button didn't work well")
@@ -249,7 +247,6 @@ $(document).ready(function() {
         });
     };
     $('#editPortfolio').on('click', function () {
-        console.log("Edit: "+statusId)
         window.location.href = '../portfolio/update.php?statusId='+statusId
     });
 
@@ -278,6 +275,24 @@ $(document).ready(function() {
         });
     });
 
+    function getTemplateName() {
+        $.ajax({
+            url: '../../src/Devfolio/Get.php',
+            type: 'GET', 
+            dataType: 'json',
+            data: {
+                userId: userId,
+                action: 'getTemplate' 
+            },
+            success: function(data) {
+               templateName = data.name;
+               $('#template').text(templateName);
+            },
+            error: function(error) {
+                console.log("getTemplateName's trouble!")
+            }
+        });
+    }
 });
 </script>
 </body>

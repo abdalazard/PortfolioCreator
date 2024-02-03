@@ -6,7 +6,7 @@ include 'Devfolio.php';
 
 $userId = $_SESSION['id']; 
 $action = $_GET['action'];
-$template = $_GET['template'];
+$template = $_GET['template'] ?? null;
 
 if($action == "getTemplateDefault"){
     $devfolio = new Devfolio;
@@ -17,7 +17,7 @@ if($action == "getTemplateDefault"){
 
 if($action == "chooseTemplate"){
     $devfolio = new Devfolio;
-    $data = $devfolio->templateVisualization($template);
+    $data = $devfolio->templateVisualization($template, $userId);
 
     $filter = ['name', 'id', 'creator_id'];
     $filteredData = array_filter($data, function($value) {

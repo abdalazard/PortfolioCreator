@@ -5,7 +5,7 @@ require_once '../../../vendor/autoload.php';
 
 session_start();
 
-$userId = $_POST['userId'];
+$userId = $_SESSION['id'];
 $code = $_POST['status'] ?? 0;
 $action = $_POST['action'];
 $template = $_POST['template'];
@@ -30,7 +30,7 @@ if($action == "setStatus"){
             $queryCreate = $devfolio->dataBase($createStatus);
             echo "Status created sucessfully!";
 
-            $setDefaultTemplate = "INSERT INTO template_user VALUES(null, $template, '".$userId."')";
+            $updateTemplate = "UPDATE template_user SET template_id = '".$template."' WHERE id_user LIKE '".$userId."'";
             $devfolio->dataBase($setDefaultTemplate);
             echo "Template settings done sucessfully!";            
         }
