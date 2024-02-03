@@ -50,6 +50,10 @@ include '../../auth/Authentication.php'; ?>
         <h1>Dashboard</h1>
         <div>
             <h6>Hello, <?php echo $_SESSION['user']; ?>!</h6>
+            <center>
+                <script type="text/javascript" src="//widget.supercounters.com/ssl/online_t.js"></script><script type="text/javascript">sc_online_t(1684704,"Users Online","170ddb");</script><br><noscript><a href="https://www.supercounters.com/">supercounters.com</a></noscript>
+            </center>
+
         </div>
 
         <hr />
@@ -103,6 +107,9 @@ include '../../auth/Authentication.php'; ?>
     </div>
 <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
 <script>
 M.AutoInit();
 var userId = '<?php echo  $_SESSION['id']; ?>';
