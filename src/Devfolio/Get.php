@@ -7,6 +7,14 @@ include 'Devfolio.php';
 $userId = $_SESSION['id']; 
 $action = $_GET['action'];
 
+if($action == "getUser"){
+    $devfolio = new Devfolio;
+    $data = $devfolio->getUser();
+    echo json_encode($data);
+    exit();
+}
+
+
 if($action == "getTemplate"){
     $devfolio = new Devfolio;
     $data = $devfolio->getTemplate($userId);

@@ -189,7 +189,6 @@
 
         var statusId = <?php echo  $_GET['statusId']; ?>;
 
-        //init
         $(document).ready(function() {
             $('#profileForm').text('Edit Profile');
             $('#skillsForm').text('Edit Skills');
