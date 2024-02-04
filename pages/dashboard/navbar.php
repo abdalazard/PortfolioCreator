@@ -1,6 +1,4 @@
-<head>
-<link rel='icon' href='../../icon/icon.png'>
-</head>
+
 <nav style='position: fixed; top: 0; width: 100%; z-index: 100;'>
     <div class='nav-wrapper black'>
         <ul id='nav-mobile' class='left'>
@@ -79,12 +77,12 @@
     });
 
     $('#modalCreateTemplate').css({
-                "width": 450,
-                "height": 400,
-                "padding": 10,
-                "background-color": "white", // Cor de fundo verde
-                "border": "1px solid green" // Borda fina verde
-            })
+        "width": 450,
+        "height": 400,
+        "padding": 10,
+        "background-color": "white", // Cor de fundo verde
+        "border": "1px solid green" // Borda fina verde
+    })
 
     $('#createTemplate').on('click', function() {
         var template_name = $('#template_name').val();

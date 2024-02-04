@@ -17,9 +17,7 @@ include '../../auth/Authentication.php'; ?>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel='icon' href='../../icon/icon.png'>
-
 </head>
-
 <body>
     <nav>
         <div class="nav-wrapper black">
@@ -335,8 +333,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         $('#modalSettings').css({
-                "width": 400,
-                "padding": 10,
+                "width": 450,
+                "padding": 5,
                 "background-color": "white", // Cor de fundo verde
                 "border": "1px solid green", // Borda fina verde
                 "margin-bottom": "50px"
