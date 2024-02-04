@@ -28,6 +28,7 @@ if (isset($_SESSION["id"])) {
     <link rel="stylesheet" href="./styles.css" />
     <script type="text/javascript" src="./index.js">
     </script>
+        <link rel='icon' href='icon/icon.png'>
 </head>
 <?php include_once 'icon/network.php'; ?>
 

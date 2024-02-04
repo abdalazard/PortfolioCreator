@@ -76,7 +76,14 @@ button {
 }
 
 .createTemplateModal{
-    height: 500px;
-    width: 500px;
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.modalTemplate {
+    height: 250px;
+    width: 300px;
+    margin-top: 50px;
 }
 

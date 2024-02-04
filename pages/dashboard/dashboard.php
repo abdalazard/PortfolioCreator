@@ -16,13 +16,15 @@ include '../../auth/Authentication.php'; ?>
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel='icon' href='../../icon/icon.png'>
+
 </head>
 
 <body>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left ">
-                <li><a href="../../../admin.php">Home</a></li>
+            <li><a href='../../admin.php'><img src="../../icon/logo.png" width="63px" height="60px"></a></li>
             </ul>
             <ul id="nav-mobile" class="left ">
                 <li><a id="new" class="modal-trigger">Create new</a></li>

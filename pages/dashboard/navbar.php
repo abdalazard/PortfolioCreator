@@ -1,7 +1,10 @@
+<head>
+<link rel='icon' href='../../icon/icon.png'>
+</head>
 <nav style='position: fixed; top: 0; width: 100%; z-index: 100;'>
     <div class='nav-wrapper black'>
         <ul id='nav-mobile' class='left'>
-            <li><a href='../../../admin.php'>Home</a></li>
+            <li><a href='../../../admin.php'><img src="../../../icon/logo.png" width="63px" height="60px"></a></li>
         </ul>
         <ul id='nav-mobile' class='left'>
             <li><a href='#modal' class='modal-trigger'>Templates</a></li>
@@ -17,22 +20,26 @@
     </div>
 </nav>
 
-<div class='modal fade' id='modalCreateTemplate' role='dialog' aria-hidden='true'>
-    <div class="createTemplateModal center">
-        <h4 class="newTemplateTitle">My New Template</h4>
-        <div class="row">
-            <div class="col s12">
-            <label for="template_name" class="left">Template name</label>
+<div class='modal fade' id='modalCreateTemplate' tabindex='-1' role='dialog' aria-hidden='true'>
+    <div>
+        <center>
+            <div class="createTemplateModal">
+                <h4 class="newTemplateTitle">My New Template</h4>
+                <div class="row">
+                    <div class="col s12">
+                    <label for="template_name" class="left">Template name</label>
 
-                <input type="text" class="template_name" id="template_name" name="template_name">
+                        <input type="text" class="template_name" id="template_name" name="template_name">
+                    </div>
+                </div>
+                <div class='row'>
+                    <div class="col s12">
+                        <button id="createTemplate">Register</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class='row'>
-            <div class="col s12">
-                <button id="createTemplate">Register</button>
-            </div>
-        </div>
-    </div>    
+        </center>
+    </div>
 </div>
 
 <div class='modal fade' id='modal' tabindex='-1' role='dialog' aria-hidden='true'>
@@ -67,8 +74,17 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems);
+    var instances = M.Modal.init(elems, {
+        inDuration: 500, // Ajuste este valor para o que você achar melhor
+    });
 
+    $('#modalCreateTemplate').css({
+                "width": 450,
+                "height": 400,
+                "padding": 10,
+                "background-color": "white", // Cor de fundo verde
+                "border": "1px solid green" // Borda fina verde
+            })
 
     $('#createTemplate').on('click', function() {
         var template_name = $('#template_name').val();
