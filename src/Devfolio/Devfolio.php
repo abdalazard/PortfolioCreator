@@ -161,7 +161,7 @@ class Devfolio
        
     }
 
-    public function getState($id) {
+    public function getState() {
 
         $stateQuery = "SELECT * FROM state WHERE id_user LIKE '" . $_SESSION['id'] . "'";
         $db = $this->dataBase($stateQuery);

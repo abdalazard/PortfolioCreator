@@ -1,5 +1,4 @@
 <?php
-include_once 'icon/network.php';
 include 'src/Devfolio/Devfolio.php';
 include "db/Connection.php";
 require_once (__DIR__.'/vendor/autoload.php');
@@ -8,6 +7,11 @@ $con = new Connection;
 
 try {
     $getPort = new Devfolio;
+    $getStatus = $getPort->getStatus(1);
+    if(!$getStatus || $getStatus['status'] == 0) {
+        $msg = "You don't have anything registered!";
+        header("location: nodevfolio.php?msg=" . $msg);
+    }
     $getPage = $getPort->getVisualizationPage();
     $template = $getPort->getTemplate(1);
     $profile = $getPort->getProfile($getPage);
@@ -17,8 +21,9 @@ try {
     $social = $getPort->getContacts($getPage);
 
     $templatePath = "templates/" . $template['name'] . "/" . $template['name'];
-
+    include_once 'icon/network.php';
     include $templatePath . '.php';
+    
     echo "<head>
     <meta charset='utf-8'>
     <link rel='stylesheet' type='text/css' href='".$templatePath.".css'>

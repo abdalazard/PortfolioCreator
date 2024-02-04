@@ -28,7 +28,7 @@ include '../../auth/Authentication.php'; ?>
                 <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
             <ul id="nav-mobile" class="left ">
-                <li><a id="visu" href="/pages/dashboard/visualization/visualization.php">Visualizar Devfolio</a></li>
+                <li><a id="visu" href="visualization/visualization.php">Visualizar Devfolio</a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black"
