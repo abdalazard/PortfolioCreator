@@ -14,3 +14,21 @@
     font-weight: bold;
     margin-bottom: 70px;
 }
+
+.createTemplateModal{
+    width: 80%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.modalTemplate {
+    height: 250px;
+    width: 300px;
+    margin-top: 50px;
+}
+
+.newTemplateTitle{
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+

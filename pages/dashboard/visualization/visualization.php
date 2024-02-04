@@ -33,17 +33,19 @@ try {
 
     include $templatePath . '.php';
     include '../navbar.php';
-    
+
 echo "<head>
     <meta charset='utf-8'>
     <link rel='stylesheet' type='text/css' href='".$templatePath.".css'>
     <link type='text/css' rel='stylesheet' href='../../../materialize/css/materialize.min.css' media='screen,projection' />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
     <link href='https://fonts.googleapis.com/css2?display=swap&family=Inter:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600' rel='stylesheet' type='text/css' />
     <script src='https://code.jquery.com/jquery-3.6.0.min.js'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js'></script>
     <script src='".$templatePath.".js'></script>
     <script src='../navbar.js'></script>
     <link rel='stylesheet' type='text/css' href='../../../styles2.css' />
+    <link rel='stylesheet' type='text/css' href='visualization.css' />
     <title>Portfolio Creator</title>
     </head>
     <style>
@@ -86,10 +88,8 @@ echo "<head>
                     console.log('seu retorno deu erro: ', error);
                 }
             });
-        }));";
+        }));
 
-
-        echo "
         $('#publish').on('click', function(event) {
             event.preventDefault();
 
