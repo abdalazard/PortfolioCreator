@@ -335,7 +335,6 @@ $(document).ready(function() {
     $('#settings').on('click', function(e) {
         e.preventDefault();
 
-        console.log('settings clicked')
         $('#modalSettings').css({
                 "width": 300,
                 "padding": 10,
@@ -344,12 +343,12 @@ $(document).ready(function() {
                 "margin-bottom": "50px"
             })
         $('#modalSettings').show();
+
         $.ajax({
             url: '../../src/Devfolio/Get.php',
             type: 'GET',
             dataType: 'json',
             data: {
-                // userId: userId,
                 action: 'getUser' 
             },
             success: function(data) {
@@ -361,6 +360,40 @@ $(document).ready(function() {
         });
     });
 });
+
+$('#updateUser').on('click', function() {
+    var username = $('#username').val();
+    var password = $('#password').val();
+    var password_confirmation = $('#password_confirmation').val();
+
+    var user = new FormData();
+    user.append('user', username);
+    user.append('action', "updateUser");
+
+    if (password != '') {       
+        if (password != password_confirmation) {
+            alert('As senhas não conferem');
+            return;
+        }
+        user.append('password', password);
+    }   
+
+    $.ajax({
+        url: '../../src/Devfolio/Update.php',
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        data: user,
+        success: function(data) {
+            let url = new URL(window.location.href);
+            url.searchParams.set('msg', "User data updated!");
+            window.location.href = url.href;           
+      },
+        error: function(error) {
+            console.log("updateUser didn't work well!")
+        }
+    });
+    });
 
 </script>
 </body>
