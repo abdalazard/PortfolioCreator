@@ -42,7 +42,8 @@ try {
     <script src='".$templatePath.".js'></script>
     <script src='../navbar.js'></script>
     <link rel='stylesheet' type='text/css' href='visualization.css' />
-    
+    <title>Portfolio Creator</title>
+
     <style>
         body {
             margin-top: 100px;

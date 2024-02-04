@@ -31,6 +31,32 @@ $email = $_POST['email'];
 $github = $_POST['github'];
 $likedin = $_POST['likedin'];
 
+//User
+$user = $_POST['user'];
+$password = $_POST['password'] ? MD5($_POST['password']) : null;
+
+if($action == "updateUser"){
+
+    $devfolio = new Devfolio;
+    $table = "users";
+    if($password && $user){
+        $updateUser = "UPDATE `users` SET user = '".$user."', password = '".$password."' WHERE `id` LIKE '".$userId."'"; 
+
+    } else if($password){
+        $updateUser = "UPDATE `users` SET password = '".$password."' WHERE `id` LIKE '".$userId."'"; 
+
+    } else if($user){
+        $updateUser = "UPDATE `users` SET user = '".$user."' WHERE `id` LIKE '".$userId."'";
+    }
+
+    if ($devfolio->dataBase($updateUser)) {
+        echo 'User data updated successfully!';
+    } else {
+        echo "Problems to attempt to update user data!";
+    }
+    
+}
+
 if($action == "updateProfilePic"){
 
     $devfolio = new Devfolio;

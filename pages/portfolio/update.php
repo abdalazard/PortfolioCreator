@@ -11,7 +11,7 @@
     <script type="text/javascript" src="../../materialize/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Update DevFolio</title>
+    <title>Portfolio Creator</title>
 </head>
 <body>
     <nav>
@@ -189,7 +189,6 @@
 
         var statusId = <?php echo  $_GET['statusId']; ?>;
 
-        //init
         $(document).ready(function() {
             $('#profileForm').text('Edit Profile');
             $('#skillsForm').text('Edit Skills');

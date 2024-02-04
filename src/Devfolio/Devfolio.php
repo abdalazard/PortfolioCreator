@@ -2,6 +2,31 @@
 
 class Devfolio
 {
+
+    public function getUser() {
+        try {
+            $selectUser = "SELECT user, id FROM users WHERE id LIKE '" . $_SESSION['id'] . "'";
+            $db = $this->dataBase($selectUser);
+            $data = mysqli_fetch_array($db);
+            if (!$data) {
+                $msg = "Problems to get this devfolio";
+                header("location: ../../pages/dashboard/dashboard.php?msg=" . $msg);
+            } else {
+                $filter = ['user', 'id'];
+                $filteredData = array_filter($data, function($value) {
+                    return !is_null($value) && $value !== '';
+                });
+                $data = array_intersect_key($filteredData, array_flip($filter));
+
+                $user = $data;
+            }
+            return $user;
+
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();
+        }
+    }
+
     public function getTemplates() {
         try {
             $allTemplates = "SELECT * FROM template";
