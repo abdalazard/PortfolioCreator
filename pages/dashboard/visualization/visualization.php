@@ -9,6 +9,7 @@ include_once '../../../icon/network.php';
 $con = new Connection;
 
 $userId =  $_SESSION['id'];
+
 try {
    
     $getPort = new Devfolio;
@@ -42,6 +43,7 @@ try {
     <script src='".$templatePath.".js'></script>
     <script src='../navbar.js'></script>
     <link rel='stylesheet' type='text/css' href='visualization.css' />
+    <link rel='stylesheet' type='text/css' href='../../../styles2.css' />
     <title>Portfolio Creator</title>
 
     <style>
@@ -51,6 +53,13 @@ try {
     </style>
     <script>
     $(document).ready(function() {
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var message = urlParams.get('templateCreated');
+
+        if (message) {
+            M.toast({html: message});
+        }
 
         $('#backButton').on('click', function() {
             window.history.back();
@@ -77,8 +86,10 @@ try {
                     console.log('seu retorno deu erro: ', error);
                 }
             });
-        }));
+        }));";
 
+
+        echo "
         $('#publish').on('click', function(event) {
             event.preventDefault();
 

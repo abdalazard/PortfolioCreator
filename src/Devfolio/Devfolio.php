@@ -100,6 +100,29 @@ class Devfolio
         } 
     }
 
+    public function createTemplate($template_name, $userId) {
+        try {
+            $checkQuery = "SELECT * FROM template WHERE name = '" . $template_name . "'";
+            $checkResult = $this->dataBase($checkQuery);
+            if ($checkResult && mysqli_num_rows($checkResult) > 0) {
+                $msg = "A template with this name already exists for this user.";
+            } else {
+                $insertTemplate = "INSERT INTO template (name, creator_id) VALUES ('" . $template_name . "', '" . $userId . "')";
+                $db = $this->dataBase($insertTemplate);
+                if ($db) {
+                    $msg = "Template created!";
+                } else {
+                    $msg = "Problems to create this template!";
+                }
+            }            
+            
+            return $msg;
+
+        } catch(Exception $e) {
+            echo "Error: " . $e->getMessage();
+        } 
+    }
+
     public function getVisualizationPage() {
         try {
             $selectPage  = "SELECT * FROM status";

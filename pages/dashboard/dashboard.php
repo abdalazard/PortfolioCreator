@@ -27,9 +27,6 @@ include '../../auth/Authentication.php'; ?>
             <ul id="nav-mobile" class="left ">
                 <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
-            <!-- <ul id="nav-mobile" class="left" hidden>
-                <li><a href="#">Change Layout(Soon)</a></li>
-            </ul> -->
             <ul id="nav-mobile" class="left ">
                 <li><a id="visu" href="/pages/dashboard/visualization/visualization.php">Visualizar Devfolio</a></li>
             </ul>
@@ -336,7 +333,7 @@ $(document).ready(function() {
         e.preventDefault();
 
         $('#modalSettings').css({
-                "width": 300,
+                "width": 400,
                 "padding": 10,
                 "background-color": "white", // Cor de fundo verde
                 "border": "1px solid green", // Borda fina verde
