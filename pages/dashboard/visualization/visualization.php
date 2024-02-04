@@ -22,9 +22,19 @@ try {
     }
     $templates = $getPort->getTemplates();
     $profile = $getPort->getProfile($getPage);
+    $profile['profile'] = "../../../" . $profile['profile'];
     $skills = $getPort->getSkills($getPage);
+    foreach ($skills as $key => $subarray) {
+        $skills[$key]['skill'] = "../../../" . $subarray['skill'];
+    }
     $projects = $getPort->getProjects($getPage);
+    foreach ($projects as $key => $subarray) {
+        $projects[$key]['screenshot'] = "../../../" . $subarray['screenshot'];
+    }
     $others = $getPort->getOthers($getPage);
+    foreach ($others as $key => $subarray) {
+        $others[$key]['banner'] = "../../../" . $subarray['banner'];
+    }
     $social = $getPort->getContacts($getPage);
 
     $templatePath = "../../../templates/" . $template['name'] . "/" . $template['name'];
