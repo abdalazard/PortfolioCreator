@@ -16,20 +16,17 @@ include '../../auth/Authentication.php'; ?>
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
+    <link rel='icon' href='../../icon/icon.png'>
 </head>
-
 <body>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left ">
-                <li><a href="../../../admin.php">Home</a></li>
+            <li><a href='../../admin.php'><img src="../../icon/logo.png" width="63px" height="60px"></a></li>
             </ul>
             <ul id="nav-mobile" class="left ">
                 <li><a id="new" class="modal-trigger">Create new</a></li>
             </ul>
-            <!-- <ul id="nav-mobile" class="left" hidden>
-                <li><a href="#">Change Layout(Soon)</a></li>
-            </ul> -->
             <ul id="nav-mobile" class="left ">
                 <li><a id="visu" href="/pages/dashboard/visualization/visualization.php">Visualizar Devfolio</a></li>
             </ul>
@@ -336,8 +333,8 @@ $(document).ready(function() {
         e.preventDefault();
 
         $('#modalSettings').css({
-                "width": 300,
-                "padding": 10,
+                "width": 450,
+                "padding": 5,
                 "background-color": "white", // Cor de fundo verde
                 "border": "1px solid green", // Borda fina verde
                 "margin-bottom": "50px"

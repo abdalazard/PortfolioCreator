@@ -12,12 +12,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Portfolio Creator</title>
+    <link rel='icon' href='../../icon/icon.png'>
+
 </head>
 <body>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left ">
-                <li><a href="../../admin.php">Home</a></li>
+            <li><a href='../../admin.php'><img src="../../icon/logo.png" width="63px" height="60px"></a></li>
             </ul>
             <ul class="right">
                 <li><a class="waves-effect waves-light btn black modal-trigger " href="../../src/Logout/Logout.php">Logout</a>
