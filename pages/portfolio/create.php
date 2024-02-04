@@ -6,9 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../materialize/css/materialize.min.css" media="screen,projection" />
     <link rel="stylesheet" href="../../styles2.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,12 +16,11 @@
     <title>Portfolio Creator</title>
     <link rel='icon' href='../../icon/icon.png'>
 </head>
-
 <body>
     <nav>
         <div class="nav-wrapper black">
             <ul id="nav-mobile" class="left ">
-                <li><a href="../../admin.php">Home</a></li>
+            <li><a href='../../admin.php'><img src="../../icon/logo.png" width="63px" height="60px"></a></li>
             </ul>
             <ul id="nav-mobile" class="left " >
                 <li ><a href="../dashboard/ visuzalization/visualization.php" id="preview"></a></li>
