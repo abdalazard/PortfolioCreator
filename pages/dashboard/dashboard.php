@@ -83,9 +83,6 @@ include '../../auth/Authentication.php'; ?>
         </div>
         <div>
             <h6>Hello, <?php echo $_SESSION['user']; ?>!</h6>
-            <center>
-                <script type="text/javascript" src="//widget.supercounters.com/ssl/online_t.js"></script><script type="text/javascript">sc_online_t(1684704,"Users Online","170ddb");</script><br><noscript><a href="https://www.supercounters.com/">supercounters.com</a></noscript>
-            </center>
         </div>        
         <hr />
         <h3> My Devfolio's projects</h3>
