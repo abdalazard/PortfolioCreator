@@ -38,11 +38,15 @@ In terminal line, write:
 Then fill up the file with your database information:
 
 **PROJECT_NAME**=my-project-name
+
 **DB_HOST**=localhost
+
 **DB_USERNAME**=root
+
 **DB_PASSWORD**=mypassword
 
 **MY_PORTFOLIO_NAME**=mydatabase
+
 **MY_PORTFOLIO_PAGE**=https:my-website.com
 
 In terminal, install all dependencies:
@@ -98,11 +102,15 @@ No terminal, escreva o seguinte comando:
 E então preencha o arquivo .env com as informações do seu banco de dados:
 
 **PROJECT_NAME**=nome-do-meu-projeto
+
 **DB_HOST**=localhost
+
 **DB_USERNAME**=root
+
 **DB_PASSWORD**=minhasenha
 
 **MY_PORTFOLIO_NAME**=meubancodedados
+
 **MY_PORTFOLIO_PAGE**=https:meu-site.com
 
 Ainda no terminal, instale todas as dependências do projeto:
