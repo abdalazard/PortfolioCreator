@@ -30,25 +30,25 @@ This project is open source, and contributions are highly welcome! If you have i
 4. Push to the branch (`git push origin new-feature`)
 5. Open a [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
 
-- Create a .env file:
+Create a .env file:
 In terminal line, write:
 
 * touch db/.env
 
-- then fill up the file with your database information:
+Then fill up the file with your database information:
 
-PROJECT_NAME=my-project-name
-DB_HOST=localhost
-DB_USERNAME=root
-DB_PASSWORD=mypassword
+**PROJECT_NAME**=my-project-name
+**DB_HOST**=localhost
+**DB_USERNAME**=root
+**DB_PASSWORD**=mypassword
 
-MY_PORTFOLIO_NAME=mydatabase
-MY_PORTFOLIO_PAGE=https:my-website.com
+**MY_PORTFOLIO_NAME**=mydatabase
+**MY_PORTFOLIO_PAGE**=https:my-website.com
 
-- In terminal, install all dependencies:
+In terminal, install all dependencies:
 * composer install
 
-- For the last, in terminal command line you need to write the next command line for create your user access:
+For the last, in terminal command line you need to write the next command line for create your user access:
 * php migrate.php
 
 We appreciate your contributions in advance!
@@ -90,25 +90,25 @@ Este projeto é de código aberto e contribuições são muito bem-vindas! Se vo
 4. Faça push para o branch (`git push origin nova-feature`)
 5. Abra um [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
 
--Crie um arquivo .env:
+Crie um arquivo .env:
 No terminal, escreva o seguinte comando:
 
 * touch db/.env
 
--E então preencha o arquivo .env com as informações do seu banco de dados:
+E então preencha o arquivo .env com as informações do seu banco de dados:
 
-PROJECT_NAME=nome-do-meu-projeto
-DB_HOST=localhost
-DB_USERNAME=root
-DB_PASSWORD=minhasenha
+**PROJECT_NAME**=nome-do-meu-projeto
+**DB_HOST**=localhost
+**DB_USERNAME**=root
+**DB_PASSWORD**=minhasenha
 
-MY_PORTFOLIO_NAME=meubancodedados
-MY_PORTFOLIO_PAGE=https:meu-site.com
+**MY_PORTFOLIO_NAME**=meubancodedados
+**MY_PORTFOLIO_PAGE**=https:meu-site.com
 
-- Ainda no terminal, instale todas as dependências do projeto:
+Ainda no terminal, instale todas as dependências do projeto:
 * composer install
 
-- Por último, você precisa escrever no terminal o seguinte código para criar seu usuário padrão de acesso e uso:
+Por último, você precisa escrever no terminal o seguinte código para criar seu usuário padrão de acesso e uso:
 * php migrate.php
 
 
