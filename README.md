@@ -12,6 +12,11 @@ This project is a PHP-based portfolio creator that stores standardized data in a
 - **Step 6 :** Create a documentation and publish it.
 
 
+
+![Step 6 - Working On It](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+
+
+
 ## Contributions
 
 This project is open source, and contributions are highly welcome! If you have ideas, suggestions, or corrections, feel free to [open an issue](https://github.com/abdalazard/Portfolio-Creator/issues/new) or submit a [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
@@ -32,27 +37,33 @@ This project is open source, and contributions are highly welcome! If you have i
 
 6. Create a .env file. In terminal line, write:
 
-touch db/.env
+```touch db/.env```
 
 7. Then fill up the file with your database information:
 
-**PROJECT_NAME**=my-project-name
+```
 
-**DB_HOST**=localhost
+PROJECT_NAME=my-project-name
 
-**DB_USERNAME**=root
+DB_HOST=localhost
 
-**DB_PASSWORD**=mypassword
+DB_USERNAME=root
 
-**MY_PORTFOLIO_NAME**=mydatabase
+DB_PASSWORD=mypassword
 
-**MY_PORTFOLIO_PAGE**=https:my-website.com
+MY_PORTFOLIO_NAME=mydatabase
+
+MY_PORTFOLIO_PAG*=https:my-website.com
+
+```
 
 8. In terminal, install all dependencies:
-composer install
+   
+```composer install```
 
 9. For the last, in terminal command line you need to write the next command line for create your user access:
-php migrate.php
+
+```php migrate.php```
 
 We appreciate your contributions in advance!
 
@@ -75,6 +86,10 @@ Este projeto é um criador de portfolios desenvolvido em PHP que registra dados 
 - **Fase 6 :** Documentar e publicar.
 
 
+
+![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+
+
 ## Contribuições
 
 Este projeto é de código aberto e contribuições são muito bem-vindas! Se você tem ideias, sugestões ou correções, sinta-se à vontade para [abrir uma issue](https://github.com/abdalazard/Portfolio-Creator/issues/new) ou enviar um [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
@@ -95,27 +110,32 @@ Este projeto é de código aberto e contribuições são muito bem-vindas! Se vo
 
 6. Crie um arquivo .env. No terminal, escreva o seguinte comando:
 
-touch db/.env
+```touch db/.env```
 
 7. E então preencha o arquivo .env com as informações do seu banco de dados:
 
-**PROJECT_NAME**=nome-do-meu-projeto
+```
 
-**DB_HOST**=localhost
+PROJECT_NAMEnome-do-meu-projeto
 
-**DB_USERNAME**=root
+DB_HOSTlocalhost
 
-**DB_PASSWORD**=minhasenha
+DB_USERNAMEroot
 
-**MY_PORTFOLIO_NAME**=meubancodedados
+DB_PASSWORDminhasenha
 
-**MY_PORTFOLIO_PAGE**=https:meu-site.com
+MY_PORTFOLIO_NAMEmeubancodedados
+
+MY_PORTFOLIO_PAGEhttps:meu-site.com
+
+```
 
 8. Ainda no terminal, instale todas as dependências do projeto:
-composer install
+   
+```composer install```
 
 9.  Por último, você precisa escrever no terminal o seguinte código para criar seu usuário padrão de acesso e uso:
-php migrate.php
 
+```php migrate.php```
 
 Agradecemos antecipadamente por suas contribuições!
