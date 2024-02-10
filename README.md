@@ -13,7 +13,7 @@ This project is a PHP-based portfolio creator that stores standardized data in a
 
 
 
-![Step 6 - Working On It](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
+![Step 6 - Working On It](http://img.shields.io/static/v1?label=STATUS&message=WORKING%20ON%20IT&color=GREEN&style=for-the-badge)
 
 
 
