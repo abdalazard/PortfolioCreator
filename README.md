@@ -43,17 +43,17 @@ This project is open source, and contributions are highly welcome! If you have i
 
 ```
 
-PROJECT_NAME=my-project-name
+PROJECT_NAME = my-project-name
 
-DB_HOST=localhost
+DB_HOST = localhost
 
-DB_USERNAME=root
+DB_USERNAME = root
 
-DB_PASSWORD=mypassword
+DB_PASSWORD = mypassword
 
-MY_PORTFOLIO_NAME=mydatabase
+MY_PORTFOLIO_NAME = mydatabase
 
-MY_PORTFOLIO_PAG*=https:my-website.com
+MY_PORTFOLIO_PAG = https:my-website.com
 
 ```
 
@@ -116,17 +116,17 @@ Este projeto é de código aberto e contribuições são muito bem-vindas! Se vo
 
 ```
 
-PROJECT_NAMEnome-do-meu-projeto
+PROJECT_NAME = nome-do-meu-projeto
 
-DB_HOSTlocalhost
+DB_HOST = localhost
 
-DB_USERNAMEroot
+DB_USERNAME = root
 
-DB_PASSWORDminhasenha
+DB_PASSWORD = minhasenha
 
-MY_PORTFOLIO_NAMEmeubancodedados
+MY_PORTFOLIO_NAME = meubancodedados
 
-MY_PORTFOLIO_PAGEhttps:meu-site.com
+MY_PORTFOLIO_PAGE = https:meu-site.com
 
 ```
 
