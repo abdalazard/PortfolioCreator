@@ -12,14 +12,9 @@ This project is a PHP-based portfolio creator that stores standardized data in a
 - **Step 6 :** Create a documentation and publish it.
 
 
-
-![Step 6 - Working On It](http://img.shields.io/static/v1?label=STATUS&message=WORKING%20ON%20IT&color=GREEN&style=for-the-badge)
-
-
-
 ## Contributions
 
-This project is open source, and contributions are highly welcome! If you have ideas, suggestions, or corrections, feel free to [open an issue](https://github.com/abdalazard/Portfolio-Creator/issues/new) or submit a [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
+This project is open source, and contributions are highly welcome! If you have ideas, suggestions, or corrections, feel free to [open an issue](https://github.com/abdalazard//issues/new) or submit a [pull request](https://github.com/abdalazard//compare).
 
 ## Technologies Used
 
@@ -33,37 +28,28 @@ This project is open source, and contributions are highly welcome! If you have i
 2. Create a branch for your contribution (`git checkout -b new-feature`)
 3. Make desired changes and commit (`git commit -m 'Adding new feature'`)
 4. Push to the branch (`git push origin new-feature`)
-5. Open a [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
+5. Open a [pull request](https://github.com/abdalazard//compare).
 
-6. Create a .env file. In terminal line, write:
+- Create a .env file:
+In terminal line, write:
 
-```touch db/.env```
+* touch db/.env
 
-7. Then fill up the file with your database information:
+- then fill up the file with your database information:
 
-```
+PROJECT_NAME=my-project-name
+DB_HOST=localhost
+DB_USERNAME=root
+DB_PASSWORD=mypassword
 
-PROJECT_NAME = my-project-name
+MY_PORTFOLIO_NAME=mydatabase
+MY_PORTFOLIO_PAGE=https:my-website.com
 
-DB_HOST = localhost
+- In terminal, install all dependencies:
+* composer install
 
-DB_USERNAME = root
-
-DB_PASSWORD = mypassword
-
-MY_PORTFOLIO_NAME = mydatabase
-
-MY_PORTFOLIO_PAG = https:my-website.com
-
-```
-
-8. In terminal, install all dependencies:
-   
-```composer install```
-
-9. For the last, in terminal command line you need to write the next command line for create your user access:
-
-```php migrate.php```
+- For the last, in terminal command line you need to write the next command line for create your user access:
+* php migrate.php
 
 We appreciate your contributions in advance!
 
@@ -86,13 +72,9 @@ Este projeto é um criador de portfolios desenvolvido em PHP que registra dados 
 - **Fase 6 :** Documentar e publicar.
 
 
-
-![Badge em Desenvolvimento](http://img.shields.io/static/v1?label=STATUS&message=EM%20DESENVOLVIMENTO&color=GREEN&style=for-the-badge)
-
-
 ## Contribuições
 
-Este projeto é de código aberto e contribuições são muito bem-vindas! Se você tem ideias, sugestões ou correções, sinta-se à vontade para [abrir uma issue](https://github.com/abdalazard/Portfolio-Creator/issues/new) ou enviar um [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
+Este projeto é de código aberto e contribuições são muito bem-vindas! Se você tem ideias, sugestões ou correções, sinta-se à vontade para [abrir uma issue](https://github.com/abdalazard//issues/new) ou enviar um [pull request](https://github.com/abdalazard/PortfolioCreator/compare).
 
 ## Tecnologias Utilizadas
 
@@ -106,36 +88,28 @@ Este projeto é de código aberto e contribuições são muito bem-vindas! Se vo
 2. Crie um branch para sua contribuição (`git checkout -b nova-feature`)
 3. Faça as mudanças desejadas e faça commit (`git commit -m 'Adicionando nova feature'`)
 4. Faça push para o branch (`git push origin nova-feature`)
-5. Abra um [pull request](https://github.com/abdalazard/Portfolio-Creator/compare).
+5. Abra um [pull request](https://github.com/abdalazard//compare).
 
-6. Crie um arquivo .env. No terminal, escreva o seguinte comando:
+-Crie um arquivo .env:
+No terminal, escreva o seguinte comando:
 
-```touch db/.env```
+* touch db/.env
 
-7. E então preencha o arquivo .env com as informações do seu banco de dados:
+-E então preencha o arquivo .env com as informações do seu banco de dados:
 
-```
+PROJECT_NAME=nome-do-meu-projeto
+DB_HOST=localhost
+DB_USERNAME=root
+DB_PASSWORD=minhasenha
 
-PROJECT_NAME = nome-do-meu-projeto
+MY_PORTFOLIO_NAME=meubancodedados
+MY_PORTFOLIO_PAGE=https:meu-site.com
 
-DB_HOST = localhost
+- Ainda no terminal, instale todas as dependências do projeto:
+* composer install
 
-DB_USERNAME = root
+- Por último, você precisa escrever no terminal o seguinte código para criar seu usuário padrão de acesso e uso:
+* php migrate.php
 
-DB_PASSWORD = minhasenha
-
-MY_PORTFOLIO_NAME = meubancodedados
-
-MY_PORTFOLIO_PAGE = https:meu-site.com
-
-```
-
-8. Ainda no terminal, instale todas as dependências do projeto:
-   
-```composer install```
-
-9.  Por último, você precisa escrever no terminal o seguinte código para criar seu usuário padrão de acesso e uso:
-
-```php migrate.php```
 
 Agradecemos antecipadamente por suas contribuições!
