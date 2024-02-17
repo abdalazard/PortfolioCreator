@@ -110,12 +110,26 @@ class Devfolio
                 $insertTemplate = "INSERT INTO template (name, creator_id) VALUES ('" . $template_name . "', '" . $userId . "')";
                 $db = $this->dataBase($insertTemplate);
                 if ($db) {
+                    // Create directory
+                    if (!is_dir('../../../templates/' . $template_name)) {
+                        mkdir('../../../templates/' . $template_name);
+                    }
+
+                    // Create HTML file
+                    file_put_contents('../../../templates/' . $template_name . '/'.$template_name.'.php', '');
+
+                    // Create CSS file
+                    file_put_contents('../../../templates/' . $template_name . '/'.$template_name.'.css', '');
+
+                    // Create JS file
+                    file_put_contents('../../../templates/' . $template_name . '/'.$template_name.'.js', '');
+
                     $msg = "Template created!";
                 } else {
                     $msg = "Problems to create this template!";
                 }
             }            
-            
+
             return $msg;
 
         } catch(Exception $e) {

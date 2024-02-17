@@ -252,6 +252,7 @@ function checkForms() {
                                 $('#modalProfileButton').hide();
                                 $('#profile-pic').prop('disabled', false);
                                 $('#profile-pic').prop('src','../../'+thisProfilePath);
+                                console.log(thisProfilePath)
                                 $('#profile-pic').css({
                                     'width': '50px',
                                     'height': '50px',
