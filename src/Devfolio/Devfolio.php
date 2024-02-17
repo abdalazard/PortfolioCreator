@@ -348,7 +348,7 @@ class Devfolio
         }
     }
 
-    public function setImageProject($file, $typePicture, $dir, )
+    public function setImageProject($file, $typePicture, $dir)
     {
         $ext = explode(".", $file['name']); //[profile][ferias][jpg]
         $ext = array_reverse($ext); //[jpg][ferias][profile]
@@ -374,7 +374,7 @@ class Devfolio
         }
     }
 
-    public function setImageOthers($file, $typePicture, $dir, )
+    public function setImageOthers($file, $typePicture, $dir)
     {
         $ext = explode(".", $file['name']); //[profile][ferias][jpg]
         $ext = array_reverse($ext); //[jpg][ferias][profile]
