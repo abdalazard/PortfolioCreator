@@ -63,9 +63,7 @@ Default password 123
 ```
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
-
-# Criador de Portfolios em PHP
+![LOGO](https://raw.githubusercontent.com/abdalazard/PortfolioCreator/main/icon/icon.png)
 
 Este projeto é um criador de portfolios desenvolvido em PHP que registra dados padronizados em um banco de dados MySQL. Além disso, oferece ao usuário a capacidade de criar seus próprios templates personalizados.
 
